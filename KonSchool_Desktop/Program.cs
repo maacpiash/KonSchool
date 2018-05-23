@@ -10,8 +10,6 @@ using Microsoft.Extensions.Logging;
 
 using ElectronNET.API;
 
-
-
 namespace KonSchool_Desktop
 {
     public class Program
@@ -22,9 +20,6 @@ namespace KonSchool_Desktop
         }
 
         public static IWebHost BuildWebHost(string[] args) =>
-            WebHost.CreateDefaultBuilder(args)
-                .UseElectron(args)
-                .UseStartup<Startup>()
-                .Build();
+            WebHost.CreateDefaultBuilder(args).UseElectron(args).UseStartup<Startup>().Build();
     }
 }

@@ -48,23 +48,19 @@ namespace KonSchool_Desktop
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            if (HybridSupport.IsElectronActive)
-                Bootstrap();
+            Bootstrap();
         }
 
         public async void Bootstrap()
         {
             var browserWindow = await Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions
             {
-                Width = 1152,
-                Height = 864,
                 Show = false
             });
-            browserWindow.SetTitle("স্কুলে গেলি??");
+
             browserWindow.OnReadyToShow += () => browserWindow.Show();
+            browserWindow.SetTitle("স্কুলে গেলি??");
+
         }
-
-
     }
 }
