@@ -37,30 +37,46 @@ namespace KonSchool_Desktop
             }
             else
             {
-                app.UseExceptionHandler("/Home/Error");
+                app.UseExceptionHandler("/Error");
             }
 
             app.UseStaticFiles();
 
-            app.UseMvc(routes =>
-            {
-                routes.MapRoute(
-                    name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
-            });
+            app.UseMvc();
             Bootstrap();
         }
 
         public async void Bootstrap()
         {
-            var browserWindow = await Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions
+            var MainWindow = await Electron.WindowManager.CreateWindowAsync(new BrowserWindowOptions
             {
                 Show = false
             });
 
-            browserWindow.OnReadyToShow += () => browserWindow.Show();
-            browserWindow.SetTitle("স্কুলে গেলি??");
+            MainWindow.OnReadyToShow += () => MainWindow.Show();
 
+            var Menubar = new MenuItem[]
+            {
+                new MenuItem
+                {
+                    Label = "File",
+                    Submenu = new MenuItem[]
+                    {
+                        new MenuItem { Label = "About", Click = () => ShowAbout() },
+                        new MenuItem { Label = "Exit", Click = () => { Electron.App.Exit(); } }
+                    }
+                }
+            };
+
+            Electron.Menu.SetApplicationMenu(Menubar);
+        }
+
+        public async void ShowAbout()
+        {
+            await Electron.Dialog.ShowMessageBoxAsync("কোন স্কুল? desktop application was developed by\n" +
+                "Md. Abdul Ahad Chowdhury, with the graceful help of Rezaur Rahman Shaon and\n" +
+                "Abdullah-Al Nahian Siraj\nWe are all grateful to Dr. M Rashedur Rahman " +
+                "for his support\nand guidance regarding our Fuzzy AHP project.");
         }
     }
 }

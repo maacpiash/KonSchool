@@ -1,0 +1,41 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "স্কুলে গেলি??";
+}
+
+<head>
+    <style>
+        td { padding: 5px; }
+    </style>
+</head>
+
+<div>
+    <h3>Welcome to "কোন স্কুল?"</h3>
+    <p>"কোন স্কুল?"" is an app that is designed to help you find the best school for your child!</p>
+    <div>
+        <p>Please enter the details of your child and yourself:</p>
+        <form method="post">
+            <table>
+                <tr>
+                    <td><p>Class</p></td>
+                    <td><p><select asp-for="Class" asp-items="Model.Classes"></select></p></td>
+                </tr>
+                <tr>
+                    <td><p>Guardian's occupation</p></td>
+                    <td><p><select asp-for="Occupation" asp-items="Model.Occupations"></select></p></td>
+                </tr>
+                <tr>
+                    <td><p>Sex</p></td>
+                    <td>
+                        <p>
+                            <input asp-for="Sex" type="radio" value="1" checked="checked" /> Male
+                            <input asp-for="Sex" type="radio" value="2" /> Female
+                        </p>
+                    </td>
+                </tr>
+            </table>
+            <input type="submit"/>
+        </form>
+    </div>
+</div>
