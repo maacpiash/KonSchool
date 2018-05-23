@@ -37,12 +37,4 @@ namespace KonSchool_Models
 
         public School(int EIIN) => eiin = EIIN;
     }
-
-    public struct Address
-    {
-        public string Union;
-        public string Thana;
-        public string District;
-        public string Division;
-    }
 }

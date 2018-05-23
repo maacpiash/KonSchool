@@ -9,4 +9,4 @@
 The dataset used for this system can be found [here](https://drive.google.com/open?id=1dz5p4MJfGdoknAgGRy-BaV0rmX46mZHZ), which was compiled from several datasets originally collected from [Bangladesh Open Data](http://data.gov.bd/dataset).
 
 ### Acknowledgement
-I am very grateful to [Dr. Mohammad Rashedur Rahman](http://ece.northsouth.edu/people/rashedur-rahman/), my instructor of Fuzzy Logic course (CSE470) at North South University, who mentored my group on this project. I would also like to thank my groupmates — Rezaur Rahman Shaon, for the development of the mathematical model; and Abdullah-Al Nahian Siraj, for his cooperation.
+I am very grateful to [Dr. Mohammad Rashedur Rahman](http://ece.northsouth.edu/people/rashedur-rahman/) sir, my instructor of Fuzzy Logic course (CSE470) at North South University, who mentored my group on this project. I would also like to thank my groupmates — Rezaur Rahman Shaon, for the development of the mathematical model; and Abdullah-Al Nahian Siraj, for his cooperation.
