@@ -9,7 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 using ElectronNET.API;
-using KonSchool_Desktop.Models;
+using KonSchool_Models;
 
 namespace KonSchool_Desktop
 {

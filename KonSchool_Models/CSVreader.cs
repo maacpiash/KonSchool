@@ -1,6 +1,6 @@
 namespace KonSchool_Models
 {
-    public static class ReadFromCSV
+    public class CSVreader
     {
         // EIIN
 
@@ -31,6 +31,33 @@ namespace KonSchool_Models
         // DIVISION DISTRICT THANA UNION MAUZA AREA_STATUS GEOGRPYCAL_STATUS ADDRESS POST MOBILE
         // MANAGEMENT_TYPE STUDENT_TYPE LAVER_OF_EDUCATION EDUCATION_LEVEL
         // AFFILIATION	MPO_STATUS	SCHOOL_AGE	JUNIOR_MPO_AGE	SECONDARY_MPO_AGE
+        
+        string[][] dataLines;
+        string[] keys;
+
+        public string[] Keys { get => keys; set => keys = value; }
+
+        public int this[string key]
+        {
+            get => GetValue(key);
+            set => SetValue(key, value);
+        }
+
+        private int GetValue(string key)
+        {
+            return 0;
+        }
+
+        private void SetValue(string key, int value)
+        {
+
+        }
+
+        public CSVreader(string[] lines)
+        {
+            int height, width;
+
+        }
 
     }    
 }

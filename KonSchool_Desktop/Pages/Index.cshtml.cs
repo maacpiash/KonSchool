@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-using KonSchool_Desktop.Models;
+using KonSchool_Models;
 
 namespace KonSchool_Desktop.Pages
 {
@@ -47,12 +47,10 @@ namespace KonSchool_Desktop.Pages
             if (!ModelState.IsValid)
                 return Page();
             Program.MyQuery.Class = Convert.ToInt32(Class);
+            Program.MyQuery.Occupation = Occupation;
             switch (Occupation)
             {
-                case "Worker":
-                case "Tati":
-                case "Fisherman":
-                case "Kamar/Kumar":
+                case "Worker": case "Tati": case "Fisherman": case "Kamar/Kumar":
                     Program.MyQuery.Social = 0;
                     break;
                 case "Cultivation": case "Expatriate": case "Small business":

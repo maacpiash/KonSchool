@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace KonSchool_Desktop.Models
+namespace KonSchool_Models
 {
     public class Query
     {
@@ -38,7 +38,7 @@ namespace KonSchool_Desktop.Models
         public string Occupation
         {
             get => _occupation;
-            set => _occupation = Occupation.Contains(value) ? value : "Other";
+            set => _occupation = GetOccupations().Contains(value) ? value : "Other";
         }
 
         public Address Location
@@ -52,7 +52,7 @@ namespace KonSchool_Desktop.Models
         public static List<string> GetOccupations()
         {
             if (Occupations == null)
-                return new List<string>()
+                Occupations = new List<string>()
                 {
                     "Worker", "Fisherman", "Tati", "Kamar/Kumar",
                     "Cultivation", "Expatriate", "Small business",

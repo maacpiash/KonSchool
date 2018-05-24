@@ -12,7 +12,7 @@ namespace KonSchool_Desktop.Pages
 
         public void OnGet()
         {
-            Message = "Your application description page.";
+            Message = Program.MyQuery.IsMale ? "Male" : "Female";
         }
     }
 }
