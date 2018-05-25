@@ -35,6 +35,27 @@
                     </td>
                 </tr>
             </table>
+            <fieldset>
+                <legend>Address</legend>
+                <table>
+                    <tr>
+                        <td><p>Division</p></td>
+                        <td><p><select asp-for="Division" asp-items="Model.Divisions"></select></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>District</p></td>
+                        <td><p><select asp-for="District" asp-items="Model.Districts"></select></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Thana</p></td>
+                        <td><p><select asp-for="Thana" asp-items="Model.Thanas"></select></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Union/Ward</p></td>
+                        <td><p><select asp-for="Union_Ward" asp-items="Model.Unions_Wards"></select></p></td>
+                    </tr>
+                </table>
+            </fieldset>
             <input type="submit"/>
         </form>
     </div>
