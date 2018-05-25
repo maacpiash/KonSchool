@@ -19,22 +19,15 @@ namespace KonSchool_Desktop.Pages
         public string Occupation { get; set; }
         [BindProperty]
         public int Sex { get; set; }
+        
         [BindProperty]
         public string Division { get; set; }
-        [BindProperty]
-        public string District { get; set; }
-        [BindProperty]
-        public string Thana { get; set; }
-        [BindProperty]
-        public string Union_Ward { get; set; }
 
         [BindProperty]
-        public Dictionary<string, List<SelectListItem>> DivDist
-        {
-            get;
-            set;
-        }
-        
+        public string District { get; set; }
+
+        [BindProperty]
+        public string Thana { get; set; }    
 
         public IndexModel() => Populate();
 
@@ -55,20 +48,7 @@ namespace KonSchool_Desktop.Pages
             var collection = Query.GetOccupations();
             foreach (var item in collection)
                 Occupations.Add(new SelectListItem { Value = item, Text = item });
-
-            Divisions = new List<SelectListItem>()
-            {
-                new SelectListItem { Value = "BAR", Text = "Barisal" },
-                new SelectListItem { Value = "CTG", Text = "Chittagong" },
-                new SelectListItem { Value = "DHK", Text = "Dhaka" },
-                new SelectListItem { Value = "KHU", Text = "Khulna" },
-                new SelectListItem { Value = "MYM", Text = "Mymensingh" },
-                new SelectListItem { Value = "RAJ", Text = "Rajshahi" },
-                new SelectListItem { Value = "RAN", Text = "Rangpur" },
-                new SelectListItem { Value = "SYL", Text = "Sylhet" }
-            };
         }
-
 
         public async Task<IActionResult> OnPostAsync()
         {
@@ -95,6 +75,7 @@ namespace KonSchool_Desktop.Pages
                     break;
             }
             Program.MyQuery.IsMale = Sex == 1;
+            Program.MyQuery.Location = new Address(Division, District, Thana, "None");
             return RedirectToPage("/About");
         }
     }
