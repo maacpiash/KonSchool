@@ -184,11 +184,15 @@
                     </tr>
                     <tr>
                         <td><p>District</p></td>
-                        <td><p><select id="district" asp-for="@Model.District" onchange="DistThanaChange(this);"></select></p></td>
+                        <td><p><select id="district" asp-for="@Model.District" onchange="DistThanaChange(this);">
+                                   <option value="empty">Select a division first</option>
+                        </select></p></td>
                     </tr>
                     <tr>
                         <td><p>Thana</p></td>
-                        <td><p><select id="thana" asp-for="@Model.Thana"></select></p></td>
+                        <td><p><select id="thana" asp-for="@Model.Thana">
+                                   <option value="empty">Select a district first</option>
+                        </select></p></td>
                     </tr>
                 </table>
                 

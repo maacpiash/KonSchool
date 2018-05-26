@@ -1,0 +1,17 @@
+﻿@page
+@model MF_RatioModel
+@{
+    ViewData["Title"] = "Comparing male-female ratio with other criteria";
+}
+
+<head>
+    <style>
+        td { padding: 5px }
+    </style>
+</head>
+
+<body>
+    <h3>Comparing male-female ratio with other criteria</h3>
+    <p>If you want only @Model.SexMessage, this criteria will consider ratio of male and female teachers.</p>
+    <input type="button" onclick="history.back();" value="Go back" />
+</body>
