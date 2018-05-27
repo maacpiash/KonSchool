@@ -65,7 +65,9 @@ namespace KonSchool_Desktop
                     Submenu = new MenuItem[]
                     {
                         new MenuItem { Label = "About", Click = () => ShowAbout() },
-                        new MenuItem { Label = "Exit", Click = () => { Electron.App.Exit(); } }
+                        new MenuItem { Label = "Exit", Click = () => { Electron.App.Exit();
+                                Environment.Exit(0); 
+                            } }
                     }
                 }
             };
@@ -80,5 +82,6 @@ namespace KonSchool_Desktop
                 "Abdullah-Al Nahian Siraj\nWe are all grateful to Dr. M Rashedur Rahman " +
                 "for his support\nand guidance regarding our Fuzzy AHP project.");
         }
+
     }
 }

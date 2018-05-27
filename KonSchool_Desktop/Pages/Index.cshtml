@@ -8,136 +8,136 @@
     <style>
         td { padding: 5px; }
     </style>
-    <script type="text/javascript">
-        var DivDist = new Array(4);
-        DivDist["empty"] = ["Select a division"]; 
-        DivDist["BARISAL"] = ["BARGUNA", "BARISAL", "BHOLA", "JHALOKATI", "PATUAKHALI", "PIROJPUR"];
-        DivDist["CHITTAGONG"] = ["BANDARBAN", "BRAHAMANBARIA", "CHANDPUR", "CHITTAGONG", "COMILLA", "COXS BAZAR", "FENI", "KHAGRACHHARI", "LAKSHMIPUR", "NOAKHALI", "RANGAMATI"];
-        DivDist["DHAKA"] = ["DHAKA", "FARIDPUR", "GAZIPUR", "GOPALGANJ", "KISHOREGANJ", "MADARIPUR", "MANIKGANJ", "MUNSHIGANJ", "NARAYANGANJ", "NARSINGDI", "RAJBARI", "SHARIATPUR", "TANGAIL"];
-        DivDist["MYMENSINGH"] = ["JAMALPUR", "MYMENSINGH", "NETRAKONA", "SHERPUR"];
-        DivDist["KHULNA"] = ["BAGERHAT", "CHUADANGA", "JESSORE", "JHENAIDAH", "KHULNA", "KUSHTIA", "MAGURA", "MEHERPUR", "NORAIL", "SATKHIRA"];
-        DivDist["RAJSHAHI"] = ["BOGRA", "JOYPURHAT", "NAOGAON", "NATORE", "NAWABGANJ", "PABNA", "RAJSHAHI", "SIRAJGANJ"];
-        DivDist["RANGPUR"] = ["DINAJPUR", "GAIBANDHA", "KURIGRAM", "LALMONIRHAT", "NILPHAMARI", "RANGPUR", "PANCHAGARH", "THAKURGAON"];
-        DivDist["SYLHET"] = ["HABIGANJ", "MAULVIBAZAR", "SUNAMGANJ", "SYLHET"];
+    <script type="text/javascript">var DivDist = new Array(4);
+DivDist["empty"] = ["Select a division"];
+DivDist["BARISAL"] = ["BARGUNA", "BARISAL", "BHOLA", "JHALOKATI", "PATUAKHALI", "PIROJPUR"];
+DivDist["CHITTAGONG"] = ["BANDARBAN", "BRAHAMANBARIA", "CHANDPUR", "CHITTAGONG", "COMILLA", "COXS BAZAR", "FENI", "KHAGRACHHARI", "LAKSHMIPUR", "NOAKHALI", "RANGAMATI"];
+DivDist["DHAKA"] = ["DHAKA", "FARIDPUR", "GAZIPUR", "GOPALGANJ", "KISHOREGANJ", "MADARIPUR", "MANIKGANJ", "MUNSHIGANJ", "NARAYANGANJ", "NARSINGDI", "RAJBARI", "SHARIATPUR", "TANGAIL"];
+DivDist["MYMENSINGH"] = ["JAMALPUR", "MYMENSINGH", "NETRAKONA", "SHERPUR"];
+DivDist["KHULNA"] = ["BAGERHAT", "CHUADANGA", "JESSORE", "JHENAIDAH", "KHULNA", "KUSHTIA", "MAGURA", "MEHERPUR", "NORAIL", "SATKHIRA"];
+DivDist["RAJSHAHI"] = ["BOGRA", "JOYPURHAT", "NAOGAON", "NATORE", "NAWABGANJ", "PABNA", "RAJSHAHI", "SIRAJGANJ"];
+DivDist["RANGPUR"] = ["DINAJPUR", "GAIBANDHA", "KURIGRAM", "LALMONIRHAT", "NILPHAMARI", "RANGPUR", "PANCHAGARH", "THAKURGAON"];
+DivDist["SYLHET"] = ["HABIGANJ", "MAULVIBAZAR", "SUNAMGANJ", "SYLHET"];
 
-        var DistThana = new Array(4);
-        DistThana["empty"] = ["Select a district"];
-        DistThana["BARGUNA"] = ["TALTALI", "AMTALI", "BAMNA", "BARGUNA SADAR", "BETAGI", "PATHARGHATA"];
-        DistThana["BARISAL"] = ["AGAILJHARA", "BABUGANJ", "BAKERGANJ", "BANARI PARA", "GAURNADI", "HIZLA", "BARISAL SADAR (KOTWALI)", "MEHENDIGANJ", "MULADI", "WAZIRPUR"];
-        DistThana["BHOLA"] = ["BHOLA SADAR", "BURHANUDDIN", "CHAR FASSON", "LALMOHAN", "DAULAT KHAN", "MANPURA", "TAZUMUDDIN"];
-        DistThana["JHALOKATI"] = ["JHALOKATI SADAR", "KANTHALIA", "NALCHITY", "RAJAPUR"];
-        DistThana["PATUAKHALI"] = ["BAUPHAL", "DASHMINA", "DUMKI UPAZILA", "GALACHIPA", "RANGABALI", "KALA PARA", "MIRZAGANJ UPAZILA", "PATUAKHALI SADAR"];
-        DistThana["PIROJPUR"] = ["BHANDARIA", "KAWKHALI", "MATHBARIA", "NAZIRPUR UPAZILA", "PIROJPUR SADAR", "INDURKANI", "NESARABAD (SWARUPKATI)"];
-        DistThana["BANDARBAN"] = ["ALIKADAM", "BANDARBAN SADAR", "LAMA", "NAIKHONGCHHARI", "THANCHI"];
-        DistThana["BRAHAMANBARIA"] = ["AKHAURA", "BANCHHARAMPUR", "BRAHMANBARIA SADAR", "BIJOYNAGAR", "ASHUGANJ", "NABINAGAR", "KASBA", "NASIRNAGAR", "SARAIL"];
-        DistThana["CHANDPUR"] = ["CHANDPUR SADAR", "SHAHRASTI", "FARIDGANJ", "HAIM CHAR", "HAJIGANJ", "KACHUA", "MATLAB DAKSHIN", "MATLAB UTTAR"];
-        DistThana["CHITTAGONG"] = ["ANOWARA", "HATHAZARI", "BAYEJID BOSTAMI", "BANSHKHALI", "CHANDGAON", "BAKALIA", "BOALKHALI", "CHANDANAISH", "PATENGA", "CHITTAGONG PORT", "DOUBLE MOORING", "KHULSHI", "FATIKCHHARI", "PATIYA", "KOTWALI", "PANCHLAISH", "LOHAGARA", "MIRSHARAI", "PAHARTALI", "HALISHAHAR", "RANGUNIA", "RAOZAN", "SANDWIP", "SATKANIA", "SITAKUNDA"];
-        DistThana["COMILLA"] = ["BARURA", "BRAHMAN PARA", "BURICHANG", "CHANDINA", "DAUDKANDI", "CHAUDDAGRAM", "TITAS", "DEBIDWAR", "HOMNA", "COMILLA SADAR DAKSHIN", "COMILLA ADARSHA SADAR", "MANOHARGANJ", "LAKSAM", "MEGHNA", "MURADNAGAR", "NANGALKOT"];
-        DistThana["COXS BAZAR"] = ["CHAKARIA", "PEKUA", "COX'S BAZAR SADAR", "KUTUBDIA", "MAHESHKHALI", "RAMU", "TEKNAF", "UKHIA UPAZILA"];
-        DistThana["FENI"] = ["CHHAGALNAIYA", "DAGANBHUIYAN", "FENI SADAR", "FULGAZI", "PARSHURAM", "SONAGAZI"];
-        DistThana["KHAGRACHHARI"] = ["DIGHINALA", "KHAGRACHHARI SADAR", "LAKSHMICHHARI", "MAHALCHHARI", "MANIKCHHARI", "MATIRANGA", "PANCHHARI", "RAMGARH"];
-        DistThana["LAKSHMIPUR"] = ["LAKSHMIPUR SADAR", "ROYPUR", "RAMGANJ", "RAMGATI", "KAMALNAGAR"];
-        DistThana["NOAKHALI"] = ["BEGUMGANJ", "SONAIMURI", "CHATKHIL", "COMPANIGANJ", "HATIYA", "SENBAGH", "NOAKHALI SADAR", "SUBARNACHAR", "KABIRHAT"];
-        DistThana["RANGAMATI"] = ["BAGHAICHHARI", "BARKAL UPAZILA", "KAWKHALI (BETBUNIA)", "BELAI CHHARI  UPAZI", "KAPTAI  UPAZILA", "JURAI CHHARI UPAZIL", "LANGADU  UPAZILA", "NANIARCHAR  UPAZILA", "RAJASTHALI  UPAZILA", "RANGAMATI SADAR  UP"];
-        DistThana["DHAKA"] = ["KHILKHET", "BADDA", "CANTONMENT", "UTTAR KHAN", "KAFRUL", "DEMRA", "JATRABARI", "KADAMTALI", "NAWABGANJ", "SABUJBAGH", "KHILGAON", "DHAMRAI", "DHANMONDI", "DOHAR", "BHATARA", "RAMPURA", "GULSHAN", "ADABOR", "HAZARIBAGH", "SHER-E-BANGLA NAGAR", "BHANSAN TEK", "KAMRANGIR CHAR", "KERANIGANJ", "KOTWALI", "BANGSHAL", "CHAK BAZAR", "LALBAGH", "PALLABI", "DARUS SALAM", "MIRPUR", "SHAH ALI", "TURAG", "MOHAMMADPUR", "MOTIJHEEL", "PALTAN", "RAMNA", "SHAHBAGH", "SHAHJAHANPUR", "MUGDA PARA", "SAVAR", "SHYAMPUR", "GENDARIA", "SUTRAPUR", "WARI", "TEJGAON", "TEJGAON IND. AREA", "BIMAN BANDAR", "DAKSHINKHAN", "UTTARA", "RUPNAGAR"];
-        DistThana["FARIDPUR"] = ["ALFADANGA", "BHANGA", "BOALMARI", "CHAR BHADRASAN", "FARIDPUR SADAR", "MADHUKHALI", "SHALTHA", "NAGARKANDA", "SADARPUR"];
-        DistThana["GAZIPUR"] = ["GAZIPUR SADAR", "KALIAKAIR", "KALIGANJ", "KAPASIA", "SREEPUR"];
-        DistThana["GOPALGANJ"] = ["GOPALGANJ SADAR", "KASHIANI", "KOTALIPARA", "MUKSUDPUR", "TUNGIPARA"];
-        DistThana["JAMALPUR"] = ["BAKSHIGANJ", "DEWANGANJ", "ISLAMPUR", "JAMALPUR SADAR", "MADARGANJ", "MELANDAHA", "SARISHABARI UPAZILA"];
-        DistThana["KISHOREGANJ"] = ["AUSTAGRAM", "BAJITPUR", "BHAIRAB", "HOSSAINPUR", "ITNA", "KARIMGANJ", "KATIADI", "KISHOREGANJ SADAR", "KULIAR CHAR", "MITHAMAIN", "NIKLI", "PAKUNDIA", "TARAIL"];
-        DistThana["MADARIPUR"] = ["KALKINI", "MADARIPUR SADAR", "RAJOIR", "SHIB CHAR"];
-        DistThana["MANIKGANJ"] = ["DAULATPUR", "GHIOR", "HARIRAMPUR", "MANIKGANJ SADAR", "SATURIA", "SHIBALAYA", "SINGAIR"];
-        DistThana["MUNSHIGANJ"] = ["GAZARIA", "LOHAJANG", "MUNSHIGANJ SADAR", "SERAJDIKHAN", "SREENAGAR", "TONGIBARI"];
-        DistThana["MYMENSINGH"] = ["BHALUKA", "DHOBAURA", "FULBARIA", "GAFFARGAON", "GAURIPUR", "HALUAGHAT", "ISHWARGANJ", "MYMENSINGH SADAR", "MUKTAGACHHA", "NANDAIL", "PHULPUR", "TARAKANDA", "TRISHAL"];
-        DistThana["NARAYANGANJ"] = ["ARAIHAZAR", "SONARGAON", "BANDAR", "NARAYANGANJ SADAR", "RUPGANJ"];
-        DistThana["NARSINGDI"] = ["BELABO", "MANOHARDI", "NARSINGDI SADAR", "PALASH", "ROYPURA", "SHIBPUR"];
-        DistThana["NETRAKONA"] = ["ATPARA", "BARHATTA", "DURGAPUR", "KHALIAJURI", "KALMAKANDA", "KENDUA", "MADAN", "MOHANGANJ", "NETROKONA SADAR", "PURBADHALA"];
-        DistThana["RAJBARI"] = ["BALIAKANDI", "GOALANDA", "PANGSHA", "KALUKHALI", "RAJBARI SADAR"];
-        DistThana["SHARIATPUR"] = ["BHEDARGANJ", "DAMUDYA", "GOSAIRHAT", "NARIA", "SHARIATPUR SADAR", "ZANJIRA"];
-        DistThana["SHERPUR"] = ["JHENAIGATI", "NAKLA", "NALITABARI", "SHERPUR SADAR", "SREEBARDI"];
-        DistThana["TANGAIL"] = ["BASAIL", "BHUAPUR", "DELDUAR", "GHATAIL", "GOPALPUR", "DHANBARI", "KALIHATI", "MADHUPUR", "MIRZAPUR", "NAGARPUR", "SAKHIPUR", "TANGAIL SADAR"];
-        DistThana["BAGERHAT"] = ["BAGERHAT SADAR", "CHITALMARI", "FAKIRHAT", "KACHUA", "MOLLAHAT", "MONGLA", "MORRELGANJ", "RAMPAL", "SARANKHOLA"];
-        DistThana["CHUADANGA"] = ["ALAMDANGA", "CHUADANGA SADAR", "DAMURHUDA", "JIBAN NAGAR"];
-        DistThana["JESSORE"] = ["ABHAYNAGAR", "BAGHER PARA", "CHAUGACHHA", "JHIKARGACHHA", "KESHABPUR", "KOTWALI", "MANIRAMPUR", "SHARSHA"];
-        DistThana["JHENAIDAH"] = ["HORINAKUNDA", "JHENAIDAH SADAR", "KALIGANJ", "KOTCHANDPUR", "MAHESHPUR", "SHAILKUPA"];
-        DistThana["KHULNA"] = ["BATIAGHATA", "DACOPE", "DAULATPUR", "KHAN JAHAN ALI", "DUMURIA", "DIGHALIA", "KHALISHPUR", "PHULTALA", "KHULNA SADAR", "KOYRA", "PAIKGACHHA", "RUPSA", "SONADANGA", "TEROKHADA"];
-        DistThana["KUSHTIA"] = ["BHERAMARA", "DAULATPUR", "KHOKSA", "KUMARKHALI", "KUSHTIA SADAR", "MIRPUR"];
-        DistThana["MAGURA"] = ["MAGURA SADAR", "MOHAMMADPUR", "SHALIKHA", "SREEPUR"];
-        DistThana["MEHERPUR"] = ["GANGNI", "MUJIB NAGAR", "MEHERPUR SADAR"];
-        DistThana["NORAIL"] = ["KALIA", "LOHAGARA", "NARAIL SADAR"];
-        DistThana["SATKHIRA"] = ["ASSASUNI", "DEBHATA", "KALAROA", "KALIGANJ", "SATKHIRA SADAR", "SHYAMNAGAR", "TALA"];
-        DistThana["BOGRA"] = ["ADAMDIGHI", "BOGRA SADAR", "SHAJAHANPUR", "DHUNAT", "DHUPCHANCHIA", "GABTALI", "KAHALOO", "NANDIGRAM", "SARIAKANDI", "SONATOLA", "SHERPUR", "SHIBGANJ"];
-        DistThana["DINAJPUR"] = ["BIRAMPUR", "BIRGANJ", "BIRAL", "BOCHAGANJ", "CHIRIRBANDAR", "KHANSAMA", "KAHAROLE", "FULBARI", "GHORAGHAT", "HAKIMPUR", "DINAJPUR SADAR", "NAWABGANJ", "PARBATIPUR"];
-        DistThana["GAIBANDHA"] = ["FULCHHARI", "GAIBANDHA SADAR", "GOBINDAGANJ", "PALASHBARI", "SADULLAPUR", "SAGHATA", "SUNDARGANJ"];
-        DistThana["JOYPURHAT"] = ["AKKELPUR", "JOYPURHAT SADAR", "KALAI", "KHETLAL", "PANCHBIBI"];
-        DistThana["KURIGRAM"] = ["BHURUNGAMARI", "CHAR RAJIBPUR", "CHILMARI", "PHULBARI", "KURIGRAM SADAR", "NAGESHWARI", "RAJARHAT", "RAUMARI", "ULIPUR"];
-        DistThana["LALMONIRHAT"] = ["ADITMARI", "HATIBANDHA", "KALIGANJ", "LALMONIRHAT SADAR", "PATGRAM"];
-        DistThana["NAOGAON"] = ["ATRAI", "BADALGACHHI", "DHAMOIRHAT", "MANDA", "MAHADEBPUR", "NAOGAON SADAR", "NIAMATPUR", "PATNITALA", "PORSHA", "RANINAGAR", "SAPAHAR"];
-        DistThana["NATORE"] = ["BAGATIPARA", "BARAIGRAM", "GURUDASPUR", "LALPUR", "NALDANGA", "NATORE SADAR", "SINGRA"];
-        DistThana["NAWABGANJ"] = ["BHOLAHAT", "GOMASTAPUR", "NACHOLE", "CHAPAI NABABGANJ SADAR", "SHIBGANJ"];
-        DistThana["NILPHAMARI"] = ["DIMLA UPAZILA", "JALDHAKA UPAZILA", "DOMAR UPAZILA", "KISHOREGANJ UPAZILA", "NILPHAMARI SADAR UPAZ", "SAIDPUR UPAZILA"];
-        DistThana["RANGPUR"] = ["GANGACHARA", "BADARGANJ", "PIRGACHHA", "KAUNIA", "RANGPUR SADAR", "MITHA PUKUR", "PIRGANJ", "TARAGANJ"];
-        DistThana["PABNA"] = ["ATGHARIA", "BERA", "BHANGURA", "CHATMOHAR", "FARIDPUR", "ISHWARDI", "PABNA SADAR", "SANTHIA", "SUJANAGAR"];
-        DistThana["PANCHAGARH"] = ["BODA", "ATWARI", "DEBIGANJ", "PANCHAGARH SADAR", "TENTULIA"];
-        DistThana["RAJSHAHI"] = ["BAGHA", "BAGHMARA", "BOALIA", "SHAH MAKHDUM", "RAJPARA", "MATIHAR", "CHARGHAT", "GODAGARI", "DURGAPUR", "MOHANPUR", "PABA", "PUTHIA", "TANORE"];
-        DistThana["SIRAJGANJ"] = ["BELKUCHI", "CHAUHALI", "KAMARKHANDA", "KAZIPUR", "ROYGANJ", "SHAHJADPUR", "SIRAJGANJ SADAR", "TARASH", "ULLAH PARA"];
-        DistThana["THAKURGAON"] = ["BALIADANGI", "HARIPUR", "PIRGANJ", "RANISANKAIL", "THAKURGAON SADAR"];
-        DistThana["HABIGANJ"] = ["AJMIRIGANJ", "BAHUBAL", "BANIACHONG", "CHUNARUGHAT", "HABIGANJ SADAR", "LAKHAI", "MADHABPUR", "NABIGANJ"];
-        DistThana["MAULVIBAZAR"] = ["BARLEKHA", "JURI", "KAMALGANJ", "KULAURA", "MAULVIBAZAR SADAR", "RAJNAGAR", "SREEMANGAL"];
-        DistThana["SUNAMGANJ"] = ["BISHWAMBARPUR", "CHHATAK", "JAGANNATHPUR", "DERAI", "DHARAMPASHA", "DOWARABAZAR", "JAMALGANJ", "SULLA", "DAKSHIN SUNAMGANJ", "SUNAMGANJ SADAR", "TAHIRPUR"];
-        DistThana["SYLHET"] = ["BALAGANJ", "BEANI BAZAR", "BISHWANATH", "COMPANIGANJ", "FENCHUGANJ", "GOLAPGANJ", "GOWAINGHAT", "JAINTIAPUR", "KANAIGHAT", "SYLHET SADAR", "DAKSHIN SURMA", "ZAKIGANJ"];
+var DistThana = new Array(4);
+DistThana["empty"] = ["Select a district"];
+DistThana["BARGUNA"] = ["TALTALI", "AMTALI", "BAMNA", "BARGUNA SADAR", "BETAGI", "PATHARGHATA"];
+DistThana["BARISAL"] = ["AGAILJHARA", "BABUGANJ", "BAKERGANJ", "BANARI PARA", "GAURNADI", "HIZLA", "BARISAL SADAR (KOTWALI)", "MEHENDIGANJ", "MULADI", "WAZIRPUR"];
+DistThana["BHOLA"] = ["BHOLA SADAR", "BURHANUDDIN", "CHAR FASSON", "LALMOHAN", "DAULAT KHAN", "MANPURA", "TAZUMUDDIN"];
+DistThana["JHALOKATI"] = ["JHALOKATI SADAR", "KANTHALIA", "NALCHITY", "RAJAPUR"];
+DistThana["PATUAKHALI"] = ["BAUPHAL", "DASHMINA", "DUMKI UPAZILA", "GALACHIPA", "RANGABALI", "KALA PARA", "MIRZAGANJ UPAZILA", "PATUAKHALI SADAR"];
+DistThana["PIROJPUR"] = ["BHANDARIA", "KAWKHALI", "MATHBARIA", "NAZIRPUR UPAZILA", "PIROJPUR SADAR", "INDURKANI", "NESARABAD (SWARUPKATI)"];
+DistThana["BANDARBAN"] = ["ALIKADAM", "BANDARBAN SADAR", "LAMA", "NAIKHONGCHHARI", "THANCHI"];
+DistThana["BRAHAMANBARIA"] = ["AKHAURA", "BANCHHARAMPUR", "BRAHMANBARIA SADAR", "BIJOYNAGAR", "ASHUGANJ", "NABINAGAR", "KASBA", "NASIRNAGAR", "SARAIL"];
+DistThana["CHANDPUR"] = ["CHANDPUR SADAR", "SHAHRASTI", "FARIDGANJ", "HAIM CHAR", "HAJIGANJ", "KACHUA", "MATLAB DAKSHIN", "MATLAB UTTAR"];
+DistThana["CHITTAGONG"] = ["ANOWARA", "HATHAZARI", "BAYEJID BOSTAMI", "BANSHKHALI", "CHANDGAON", "BAKALIA", "BOALKHALI", "CHANDANAISH", "PATENGA", "CHITTAGONG PORT", "DOUBLE MOORING", "KHULSHI", "FATIKCHHARI", "PATIYA", "KOTWALI", "PANCHLAISH", "LOHAGARA", "MIRSHARAI", "PAHARTALI", "HALISHAHAR", "RANGUNIA", "RAOZAN", "SANDWIP", "SATKANIA", "SITAKUNDA"];
+DistThana["COMILLA"] = ["BARURA", "BRAHMAN PARA", "BURICHANG", "CHANDINA", "DAUDKANDI", "CHAUDDAGRAM", "TITAS", "DEBIDWAR", "HOMNA", "COMILLA SADAR DAKSHIN", "COMILLA ADARSHA SADAR", "MANOHARGANJ", "LAKSAM", "MEGHNA", "MURADNAGAR", "NANGALKOT"];
+DistThana["COXS BAZAR"] = ["CHAKARIA", "PEKUA", "COX'S BAZAR SADAR", "KUTUBDIA", "MAHESHKHALI", "RAMU", "TEKNAF", "UKHIA UPAZILA"];
+DistThana["FENI"] = ["CHHAGALNAIYA", "DAGANBHUIYAN", "FENI SADAR", "FULGAZI", "PARSHURAM", "SONAGAZI"];
+DistThana["KHAGRACHHARI"] = ["DIGHINALA", "KHAGRACHHARI SADAR", "LAKSHMICHHARI", "MAHALCHHARI", "MANIKCHHARI", "MATIRANGA", "PANCHHARI", "RAMGARH"];
+DistThana["LAKSHMIPUR"] = ["LAKSHMIPUR SADAR", "ROYPUR", "RAMGANJ", "RAMGATI", "KAMALNAGAR"];
+DistThana["NOAKHALI"] = ["BEGUMGANJ", "SONAIMURI", "CHATKHIL", "COMPANIGANJ", "HATIYA", "SENBAGH", "NOAKHALI SADAR", "SUBARNACHAR", "KABIRHAT"];
+DistThana["RANGAMATI"] = ["BAGHAICHHARI", "BARKAL UPAZILA", "KAWKHALI (BETBUNIA)", "BELAI CHHARI  UPAZI", "KAPTAI  UPAZILA", "JURAI CHHARI UPAZIL", "LANGADU  UPAZILA", "NANIARCHAR  UPAZILA", "RAJASTHALI  UPAZILA", "RANGAMATI SADAR  UP"];
+DistThana["DHAKA"] = ["KHILKHET", "BADDA", "CANTONMENT", "UTTAR KHAN", "KAFRUL", "DEMRA", "JATRABARI", "KADAMTALI", "NAWABGANJ", "SABUJBAGH", "KHILGAON", "DHAMRAI", "DHANMONDI", "DOHAR", "BHATARA", "RAMPURA", "GULSHAN", "ADABOR", "HAZARIBAGH", "SHER-E-BANGLA NAGAR", "BHANSAN TEK", "KAMRANGIR CHAR", "KERANIGANJ", "KOTWALI", "BANGSHAL", "CHAK BAZAR", "LALBAGH", "PALLABI", "DARUS SALAM", "MIRPUR", "SHAH ALI", "TURAG", "MOHAMMADPUR", "MOTIJHEEL", "PALTAN", "RAMNA", "SHAHBAGH", "SHAHJAHANPUR", "MUGDA PARA", "SAVAR", "SHYAMPUR", "GENDARIA", "SUTRAPUR", "WARI", "TEJGAON", "TEJGAON IND. AREA", "BIMAN BANDAR", "DAKSHINKHAN", "UTTARA", "RUPNAGAR"];
+DistThana["FARIDPUR"] = ["ALFADANGA", "BHANGA", "BOALMARI", "CHAR BHADRASAN", "FARIDPUR SADAR", "MADHUKHALI", "SHALTHA", "NAGARKANDA", "SADARPUR"];
+DistThana["GAZIPUR"] = ["GAZIPUR SADAR", "KALIAKAIR", "KALIGANJ", "KAPASIA", "SREEPUR"];
+DistThana["GOPALGANJ"] = ["GOPALGANJ SADAR", "KASHIANI", "KOTALIPARA", "MUKSUDPUR", "TUNGIPARA"];
+DistThana["JAMALPUR"] = ["BAKSHIGANJ", "DEWANGANJ", "ISLAMPUR", "JAMALPUR SADAR", "MADARGANJ", "MELANDAHA", "SARISHABARI UPAZILA"];
+DistThana["KISHOREGANJ"] = ["AUSTAGRAM", "BAJITPUR", "BHAIRAB", "HOSSAINPUR", "ITNA", "KARIMGANJ", "KATIADI", "KISHOREGANJ SADAR", "KULIAR CHAR", "MITHAMAIN", "NIKLI", "PAKUNDIA", "TARAIL"];
+DistThana["MADARIPUR"] = ["KALKINI", "MADARIPUR SADAR", "RAJOIR", "SHIB CHAR"];
+DistThana["MANIKGANJ"] = ["DAULATPUR", "GHIOR", "HARIRAMPUR", "MANIKGANJ SADAR", "SATURIA", "SHIBALAYA", "SINGAIR"];
+DistThana["MUNSHIGANJ"] = ["GAZARIA", "LOHAJANG", "MUNSHIGANJ SADAR", "SERAJDIKHAN", "SREENAGAR", "TONGIBARI"];
+DistThana["MYMENSINGH"] = ["BHALUKA", "DHOBAURA", "FULBARIA", "GAFFARGAON", "GAURIPUR", "HALUAGHAT", "ISHWARGANJ", "MYMENSINGH SADAR", "MUKTAGACHHA", "NANDAIL", "PHULPUR", "TARAKANDA", "TRISHAL"];
+DistThana["NARAYANGANJ"] = ["ARAIHAZAR", "SONARGAON", "BANDAR", "NARAYANGANJ SADAR", "RUPGANJ"];
+DistThana["NARSINGDI"] = ["BELABO", "MANOHARDI", "NARSINGDI SADAR", "PALASH", "ROYPURA", "SHIBPUR"];
+DistThana["NETRAKONA"] = ["ATPARA", "BARHATTA", "DURGAPUR", "KHALIAJURI", "KALMAKANDA", "KENDUA", "MADAN", "MOHANGANJ", "NETROKONA SADAR", "PURBADHALA"];
+DistThana["RAJBARI"] = ["BALIAKANDI", "GOALANDA", "PANGSHA", "KALUKHALI", "RAJBARI SADAR"];
+DistThana["SHARIATPUR"] = ["BHEDARGANJ", "DAMUDYA", "GOSAIRHAT", "NARIA", "SHARIATPUR SADAR", "ZANJIRA"];
+DistThana["SHERPUR"] = ["JHENAIGATI", "NAKLA", "NALITABARI", "SHERPUR SADAR", "SREEBARDI"];
+DistThana["TANGAIL"] = ["BASAIL", "BHUAPUR", "DELDUAR", "GHATAIL", "GOPALPUR", "DHANBARI", "KALIHATI", "MADHUPUR", "MIRZAPUR", "NAGARPUR", "SAKHIPUR", "TANGAIL SADAR"];
+DistThana["BAGERHAT"] = ["BAGERHAT SADAR", "CHITALMARI", "FAKIRHAT", "KACHUA", "MOLLAHAT", "MONGLA", "MORRELGANJ", "RAMPAL", "SARANKHOLA"];
+DistThana["CHUADANGA"] = ["ALAMDANGA", "CHUADANGA SADAR", "DAMURHUDA", "JIBAN NAGAR"];
+DistThana["JESSORE"] = ["ABHAYNAGAR", "BAGHER PARA", "CHAUGACHHA", "JHIKARGACHHA", "KESHABPUR", "KOTWALI", "MANIRAMPUR", "SHARSHA"];
+DistThana["JHENAIDAH"] = ["HORINAKUNDA", "JHENAIDAH SADAR", "KALIGANJ", "KOTCHANDPUR", "MAHESHPUR", "SHAILKUPA"];
+DistThana["KHULNA"] = ["BATIAGHATA", "DACOPE", "DAULATPUR", "KHAN JAHAN ALI", "DUMURIA", "DIGHALIA", "KHALISHPUR", "PHULTALA", "KHULNA SADAR", "KOYRA", "PAIKGACHHA", "RUPSA", "SONADANGA", "TEROKHADA"];
+DistThana["KUSHTIA"] = ["BHERAMARA", "DAULATPUR", "KHOKSA", "KUMARKHALI", "KUSHTIA SADAR", "MIRPUR"];
+DistThana["MAGURA"] = ["MAGURA SADAR", "MOHAMMADPUR", "SHALIKHA", "SREEPUR"];
+DistThana["MEHERPUR"] = ["GANGNI", "MUJIB NAGAR", "MEHERPUR SADAR"];
+DistThana["NORAIL"] = ["KALIA", "LOHAGARA", "NARAIL SADAR"];
+DistThana["SATKHIRA"] = ["ASSASUNI", "DEBHATA", "KALAROA", "KALIGANJ", "SATKHIRA SADAR", "SHYAMNAGAR", "TALA"];
+DistThana["BOGRA"] = ["ADAMDIGHI", "BOGRA SADAR", "SHAJAHANPUR", "DHUNAT", "DHUPCHANCHIA", "GABTALI", "KAHALOO", "NANDIGRAM", "SARIAKANDI", "SONATOLA", "SHERPUR", "SHIBGANJ"];
+DistThana["DINAJPUR"] = ["BIRAMPUR", "BIRGANJ", "BIRAL", "BOCHAGANJ", "CHIRIRBANDAR", "KHANSAMA", "KAHAROLE", "FULBARI", "GHORAGHAT", "HAKIMPUR", "DINAJPUR SADAR", "NAWABGANJ", "PARBATIPUR"];
+DistThana["GAIBANDHA"] = ["FULCHHARI", "GAIBANDHA SADAR", "GOBINDAGANJ", "PALASHBARI", "SADULLAPUR", "SAGHATA", "SUNDARGANJ"];
+DistThana["JOYPURHAT"] = ["AKKELPUR", "JOYPURHAT SADAR", "KALAI", "KHETLAL", "PANCHBIBI"];
+DistThana["KURIGRAM"] = ["BHURUNGAMARI", "CHAR RAJIBPUR", "CHILMARI", "PHULBARI", "KURIGRAM SADAR", "NAGESHWARI", "RAJARHAT", "RAUMARI", "ULIPUR"];
+DistThana["LALMONIRHAT"] = ["ADITMARI", "HATIBANDHA", "KALIGANJ", "LALMONIRHAT SADAR", "PATGRAM"];
+DistThana["NAOGAON"] = ["ATRAI", "BADALGACHHI", "DHAMOIRHAT", "MANDA", "MAHADEBPUR", "NAOGAON SADAR", "NIAMATPUR", "PATNITALA", "PORSHA", "RANINAGAR", "SAPAHAR"];
+DistThana["NATORE"] = ["BAGATIPARA", "BARAIGRAM", "GURUDASPUR", "LALPUR", "NALDANGA", "NATORE SADAR", "SINGRA"];
+DistThana["NAWABGANJ"] = ["BHOLAHAT", "GOMASTAPUR", "NACHOLE", "CHAPAI NABABGANJ SADAR", "SHIBGANJ"];
+DistThana["NILPHAMARI"] = ["DIMLA UPAZILA", "JALDHAKA UPAZILA", "DOMAR UPAZILA", "KISHOREGANJ UPAZILA", "NILPHAMARI SADAR UPAZ", "SAIDPUR UPAZILA"];
+DistThana["RANGPUR"] = ["GANGACHARA", "BADARGANJ", "PIRGACHHA", "KAUNIA", "RANGPUR SADAR", "MITHA PUKUR", "PIRGANJ", "TARAGANJ"];
+DistThana["PABNA"] = ["ATGHARIA", "BERA", "BHANGURA", "CHATMOHAR", "FARIDPUR", "ISHWARDI", "PABNA SADAR", "SANTHIA", "SUJANAGAR"];
+DistThana["PANCHAGARH"] = ["BODA", "ATWARI", "DEBIGANJ", "PANCHAGARH SADAR", "TENTULIA"];
+DistThana["RAJSHAHI"] = ["BAGHA", "BAGHMARA", "BOALIA", "SHAH MAKHDUM", "RAJPARA", "MATIHAR", "CHARGHAT", "GODAGARI", "DURGAPUR", "MOHANPUR", "PABA", "PUTHIA", "TANORE"];
+DistThana["SIRAJGANJ"] = ["BELKUCHI", "CHAUHALI", "KAMARKHANDA", "KAZIPUR", "ROYGANJ", "SHAHJADPUR", "SIRAJGANJ SADAR", "TARASH", "ULLAH PARA"];
+DistThana["THAKURGAON"] = ["BALIADANGI", "HARIPUR", "PIRGANJ", "RANISANKAIL", "THAKURGAON SADAR"];
+DistThana["HABIGANJ"] = ["AJMIRIGANJ", "BAHUBAL", "BANIACHONG", "CHUNARUGHAT", "HABIGANJ SADAR", "LAKHAI", "MADHABPUR", "NABIGANJ"];
+DistThana["MAULVIBAZAR"] = ["BARLEKHA", "JURI", "KAMALGANJ", "KULAURA", "MAULVIBAZAR SADAR", "RAJNAGAR", "SREEMANGAL"];
+DistThana["SUNAMGANJ"] = ["BISHWAMBARPUR", "CHHATAK", "JAGANNATHPUR", "DERAI", "DHARAMPASHA", "DOWARABAZAR", "JAMALGANJ", "SULLA", "DAKSHIN SUNAMGANJ", "SUNAMGANJ SADAR", "TAHIRPUR"];
+DistThana["SYLHET"] = ["BALAGANJ", "BEANI BAZAR", "BISHWANATH", "COMPANIGANJ", "FENCHUGANJ", "GOLAPGANJ", "GOWAINGHAT", "JAINTIAPUR", "KANAIGHAT", "SYLHET SADAR", "DAKSHIN SURMA", "ZAKIGANJ"];
 
 
-        function DivDistChange(selectObj) {     
-            var idx = selectObj.selectedIndex; 
-            var which = selectObj.options[idx].value; 
-            cList = DivDist[which]; 
-            var cSelect = document.getElementById("district"); 
-            var len=cSelect.options.length; 
-            while (cSelect.options.length > 0) { 
-                cSelect.remove(0); 
-            } 
-            var newOption; 
-            // create new options 
-            for (var i=0; i<cList.length; i++) { 
-                newOption = document.createElement("option"); 
-                newOption.value = cList[i];  // assumes option string and value are the same 
-                newOption.text=cList[i]; 
-                // add the new option 
-                //try { 
-                //    cSelect.add(newOption);  // this will fail in DOM browsers but is needed for IE 
-                //} 
-                //catch (e) { 
-                cSelect.appendChild(newOption); 
-            //} 
-        } 
-        }
+function DivDistChange(selectObj) {
+            var idx = selectObj.selectedIndex;
+            var which = selectObj.options[idx].value;
+            cList = DivDist[which];
+            var cSelect = document.getElementById("district");
+            var len = cSelect.options.length;
+            while (cSelect.options.length > 0) {
+                cSelect.remove(0);
+            }
+            var newOption;
+            // create new options
+            for (var i = 0; i < cList.length; i++) {
+                newOption = document.createElement("option");
+                newOption.value = cList[i];  // assumes option string and value are the same
+                newOption.text = cList[i];
+                // add the new option
+                //try {
+                //    cSelect.add(newOption);  // this will fail in DOM browsers but is needed for IE
+                //}
+                //catch (e) {
+                cSelect.appendChild(newOption);
+                //}
 
-        function DistThanaChange(selectObj) { 
-            // get the index of the selected option 
-            var idx = selectObj.selectedIndex; 
-            // get the value of the selected option 
-            var which = selectObj.options[idx].value; 
-            // use the selected option value to retrieve the list of items from the DivDist array 
-            cList = DistThana[which]; 
-            // get the country select element via its known id 
-            var cSelect = document.getElementById("thana"); 
-            // remove the current options from the country select 
-            var len=cSelect.options.length; 
-            while (cSelect.options.length > 0) { 
-                cSelect.remove(0); 
-            } 
-            var newOption; 
-            // create new options 
-            for (var i=0; i<cList.length; i++) { 
-                newOption = document.createElement("option"); 
-                newOption.value = cList[i];  // assumes option string and value are the same 
-                newOption.text=cList[i]; 
-                // add the new option 
-                cSelect.appendChild(newOption); 
-            } 
-        }
-    </script>
+            }
+            DistThanaChange(cSelect);
+}
+
+function DistThanaChange(selectObj) {
+            // get the index of the selected option
+            var idx = selectObj.selectedIndex;
+            // get the value of the selected option
+            var which = selectObj.options[idx].value;
+            // use the selected option value to retrieve the list of items from the DivDist array
+            cList = DistThana[which];
+            // get the country select element via its known id
+            var cSelect = document.getElementById("thana");
+            // remove the current options from the country select
+            var len = cSelect.options.length;
+            while (cSelect.options.length > 0) {
+                cSelect.remove(0);
+            }
+            var newOption;
+            // create new options
+            for (var i = 0; i < cList.length; i++) {
+                newOption = document.createElement("option");
+                newOption.value = cList[i];  // assumes option string and value are the same
+                newOption.text = cList[i];
+                // add the new option
+                cSelect.appendChild(newOption);
+            }
+}</script>
 </head>
 
 <div>
@@ -184,15 +184,11 @@
                     </tr>
                     <tr>
                         <td><p>District</p></td>
-                        <td><p><select id="district" asp-for="@Model.District" onchange="DistThanaChange(this);">
-                                   <option value="empty">Select a division first</option>
-                        </select></p></td>
+                        <td><p><select id="district" asp-for="@Model.District" onchange="DistThanaChange(this);"></select></p></td>
                     </tr>
                     <tr>
                         <td><p>Thana</p></td>
-                        <td><p><select id="thana" asp-for="@Model.Thana">
-                                   <option value="empty">Select a district first</option>
-                        </select></p></td>
+                        <td><p><select id="thana" asp-for="@Model.Thana"></select></p></td>
                     </tr>
                 </table>
                 
