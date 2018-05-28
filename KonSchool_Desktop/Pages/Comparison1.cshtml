@@ -1,0 +1,218 @@
+﻿@page
+@model Comparison1Model
+@{
+}
+
+<head>
+    <style>
+        td {
+            padding: 5px;
+        }
+        .slidecontainer {
+            width: 100%;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 15px;
+            border-radius: 5px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+            .slider:hover {
+                opacity: 1;
+            }
+
+            .slider::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                background: #4CAF50;
+                cursor: pointer;
+            }
+
+            .slider::-moz-range-thumb {
+                width: 25px;
+                height: 25px;
+                border-radius: 50%;
+                background: #4CAF50;
+                cursor: pointer;
+            }
+    </style>
+</head>
+<body>
+    <form method="POST">
+    <h4>Male-Female Ratio vs. Teacher-Student Ratio</h4>
+    <table>
+        <tr>
+            <td><p>Male-Female Ratio</p></td>
+            <td>
+                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_TS" asp-for="@Model.MF_TS"></p>
+            </td>
+            <td>
+                <p>Teacher-Student Ratio</p>
+            </td>
+        </tr>
+    </table>
+    <p>Comparison: <span id="demo1"></span></p>
+    <table>
+        <tr>
+            <td><p>Male-Female Ratio</p></td>
+            <td>
+                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_AA"  asp-for="@Model.MF_AA"></p>
+            </td>
+            <td>
+                <p>Average Age of Students</p>
+            </td>
+        </tr>
+    </table>
+    <p>Comparison: <span id="demo2"></span></p>
+    <table>
+        <tr>
+            <td><p>Male-Female Ratio</p></td>
+            <td>
+                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_LA"  asp-for="@Model.MF_LA"></p>
+            </td>
+            <td>
+                <p>Location</p>
+            </td>
+        </tr>
+    </table>
+    <p>Comparison: <span id="demo3"></span></p>
+    <table>
+        <tr>
+            <td><p>Male-Female Ratio</p></td>
+            <td>
+                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_SA"  asp-for="@Model.MF_SA"></p>
+            </td>
+            <td>
+                <p>Age of School</p>
+            </td>
+        </tr>
+    </table>
+    <p>Comparison: <span id="demo4"></span></p>
+    <table>
+        <tr>
+            <td><p>Male-Female Ratio</p></td>
+            <td>
+                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_MP"  asp-for="@Model.MF_MP"></p>
+            </td>
+            <td>
+                <p>Monthly Pay-Order (MPO)</p>
+            </td>
+        </tr>
+    </table>
+    <p>Comparison: <span id="demo5"></span></p>
+    <table>
+        <tr>
+            <td><p>Male-Female Ratio</p></td>
+            <td>
+                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_SE"  asp-for="@Model.MF_SE"></p>
+            </td>
+            <td>
+                <p>Socio-Economic Status</p>
+            </td>
+        </tr>
+    </table>
+    <p>Comparison: <span id="demo6"></span></p>
+    <table>
+        <tr>
+            <td><p>Teacher-Student Ratio</p></td>
+            <td>
+                <p><input type="range" min="-8" max="8" value="0" class="slider" id="TS_AA"  asp-for="@Model.TS_AA"></p>
+            </td>
+            <td>
+                <p>Average Age of Students</p>
+            </td>
+        </tr>
+    </table>
+    <p>Comparison: <span id="demo7"></span></p>
+    <input type="submit" value="Next" />
+    </form>
+    <script>
+        var MF_TS = document.getElementById("MF_TS");
+        var MF_AA = document.getElementById("MF_AA");
+        var MF_LA = document.getElementById("MF_LA");
+        var MF_SA = document.getElementById("MF_SA");
+        var MF_MP = document.getElementById("MF_MP");
+        var MF_SE = document.getElementById("MF_SE");
+        var TS_AA = document.getElementById("TS_AA");
+        
+        var Comp = [
+                    "More than equally important", "Moderately important",
+                    "More than moderately important", "Important", "More than important",
+                    "Very important", "More than very important", "Absolutely important"
+                ];
+
+        MF_TS.onchange = function() {
+            var v = parseInt(this.value);
+            var x = "Male-Female Ratio";
+            var y = "Teacher-Student Ratio";
+            var output = document.getElementById("demo1");
+            if (v == 0) output.innerHTML = "Both are equally important";
+            else if (v > 0) output.innerHTML = y + " is " + Comp[v - 1] +  " compared to " + x;
+            else output.innerHTML = x + " is " + Comp[- v - 1] +  " compared to " + y;
+        }
+        MF_AA.onchange = function() {
+            var v = parseInt(this.value);
+            var x = "Male-Female Ratio";
+            var y = "Average Age of Students";
+            var output = document.getElementById("demo2");
+            if (v == 0) output.innerHTML = "Both are equally important";
+            else if (v > 0) output.innerHTML = y + " is " + Comp[v - 1] +  " compared to " + x;
+            else output.innerHTML = x + " is " + Comp[- v - 1] +  " compared to " + y;
+        }
+        MF_LA.onchange = function() {
+            var v = parseInt(this.value);
+            var x = "Male-Female Ratio";
+            var y = "Location of School";
+            var output = document.getElementById("demo3");
+            if (v == 0) output.innerHTML = "Both are equally important";
+            else if (v > 0) output.innerHTML = y + " is " + Comp[v - 1] +  " compared to " + x;
+            else output.innerHTML = x + " is " + Comp[- v - 1] +  " compared to " + y;
+        }
+        MF_SA.onchange = function() {
+            var v = parseInt(this.value);
+            var x = "Male-Female Ratio";
+            var y = "Age of School";
+            var output = document.getElementById("demo4");
+            if (v == 0) output.innerHTML = "Both are equally important";
+            else if (v > 0) output.innerHTML = y + " is " + Comp[v - 1] +  " compared to " + x;
+            else output.innerHTML = x + " is " + Comp[- v - 1] +  " compared to " + y;
+        }
+        MF_MP.onchange = function() {
+            var v = parseInt(this.value);
+            var x = "Male-Female Ratio";
+            var y = "Monthly Pay-Order (MPO)";
+            var output = document.getElementById("demo5");
+            if (v == 0) output.innerHTML = "Both are equally important";
+            else if (v > 0) output.innerHTML = y + " is " + Comp[v - 1] +  " compared to " + x;
+            else output.innerHTML = x + " is " + Comp[- v - 1] +  " compared to " + y;
+        }
+        MF_SE.onchange = function() {
+            var v = parseInt(this.value);
+            var x = "Male-Female Ratio";
+            var y = "Socio-Economic Status";
+            var output = document.getElementById("demo6");
+            if (v == 0) output.innerHTML = "Both are equally important";
+            else if (v > 0) output.innerHTML = y + " is " + Comp[v - 1] +  " compared to " + x;
+            else output.innerHTML = x + " is " + Comp[- v - 1] +  " compared to " + y;
+        }
+        TS_AA.onchange = function() {
+            var v = parseInt(this.value);
+            var x = "Teacher-Student Ratio";
+            var y = "Average Age of Students";
+            var output = document.getElementById("demo7");
+            if (v == 0) output.innerHTML = "Both are equally important";
+            else if (v > 0) output.innerHTML = y + " is " + Comp[v - 1] +  " compared to " + x;
+            else output.innerHTML = x + " is " + Comp[- v - 1] +  " compared to " + y;
+        }
+    </script>
+</body>

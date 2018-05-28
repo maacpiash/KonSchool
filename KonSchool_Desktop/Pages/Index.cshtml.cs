@@ -76,7 +76,7 @@ namespace KonSchool_Desktop.Pages
             }
             Program.MyQuery.IsMale = Sex == 1;
             Program.MyQuery.Location = new Address(Division, District, Thana, "None");
-            return RedirectToPage("/MF_Ratio");
+            return RedirectToPage("/Comparison1");
         }
     }
 }

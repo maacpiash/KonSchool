@@ -64,15 +64,14 @@ namespace KonSchool_Desktop
                     Label = "File",
                     Submenu = new MenuItem[]
                     {
-                        new MenuItem { Label = "About", Click = () => ShowAbout() },
-                        new MenuItem { Label = "Exit", Click = () => { Electron.App.Exit();
-                                Environment.Exit(0); 
-                            } }
+                        new MenuItem { Label = "About", Click = ShowAbout },
+                        new MenuItem { Label = "Exit", Click = Exit }
                     }
                 }
             };
 
             Electron.Menu.SetApplicationMenu(Menubar);
+            Electron.App.WindowAllClosed += () => Exit();
         }
 
         public async void ShowAbout()
@@ -81,6 +80,12 @@ namespace KonSchool_Desktop
                 "Md. Abdul Ahad Chowdhury, with the graceful help of Rezaur Rahman Shaon and\n" +
                 "Abdullah-Al Nahian Siraj\nWe are all grateful to Dr. M Rashedur Rahman " +
                 "for his support\nand guidance regarding our Fuzzy AHP project.");
+        }
+
+        private void Exit()
+        {
+            Electron.App.Quit();
+            Environment.Exit(0); 
         }
 
     }

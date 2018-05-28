@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace KonSchool_Models
 {
@@ -10,6 +11,8 @@ namespace KonSchool_Models
         private int _age;
         private string _occupation;
         private Address _location;
+
+        private ValueTuple<double, double, double>[,] comparisonMatrix;
 
         public int Class
         {
@@ -45,6 +48,12 @@ namespace KonSchool_Models
         {
             get => _location;
             set => _location = value;
+        }
+
+        public ValueTuple<double, double, double>[,] ComparisonMatrix
+        {
+            get => comparisonMatrix;
+            set => comparisonMatrix = value;
         }
 
         private static List<string> Occupations;
