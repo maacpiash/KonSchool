@@ -1,9 +1,8 @@
-﻿@page
-@model Comparison1Model
+@page
+@model Comparison3Model
 @{
-    ViewData["Title"] = "Male-Female Ratio";
+    ViewData["Title"] = "Age of School and Socio-Economic Status";
  }
-
 <head>
     <style>
         td {
@@ -50,65 +49,65 @@
 </head>
 <body>
     <form method="POST">
-    <h4>Male-Female Ratio vs. Teacher-Student Ratio</h4>
+    <h4>Average Age of Students vs. Age of School</h4>
     <table>
         <tr>
-            <td><p>Male-Female Ratio</p></td>
+            <td><p>Average Age of Students</p></td>
             <td>
-                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_TS" asp-for="@Model.MF_TS"></p>
-            </td>
-            <td>
-                <p>Teacher-Student Ratio</p>
-            </td>
-        </tr>
-    </table>
-    <p>Comparison: <span id="demo1"></span></p>
-    <h4>Male-Female Ratio vs. Average Age of Students</h4>
-    <table>
-        <tr>
-            <td><p>Male-Female Ratio</p></td>
-            <td>
-                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_AA"  asp-for="@Model.MF_AA"></p>
-            </td>
-            <td>
-                <p>Average Age of Students</p>
-            </td>
-        </tr>
-    </table>
-    <p>Comparison: <span id="demo2"></span></p>
-    <h4>Male-Female Ratio vs. Location</h4>
-    <table>
-        <tr>
-            <td><p>Male-Female Ratio</p></td>
-            <td>
-                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_LA"  asp-for="@Model.MF_LA"></p>
-            </td>
-            <td>
-                <p>Location</p>
-            </td>
-        </tr>
-    </table>
-    <p>Comparison: <span id="demo3"></span></p>
-    <h4>Male-Female Ratio vs. Age of School</h4>
-    <table>
-        <tr>
-            <td><p>Male-Female Ratio</p></td>
-            <td>
-                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_SA"  asp-for="@Model.MF_SA"></p>
+                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_TS" asp-for="@Model.AA_SA"></p>
             </td>
             <td>
                 <p>Age of School</p>
             </td>
         </tr>
     </table>
-    <p>Comparison: <span id="demo4"></span></p>
-    
-    <h4>Male-Female Ratio vs. Socio-Economic Status</h4>
+    <p>Comparison: <span id="demo1"></span></p>
+    <h4>Average Age of Students vs. Socio-Economic Status</h4>
     <table>
         <tr>
-            <td><p>Male-Female Ratio</p></td>
+            <td><p>Average Age of Students</p></td>
             <td>
-                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_SE"  asp-for="@Model.MF_SE"></p>
+                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_AA"  asp-for="@Model.AA_SE"></p>
+            </td>
+            <td>
+                <p>Socio-Economic Status</p>
+            </td>
+        </tr>
+    </table>
+    <p>Comparison: <span id="demo2"></span></p>
+    <h4>Location vs. Age of School</h4>
+    <table>
+        <tr>
+            <td><p>Location</p></td>
+            <td>
+                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_LA"  asp-for="@Model.LA_SA"></p>
+            </td>
+            <td>
+                <p>Age of School</p>
+            </td>
+        </tr>
+    </table>
+    <p>Comparison: <span id="demo3"></span></p>
+    <h4>Location vs. Socio-Economic Status</h4>
+    <table>
+        <tr>
+            <td><p>Location</p></td>
+            <td>
+                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_SA"  asp-for="@Model.LA_SE"></p>
+            </td>
+            <td>
+                <p>Socio-Economic Status</p>
+            </td>
+        </tr>
+    </table>
+    <p>Comparison: <span id="demo4"></span></p>
+    
+    <h4>Average Age of Students vs. Location</h4>
+    <table>
+        <tr>
+            <td><p>Age of School</p</td>
+            <td>
+                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_SE"  asp-for="@Model.SA_SE"></p>
             </td>
             <td>
                 <p>Socio-Economic Status</p>
@@ -134,8 +133,8 @@
 
         MF_TS.oninput = function() {
             var v = parseInt(this.value);
-            var x = "Male-Female Ratio";
-            var y = "Teacher-Student Ratio";
+            var x = "Average Age of Students";
+            var y = "Age of School";
             var output = document.getElementById("demo1");
             if (v == 0) output.innerHTML = "Both are equally important";
             else if (v > 0) output.innerHTML = y + " is <b>" + Comp[v - 1] + "</b> compared to " + x;
@@ -143,8 +142,8 @@
         }
         MF_AA.oninput = function() {
             var v = parseInt(this.value);
-            var x = "Male-Female Ratio";
-            var y = "Average Age of Students";
+            var x = "Average Age of Students";
+            var y = "Socio-Economic Status";
             var output = document.getElementById("demo2");
             if (v == 0) output.innerHTML = "Both are equally important";
             else if (v > 0) output.innerHTML = y + " is <b>" + Comp[v - 1] + "</b> compared to " + x;
@@ -152,8 +151,8 @@
         }
         MF_LA.oninput = function() {
             var v = parseInt(this.value);
-            var x = "Male-Female Ratio";
-            var y = "Location of School";
+            var x = "Location";
+            var y = "Age of School";
             var output = document.getElementById("demo3");
             if (v == 0) output.innerHTML = "Both are equally important";
             else if (v > 0) output.innerHTML = y + " is <b>" + Comp[v - 1] + "</b> compared to " + x;
@@ -161,8 +160,8 @@
         }
         MF_SA.oninput = function() {
             var v = parseInt(this.value);
-            var x = "Male-Female Ratio";
-            var y = "Age of School";
+            var x = "Location";
+            var y = "Socio-Economic Status";
             var output = document.getElementById("demo4");
             if (v == 0) output.innerHTML = "Both are equally important";
             else if (v > 0) output.innerHTML = y + " is <b>" + Comp[v - 1] + "</b> compared to " + x;
@@ -171,7 +170,7 @@
         
         MF_SE.oninput = function() {
             var v = parseInt(this.value);
-            var x = "Male-Female Ratio";
+            var x = "Location";
             var y = "Socio-Economic Status";
             var output = document.getElementById("demo6");
             if (v == 0) output.innerHTML = "Both are equally important";

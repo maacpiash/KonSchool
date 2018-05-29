@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,18 +7,18 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace KonSchool_Desktop.Pages
 {
-    public class Comparison1Model : PageModel
+    public class Comparison3Model : PageModel
     {
         [BindProperty]
-        public string MF_TS { get; set; }
+        public string AA_SA { get; set; }
         [BindProperty]
-        public string MF_AA { get; set; }
+        public string AA_SE { get; set; }
         [BindProperty]
-        public string MF_LA { get; set; }
+        public string LA_SA { get; set; }
         [BindProperty]
-        public string MF_SA { get; set; }
+        public string LA_SE { get; set; }
         [BindProperty]
-        public string MF_SE { get; set; }
+        public string SA_SE { get; set; }
         
         public void OnGet()
         {
@@ -29,7 +29,7 @@ namespace KonSchool_Desktop.Pages
         {
             if (!ModelState.IsValid)
                 return Page();
-            return RedirectToPage("/Comparison2");
+            return RedirectToPage("/About");
         }
 
     }
