@@ -17,8 +17,8 @@ namespace KonSchool_Models
         private string type;
         public string Type { get => type; set => type = value; }
 
-        private double[] avgAge;
-        public double[] AverageAge { get => avgAge; set => avgAge = value; }
+        private double[] averAge;
+        public double[] AverAge { get => averAge; set => averAge = value; }
 
         private double[] smfRatio;
         public double[] Students_MFRatio { get => smfRatio; set => smfRatio = value; }

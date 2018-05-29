@@ -50,19 +50,28 @@ namespace KonSchool_Models
         public string this[int EIIN, string Attribute] => dataLines[IndexOf(eiins, EIIN)][IndexOf(attributes, Attribute)];
 
         public CSVreader(string[] Lines)
-        { 
-            height = Lines.Length - 1;
-            attributes = Lines[0].Split(',');
-            width = attributes.Length;
-            keyIndex = IndexOf(attributes, "EIIN");
-            eiins = new int[height];
-            dataLines = new string[height][];
-            
-            for (int i = 1; i <= height; i++)
+        {
+            try
             {
-                dataLines[i - 1] = Lines[i].Split(',');
-                eiins[i - 1] = Convert.ToInt32(dataLines[i - 1][keyIndex]);
+                height = Lines.Length - 1;
+                attributes = Lines[0].Split(',');
+                width = attributes.Length;
+                Console.WriteLine($"Number of attributes: {width}");
+                keyIndex = IndexOf(attributes, "EIIN");
+                eiins = new int[height];
+                dataLines = new string[height][];
+                
+                for (int i = 1; i <= height; i++)
+                {
+                    dataLines[i - 1] = Lines[i].Split(',');
+                    eiins[i - 1] = Convert.ToInt32(dataLines[i - 1][keyIndex]);
+                }
             }
+            catch (Exception x)
+            {
+                Console.WriteLine(x.ToString());
+            }
+            
         }
 
     }    
