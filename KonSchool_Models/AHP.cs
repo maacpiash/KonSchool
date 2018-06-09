@@ -22,11 +22,36 @@ namespace KonSchool_Models
 
         public int AltCount;
         
+        public string[] Degrees;
+        public ValueTuple<double, double, double>[] TFNs;
+
         public AHP(string[] ListofCriteria)
         {
             criteria = ListofCriteria;
             CriteriaCount = criteria.Length;
+            Degrees = new string[] {
+                "Equally important", // (1 1 1)
+                "Weakly more important", // (1 2 3)
+                "Moderately more important", // (2 3 4)
+                "Fairly more important", // (3 4 5)
+                "Much more important", // (4 5 6)
+                "Strongly more important", // (5 6 7)
+                "Absolutely more important" // (7 7 7)
+            };
+            
+            TFNs = new ValueTuple<double, double, double>[]
+            {
+                (1/7, 1/7, 1/7), (1/7, 1/6, 1/5),
+                (1/6, 1/5, 1/4), (1/5, 1/4, 1/3),
+                (1/4, 1/3, 1/2), (1/3, 1/2, 1),
+                (1, 1, 1),
+                (1, 2, 3), (2, 3, 4),
+                (3, 4, 5), (4, 5, 6),
+                (5, 6, 7), (7, 7, 7)
+            };
         }
+
+        
 
         public double[] Finalize()
         {
@@ -45,18 +70,18 @@ namespace KonSchool_Models
         }
 
         public void RunAHP_onCriteria(ValueTuple<double, double, double>[,] ComparisonMatrix)
-            => criteriaWeights = RunAHP(ComparisonMatrix);
+            => criteriaWeights = RunAHP_on(ComparisonMatrix);
 
         public void RunAHP_onAlternatives(ValueTuple<double, double, double>[][,] ComparisonMatrices)
         {
             AltCount = ComparisonMatrices.Length;
             altSpecificWeights = new double[AltCount][];
             for (int i = 0; i < AltCount; i++)
-                altSpecificWeights[i] = RunAHP(ComparisonMatrices[i]);
+                altSpecificWeights[i] = RunAHP_on(ComparisonMatrices[i]);
             
         }
 
-        private double[] RunAHP(ValueTuple<double, double, double>[,] ComparisonMatrix)
+        private double[] RunAHP_on(ValueTuple<double, double, double>[,] ComparisonMatrix)
         {
             int max = ComparisonMatrix.GetLength(0);
             
@@ -84,8 +109,8 @@ namespace KonSchool_Models
                 }
             }
 
+            // Step 1 : Geometric Mean
             double[] weights = new double[max];
-
             double power = 1 / max;
             ValueTuple<double, double, double>[] geomean = new ValueTuple<double, double, double>[max];
             for (int i = 0; i < max; i++)
@@ -97,6 +122,7 @@ namespace KonSchool_Models
                 geomean[i] = temp;
             }
 
+            // Step 2 : Multiplying with Inverse Vector
             double L = 0, M = 0, U = 0;
             for (int i = 0; i < max; i++)
                 (L, M, U) = (L + geomean[i].Item1, M + geomean[i].Item2, U + geomean[i].Item3);
