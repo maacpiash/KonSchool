@@ -10,4 +10,4 @@ The dataset used for this system can be found [here](https://drive.google.com/fi
 
 ### Acknowledgement
 I am very grateful to [Dr. Mohammad Rashedur Rahman](http://ece.northsouth.edu/people/rashedur-rahman/) sir, our honorable instructor of the Fuzzy Logic course (CSE470) at North South University, who mentored my group on this project and made sure our research work got published in [The 11th edition of International Conference 
-on Multimedia & Network Information Systems](https://missi.pwr.edu.pl/2018/).<p>I would also like to thank my groupmates — Rezaur Rahman Shaon, for the development of the mathematical model; and Abdullah-Al Nahian Siraj, for his cooperation.</p>
+on Multimedia & Network Information Systems](https://missi.pwr.edu.pl/2018/).<p>I would also like to thank my groupmates — Rezaur Rahman Shaon, for the development of the mathematical model; and [Abdullah-Al Nahian Siraj](https://github.com/Nahian-Siraj), for his cooperation.</p>
