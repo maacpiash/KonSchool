@@ -10,15 +10,15 @@ namespace KonSchool_Desktop.Pages
     public class Comparison3Model : PageModel
     {
         [BindProperty]
-        public string AA_SA { get; set; }
+        public string TS_AA { get; set; }
         [BindProperty]
-        public string AA_SE { get; set; }
+        public string TS_LA { get; set; }
         [BindProperty]
-        public string LA_SA { get; set; }
+        public string TS_SA { get; set; }
         [BindProperty]
-        public string LA_SE { get; set; }
+        public string TS_SE { get; set; }
         [BindProperty]
-        public string SA_SE { get; set; }
+        public string AA_LA { get; set; }
         
         public void OnGet()
         {
@@ -29,7 +29,7 @@ namespace KonSchool_Desktop.Pages
         {
             if (!ModelState.IsValid)
                 return Page();
-            return RedirectToPage("/About");
+            return RedirectToPage("/Comparison3");
         }
 
     }

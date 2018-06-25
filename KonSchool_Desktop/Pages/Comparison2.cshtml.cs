@@ -10,15 +10,15 @@ namespace KonSchool_Desktop.Pages
     public class Comparison2Model : PageModel
     {
         [BindProperty]
-        public string TS_AA { get; set; }
+        public string AA_SA { get; set; }
         [BindProperty]
-        public string TS_LA { get; set; }
+        public string AA_SE { get; set; }
         [BindProperty]
-        public string TS_SA { get; set; }
+        public string LA_SA { get; set; }
         [BindProperty]
-        public string TS_SE { get; set; }
+        public string LA_SE { get; set; }
         [BindProperty]
-        public string AA_LA { get; set; }
+        public string SA_SE { get; set; }
         
         public void OnGet()
         {

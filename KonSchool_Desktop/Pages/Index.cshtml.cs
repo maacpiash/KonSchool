@@ -59,19 +59,19 @@ namespace KonSchool_Desktop.Pages
             switch (Occupation)
             {
                 case "Worker": case "Tati": case "Fisherman": case "Kamar/Kumar":
-                    Program.MyQuery.Social = 0;
+                    Program.MyQuery.Social = 2.5;
                     break;
                 case "Cultivation": case "Expatriate": case "Small business":
-                    Program.MyQuery.Social = 1;
+                    Program.MyQuery.Social = 5.0;
                     break;
                 case "Govt. job": case "Private job": case "Teacher":
-                    Program.MyQuery.Social = 2;
+                    Program.MyQuery.Social = 7.5;
                     break;
                 case "Lawyer": case "Doctor": case "Engineer": case "Businessman":
-                    Program.MyQuery.Social = 3;
+                    Program.MyQuery.Social = 10.0;
                     break;
                 default:
-                    Program.MyQuery.Social = -1;
+                    Program.MyQuery.Social = 0.0;
                     break;
             }
             Program.MyQuery.IsMale = Sex == 1;

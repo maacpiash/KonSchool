@@ -7,7 +7,7 @@ namespace KonSchool_Models
     {
         #region private backing variables
         private int _class;
-        private int _social;
+        private double _social;
         private bool _isMale;
         private int _age;
         private string _occupation;
@@ -20,7 +20,7 @@ namespace KonSchool_Models
         #region Public Properties
         public int Class { get => _class; set => _class = value; }
 
-        public int Social { get => _social; set => _social = value; }
+        public double Social { get => _social; set => _social = value; }
 
         public bool IsMale { get => _isMale; set => _isMale = value; }
 
@@ -35,6 +35,7 @@ namespace KonSchool_Models
         public ValueTuple<double, double, double>[,] ComparisonMatrix { get => comparisonMatrix; set => comparisonMatrix = value; }
         #endregion
         
+        public School[] Schools;
 
         private static List<string> Occupations;
 
