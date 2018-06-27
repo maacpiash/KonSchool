@@ -33,7 +33,8 @@ namespace KonSchool_API
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }

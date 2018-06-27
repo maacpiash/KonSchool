@@ -12,39 +12,27 @@ namespace KonSchool_Models
         private int _age;
         private string _occupation;
         private Address _location;
-        private bool continuity;
-
-        private ValueTuple<double, double, double>[,] comparisonMatrix;
+        private int[] fuzzyValues;
         #endregion
         
         #region Public Properties
         public int Class { get => _class; set => _class = value; }
-
         public double Social { get => _social; set => _social = value; }
-
         public bool IsMale { get => _isMale; set => _isMale = value; }
-
         public int Age { get => _age; set => _age = value; }
-
         public string Occupation { get => _occupation; set => _occupation = GetOccupations().Contains(value) ? value : "Other"; }
-
         public Address Location { get => _location; set => _location = value; }
-
-        public bool Continuity { get => continuity; set => continuity = value; }
-
-        public ValueTuple<double, double, double>[,] ComparisonMatrix { get => comparisonMatrix; set => comparisonMatrix = value; }
+        public int[] FuzzyValues { get => fuzzyValues; set => fuzzyValues = value; }
         #endregion
         
         public School[] Schools;
 
-        private static List<string> Occupations;
+        private static string[] Occupations;
 
-        public static List<string> GetOccupations()
+        public static string[] GetOccupations()
         {
             if (Occupations == null)
-                Occupations = new List<string>()
-                {
-                    "Worker", "Fisherman", "Tati", "Kamar/Kumar",
+                Occupations = { "Worker", "Fisherman", "Tati", "Kamar/Kumar",
                     "Cultivation", "Expatriate", "Small business",
                     "Govt. job", "Private job", "Teacher",
                     "Lawyer", "Doctor", "Engineer", "Businessman"

@@ -26,9 +26,9 @@ namespace KonSchool_Models
         private double[] tmfRatio;
         public double[] Teachers_MFRatio { get => tmfRatio; set => tmfRatio = value; }
 
-        private int[,] _byGP;
-        public int[,] Students_byGuardiansProfession { get => _byGP; set => _byGP = value; }
-
+        private double seScore;
+        public double seScore {  get => seScore; set => seScore = value; }
+        
         private int[,] _BySex;
         public int[,] Teachers_bySex { get => _BySex; set => _BySex = value; }
 

@@ -7,7 +7,7 @@ using static System.IO.File;
 
 namespace KonSchool_Models
 {
-    public class AHP // != Ahsan Habib Piyar 
+    public class FAHP
     {
         private string[] criteria;
         public string[] Criteria { get => criteria; set => criteria = value; }
@@ -25,7 +25,7 @@ namespace KonSchool_Models
         public string[] Degrees;
         public ValueTuple<double, double, double>[] TFNs;
 
-        public AHP(string[] ListofCriteria)
+        public FAHP(string[] ListofCriteria)
         {
             criteria = ListofCriteria;
             CriteriaCount = criteria.Length;
@@ -34,8 +34,8 @@ namespace KonSchool_Models
                 "Weakly more important", // (1 2 3)
                 "Moderately more important", // (2 3 4)
                 "Fairly more important", // (3 4 5)
-                "Much more important", // (4 5 6)
-                "Strongly more important", // (5 6 7)
+                "Strongly more important", // (4 5 6)
+                "Immensely more important", // (5 6 7)
                 "Absolutely more important" // (7 7 7)
             };
             
