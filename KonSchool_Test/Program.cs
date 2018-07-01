@@ -11,8 +11,12 @@ namespace KonSchool_Test
     {
         static void Main(string[] args)
         {
-            CSVreader myreader = new CSVreader(ReadAllLines("Dataset_ready.csv"));
-            TestCSVreading(myreader);
+            School test = new School(1122);
+            test.MobileNum = "01677701431";
+            WriteLine(test.MobileNum);
+
+            // CSVreader myreader = new CSVreader(ReadAllLines("Dataset_ready.csv"));
+            // TestCSVreading(myreader);
         }
 
         static void TestCSVreading(CSVreader myreader)

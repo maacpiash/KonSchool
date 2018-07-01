@@ -27,12 +27,14 @@ namespace KonSchool_Models
         
         public School[] Schools;
 
-        private static string[] Occupations;
+        private static List<string> Occupations;
 
-        public static string[] GetOccupations()
+        public static List<string> GetOccupations()
         {
             if (Occupations == null)
-                Occupations = { "Worker", "Fisherman", "Tati", "Kamar/Kumar",
+                Occupations = new List<string>()
+                {
+                    "Worker", "Fisherman", "Tati", "Kamar/Kumar",
                     "Cultivation", "Expatriate", "Small business",
                     "Govt. job", "Private job", "Teacher",
                     "Lawyer", "Doctor", "Engineer", "Businessman"
