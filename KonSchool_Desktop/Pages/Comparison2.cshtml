@@ -54,7 +54,7 @@
         <tr>
             <td><p>Average Age of Students</p></td>
             <td>
-                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_TS" asp-for="@Model.AA_SA"></p>
+                <p><input type="range" min="-6" max="6" value="0" class="slider" id="MF_TS" asp-for="@Model.AA_SA"></p>
             </td>
             <td>
                 <p>Age of School</p>
@@ -67,7 +67,7 @@
         <tr>
             <td><p>Average Age of Students</p></td>
             <td>
-                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_AA"  asp-for="@Model.AA_SE"></p>
+                <p><input type="range" min="-6" max="6" value="0" class="slider" id="MF_AA"  asp-for="@Model.AA_SE"></p>
             </td>
             <td>
                 <p>Socio-Economic Status</p>
@@ -80,7 +80,7 @@
         <tr>
             <td><p>Location</p></td>
             <td>
-                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_LA"  asp-for="@Model.LA_SA"></p>
+                <p><input type="range" min="-6" max="6" value="0" class="slider" id="MF_LA"  asp-for="@Model.LA_SA"></p>
             </td>
             <td>
                 <p>Age of School</p>
@@ -93,7 +93,7 @@
         <tr>
             <td><p>Location</p></td>
             <td>
-                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_SA"  asp-for="@Model.LA_SE"></p>
+                <p><input type="range" min="-6" max="6" value="0" class="slider" id="MF_SA"  asp-for="@Model.LA_SE"></p>
             </td>
             <td>
                 <p>Socio-Economic Status</p>
@@ -107,7 +107,7 @@
         <tr>
             <td><p>Age of School</p</td>
             <td>
-                <p><input type="range" min="-8" max="8" value="0" class="slider" id="MF_SE"  asp-for="@Model.SA_SE"></p>
+                <p><input type="range" min="-6" max="6" value="0" class="slider" id="MF_SE"  asp-for="@Model.SA_SE"></p>
             </td>
             <td>
                 <p>Socio-Economic Status</p>
@@ -126,10 +126,13 @@
         var MF_SE = document.getElementById("MF_SE");
         
         var Comp = [
-                    "More than equally important", "Moderately important",
-                    "More than moderately important", "Important", "More than important",
-                    "Very important", "More than very important", "Absolutely important"
-                ];
+                "Weakly more important", // (1 2 3)
+                "Moderately more important", // (2 3 4)
+                "Fairly more important", // (3 4 5)
+                "Strongly more important", // (4 5 6)
+                "Immensely more important", // (5 6 7)
+                "Absolutely more important" // (7 7 7)
+            ];
 
         MF_TS.oninput = function() {
             var v = parseInt(this.value);

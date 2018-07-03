@@ -37,12 +37,15 @@ namespace KonSchool_Models
         private double[] averAge;
         public double[] AverAge { get => averAge; set => averAge = value; }
 
-        private double[] smfRatio;
-        public double[] Students_MFRatio { get => smfRatio; set => smfRatio = value; }
+        private double smfRatio;
+        public double Students_MFRatio { get => smfRatio; set => smfRatio = value; }
 
         private double tmfRatio;
         public double Teachers_MFRatio { get => tmfRatio; set => tmfRatio = value; }
 
+        private double[] mfrbyclass;
+        public double[] MFR_ByClass { get => mfrbyclass; set => mfrbyclass = value; }
+        
         private double seScore;
         public double SEScore { get => seScore; set => seScore = value; }
         
