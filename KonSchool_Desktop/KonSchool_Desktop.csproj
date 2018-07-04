@@ -16,15 +16,8 @@
     <ProjectReference Include="..\KonSchool_Models\KonSchool_Models.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <Content Remove="wwwroot\js\GeoData.js" />
-    <Content Remove="Pages\MF_Ratio.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Update="electron.manifest.json">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="wwwroot\js\GeoData.js" />
   </ItemGroup>
 </Project>

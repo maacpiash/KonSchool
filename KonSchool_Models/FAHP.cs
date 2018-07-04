@@ -21,15 +21,26 @@ namespace KonSchool_Models
         public double[][] AltSpecificWeights { get => altSpecificWeights; set => altSpecificWeights = value; }
 
         public int AltCount;
+
+        public ValueTuple<double, double, double>[,] ComparisonMatrix;
         
         public string[] Degrees;
-        public ValueTuple<double, double, double>[] TFNs;
+        public static ValueTuple<double, double, double>[] TFNs;
+        public ValueTuple<double, double, double>[,][] ComparisonMatrices;
 
-        public FAHP(string[] ListofCriteria)
+        public FAHP(string[] ListofCriteria, int[] values)
         {
             criteria = ListofCriteria;
             CriteriaCount = criteria.Length;
-            Degrees = new string[] {
+            if (CriteriaCount < values.Length)
+                throw new InvalidDataException("Number of integers sent must be greater than number of criteria");
+            AltCount = values.Length - CriteriaCount * (CriteriaCount - 1);
+            
+            ComparisonMatrices = new ValueTuple<double, double, double>[,][AltCount];
+            altSpecificWeights = new double[AltCount][];
+
+            Degrees = new string[]
+            {
                 "Equally important", // (1 1 1)
                 "Weakly more important", // (1 2 3)
                 "Moderately more important", // (2 3 4)
@@ -49,14 +60,30 @@ namespace KonSchool_Models
                 (3, 4, 5), (4, 5, 6),
                 (5, 6, 7), (7, 7, 7)
             };
-        }
 
-        
+            ComparisonMatrix = new ValueTuple<double, double, double>[CriteriaCount,CriteriaCount];
+
+            int n = 0;
+
+            for (int i = 0; i < CriteriaCount; i++)
+                for (int j = 0; j < CriteriaCount; j++)
+                {
+                    if (i == j)
+                        ComparisonMatrix[i, j] = (1.0, 1.0, 1.0);
+                    else
+                    {
+                        ComparisonMatrix[i, j] = TFNs[6 + values[n]];
+                        ComparisonMatrix[j, i] = TFNs[6 - values[n]];
+                        n++;
+                    }
+                }
+        }
 
         public double[] Finalize()
         {
-            if (criteriaWeights == null)
-                throw new InvalidProgramException("Please run AHP before score calculation!");
+            criteriaWeights = RunAHP_on(ComparisonMatrix);
+            for (int i = 0; i < AltCount; i++)
+                altSpecificWeights[i] = RunAHP_on(ComparisonMatrices[i]);
             
             double[] scores = new double[AltCount];
             for (int i = 0; i < AltCount; i++)
@@ -67,18 +94,6 @@ namespace KonSchool_Models
                 }
             }
             return scores;
-        }
-
-        public void RunAHP_onCriteria(ValueTuple<double, double, double>[,] ComparisonMatrix)
-            => criteriaWeights = RunAHP_on(ComparisonMatrix);
-
-        public void RunAHP_onAlternatives(ValueTuple<double, double, double>[][,] ComparisonMatrices)
-        {
-            AltCount = ComparisonMatrices.Length;
-            altSpecificWeights = new double[AltCount][];
-            for (int i = 0; i < AltCount; i++)
-                altSpecificWeights[i] = RunAHP_on(ComparisonMatrices[i]);
-            
         }
 
         private double[] RunAHP_on(ValueTuple<double, double, double>[,] ComparisonMatrix)

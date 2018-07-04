@@ -704,7 +704,7 @@ function ThanaUWChange(selectObj) {
 
 <div>
     <h3>Welcome to "কোন স্কুল?"</h3>
-    <p>"কোন স্কুল?"" is an app that is designed to help you find the best school for your child!</p>
+    <p>"কোন স্কুল?" is an app that is designed to help you find the best school for your child!</p>
     <div>
         <p>Please enter the details of your child and yourself:</p>
         <form method="post">
@@ -712,6 +712,10 @@ function ThanaUWChange(selectObj) {
                 <tr>
                     <td><p>Class</p></td>
                     <td><p><select asp-for="Class" asp-items="Model.Classes"></select></p></td>
+                </tr>
+                <tr>
+                    <td><p>Age</p></td>
+                    <td><p><input asp-for="Age"/></p></td>
                 </tr>
                 <tr>
                     <td><p>Guardian's occupation</p></td>

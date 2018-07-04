@@ -11,9 +11,9 @@ namespace KonSchool_Models
             return true;
         }
 
-        public double ScoreMFR()
+        public double[] ScoreValues()
         {
-            return 0.0;
+            
         }
     }
 }

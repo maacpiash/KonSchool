@@ -19,6 +19,8 @@ namespace KonSchool_Desktop.Pages
         public string Occupation { get; set; }
         [BindProperty]
         public int Sex { get; set; }
+        [BindProperty]
+        public int Age { get; set; }
         
         [BindProperty]
         public string Division { get; set; }
@@ -78,6 +80,7 @@ namespace KonSchool_Desktop.Pages
                     break;
             }
             Program.MyQuery.IsMale = Sex == 1;
+            Program.MyQuery.Age = Age;
             Program.MyQuery.Location = new Address(Division, District, Thana, UW.Split('[')[0].Trim());
             return RedirectToPage("/Comparison1");
         }
