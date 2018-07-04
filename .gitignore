@@ -630,6 +630,7 @@ fabric.properties
 
 ### VisualStudioCode ###
 .vscode/*
+.vscode/
 .vscode
 KonSchool_API/.vscode
 KonSchool_Desktop/.vscode
