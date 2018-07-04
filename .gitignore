@@ -636,10 +636,10 @@ KonSchool_API/.vscode
 KonSchool_Desktop/.vscode
 KonSchool_Models/.vscode
 KonSchool_Test/.vscode
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
+.vscode/settings.json
+.vscode/tasks.json
+.vscode/launch.json
+.vscode/extensions.json
 
 ### Windows ###
 # Windows thumbnail cache files
