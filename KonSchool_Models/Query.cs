@@ -13,6 +13,7 @@ namespace KonSchool_Models
         private string _occupation;
         private Address _location;
         private int[] fuzzyValues;
+        private string[] criteria;
         #endregion
         
         #region Public Properties
@@ -23,6 +24,7 @@ namespace KonSchool_Models
         public string Occupation { get => _occupation; set => _occupation = GetOccupations().Contains(value) ? value : "Other"; }
         public Address Location { get => _location; set => _location = value; }
         public int[] FuzzyValues { get => fuzzyValues; set => fuzzyValues = value; }
+        public string[] Criteria { get => criteria; set => criteria = value; }
         #endregion
         
         public School[] Schools;
@@ -40,7 +42,12 @@ namespace KonSchool_Models
                     "Lawyer", "Doctor", "Engineer", "Businessman"
                 };
             return Occupations;
+        }
 
+        public Query(int NumberofCriteria)
+        {
+            criteria = new string[NumberofCriteria];
+            fuzzyValues = new int[(NumberofCriteria * (NumberofCriteria - 1)) / 2];
         }
         
     }

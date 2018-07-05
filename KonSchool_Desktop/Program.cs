@@ -19,8 +19,7 @@ namespace KonSchool_Desktop
 
         public static void Main(string[] args)
         {
-            MyQuery = new Query();
-
+            MyQuery = new Query(6);
             BuildWebHost(args).Run();
         }
 

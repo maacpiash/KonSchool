@@ -25,6 +25,10 @@ namespace KonSchool_Models
         private Address location;
         public Address Location { get => location; set => location = value; }
 
+        private double distance;
+        public double Distance { get => distance; set => distance = value; }
+        
+
         private string streetaddr;
         public string StreetAddr { get => streetaddr; set => streetaddr = value; }
         
@@ -34,17 +38,14 @@ namespace KonSchool_Models
         private string level; // ju-sec/sec/hi-sec
         public string Level { get => level; set => level = value; }
 
-        private double[] averAge;
-        public double[] AverAge { get => averAge; set => averAge = value; }
+        private double averAge;
+        public double AverAge { get => averAge; set => averAge = value; }
 
         private double smfRatio;
         public double Students_MFRatio { get => smfRatio; set => smfRatio = value; }
 
-        private double tmfRatio;
-        public double Teachers_MFRatio { get => tmfRatio; set => tmfRatio = value; }
-
-        private double[] mfrbyclass;
-        public double[] MFR_ByClass { get => mfrbyclass; set => mfrbyclass = value; }
+        private double tsRatio;
+        public double TeacherStudentRatio { get => tsRatio; set => tsRatio = value; }
         
         private double seScore;
         public double SEScore { get => seScore; set => seScore = value; }
