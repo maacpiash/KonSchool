@@ -15,7 +15,6 @@ namespace KonSchool_Models
         #endregion
 
         #region Public Properties
-
         public int Height => height;
         public int Width => width;
 

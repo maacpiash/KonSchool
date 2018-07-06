@@ -3,7 +3,7 @@ namespace KonSchool_Models
     public partial class School
     {
         public bool IsEligible(Query q)
-            => !((q.IsMale && type == "GIRLS") || (q.Class > 8 && level == "Junior Secondary")) )
+            => !((q.IsMale && type == "GIRLS") || (q.Class > 8 && level == "Junior Secondary"));
 
         public double[] ScoreValues(Query q)
         {

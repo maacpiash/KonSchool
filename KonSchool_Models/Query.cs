@@ -29,7 +29,10 @@ namespace KonSchool_Models
         
         public School[] Schools;
 
+        private string dbFile;
+        private CSVreader fileReader;
         private static List<string> Occupations;
+
 
         public static List<string> GetOccupations()
         {
@@ -44,10 +47,13 @@ namespace KonSchool_Models
             return Occupations;
         }
 
-        public Query(int NumberofCriteria)
+        public Query(int NumberofCriteria, string filePath)
         {
             criteria = new string[NumberofCriteria];
             fuzzyValues = new int[(NumberofCriteria * (NumberofCriteria - 1)) / 2];
+            fileReader = new CSVreader(System.IO.File.ReadAllLines(filePath));
+            Schools = new School[fileReader.Height];
+            
         }
         
     }

@@ -26,7 +26,7 @@ namespace KonSchool_Models
         
         public string[] Degrees;
         public static ValueTuple<double, double, double>[] TFNs;
-        public ValueTuple<double, double, double>[,][] ComparisonMatrices;
+        public List<ValueTuple<double, double, double>[,]> ComparisonMatrices;
 
         public FAHP(string[] ListofCriteria, int[] values)
         {
@@ -36,7 +36,7 @@ namespace KonSchool_Models
                 throw new InvalidDataException("Number of integers sent must be greater than number of criteria");
             AltCount = values.Length - CriteriaCount * (CriteriaCount - 1);
             
-            ComparisonMatrices = new ValueTuple<double, double, double>[,][AltCount];
+            ComparisonMatrices = new List<ValueTuple<double, double, double>[,]>();
             altSpecificWeights = new double[AltCount][];
 
             Degrees = new string[]
