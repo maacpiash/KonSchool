@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
+using static System.Math;
+using static KonSchool_Models.Stat;
+
 namespace KonSchool_Models
 {
     public class Query
@@ -58,7 +61,7 @@ namespace KonSchool_Models
             numberOfSchools = fileReader.Height;
             Schools = new School[numberOfSchools];
             averAge = new double[numberOfSchools];
-            string whichClass;
+            string whichClass = "";
             switch (_class)
             {
                 case 6: whichClass = "SIX_AVG"; break;
@@ -69,30 +72,29 @@ namespace KonSchool_Models
                 default: break;
             }
 
-        }
+            Normalize(whichClass);
 
-        private static void Normalize(this double[] vector)
+        }
+        private void Normalize(string whichClass)
         {
-            int length = vector.Length;
-            double x;
-            double mean, sd, sum = 0, dev = 0;
-            for (int i = 0; i < length; i++)
-                sum += vector[i];
-            mean = sum / length;
-            for (int i = 0; i < length; i++)
-                dev += (vector[i] - mean);
-            sd = dev / length;
-            double S, l = -5, dt = 1E-6, u;
-            
-            for (int i = 0; i < length; i++)
+            double[] ageDiffs = new double[numberOfSchools];
+            string val;
+            for (int i = 0; i < numberOfSchools; i++)
             {
-                S = 0;
-                x = (vector[i] - mean) / sd;
-                u = x * x;
-                for (double t = l; t <= u; t += dt)
-                    S += Math.Exp(t * t / 2) * dt;
-                vector[i] = S / Math.Sqrt(2 * Math.PI);
+                val = fileReader[Schools[i].EIIN, whichClass];
+                ageDiffs[i] = Abs(Convert.ToDouble(val) - _age);
             }
+
+            double mean, sd, sum = 0, dev = 0;
+            for (int i = 0; i < numberOfSchools; i++)
+                sum += ageDiffs[i];
+            mean = sum / numberOfSchools;
+            for (int i = 0; i < numberOfSchools; i++)
+                dev += Pow((ageDiffs[i] - mean), 2);
+            sd = Sqrt(dev / numberOfSchools);
+
+            for (int i = 0; i < numberOfSchools; i++)
+                Schools[i].ADS = NORMDIST(ageDiffs[i], mean, sd, true);
         }
         
     }

@@ -19,8 +19,8 @@ namespace KonSchool_Models
         private string name;
         public string Name { get => name; set => name = value; }
         
-        private int age;
-        public int Age { get => age; set => age = value; }
+        private double age;
+        public double Age { get => age; set => age = value; }
 
         private Address location;
         public Address Location { get => location; set => location = value; }
@@ -49,9 +49,10 @@ namespace KonSchool_Models
         private double seScore;
         public double SEScore { get => seScore; set => seScore = value; }
 
+        internal double ADS;
+
         private System.ValueTuple<double, double, double>[,] CompMat;
 
-        
         public School(int EIIN) => eiin = EIIN;
     }
 }
