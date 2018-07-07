@@ -1,3 +1,7 @@
+using System;
+using System.Linq;
+using static System.Convert;
+
 namespace KonSchool_Models
 {
     public partial class School
@@ -26,6 +30,40 @@ namespace KonSchool_Models
                 }
             }
             return scores;
+        }
+
+        public void CalcValues(Query q)
+        {
+            tsRatio = ToDouble(q.fileReader[eiin, "TSR_SCORE"]);
+            double mfr = ToDouble(q.fileReader[eiin, "FEM_STD_RATIO"]);
+            smfRatio = q.IsMale ? 1 - mfr : mfr;
+            double locaScore = ToDouble(q.fileReader[eiin, "AScore"]) / 10;
+            switch (q.Social)
+            {
+                case 10.0:
+                    seScore = ToDouble(q.fileReader[eiin, "SESscore_UP"]) * 2 + locaScore;
+                    seScore /= 3;
+                    break;
+                case 7.5:
+                    seScore = ToDouble(q.fileReader[eiin, "SESscore_UM"]) * 2 + locaScore;
+                    seScore /= 3;
+                    break;
+                case 5.0:
+                    seScore = ToDouble(q.fileReader[eiin, "SESscore_LM"]) * 2 + locaScore;
+                    seScore /= 3;
+                    break;
+                case 2.5:
+                    seScore = ToDouble(q.fileReader[eiin, "SESscore_LO"]) * 2 + locaScore;
+                    seScore /= 3;
+                    break;
+                default:
+                    seScore = locaScore;
+                    break;
+            }
+
+            
+
+            
         }
     }
 }

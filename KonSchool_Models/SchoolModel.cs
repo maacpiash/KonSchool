@@ -27,7 +27,6 @@ namespace KonSchool_Models
 
         private double distance;
         public double Distance { get => distance; set => distance = value; }
-        
 
         private string streetaddr;
         public string StreetAddr { get => streetaddr; set => streetaddr = value; }
@@ -49,6 +48,9 @@ namespace KonSchool_Models
         
         private double seScore;
         public double SEScore { get => seScore; set => seScore = value; }
+
+        private System.ValueTuple<double, double, double>[,] CompMat;
+
         
         public School(int EIIN) => eiin = EIIN;
     }
