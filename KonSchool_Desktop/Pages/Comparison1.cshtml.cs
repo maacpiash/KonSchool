@@ -19,10 +19,13 @@ namespace KonSchool_Desktop.Pages
         public string MF_SA { get; set; }
         [BindProperty]
         public string MF_SE { get; set; }
+
+        [BindProperty]
+        public string UW { get; set; }
         
         public void OnGet()
         {
-            
+            UW = Program.MyQuery.Location.Union_Ward;
         }
 
         public async Task<IActionResult> OnPostAsync()

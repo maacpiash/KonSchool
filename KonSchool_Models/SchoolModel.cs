@@ -49,8 +49,6 @@ namespace KonSchool_Models
         private double seScore;
         public double SEScore { get => seScore; set => seScore = value; }
 
-        internal double ADS;
-
         private System.ValueTuple<double, double, double>[,] CompMat;
 
         public School(int EIIN) => eiin = EIIN;
