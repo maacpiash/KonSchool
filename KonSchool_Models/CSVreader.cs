@@ -1,6 +1,4 @@
 using System;
-using System.Globalization;
-using Microsoft.AspNetCore.JsonPatch.Helpers;
 
 using static System.Array;
 
@@ -8,14 +6,10 @@ namespace KonSchool_Models
 {
     public class CSVreader
     {
-        public const int MAX = 36868;
-        public const int OFFSET = 100_000;
-
         #region private backing variables
         private string[][] dataLines;
         private string[] attributes;
         private int[] eiins;
-        private int keyIndex;
         private int height, width;
         #endregion
 
@@ -26,27 +20,26 @@ namespace KonSchool_Models
         public string[] Attributes => attributes;
         public int[] EIINs => eiins;
         
-        public string this[int EIIN, string Attribute] => dataLines[EIIN - OFFSET][IndexOf(attributes, Attribute)];
+        public string this[int EIIN, string Attribute] => dataLines[IndexOf(eiins, EIIN)][IndexOf(attributes, Attribute)];
         #endregion
 
-        public CSVreader(string[] Lines)
+        public CSVreader(string filePath)
         {
+            string[] Lines = System.IO.File.ReadAllLines(filePath);
             int i = 0;
             try
             {
                 height = Lines.Length - 1;
                 attributes = Lines[0].Split(',');
                 width = attributes.Length;
-                //Console.WriteLine($"Number of attributes: {width}");
-                keyIndex = IndexOf(attributes, "EIIN");
-                eiins = new int[MAX];
-                dataLines = new string[MAX][];
+                eiins = new int[height];
+                dataLines = new string[height][];
                 string[] temp;
-                for (i = 1; i <= MAX; i++)
+                for (i = 1; i <= height; i++)
                 {
                     temp = Lines[i].Split(',');
-                    eiins[i - 1] = Convert.ToInt32(temp[0]) - OFFSET;
-                    dataLines[eiins[i - 1]] = temp;
+                    eiins[i - 1] = Convert.ToInt32(temp[0]);
+                    dataLines[i - 1] = temp;
                 }
             }
             catch (Exception x)
@@ -54,6 +47,25 @@ namespace KonSchool_Models
                 Console.WriteLine($"Error for line number {i}\n{x.ToString()}");
             }
             
+        }
+
+        public void PrintAll(params string[] attrs)
+        {
+            int l = attrs.Length;
+            for (int i = 0; i < l; i++)
+            {
+                Console.Write(attrs[i] + "\t");
+            }
+            Console.WriteLine();
+            
+            for (int i = 0; i < height; i++)
+            {
+                for (int j = 0; j < l; j++)
+                {
+                    Console.Write(dataLines[i][IndexOf(attributes, attrs[j])] + "\t");
+                }
+                Console.WriteLine();
+            }
         }
 
     }    

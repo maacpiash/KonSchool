@@ -56,7 +56,7 @@ namespace KonSchool_Models
         {
             criteria = new string[NumberofCriteria];
             fuzzyValues = new int[(NumberofCriteria * (NumberofCriteria - 1)) / 2];
-            fileReader = new CSVreader(System.IO.File.ReadAllLines(filePath));
+            fileReader = new CSVreader(filePath);
             numberOfSchools = fileReader.Height;
             Schools = new School[numberOfSchools];
             int eiin;

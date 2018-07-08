@@ -10,11 +10,7 @@ namespace KonSchool_Models
         }
 
         private int eiin;
-        public int EIIN
-        {
-            get => eiin;
-            set => eiin = (value >= 100_000) ? value - 100_000 : value;
-        }
+        public int EIIN { get => eiin; set => eiin = value; }
 
         private string name;
         public string Name { get => name; set => name = value; }

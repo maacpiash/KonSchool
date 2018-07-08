@@ -2,26 +2,22 @@ using System;
 
 namespace KonSchool_Models
 {
-    public class SchoolFactory
+    public static class SchoolFactory
     {
-        private School[] allSchools;
-        private CSVreader myReader;
+        private static School[] allSchools;
+        private static CSVreader myReader;
 
-        private string[] lines;
+        private static string csvPath;
 
-        public School[] AllSchools
+        public static School[] AllSchools
          => allSchools == null ? GetAllSchools() : allSchools;
           
 
-        private School[] GetAllSchools()
+        private static School[] GetAllSchools()
         {
-            myReader = new CSVreader(lines);
+            myReader = new CSVreader(csvPath);
             allSchools = new School[myReader.Height];
             return allSchools;
         }
-
-        public SchoolFactory(string csvPath)
-            => lines = System.IO.File.ReadAllLines(csvPath);
-        
     }
 }
