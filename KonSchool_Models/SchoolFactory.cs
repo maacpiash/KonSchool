@@ -68,5 +68,18 @@ namespace KonSchool_Models
 
         public SchoolFactory(CSVreader fileReader)
             => myReader = fileReader;
+
+        internal void WriteEverything(string filePath)
+        {
+            string[] whatToWrite = new string[numberOfSchools + 1];
+            whatToWrite[0] = "EIIN,Name,District,Thana,TSR,SES,MFR,AS,DIST,ADS";
+            School s;
+            for (int i = 0; i < numberOfSchools; )
+            {
+                s = allSchools[i];
+                whatToWrite[i] = $"{s.EIIN},{s.Name},{s.Location.District},{s.Location.Thana},{s.TeacherStudentRatio},{s.SEScore},{s.Students_MFRatio},{s.Age},{s.Distance},{s.AverAge}";
+            }
+            System.IO.File.WriteAllLines(filePath, whatToWrite);
+        }
     }
 }

@@ -19,10 +19,23 @@ namespace KonSchool_Models
 
         public string[] Attributes => attributes;
         public int[] EIINs => eiins;
-        
-        public string this[int EIIN, string Attribute]
-            => dataLines[IndexOf(eiins, EIIN)][IndexOf(attributes, Attribute)];
+
+        public string this[int EIIN, string Attribute] => Indexer(EIIN, Attribute);
+            
         #endregion
+
+        private string Indexer(int EIIN, string Attribute)
+        {
+            try
+            {
+                return dataLines[IndexOf(eiins, EIIN)][IndexOf(attributes, Attribute)];
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine($"Error:\nEIIN = {EIIN}\nAttribute = {Attribute}");
+                return "ERROR";
+            }
+        }
 
         public CSVreader(string filePath)
         {

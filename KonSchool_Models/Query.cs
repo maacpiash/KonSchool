@@ -36,7 +36,7 @@ namespace KonSchool_Models
 
         public CSVreader fileReader;
         private static List<string> Occupations;
-
+        private SchoolFactory sf;
 
         public static List<string> GetOccupations()
         {
@@ -56,12 +56,20 @@ namespace KonSchool_Models
             criteria = new string[NumberofCriteria];
             fuzzyValues = new int[(NumberofCriteria * (NumberofCriteria - 1)) / 2];
             fileReader = new CSVreader(filePath);
-            Schools = (new SchoolFactory(fileReader)).AllSchools;
+            sf = new SchoolFactory(fileReader);
+            Schools = sf.AllSchools;
             numberOfSchools = Schools.Length;
-            GetDIST();
+        }
+
+        public void SetValues()
+        {
             GetMFR();
-            GetADS();
-            GetSES();
+            if (_location.Division != default(string))
+                GetDIST();
+            if (_class >= 6 && _class <= 10)
+                GetADS();
+            if (_social > 0)
+                GetSES();
         }
 
         internal void GetMFR()
@@ -170,6 +178,11 @@ namespace KonSchool_Models
                 }
 
             }
+        }
+
+        public void WriteEverything(string filePath)
+        {
+            sf.WriteEverything(filePath);
         }
     }
 }

@@ -76,12 +76,14 @@ namespace KonSchool_Desktop.Pages
                     Program.MyQuery.Social = 10.0;
                     break;
                 default:
-                    Program.MyQuery.Social = 0.0;
+                    Program.MyQuery.Social = 1.0;
                     break;
             }
             Program.MyQuery.IsMale = Sex == 1;
             Program.MyQuery.Age = Age;
             Program.MyQuery.Location = new Address(Division, District, Thana, UW.Split('[')[0].Trim());
+            Program.MyQuery.SetValues();
+            Program.MyQuery.WriteEverything("NormDataset.csv");
             return RedirectToPage("/Comparison1");
         }
     }
