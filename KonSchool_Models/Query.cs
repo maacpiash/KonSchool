@@ -34,7 +34,6 @@ namespace KonSchool_Models
         
         public School[] Schools;
 
-        private string dbFile;
         public CSVreader fileReader;
         private static List<string> Occupations;
 
@@ -57,98 +56,59 @@ namespace KonSchool_Models
             criteria = new string[NumberofCriteria];
             fuzzyValues = new int[(NumberofCriteria * (NumberofCriteria - 1)) / 2];
             fileReader = new CSVreader(filePath);
-            numberOfSchools = fileReader.Height;
-            Schools = new School[numberOfSchools];
-            int eiin;
+            Schools = (new SchoolFactory(fileReader)).AllSchools;
+            numberOfSchools = Schools.Length;
+            GetDIST();
+            GetMFR();
+            GetADS();
+            GetSES();
+        }
+
+        internal void GetMFR()
+        {
+            double mfr;
+            School s;
             for (int i = 0; i < numberOfSchools; i++)
             {
-                eiin = fileReader.EIINs[i];
-                Schools[i] = new School(eiin)
-                {
-                    Name = fileReader[eiin, "INSTITUTE NAME"],
-                    Age = ToDouble(fileReader[eiin, "AS_SCORE"]),
-                    Location = new Address()
-                    {
-                        Division = fileReader[eiin, "DIVISION"],
-                        District = fileReader[eiin, "DISTRICT"],
-                        Thana = fileReader[eiin, "THANA"],
-                        Union_Ward = fileReader[eiin, "UNION_NAME"],
-                    },
-                    StreetAddr = fileReader[eiin, "ADDRESS"],
-                    MobileNum = fileReader[eiin, "MOBILE"],
-                    Type = fileReader[eiin, "STUDENT_TYPE"],
-                    Level = fileReader[eiin, "EDUCATION_LEVEL"]
-                };
-                CalcValues(Schools[i]);
+                s = Schools[i];
+                mfr = ToDouble(fileReader[s.EIIN, "FEM_STD_RATIO"]);
+                s.Students_MFRatio = _isMale ? 1 - mfr : mfr;
             }
-            
 
         }
 
-        public void CalcValues(School s)
+        internal void GetDIST()
         {
-            int eiin = s.EIIN;
-
-            // TSR
-
-            s.TeacherStudentRatio = ToDouble(fileReader[eiin, "TSR_SCORE"]);
-
-            // SES
-
-            double locaScore = ToDouble(fileReader[eiin, "AScore"]) / 10;
-            switch (_social)
+            School s;
+            for (int i = 0; i < numberOfSchools; i++)
             {
-                case 10.0:
-                    s.SEScore = (ToDouble(fileReader[eiin, "SESscore_UP"]) * 2 + locaScore) / 3;
-                    break;
-                case 7.5:
-                    s.SEScore = (ToDouble(fileReader[eiin, "SESscore_UM"]) * 2 + locaScore) / 3;
-                    break;
-                case 5.0:
-                    s.SEScore = (ToDouble(fileReader[eiin, "SESscore_LM"]) * 2 + locaScore) / 3;
-                    break;
-                case 2.5:
-                    s.SEScore = (ToDouble(fileReader[eiin, "SESscore_LO"]) * 2 + locaScore) / 3;
-                    break;
-                default:
-                    s.SEScore = locaScore;
-                    break;
-            }
-
-            // MFR
-
-            double mfr = ToDouble(fileReader[eiin, "FEM_STD_RATIO"]);
-            s.Students_MFRatio = _isMale ? 1 - mfr : mfr;
-
-            // AS
-
-            s.Age = ToDouble(fileReader[eiin, "AS_SCORE"]);
-
-            // DIST
-
-            s.Distance = 10;
-            if (_location.Division == s.Location.Division)
-            {
-                s.Distance -= 4;
-                if (_location.District == s.Location.District)
+                s = Schools[i];
+                s.Distance = 10;
+                if (_location.Division == s.Location.Division)
                 {
-                    s.Distance -= 3;
-                    if (_location.Thana == s.Location.Thana)
+                    s.Distance -= 4;
+                    if (_location.District == s.Location.District)
                     {
-                        s.Distance -= 2;
-                        if (_location.Union_Ward == s.Location.Union_Ward)
+                        s.Distance -= 3;
+                        if (_location.Thana == s.Location.Thana)
                         {
-                            s.Distance -= 1;
-                        }
+                            s.Distance -= 2;
+                            if (_location.Union_Ward == s.Location.Union_Ward)
+                            {
+                                s.Distance -= 1;
+                            }
 
+                        }
                     }
                 }
+
+                s.Distance = 1 - s.Distance / 10;
             }
 
-            s.Distance = 1 - s.Distance / 10;
+        }
 
-            // ADS
-
+        internal void GetADS()
+        {
             double[] averAge = new double[numberOfSchools];
             string whichClass = "";
             switch (_class)
@@ -179,7 +139,38 @@ namespace KonSchool_Models
 
             for (int i = 0; i < numberOfSchools; i++)
                 Schools[i].AverAge = NORMDIST(ageDiffs[i], mean, sd, true);
-        }        
+        }
+
+        internal void GetSES()
+        {
+            School s;
+            int eiin;
+            for (int i = 0; i < numberOfSchools; i++)
+            {
+                s = Schools[i];
+                eiin = s.EIIN;
+                double locaScore = ToDouble(fileReader[eiin, "AScore"]) / 10;
+                switch (_social)
+                {
+                    case 10.0:
+                        s.SEScore = (ToDouble(fileReader[eiin, "SESscore_UP"]) * 2 + locaScore) / 3;
+                        break;
+                    case 7.5:
+                        s.SEScore = (ToDouble(fileReader[eiin, "SESscore_UM"]) * 2 + locaScore) / 3;
+                        break;
+                    case 5.0:
+                        s.SEScore = (ToDouble(fileReader[eiin, "SESscore_LM"]) * 2 + locaScore) / 3;
+                        break;
+                    case 2.5:
+                        s.SEScore = (ToDouble(fileReader[eiin, "SESscore_LO"]) * 2 + locaScore) / 3;
+                        break;
+                    default:
+                        s.SEScore = locaScore;
+                        break;
+                }
+
+            }
+        }
     }
 }
  

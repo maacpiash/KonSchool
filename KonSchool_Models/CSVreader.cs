@@ -20,7 +20,8 @@ namespace KonSchool_Models
         public string[] Attributes => attributes;
         public int[] EIINs => eiins;
         
-        public string this[int EIIN, string Attribute] => dataLines[IndexOf(eiins, EIIN)][IndexOf(attributes, Attribute)];
+        public string this[int EIIN, string Attribute]
+            => dataLines[IndexOf(eiins, EIIN)][IndexOf(attributes, Attribute)];
         #endregion
 
         public CSVreader(string filePath)
@@ -61,9 +62,7 @@ namespace KonSchool_Models
             for (int i = 0; i < height; i++)
             {
                 for (int j = 0; j < l; j++)
-                {
                     Console.Write(dataLines[i][IndexOf(attributes, attrs[j])] + "\t");
-                }
                 Console.WriteLine();
             }
         }

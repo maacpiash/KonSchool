@@ -2,11 +2,11 @@ namespace KonSchool_Models
 {
     public partial class School
     {
-        private int mobilenum;
+        private string mobilenum;
         public string MobileNum
         {
-            get => "+880" + mobilenum.ToString();
-            set => mobilenum = System.Convert.ToInt32(value);
+            get => mobilenum;
+            set => mobilenum = value.Contains("+880") ? value : "+880" + value;
         }
 
         private int eiin;
