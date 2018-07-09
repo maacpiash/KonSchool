@@ -29,7 +29,7 @@ namespace KonSchool_Desktop.Pages
         public string District { get; set; }
 
         [BindProperty]
-        public string Thana { get; set; }    
+        public string Thana { get; set; }
 
         [BindProperty]
         public string UW { get; set; }  
@@ -53,6 +53,7 @@ namespace KonSchool_Desktop.Pages
             var collection = Query.GetOccupations();
             foreach (var item in collection)
                 Occupations.Add(new SelectListItem { Value = item, Text = item });
+            Occupations.Add(new SelectListItem() { Value = "Other", Text = "OTHER" });
         }
 
         public async Task<IActionResult> OnPostAsync()

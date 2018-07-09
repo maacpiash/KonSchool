@@ -1,4 +1,3 @@
-//
 using System;
 using Xunit;
 using KonSchool_Models;

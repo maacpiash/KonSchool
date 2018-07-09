@@ -30,6 +30,10 @@ namespace KonSchool_Models
         public Address Location { get => _location; set => _location = value; }
         public int[] FuzzyValues { get => fuzzyValues; set => fuzzyValues = value; }
         public string[] Criteria { get => criteria; set => criteria = value; }
+
+        public int CriteriaCount;
+
+        public ValueTuple<double, double, double>[,] ComparisonMatrix;
         #endregion
         
         public School[] Schools;
@@ -53,12 +57,40 @@ namespace KonSchool_Models
 
         public Query(int NumberofCriteria, string filePath)
         {
+            CriteriaCount = NumberofCriteria;
             criteria = new string[NumberofCriteria];
             fuzzyValues = new int[(NumberofCriteria * (NumberofCriteria - 1)) / 2];
             fileReader = new CSVreader(filePath);
             sf = new SchoolFactory(fileReader);
             Schools = sf.AllSchools;
             numberOfSchools = Schools.Length;
+        }
+
+        public void CreateComparisonMatrix()
+        {
+            ComparisonMatrix = new ValueTuple<double, double, double>[CriteriaCount,CriteriaCount];
+            ValueTuple<double, double, double>[] TFNs = new ValueTuple<double, double, double>[]
+            {
+                (1/7, 1/7, 1/7), (1/7, 1/6, 1/5),
+                (1/6, 1/5, 1/4), (1/5, 1/4, 1/3),
+                (1/4, 1/3, 1/2), (1/3, 1/2, 1),
+                (1, 1, 1),
+                (1, 2, 3), (2, 3, 4),
+                (3, 4, 5), (4, 5, 6),
+                (5, 6, 7), (7, 7, 7)
+            };
+            int n = 0;
+
+            for (int i = 0; i < CriteriaCount; i++)
+                for (int j = i; j < CriteriaCount; j++)
+                {
+                    ComparisonMatrix[i, j] = TFNs[CriteriaCount + fuzzyValues[n]];
+                    ComparisonMatrix[j, i] = TFNs[CriteriaCount - fuzzyValues[n]];
+                    n++;
+                }
+
+            for (int k = 0; k < CriteriaCount; k++)                    
+                ComparisonMatrix[k, k] = (1.0, 1.0, 1.0);
         }
 
         public void SetValues()

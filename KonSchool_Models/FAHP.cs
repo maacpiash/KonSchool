@@ -28,13 +28,9 @@ namespace KonSchool_Models
         public static ValueTuple<double, double, double>[] TFNs;
         public List<ValueTuple<double, double, double>[,]> ComparisonMatrices;
 
-        public FAHP(string[] ListofCriteria, int[] values)
+        public FAHP(ValueTuple<double, double, double>[,] ComparisonMatrix)
         {
-            criteria = ListofCriteria;
-            CriteriaCount = criteria.Length;
-            if (CriteriaCount < values.Length)
-                throw new InvalidDataException("Number of integers sent must be greater than number of criteria");
-            AltCount = values.Length - CriteriaCount * (CriteriaCount - 1);
+            CriteriaCount = ComparisonMatrix.GetLength(0);
             
             ComparisonMatrices = new List<ValueTuple<double, double, double>[,]>();
             altSpecificWeights = new double[AltCount][];
@@ -50,37 +46,11 @@ namespace KonSchool_Models
                 "Absolutely more important" // (7 7 7)
             };
             
-            TFNs = new ValueTuple<double, double, double>[]
-            {
-                (1/7, 1/7, 1/7), (1/7, 1/6, 1/5),
-                (1/6, 1/5, 1/4), (1/5, 1/4, 1/3),
-                (1/4, 1/3, 1/2), (1/3, 1/2, 1),
-                (1, 1, 1),
-                (1, 2, 3), (2, 3, 4),
-                (3, 4, 5), (4, 5, 6),
-                (5, 6, 7), (7, 7, 7)
-            };
-
-            ComparisonMatrix = new ValueTuple<double, double, double>[CriteriaCount,CriteriaCount];
-
-            int n = 0;
-
-            for (int i = 0; i < CriteriaCount; i++)
-                for (int j = 0; j < CriteriaCount; j++)
-                {
-                    if (i == j)
-                        ComparisonMatrix[i, j] = (1.0, 1.0, 1.0);
-                    else
-                    {
-                        ComparisonMatrix[i, j] = TFNs[6 + values[n]];
-                        ComparisonMatrix[j, i] = TFNs[6 - values[n]];
-                        n++;
-                    }
-                }
         }
 
         public double[] Finalize()
         {
+            AltCount = ComparisonMatrices.Count;
             criteriaWeights = RunAHP_on(ComparisonMatrix);
             for (int i = 0; i < AltCount; i++)
                 altSpecificWeights[i] = RunAHP_on(ComparisonMatrices[i]);

@@ -9,7 +9,7 @@ namespace KonSchool_Tests
         [Fact]
         public void Test1()
         {
-            string filePath = "/Users/piash/Code/KonSchool/Dataset.csv";
+            string filePath = "C:/Users/maacp/Desktop/KonSchool/Dataset.csv";
             CSVreader fileReader = new CSVreader(filePath);
             Assert.Equal(fileReader.Height, 14274);
         }

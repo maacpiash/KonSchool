@@ -35,4 +35,3 @@ namespace KonSchool_Models
         
     }
 }
-
