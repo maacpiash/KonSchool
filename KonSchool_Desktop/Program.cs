@@ -20,13 +20,15 @@ namespace KonSchool_Desktop
         public static void Main(string[] args)
         {
             string fp;
-
-            if (args.Length == 0)
-                fp = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName, "Dataset.csv");
-            else
-                fp = args[0];
-            MyQuery = new Query(6, fp);
-            BuildWebHost(args).Run();
+            Console.WriteLine(Environment.CurrentDirectory);
+            Console.WriteLine(Directory.GetCurrentDirectory());
+            // if (args.Length == 0)
+            //     fp = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName, "Dataset.csv");
+            // else
+            //     fp = args[0];
+            // Console.WriteLine(fp);
+            // MyQuery = new Query(6, fp);
+            // BuildWebHost(args).Run();
         }
 
         public static IWebHost BuildWebHost(string[] args) =>

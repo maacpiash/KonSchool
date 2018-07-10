@@ -1,4 +1,5 @@
 # Kon School?
+[![Build Status](https://travis-ci.org/maacpiash/KonSchool.svg?branch=master)](https://travis-ci.org/maacpiash/KonSchool)<br/>
 *কোন স্কুল?* is an app that recommends a secondary school based on user's preferences and school data. The user gives student data (age, sex, class (grade), location, guardian's profession) as input. The user also compares every pair of criteria and gives each pair a relative linguistic value. Then the system
 - uses these linguitic values to run Fuzzy Analytic Hierarchy Process (Fuzzy AHP) to evaluate weights of each criterion
 - takes data from a dataset on secondary schools of Bangladesh and calculates comparative values for each criterion
