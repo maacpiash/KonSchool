@@ -7,4 +7,4 @@ install:
 - dotnet restore
 script:
 - dotnet build
-- dotnet test KonSchool_Tests/KonSchool_Tests.csproj
+- dotnet test $TRAVIS_BUILD_DIR/KonSchool_Tests/KonSchool_Tests.csproj
