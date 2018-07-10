@@ -9,7 +9,7 @@ namespace KonSchool_Tests
     public class FAHPTest
     {
         // private readonly ITestOutputHelper output;
-
+/*
         [Fact]
         public void Test1()
         {
@@ -38,5 +38,6 @@ namespace KonSchool_Tests
             System.IO.File.WriteAllLines("compmat.txt", values);
             Assert.True(true);
         }
+*/
     }
 }
