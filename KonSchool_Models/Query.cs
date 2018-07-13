@@ -30,17 +30,16 @@ namespace KonSchool_Models
         public Address Location { get => _location; set => _location = value; }
         public int[] FuzzyValues { get => fuzzyValues; set => fuzzyValues = value; }
         public string[] Criteria { get => criteria; set => criteria = value; }
-
-        public int CriteriaCount;
-
-        public ValueTuple<double, double, double>[,] ComparisonMatrix;
         #endregion
-        
-        public School[] Schools;
 
-        public CSVreader fileReader;
+        private CSVreader fileReader;
         private static List<string> Occupations;
         private SchoolFactory sf;
+
+        public School[] Schools;
+        public int[] Alternatives;
+        public int CriteriaCount;
+        public ValueTuple<double, double, double>[,] ComparisonMatrix;
 
         public static List<string> GetOccupations()
         {
@@ -71,18 +70,17 @@ namespace KonSchool_Models
             ComparisonMatrix = new ValueTuple<double, double, double>[CriteriaCount,CriteriaCount];
             ValueTuple<double, double, double>[] TFNs = new ValueTuple<double, double, double>[]
             {
-                (1/7, 1/7, 1/7), (1/7, 1/6, 1/5),
-                (1/6, 1/5, 1/4), (1/5, 1/4, 1/3),
-                (1/4, 1/3, 1/2), (1/3, 1/2, 1),
-                (1, 1, 1),
-                (1, 2, 3), (2, 3, 4),
-                (3, 4, 5), (4, 5, 6),
-                (5, 6, 7), (7, 7, 7)
+                (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0), (1.0 / 7.0, 1.0 / 6.0, 0.2),
+                (1.0 / 6.0, 0.2, 0.25), (0.2, 0.25, 1.0 / 3.0), (0.25, 1.0 / 3.0, 0.5),
+                (1.0 / 3.0, 0.5, 1.0), (1.0, 1.0, 1.0),
+                (1.0, 2.0, 3.0), (2.0, 3.0, 4.0), (3.0, 4.0, 5.0),
+                (4.0, 5.0, 6.0), (5.0, 6.0, 7.0), (7.0, 7.0, 7.0)
             };
+
             int n = 0;
 
-            for (int i = 0; i < CriteriaCount; i++)
-                for (int j = i; j < CriteriaCount; j++)
+            for (int i = 0; i < CriteriaCount - 1; i++)
+                for (int j = i + 1; j < CriteriaCount; j++)
                 {
                     ComparisonMatrix[i, j] = TFNs[CriteriaCount + fuzzyValues[n]];
                     ComparisonMatrix[j, i] = TFNs[CriteriaCount - fuzzyValues[n]];
@@ -137,7 +135,6 @@ namespace KonSchool_Models
                             {
                                 s.Distance -= 1;
                             }
-
                         }
                     }
                 }

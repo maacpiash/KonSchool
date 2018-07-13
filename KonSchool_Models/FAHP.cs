@@ -15,7 +15,11 @@ namespace KonSchool_Models
         public readonly int CriteriaCount;
 
         private double[] criteriaWeights;
-        public double[] CriteriaWeights { get => criteriaWeights; set => criteriaWeights = value; }
+        public double[] CriteriaWeights
+        {
+            get => criteriaWeights == null ? RunAHP_on(ComparisonMatrix) : criteriaWeights;
+            set => criteriaWeights = value;
+        }
 
         private double[][] altSpecificWeights;
         public double[][] AltSpecificWeights { get => altSpecificWeights; set => altSpecificWeights = value; }
@@ -23,29 +27,21 @@ namespace KonSchool_Models
         public int AltCount;
 
         public ValueTuple<double, double, double>[,] ComparisonMatrix;
+
+        public double[] altScores;
         
-        public string[] Degrees;
+        
         public static ValueTuple<double, double, double>[] TFNs;
         public List<ValueTuple<double, double, double>[,]> ComparisonMatrices;
 
-        public FAHP(ValueTuple<double, double, double>[,] ComparisonMatrix)
+        public FAHP(ValueTuple<double, double, double>[,] ComparisonMatrix, int NumberofAlternatives)
         {
             CriteriaCount = ComparisonMatrix.GetLength(0);
-            
+            AltCount = NumberofAlternatives;
+            altScores = new double[AltCount];
             ComparisonMatrices = new List<ValueTuple<double, double, double>[,]>();
-            altSpecificWeights = new double[AltCount][];
-
-            Degrees = new string[]
-            {
-                "Equally important", // (1 1 1)
-                "Weakly more important", // (1 2 3)
-                "Moderately more important", // (2 3 4)
-                "Fairly more important", // (3 4 5)
-                "Strongly more important", // (4 5 6)
-                "Immensely more important", // (5 6 7)
-                "Absolutely more important" // (7 7 7)
-            };
-            
+            this.ComparisonMatrix = ComparisonMatrix;
+            //altSpecificWeights = new double[AltCount][];            
         }
 
         public double[] Finalize()
@@ -89,22 +85,27 @@ namespace KonSchool_Models
                     if (a > b || b > c)
                         throw new InvalidDataException("Invalid TFN");
                     (d, e, f) = ComparisonMatrix[j, i];
-                    if (!d.Equals(1 / c)|| !e.Equals(1 / b) || !f.Equals(1 / a))
+                    double threshold = 1E-3;
+                    if (Math.Abs(d - 1 / c) > threshold || Math.Abs(e - 1 / b) > threshold || Math.Abs(f - 1 / a) > threshold)
                         throw new InvalidDataException("TFN(i, j) must be inverse of TFN(j, i) for all i, j <= CriteriaCount");
                 }
             }
 
             // Step 1 : Geometric Mean
             double[] weights = new double[max];
-            double power = 1 / max;
+            double power = 1 / (double)max;
+            double x, y, z;
             ValueTuple<double, double, double>[] geomean = new ValueTuple<double, double, double>[max];
             for (int i = 0; i < max; i++)
             {
                 temp = (1.0, 1.0, 1.0);
                 for (int j = 0; j < max; j++)
                     ScalarMultiply(ref temp, ComparisonMatrix[i, j]);
-                temp = (Math.Pow(temp.Item1, power), Math.Pow(temp.Item2, power), Math.Pow(temp.Item3, power));
-                geomean[i] = temp;
+                x = Math.Pow(temp.Item1, power);
+                y = Math.Pow(temp.Item2, power);
+                z = Math.Pow(temp.Item3, power);
+                geomean[i] = new ValueTuple<double, double, double>(x, y, z);
+
             }
 
             // Step 2 : Multiplying with Inverse Vector
