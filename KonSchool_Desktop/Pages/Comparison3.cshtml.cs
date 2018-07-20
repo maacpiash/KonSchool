@@ -37,7 +37,7 @@ namespace KonSchool_Desktop.Pages
             Program.MyQuery.FuzzyValues[TS_SE] = Convert.ToInt32(TSSE);
             Program.MyQuery.FuzzyValues[LA_AA] = Convert.ToInt32(AALA);
             
-            return RedirectToPage("/Comparison3");
+            return RedirectToPage("/Alternatives");
         }
 
     }

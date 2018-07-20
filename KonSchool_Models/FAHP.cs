@@ -34,19 +34,16 @@ namespace KonSchool_Models
         public static ValueTuple<double, double, double>[] TFNs;
         public List<ValueTuple<double, double, double>[,]> ComparisonMatrices;
 
-        public FAHP(ValueTuple<double, double, double>[,] ComparisonMatrix, int NumberofAlternatives)
+        public FAHP(ValueTuple<double, double, double>[,] ComparisonMatrix)
         {
             CriteriaCount = ComparisonMatrix.GetLength(0);
-            AltCount = NumberofAlternatives;
             altScores = new double[AltCount];
             ComparisonMatrices = new List<ValueTuple<double, double, double>[,]>();
-            this.ComparisonMatrix = ComparisonMatrix;
-            //altSpecificWeights = new double[AltCount][];            
+            this.ComparisonMatrix = ComparisonMatrix;         
         }
 
         public double[] Finalize()
         {
-            AltCount = ComparisonMatrices.Count;
             criteriaWeights = RunAHP_on(ComparisonMatrix);
             for (int i = 0; i < AltCount; i++)
                 altSpecificWeights[i] = RunAHP_on(ComparisonMatrices[i]);
