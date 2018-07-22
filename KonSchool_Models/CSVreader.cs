@@ -33,6 +33,7 @@ namespace KonSchool_Models
             catch (Exception e)
             {
                 Console.WriteLine($"Error:\nEIIN = {EIIN}\nAttribute = {Attribute}");
+                Console.WriteLine(e);
                 return "ERROR";
             }
         }

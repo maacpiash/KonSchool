@@ -117,6 +117,9 @@ namespace KonSchool_Models
                 weights[i] = (now.Item1 + now.Item2 + now.Item3) / 3;
             }
 
+            // Step 5: Normalization
+            Normalize(ref weights);
+
             return weights;
         }
 
@@ -124,5 +127,16 @@ namespace KonSchool_Models
             ref ValueTuple<double, double, double> t1,
             ValueTuple<double, double, double> t2
         ) => t1 = (t1.Item1 * t2.Item1, t1.Item2 * t2.Item2, t1.Item3 * t2.Item3);
+
+        public static double[] Normalize(ref double[] numbers)
+        {
+            int max = numbers.Length;
+            double sum = 0;
+            for (int i = 0; i < max; i++)
+                sum += numbers[i];
+            for (int i = 0; i < max; i++)
+                numbers[i] /= sum;
+            return numbers;
+        }
     }
 }

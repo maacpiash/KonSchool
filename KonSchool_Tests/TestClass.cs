@@ -79,7 +79,7 @@ namespace KonSchool_Tests
                 }
             }
 
-            var fahp = new FAHP(ComparisonMatrix, 5);
+            var fahp = new FAHP(ComparisonMatrix);
             double[] weights = fahp.CriteriaWeights;
 
             string[] whattowrite = new string[6];

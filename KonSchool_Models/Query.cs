@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using static System.Math;
 using static System.Convert;
 using static KonSchool_Models.Stat;
+using static KonSchool_Models.SerialNumbers;
 
 namespace KonSchool_Models
 {
@@ -36,9 +37,9 @@ namespace KonSchool_Models
         private static List<string> Occupations;
         private SchoolFactory sf;
 
-        public School[] Schools;
-        public int[] Alternatives;
+        public int[] Alternatives; // Serial numbers (not EIINs) of schools selected by user
         public int CriteriaCount;
+        public School[] Schools; // ALL 14,274 schools from csv
         public ValueTuple<double, double, double>[,] ComparisonMatrix;
 
         public static List<string> GetOccupations()
@@ -63,6 +64,7 @@ namespace KonSchool_Models
             sf = new SchoolFactory(fileReader);
             Schools = sf.AllSchools;
             numberOfSchools = Schools.Length;
+            SetValues();
         }
 
         public void CreateComparisonMatrix()
@@ -77,9 +79,9 @@ namespace KonSchool_Models
                 (4.0, 5.0, 6.0), (5.0, 6.0, 7.0), (7.0, 7.0, 7.0)
             };
 
-            int n = 0;
+            int n = 0, lim = CriteriaCount - 1;
 
-            for (int i = 0; i < CriteriaCount - 1; i++)
+            for (int i = 0; i < lim; i++)
                 for (int j = i + 1; j < CriteriaCount; j++)
                 {
                     ComparisonMatrix[i, j] = TFNs[CriteriaCount + fuzzyValues[n]];
@@ -102,6 +104,7 @@ namespace KonSchool_Models
                 GetSES();
         }
 
+#region ValueSetters
         internal void GetMFR()
         {
             double mfr;
@@ -208,6 +211,8 @@ namespace KonSchool_Models
 
             }
         }
+#endregion
+
 
         public void WriteEverything(string filePath)
         {
