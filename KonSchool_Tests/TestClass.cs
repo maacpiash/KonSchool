@@ -2,6 +2,7 @@
 using Xunit;
 using KonSchool_Models;
 using System.IO;
+using System.Collections.Generic;
 using Xunit.Abstractions;
 
 using static System.IO.File;
@@ -88,6 +89,37 @@ namespace KonSchool_Tests
                 whattowrite[i] = $"{weights[i]}";
 
             WriteAllLines("weights.txt", whattowrite);
+        }
+
+        [Fact]
+        public void CanNormalizeADS()
+        {
+            List<School> alternatives = new List<School>()
+            {
+                new School(1) { AverAge = new double[] {1, 2, 3, 4, 5} },
+                new School(2) { AverAge = new double[] {6, 7, 8, 9, 10} },
+                new School(3) { AverAge = new double[] {11, 12, 13, 14, 15} },
+                new School(4) { AverAge = new double[] {16, 17, 18, 19, 20} },
+            };
+
+            string csvPath = Environment.CurrentDirectory;
+            for (int i = 0; i < 4; i++)
+            {
+                csvPath = Directory.GetParent(csvPath).FullName;
+            }
+            csvPath = Path.Combine(csvPath, "Dataset.csv");
+
+            Query q = new Query(6, csvPath) { Age = 12, Class = 6 };
+
+            q.GetADS(alternatives);
+            
+            int lim = alternatives.Count;
+            string[] whattowrite = new string[lim];
+            
+            for (int i = 0; i < lim; i++)
+                whattowrite[i] = $"{alternatives[i].ADS}";
+                
+            WriteAllLines("ADS.txt", whattowrite);
         }
     }
 }

@@ -6,7 +6,7 @@ namespace KonSchool_Models
         public string MobileNum
         {
             get => mobilenum;
-            set => mobilenum = value.Contains("+880") ? value : "+880" + value;
+            set => mobilenum = value.Contains("+880") ? (value) : (value.StartsWith("0") ? "+88" + value : "+880" + value);
         }
 
         private int eiin;
@@ -33,8 +33,8 @@ namespace KonSchool_Models
         private string level; // ju-sec/sec/hi-sec
         public string Level { get => level; set => level = value; }
 
-        private double averAge;
-        public double AverAge { get => averAge; set => averAge = value; }
+        private double[] averAge;
+        public double[] AverAge { get => averAge; set => averAge = value; }
 
         private double smfRatio;
         public double Students_MFRatio { get => smfRatio; set => smfRatio = value; }
@@ -42,10 +42,14 @@ namespace KonSchool_Models
         private double tsRatio;
         public double TeacherStudentRatio { get => tsRatio; set => tsRatio = value; }
         
-        private double seScore;
-        public double SEScore { get => seScore; set => seScore = value; }
+        private double[] seScore;
+        public double[] SEScore { get => seScore; set => seScore = value; }
 
-        private System.ValueTuple<double, double, double>[,] CompMat;
+        private double ses;
+        public double SES { get => ses; set => ses = value; }
+
+        private double ads;
+        public double ADS { get => ads; set => ads = value; }
 
         public School(int EIIN) => eiin = EIIN;
     }

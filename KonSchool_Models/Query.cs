@@ -33,9 +33,7 @@ namespace KonSchool_Models
         public string[] Criteria { get => criteria; set => criteria = value; }
         #endregion
 
-        private CSVreader fileReader;
         private static List<string> Occupations;
-        private SchoolFactory sf;
 
         public int[] Alternatives; // Serial numbers (not EIINs) of schools selected by user
         public int CriteriaCount;
@@ -55,14 +53,13 @@ namespace KonSchool_Models
             return Occupations;
         }
 
+        internal Query() { }    // Only for using in test cases
         public Query(int NumberofCriteria, string filePath)
         {
             CriteriaCount = NumberofCriteria;
             criteria = new string[NumberofCriteria];
             fuzzyValues = new int[(NumberofCriteria * (NumberofCriteria - 1)) / 2];
-            fileReader = new CSVreader(filePath);
-            sf = new SchoolFactory(fileReader);
-            Schools = sf.AllSchools;
+            Schools = (new SchoolFactory(filePath)).AllSchools;
             numberOfSchools = Schools.Length;
             SetValues();
         }
@@ -95,129 +92,87 @@ namespace KonSchool_Models
 
         public void SetValues()
         {
-            GetMFR();
-            if (_location.Division != default(string))
-                GetDIST();
-            if (_class >= 6 && _class <= 10)
-                GetADS();
-            if (_social > 0)
-                GetSES();
+            School s;
+            List<School> EligibleSchools = new List<School>();
+
+            for (int i = 0; i < numberOfSchools; i++)
+            {
+                if (!IsEligible(Schools[i])) continue;
+
+                // MFR
+                s = Schools[i];
+                if (_isMale) s.Students_MFRatio = 1 - s.Students_MFRatio;
+
+                // DIST
+                if (_location.Division != default(string))
+                    GetDIST(s);
+
+                // SES
+                if (_social > 0)
+                    s.SES = (s.SEScore[(int)(_social / 2.5) - 1] * 2 + s.SES) / 3;
+            }
+
+            // ADS
+            GetADS(EligibleSchools);
+            
         }
 
 #region ValueSetters
-        internal void GetMFR()
+        
+        internal void GetDIST(School s)
         {
-            double mfr;
-            School s;
-            for (int i = 0; i < numberOfSchools; i++)
+            s.Distance = 10;
+            if (_location.Division == s.Location.Division)
             {
-                s = Schools[i];
-                mfr = ToDouble(fileReader[s.EIIN, "FEM_STD_RATIO"]);
-                s.Students_MFRatio = _isMale ? 1 - mfr : mfr;
-            }
-
-        }
-
-        internal void GetDIST()
-        {
-            School s;
-            for (int i = 0; i < numberOfSchools; i++)
-            {
-                s = Schools[i];
-                s.Distance = 10;
-                if (_location.Division == s.Location.Division)
+                s.Distance -= 4;
+                if (_location.District == s.Location.District)
                 {
-                    s.Distance -= 4;
-                    if (_location.District == s.Location.District)
+                    s.Distance -= 3;
+                    if (_location.Thana == s.Location.Thana)
                     {
-                        s.Distance -= 3;
-                        if (_location.Thana == s.Location.Thana)
+                        s.Distance -= 2;
+                        if (_location.Union_Ward == s.Location.Union_Ward)
                         {
-                            s.Distance -= 2;
-                            if (_location.Union_Ward == s.Location.Union_Ward)
-                            {
-                                s.Distance -= 1;
-                            }
+                            s.Distance -= 1;
                         }
                     }
                 }
-
-                s.Distance = 1 - s.Distance / 10;
             }
-
+            s.Distance = 1 - s.Distance / 10;
         }
 
-        internal void GetADS()
+        public void GetADS(List<School> EligibleSchools)
         {
-            double[] averAge = new double[numberOfSchools];
-            string whichClass = "";
-            switch (_class)
-            {
-                case 6: whichClass = "SIX_AVG"; break;
-                case 7: whichClass = "SEVEN_AVG"; break;
-                case 8: whichClass = "EIGHT_AVG"; break;
-                case 9: whichClass = "NINE_AVG"; break;
-                case 10: whichClass = "TEN_AVG"; break;
-                default: break;
-            }
+            int max = EligibleSchools.Count;
 
-            double[] ageDiffs = new double[numberOfSchools];
-            string val;
-            for (int i = 0; i < numberOfSchools; i++)
-            {
-                val = fileReader[Schools[i].EIIN, whichClass];
-                ageDiffs[i] = Abs(ToDouble(val) - _age);
-            }
-
+            double[] ageDiffs = new double[max];
+            for (int i = 0; i < max; i++)
+                ageDiffs[i] = Abs(EligibleSchools[i].AverAge[_class - 6] - (double)_age);
+            
             double mean, sd, sum = 0, dev = 0;
-            for (int i = 0; i < numberOfSchools; i++)
+            for (int i = 0; i < max; i++)
                 sum += ageDiffs[i];
-            mean = sum / numberOfSchools;
-            for (int i = 0; i < numberOfSchools; i++)
+            mean = sum / max;
+            for (int i = 0; i < max; i++)
                 dev += Pow((ageDiffs[i] - mean), 2);
             sd = Sqrt(dev / numberOfSchools);
 
-            for (int i = 0; i < numberOfSchools; i++)
-                Schools[i].AverAge = NORMDIST(ageDiffs[i], mean, sd, true);
+            for (int i = 0; i < max; i++)
+                EligibleSchools[i].ADS = 1 - NORMDIST(ageDiffs[i], mean, sd, true);
         }
 
-        internal void GetSES()
-        {
-            School s;
-            int eiin;
-            for (int i = 0; i < numberOfSchools; i++)
-            {
-                s = Schools[i];
-                eiin = s.EIIN;
-                double locaScore = ToDouble(fileReader[eiin, "AScore"]) / 10;
-                switch (_social)
-                {
-                    case 10.0:
-                        s.SEScore = (ToDouble(fileReader[eiin, "SESscore_UP"]) * 2 + locaScore) / 3;
-                        break;
-                    case 7.5:
-                        s.SEScore = (ToDouble(fileReader[eiin, "SESscore_UM"]) * 2 + locaScore) / 3;
-                        break;
-                    case 5.0:
-                        s.SEScore = (ToDouble(fileReader[eiin, "SESscore_LM"]) * 2 + locaScore) / 3;
-                        break;
-                    case 2.5:
-                        s.SEScore = (ToDouble(fileReader[eiin, "SESscore_LO"]) * 2 + locaScore) / 3;
-                        break;
-                    default:
-                        s.SEScore = locaScore;
-                        break;
-                }
-
-            }
-        }
+        
 #endregion
 
-
-        public void WriteEverything(string filePath)
+        public bool IsEligible(School s)
+            => !((_isMale && s.Type == "GIRLS") || (_class > 8 && s.Level == "Junior Secondary"));
+    
+    
+        internal void NormalizeAllValues(List<School> Schools)
         {
-            sf.WriteEverything(filePath);
+
         }
+    
     }
 }
  

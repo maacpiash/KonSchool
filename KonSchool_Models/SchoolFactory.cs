@@ -53,21 +53,38 @@ namespace KonSchool_Models
 
             s.TeacherStudentRatio = ToDouble(myReader[eiin, "TSR_SCORE"]);
 
-            // SES : Calculated in Query class
+            // SES
+            s.SES = ToDouble(myReader[eiin, "AScore"]) / 10;
+            s.SEScore = new double[4]
+            {
+                ToDouble(myReader[eiin, "SESscore_LO"]),
+                ToDouble(myReader[eiin, "SESscore_LM"]),
+                ToDouble(myReader[eiin, "SESscore_UM"]),
+                ToDouble(myReader[eiin, "SESscore_UP"])
+            };
 
-            // MFR : Calculated in Query class
+            // MFR
+            s.Students_MFRatio = ToDouble(myReader[eiin, "FEM_STD_RATIO"]);
 
             // AS
-
             s.Age = ToDouble(myReader[eiin, "AS_SCORE"]);
 
             // DIST : Calculated in Query class
 
-            // ADS : Calculated in Query class
+            // ADS
+            s.AverAge = new double[5]
+            {
+                ToDouble(myReader[eiin, "SIX_AVG"]),
+                ToDouble(myReader[eiin, "SEVEN_AVG"]),
+                ToDouble(myReader[eiin, "EIGHT_AVG"]),
+                ToDouble(myReader[eiin, "NINE_AVG"]),
+                ToDouble(myReader[eiin, "TEN_AVG"])
+            };
+
         }
 
-        public SchoolFactory(CSVreader fileReader)
-            => myReader = fileReader;
+        public SchoolFactory(string filePath)
+            => myReader = new CSVreader(filePath);
 
         internal void WriteEverything(string filePath)
         {

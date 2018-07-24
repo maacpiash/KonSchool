@@ -84,7 +84,6 @@ namespace KonSchool_Desktop.Pages
             Program.MyQuery.Age = Age;
             Program.MyQuery.Location = new Address(Division, District, Thana, UW.Split('[')[0].Trim());
             Program.MyQuery.SetValues();
-            Program.MyQuery.WriteEverything("NormDataset.csv");
             return RedirectToPage("/Comparison1");
         }
     }
