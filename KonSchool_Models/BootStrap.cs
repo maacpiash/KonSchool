@@ -11,7 +11,7 @@ namespace KonSchool_Models
         public BootStrap(Query query, FAHP fAHP)
         {
             School[] schools = query.Schools;
-            double[] weights = fAHP.CriteriaWeights;
+            double[] weights = fAHP.FinalScores;
             int[] alts = query.Alternatives;
             int max = alts.Length;
             FinalScores = new double[max];

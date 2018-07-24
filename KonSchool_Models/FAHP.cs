@@ -9,54 +9,26 @@ namespace KonSchool_Models
 {
     public class FAHP
     {
-        private string[] criteria;
-        public string[] Criteria { get => criteria; set => criteria = value; }
-
         public readonly int CriteriaCount;
 
-        private double[] criteriaWeights;
-        public double[] CriteriaWeights
+        private double[] finalScores;
+        public double[] FinalScores
         {
-            get => criteriaWeights == null ? RunAHP_on(ComparisonMatrix) : criteriaWeights;
-            set => criteriaWeights = value;
+            get => finalScores == null ? RunAHP_on(ComparisonMatrix) : finalScores;
+            set => finalScores = value;
         }
 
-        private double[][] altSpecificWeights;
-        public double[][] AltSpecificWeights { get => altSpecificWeights; set => altSpecificWeights = value; }
-
-        public int AltCount;
-
+        
+        
         public ValueTuple<double, double, double>[,] ComparisonMatrix;
 
-        public double[] altScores;
-        
-        
         public static ValueTuple<double, double, double>[] TFNs;
         public List<ValueTuple<double, double, double>[,]> ComparisonMatrices;
 
         public FAHP(ValueTuple<double, double, double>[,] ComparisonMatrix)
         {
             CriteriaCount = ComparisonMatrix.GetLength(0);
-            altScores = new double[AltCount];
-            ComparisonMatrices = new List<ValueTuple<double, double, double>[,]>();
             this.ComparisonMatrix = ComparisonMatrix;         
-        }
-
-        public double[] Finalize()
-        {
-            criteriaWeights = RunAHP_on(ComparisonMatrix);
-            for (int i = 0; i < AltCount; i++)
-                altSpecificWeights[i] = RunAHP_on(ComparisonMatrices[i]);
-            
-            double[] scores = new double[AltCount];
-            for (int i = 0; i < AltCount; i++)
-            {
-                for (int j = 0; j < CriteriaCount; j++)
-                {
-                    scores[i] += criteriaWeights[j] * altSpecificWeights[i][j];
-                }
-            }
-            return scores;
         }
 
         private double[] RunAHP_on(ValueTuple<double, double, double>[,] ComparisonMatrix)
