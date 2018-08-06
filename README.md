@@ -1,6 +1,10 @@
 # Kon School?
 
-[![Build Status](https://travis-ci.org/maacpiash/KonSchool.svg?branch=master)](https://travis-ci.org/maacpiash/KonSchool)
+| OS | Build Status |
+| -- | ------------ |
+| Linux | [![Build Status for Linux](https://travis-ci-job-status.herokuapp.com/badge/maacpiash/KonSchool/master/linux)](https://travis-ci.org/maacpiash/KonSchool) |
+| macOS | [![Build Status for macOS](https://travis-ci-job-status.herokuapp.com/badge/maacpiash/KonSchool/master/osx)](https://travis-ci.org/maacpiash/KonSchool) |
+
 
 *Kon School?* (Bengali: *কোন স্কুল?*, meaning *"Which school?"*) is a system that recommends a secondary school based on user's preferences and school data. The user gives student data (age, sex, class (grade), location, guardian's profession) as input. The user also compares every pair of criteria and gives each pair a relative linguistic value. Then the system
 - uses these linguitic values to run Fuzzy Analytic Hierarchy Process (Fuzzy AHP) to evaluate weights of each criterion
