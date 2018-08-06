@@ -1,7 +1,11 @@
 language: csharp
-dist: trusty
-mono: none
+solution: KonSchool.sln
+os:
+  - linux
+  - osx
 dotnet: 2.0.0
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update          ; fi
 before_script: cd KonSchool_Tests
 install:
 - dotnet restore
