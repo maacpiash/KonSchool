@@ -51,7 +51,7 @@ namespace KonSchool_Models
 
             // TSR
 
-            s.TeacherStudentRatio = ToDouble(myReader[eiin, "TSR_SCORE"]);
+            s.TSRatio = ToDouble(myReader[eiin, "TSR_SCORE"]);
 
             // SES
             s.SES = ToDouble(myReader[eiin, "AScore"]) / 10;
@@ -64,7 +64,7 @@ namespace KonSchool_Models
             };
 
             // MFR
-            s.Students_MFRatio = ToDouble(myReader[eiin, "FEM_STD_RATIO"]);
+            s.MFRatio = ToDouble(myReader[eiin, "FEM_STD_RATIO"]);
 
             // AS
             s.Age = ToDouble(myReader[eiin, "AS_SCORE"]);
@@ -94,7 +94,7 @@ namespace KonSchool_Models
             for (int i = 0; i < numberOfSchools; )
             {
                 s = allSchools[i];
-                whatToWrite[i] = $"{s.EIIN},{s.Name},{s.Location.District},{s.Location.Thana},{s.TeacherStudentRatio},{s.SEScore},{s.Students_MFRatio},{s.Age},{s.Distance},{s.AverAge}";
+                whatToWrite[i] = $"{s.EIIN},{s.Name},{s.Location.District},{s.Location.Thana},{s.TSRatio},{s.SEScore},{s.MFRatio},{s.Age},{s.Distance},{s.AverAge}";
             }
             System.IO.File.WriteAllLines(filePath, whatToWrite);
         }

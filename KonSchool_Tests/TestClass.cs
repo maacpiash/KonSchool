@@ -24,7 +24,8 @@ namespace KonSchool_Tests
             Assert.Equal(14274, fileReader.Height);
         }
 
-        [Fact]
+        
+        //[Fact]
         public void CanComputeComparisonMatrix()
         {
             string csvPath = Environment.CurrentDirectory;
@@ -41,11 +42,11 @@ namespace KonSchool_Tests
                     -1, 2, 1, -3, 1,
                     3, 1, 0, 3, 0,
                     -2, 0, -2, 0, 3
-                }
+                },
+                ConfLevel = 2
             };
 
             q.CreateComparisonMatrix();
-
             
             string[] values = new string[6];
             ValueTuple<double, double, double> temp;
@@ -61,7 +62,8 @@ namespace KonSchool_Tests
             WriteAllLines("compmat.csv", values);
         }
 
-        [Fact]
+
+        //[Fact]
         public void CanComputeCriteriaWeightsviaFuzzyAHP()
         {
             var ComparisonMatrix = new ValueTuple<double, double, double>[6, 6];
@@ -90,6 +92,7 @@ namespace KonSchool_Tests
 
             WriteAllLines("weights.txt", whattowrite);
         }
+        
 
         [Fact]
         public void CanNormalizeADS()

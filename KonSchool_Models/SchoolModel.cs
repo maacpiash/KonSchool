@@ -37,10 +37,10 @@ namespace KonSchool_Models
         public double[] AverAge { get => averAge; set => averAge = value; }
 
         private double smfRatio;
-        public double Students_MFRatio { get => smfRatio; set => smfRatio = value; }
+        public double MFRatio { get => smfRatio; set => smfRatio = value; }
 
         private double tsRatio;
-        public double TeacherStudentRatio { get => tsRatio; set => tsRatio = value; }
+        public double TSRatio { get => tsRatio; set => tsRatio = value; }
         
         private double[] seScore;
         public double[] SEScore { get => seScore; set => seScore = value; }

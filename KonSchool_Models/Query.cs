@@ -61,33 +61,33 @@ namespace KonSchool_Models
             Schools = (new SchoolFactory(filePath)).AllSchools;
             numberOfSchools = Schools.Length;
             SetValues();
+            
         }
 
         public void CreateComparisonMatrix()
         {
             ComparisonMatrix = new ValueTuple<double, double, double>[CriteriaCount,CriteriaCount];
-            List<ValueTuple<double, double, double>[]> TFNs = new List<ValueTuple<double, double, double>[]>()
+            var TFNs = new List<ValueTuple<double, double, double>[]>()
             {
                 new ValueTuple<double, double, double>[]
                 {
                     (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0), (1.0 / 7.0, 1.0 / 6.0, 1.0 / 4.5),
                     (1.0 / 5.5, 1.0 / 4.0, 1.0 / 2.5), (1.0 / 3.5, 1.0 / 2.0, 1.0),
-                    (1.0, 1.0, 1.0), (1.0, 2.0, 3.5), (2.5, 4.0, 5.5),(4.5, 6.0, 7.0), (7.0, 7.0, 7.0)
+                    (1.0, 1.0, 1.0), (1.0, 2.0, 3.5), (2.5, 4.0, 5.5), (4.5, 6.0, 7.0), (7.0, 7.0, 7.0)
                 },
 
                 new ValueTuple<double, double, double>[]
                 {
-                    (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0), (1.0 / 7.0, 1.0 / 6.0, 0.2),
-                    (1.0 / 6.0, 0.2, 0.25), (0.2, 0.25, 1.0 / 3.0), (0.25, 1.0 / 3.0, 0.5),
-                    (1.0 / 3.0, 0.5, 1.0), (1.0, 1.0, 1.0),
-                    (1.0, 2.0, 3.0), (2.0, 3.0, 4.0), (3.0, 4.0, 5.0),
-                    (4.0, 5.0, 6.0), (5.0, 6.0, 7.0), (7.0, 7.0, 7.0)
+                    (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0), (1.0 / 6.0, 0.2, 0.25),
+                    (0.2, 0.25, 1.0 / 3.0), (1.0 / 3.0, 0.5, 1.0), (1.0, 1.0, 1.0),
+                    (1.0, 2.0, 3.0), (3.0, 4.0, 5.0),
+                    (5.0, 6.0, 7.0), (7.0, 7.0, 7.0)
                 },
                 new ValueTuple<double, double, double>[]
                 {
                     (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0), (1.0 / 6.5, 1.0 / 6.0, 1.0 / 5.5),
                     (1.0 / 4.5, 1.0 / 4.0, 1.0 / 3.5), (1.0 / 2.5, 1.0 / 2.0, 1.5),
-                    (1.0, 1.0, 1.0), (1.5, 2.0, 2.5), (3.5, 4.0, 4.5),(5.5, 6.0, 6.5), (7.0, 7.0, 7.0)
+                    (1.0, 1.0, 1.0), (1.5, 2.0, 2.5), (3.5, 4.0, 4.5), (5.5, 6.0, 6.5), (7.0, 7.0, 7.0)
                 }
             };
 
@@ -116,7 +116,7 @@ namespace KonSchool_Models
 
                 // MFR
                 s = Schools[i];
-                if (_isMale) s.Students_MFRatio = 1 - s.Students_MFRatio;
+                if (_isMale) s.MFRatio = 1 - s.MFRatio;
 
                 // DIST
                 if (_location.Division != default(string))
@@ -182,16 +182,28 @@ namespace KonSchool_Models
             => !((_isMale && s.Type == "GIRLS") || (_class > 8 && s.Level == "Junior Secondary"));
     
     
-        internal void NormalizeAllValues(List<School> Schools)
+        public void NormalizeAllValues(List<School> Schools)
         {
+            double MFR = 0, TSR = 0, SES = 0, ADS = 0, AS = 0, DIST = 0;
             int max = Schools.Count;
             for (int i = 0; i < max; i++)
-                Schools[i].Score = weights[TSR] * schools[alts[i]].TeacherStudentRatio
-                               + weights[SES] * schools[alts[i]].SES
-                               + weights[MFR] * schools[alts[i]].Students_MFRatio
-                               + weights[AS] * schools[alts[i]].Age
-                               + weights[DIST] * schools[alts[i]].Distance
-                               + weights[ADS] * schools[alts[i]].ADS;
+            {
+                MFR += Schools[i].MFRatio;
+                TSR += Schools[i].TSRatio;
+                SES += Schools[i].SES;
+                ADS += Schools[i].ADS;
+                AS += Schools[i].Age;
+                DIST += Schools[i].Distance;
+            }
+            for (int i = 0; i < max; i++)
+            {
+                Schools[i].MFRatio /= MFR;
+                Schools[i].TSRatio /= TSR;
+                Schools[i].SES /= SES;
+                Schools[i].ADS /= ADS;
+                Schools[i].Age /= AS;
+                Schools[i].Distance /= DIST;
+            }
         }
     
     }

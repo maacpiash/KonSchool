@@ -2,8 +2,8 @@
 
 | OS | Build Status |
 | -- | ------------ |
-| Linux | [![Build Status for Linux](https://travis-ci-job-status.herokuapp.com/badge/maacpiash/KonSchool/master/linux)](https://travis-ci.org/maacpiash/KonSchool) |
-| macOS | [![Build Status for macOS](https://travis-ci-job-status.herokuapp.com/badge/maacpiash/KonSchool/master/osx)](https://travis-ci.org/maacpiash/KonSchool) |
+| Linux/macOS | [![Build Status](https://travis-ci.org/maacpiash/KonSchool.svg?branch=master)](https://travis-ci.org/maacpiash/KonSchool) |
+| Windows | [![Build status](https://ci.appveyor.com/api/projects/status/bsmib72le6n8pc1u?svg=true)](https://ci.appveyor.com/project/maacpiash/konschool) |
 
 
 *Kon School?* (Bengali: *কোন স্কুল?*, meaning *"Which school?"*) is a system that recommends a secondary school based on user's preferences and school data. The user gives student data (age, sex, class (grade), location, guardian's profession) as input. The user also compares every pair of criteria and gives each pair a relative linguistic value. Then the system
@@ -20,7 +20,7 @@ The dataset used for this system was compiled from several datasets originally c
 The .NET Core solution is divided into three projects:
 - [KonSchool_API](https://github.com/maacpiash/KonSchool/tree/master/KonSchool_API), a RESTful web API that outputs score values for each alternative schools, based on criteria preferences and alternative selection by the user.
 - [KonSchool_Desktop](https://github.com/maacpiash/KonSchool/tree/master/KonSchool_Desktop), a "desktop" application developed with [Electron.NET](https://github.com/ElectronNET/Electron.NET), which can also be used as a general webpage.
-- [KonSchool_Models](https://github.com/maacpiash/KonSchool/tree/master/KonSchool_Models), the actual logic of Fuzzy AHP procedure.
+- [KonSchool_Models](https://github.com/maacpiash/KonSchool/tree/master/KonSchool_Models), the model classes and actual logic of Fuzzy AHP procedure, along with some helper classes.
 
 Additionally, there is an [xUnit test project](https://github.com/maacpiash/KonSchool/tree/master/KonSchool_Test) for general testing purposes.<br/>
 Each of these projects will have their own readme files, very soon 🤞🏽
