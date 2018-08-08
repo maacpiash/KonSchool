@@ -10,7 +10,7 @@ namespace KonSchool_Models
 {
     public class Query
     {
-        #region private backing variables
+#region private backing variables
         private int _class;
         private double _social;
         private bool _isMale;
@@ -19,9 +19,9 @@ namespace KonSchool_Models
         private Address _location;
         private int[] fuzzyValues;
         private int _confLevel;
-        #endregion
+#endregion
         
-        #region Public Properties
+#region Public Properties
         public int Class { get => _class; set => _class = value; }
         public double Social { get => _social; set => _social = value; }
         public bool IsMale { get => _isMale; set => _isMale = value; }
@@ -30,7 +30,7 @@ namespace KonSchool_Models
         public Address Location { get => _location; set => _location = value; }
         public int[] FuzzyValues { get => fuzzyValues; set => fuzzyValues = value; }
         public int ConfLevel { get => _confLevel; set => _confLevel = value < 0 ? 0 : (value > 2 ? 2 : value); }
-        #endregion
+#endregion
 
         private static List<string> Occupations;
         int numberOfSchools;
@@ -70,11 +70,9 @@ namespace KonSchool_Models
             {
                 new ValueTuple<double, double, double>[]
                 {
-                    (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0), (1.0 / 7.0, 1.0 / 6.0, 0.2),
-                    (1.0 / 6.0, 0.2, 0.25), (0.2, 0.25, 1.0 / 3.0), (0.25, 1.0 / 3.0, 0.5),
-                    (1.0 / 3.0, 0.5, 1.0), (1.0, 1.0, 1.0),
-                    (1.0, 2.0, 3.0), (2.0, 3.0, 4.0), (3.0, 4.0, 5.0),
-                    (4.0, 5.0, 6.0), (5.0, 6.0, 7.0), (7.0, 7.0, 7.0)
+                    (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0), (1.0 / 7.0, 1.0 / 6.0, 1.0 / 4.5),
+                    (1.0 / 5.5, 1.0 / 4.0, 1.0 / 2.5), (1.0 / 3.5, 1.0 / 2.0, 1.0),
+                    (1.0, 1.0, 1.0), (1.0, 2.0, 3.5), (2.5, 4.0, 5.5),(4.5, 6.0, 7.0), (7.0, 7.0, 7.0)
                 },
 
                 new ValueTuple<double, double, double>[]
@@ -87,11 +85,9 @@ namespace KonSchool_Models
                 },
                 new ValueTuple<double, double, double>[]
                 {
-                    (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0), (1.0 / 7.0, 1.0 / 6.0, 0.2),
-                    (1.0 / 6.0, 0.2, 0.25), (0.2, 0.25, 1.0 / 3.0), (0.25, 1.0 / 3.0, 0.5),
-                    (1.0 / 3.0, 0.5, 1.0), (1.0, 1.0, 1.0),
-                    (1.0, 2.0, 3.0), (2.0, 3.0, 4.0), (3.0, 4.0, 5.0),
-                    (4.0, 5.0, 6.0), (5.0, 6.0, 7.0), (7.0, 7.0, 7.0)
+                    (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0), (1.0 / 6.5, 1.0 / 6.0, 1.0 / 5.5),
+                    (1.0 / 4.5, 1.0 / 4.0, 1.0 / 3.5), (1.0 / 2.5, 1.0 / 2.0, 1.5),
+                    (1.0, 1.0, 1.0), (1.5, 2.0, 2.5), (3.5, 4.0, 4.5),(5.5, 6.0, 6.5), (7.0, 7.0, 7.0)
                 }
             };
 
@@ -180,7 +176,6 @@ namespace KonSchool_Models
                 EligibleSchools[i].ADS = 1 - NORMDIST(ageDiffs[i], mean, sd, true);
         }
 
-        
 #endregion
 
         public bool IsEligible(School s)
@@ -189,7 +184,14 @@ namespace KonSchool_Models
     
         internal void NormalizeAllValues(List<School> Schools)
         {
-
+            int max = Schools.Count;
+            for (int i = 0; i < max; i++)
+                Schools[i].Score = weights[TSR] * schools[alts[i]].TeacherStudentRatio
+                               + weights[SES] * schools[alts[i]].SES
+                               + weights[MFR] * schools[alts[i]].Students_MFRatio
+                               + weights[AS] * schools[alts[i]].Age
+                               + weights[DIST] * schools[alts[i]].Distance
+                               + weights[ADS] * schools[alts[i]].ADS;
         }
     
     }

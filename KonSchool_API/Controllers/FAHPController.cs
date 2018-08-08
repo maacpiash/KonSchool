@@ -20,16 +20,16 @@ namespace KonSchool_API.Controllers
             return "Gimme values fam!";
         }
 
-        // GET api/fahp/6,5.0,1,13,RAJSHAHI,SIRAJGANJ,KAMARKHANDA,ROY DAULATPUR,-1,2,1,-3,1,3,1,0,3,0,-2,0,-2,0,3,...
+        // GET api/fahp/6,5.0,1,13,RAJSHAHI,SIRAJGANJ,KAMARKHANDA,ROY DAULATPUR,-1,2,1,-3,1,3,1,0,3,0,-2,0,-2,0,3,2
         [HttpGet("{variables}")]
         public async Task<ActionResult> Get(string variables)
         {
             if (!variables.Contains(','))
-                return Ok("Where are the other values?!");
+                return Ok("Where are the other values?");
             string[] values = variables.Split(',');
             int max = values.Length;
-            if (max < 22)
-                return Ok("Where are the other values?!");
+            if (max < 24)
+                return Ok("Missing some values!");
             string retVals = await GetValuesAsync(values);
             return Ok(retVals);
         }
@@ -55,6 +55,7 @@ namespace KonSchool_API.Controllers
                     };
                     for (int i = 0; i < 15; i++)
                         query.FuzzyValues[i] = Convert.ToInt32(values[i + 8]);
+                    query.ConfLevel = Convert.ToInt32(values[23]);
                 }
                 catch (Exception x)
                 {
@@ -65,14 +66,7 @@ namespace KonSchool_API.Controllers
                 query.CreateComparisonMatrix();
                 FAHP fAHP = new FAHP(query.ComparisonMatrix);
                 double[] weights = fAHP.CriteriaWeights;
-                if (max == 23)
-                    return string.Join(',', weights);
-                int[] choices = new int[max - 23];
-                for (int i = 23; i < max; i++)
-                    choices[i - max] = Convert.ToInt32(values[i]);
-                query.Alternatives = choices;
-                double[] finalValues = (new BootStrap(query, fAHP)).FinalScores;
-                return string.Join(',', finalValues);
+                return string.Join(',', weights);
             });
             
         }

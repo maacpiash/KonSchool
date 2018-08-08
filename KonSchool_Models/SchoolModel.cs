@@ -53,6 +53,8 @@ namespace KonSchool_Models
         // Actual age difference, stored when Query objct modifies the class instance.
         public double ADS { get => ads; set => ads = value; }
 
+        public double Score { get; internal set; }
+
         public School(int EIIN) => eiin = EIIN;
     }
 }
