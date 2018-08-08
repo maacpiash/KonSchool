@@ -18,8 +18,7 @@ namespace KonSchool_Models
         private string _occupation;
         private Address _location;
         private int[] fuzzyValues;
-        private string[] criteria;
-        int numberOfSchools;
+        private int _confLevel;
         #endregion
         
         #region Public Properties
@@ -30,10 +29,11 @@ namespace KonSchool_Models
         public string Occupation { get => _occupation; set => _occupation = GetOccupations().Contains(value) ? value : "Other"; }
         public Address Location { get => _location; set => _location = value; }
         public int[] FuzzyValues { get => fuzzyValues; set => fuzzyValues = value; }
-        public string[] Criteria { get => criteria; set => criteria = value; }
+        public int ConfLevel { get => _confLevel; set => _confLevel = value < 0 ? 0 : (value > 2 ? 2 : value); }
         #endregion
 
         private static List<string> Occupations;
+        int numberOfSchools;
 
         public int[] Alternatives; // Serial numbers (not EIINs) of schools selected by user
         public int CriteriaCount;
@@ -57,7 +57,6 @@ namespace KonSchool_Models
         public Query(int NumberofCriteria, string filePath)
         {
             CriteriaCount = NumberofCriteria;
-            criteria = new string[NumberofCriteria];
             fuzzyValues = new int[(NumberofCriteria * (NumberofCriteria - 1)) / 2];
             Schools = (new SchoolFactory(filePath)).AllSchools;
             numberOfSchools = Schools.Length;
@@ -67,22 +66,42 @@ namespace KonSchool_Models
         public void CreateComparisonMatrix()
         {
             ComparisonMatrix = new ValueTuple<double, double, double>[CriteriaCount,CriteriaCount];
-            ValueTuple<double, double, double>[] TFNs = new ValueTuple<double, double, double>[]
+            List<ValueTuple<double, double, double>[]> TFNs = new List<ValueTuple<double, double, double>[]>()
             {
-                (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0), (1.0 / 7.0, 1.0 / 6.0, 0.2),
-                (1.0 / 6.0, 0.2, 0.25), (0.2, 0.25, 1.0 / 3.0), (0.25, 1.0 / 3.0, 0.5),
-                (1.0 / 3.0, 0.5, 1.0), (1.0, 1.0, 1.0),
-                (1.0, 2.0, 3.0), (2.0, 3.0, 4.0), (3.0, 4.0, 5.0),
-                (4.0, 5.0, 6.0), (5.0, 6.0, 7.0), (7.0, 7.0, 7.0)
+                new ValueTuple<double, double, double>[]
+                {
+                    (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0), (1.0 / 7.0, 1.0 / 6.0, 0.2),
+                    (1.0 / 6.0, 0.2, 0.25), (0.2, 0.25, 1.0 / 3.0), (0.25, 1.0 / 3.0, 0.5),
+                    (1.0 / 3.0, 0.5, 1.0), (1.0, 1.0, 1.0),
+                    (1.0, 2.0, 3.0), (2.0, 3.0, 4.0), (3.0, 4.0, 5.0),
+                    (4.0, 5.0, 6.0), (5.0, 6.0, 7.0), (7.0, 7.0, 7.0)
+                },
+
+                new ValueTuple<double, double, double>[]
+                {
+                    (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0), (1.0 / 7.0, 1.0 / 6.0, 0.2),
+                    (1.0 / 6.0, 0.2, 0.25), (0.2, 0.25, 1.0 / 3.0), (0.25, 1.0 / 3.0, 0.5),
+                    (1.0 / 3.0, 0.5, 1.0), (1.0, 1.0, 1.0),
+                    (1.0, 2.0, 3.0), (2.0, 3.0, 4.0), (3.0, 4.0, 5.0),
+                    (4.0, 5.0, 6.0), (5.0, 6.0, 7.0), (7.0, 7.0, 7.0)
+                },
+                new ValueTuple<double, double, double>[]
+                {
+                    (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0), (1.0 / 7.0, 1.0 / 6.0, 0.2),
+                    (1.0 / 6.0, 0.2, 0.25), (0.2, 0.25, 1.0 / 3.0), (0.25, 1.0 / 3.0, 0.5),
+                    (1.0 / 3.0, 0.5, 1.0), (1.0, 1.0, 1.0),
+                    (1.0, 2.0, 3.0), (2.0, 3.0, 4.0), (3.0, 4.0, 5.0),
+                    (4.0, 5.0, 6.0), (5.0, 6.0, 7.0), (7.0, 7.0, 7.0)
+                }
             };
 
             int n = 0, lim = CriteriaCount - 1;
-
+            var TFNset = TFNs[_confLevel];
             for (int i = 0; i < lim; i++)
                 for (int j = i + 1; j < CriteriaCount; j++)
                 {
-                    ComparisonMatrix[i, j] = TFNs[CriteriaCount + fuzzyValues[n]];
-                    ComparisonMatrix[j, i] = TFNs[CriteriaCount - fuzzyValues[n]];
+                    ComparisonMatrix[i, j] = TFNset[CriteriaCount + fuzzyValues[n]];
+                    ComparisonMatrix[j, i] = TFNset[CriteriaCount - fuzzyValues[n]];
                     n++;
                 }
 

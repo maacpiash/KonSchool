@@ -54,7 +54,7 @@
         <tr>
             <td><p>Average Age of Students</p></td>
             <td>
-                <p><input type="range" min="-6" max="6" value="0" class="slider" id="MF_TS" asp-for="@Model.AASA"></p>
+                <p><input type="range" min="-4" max="4" value="0" class="slider" id="MF_TS" asp-for="@Model.AASA"></p>
             </td>
             <td>
                 <p>Age of School</p>
@@ -67,7 +67,7 @@
         <tr>
             <td><p>Average Age of Students</p></td>
             <td>
-                <p><input type="range" min="-6" max="6" value="0" class="slider" id="MF_AA"  asp-for="@Model.AASE"></p>
+                <p><input type="range" min="-4" max="4" value="0" class="slider" id="MF_AA"  asp-for="@Model.AASE"></p>
             </td>
             <td>
                 <p>Socio-Economic Status</p>
@@ -80,7 +80,7 @@
         <tr>
             <td><p>Location</p></td>
             <td>
-                <p><input type="range" min="-6" max="6" value="0" class="slider" id="MF_LA"  asp-for="@Model.LASA"></p>
+                <p><input type="range" min="-4" max="4" value="0" class="slider" id="MF_LA"  asp-for="@Model.LASA"></p>
             </td>
             <td>
                 <p>Age of School</p>
@@ -93,7 +93,7 @@
         <tr>
             <td><p>Age of School</p></td>
             <td>
-                <p><input type="range" min="-6" max="6" value="0" class="slider" id="MF_SA"  asp-for="@Model.LASE"></p>
+                <p><input type="range" min="-4" max="4" value="0" class="slider" id="MF_SA"  asp-for="@Model.LASE"></p>
             </td>
             <td>
                 <p>Socio-Economic Status</p>
@@ -107,7 +107,7 @@
         <tr>
             <td><p>Age of School</p</td>
             <td>
-                <p><input type="range" min="-6" max="6" value="0" class="slider" id="MF_SE"  asp-for="@Model.SASE"></p>
+                <p><input type="range" min="-4" max="4" value="0" class="slider" id="MF_SE"  asp-for="@Model.SASE"></p>
             </td>
             <td>
                 <p>Socio-Economic Status</p>
@@ -127,10 +127,8 @@
         
         var Comp = [
                 "Weakly more important", // (1 2 3)
-                "Moderately more important", // (2 3 4)
                 "Fairly more important", // (3 4 5)
                 "Strongly more important", // (4 5 6)
-                "Immensely more important", // (5 6 7)
                 "Absolutely more important" // (7 7 7)
             ];
 

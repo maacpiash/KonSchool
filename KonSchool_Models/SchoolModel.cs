@@ -46,9 +46,11 @@ namespace KonSchool_Models
         public double[] SEScore { get => seScore; set => seScore = value; }
 
         private double ses;
+        // Stores Area-Score while reading from dataset. Will store actual SES after Query objct modifies the class instance.
         public double SES { get => ses; set => ses = value; }
 
         private double ads;
+        // Actual age difference, stored when Query objct modifies the class instance.
         public double ADS { get => ads; set => ads = value; }
 
         public School(int EIIN) => eiin = EIIN;
