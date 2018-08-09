@@ -41,7 +41,7 @@ namespace KonSchool_API.Controllers
             {
                 int max = values.Length;
                 string fp = Directory.GetCurrentDirectory();
-
+                int choice = 0, altC = 0;
                 fp = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName, "Dataset.csv");
                 Query query;
                 try
@@ -57,25 +57,31 @@ namespace KonSchool_API.Controllers
                     for (int i = 0; i < 15; i++)
                         query.FuzzyValues[i] = Convert.ToInt32(values[i + 8]);
                     query.ConfLevel = Convert.ToInt32(values[23]);
+                    if (max > 24)
+                        choice = Convert.ToInt32(values[24]); // 0 = no refine, 1 = by dist, 2 = by thana
+                    if (max > 25)
+                        altC = Convert.ToInt32(values[25]); // altC = show all refined alternatives
                 }
                 catch (Exception x)
                 {
                     return x.ToString();
                 }
 
-
                 query.CreateComparisonMatrix();
                 FAHP fAHP = new FAHP(query.ComparisonMatrix);
                 double[] weights = fAHP.CriteriaWeights;
                 string ret = string.Join(',', weights);
-                // string alts = "\n";
-                // School s;
-                // for (int i = 0; i < 5; i++)
-                // {
-                //     s = query.Alternatives[i];
-                //     alts += $"{s.Name}\t\t{s.Location.Thana}, {s.Location.District}\t\tScore = {s.Score}\n";
-                // }
-                return ret;
+                query.SetValues();
+                query.Refine(choice == 1, choice == 2);
+                string alts = "\n";
+                School s;
+                int limit = altC == 0 ? query.Alternatives.Count : altC;
+                for (int i = 0; i < limit; i++)
+                {
+                    s = query.Alternatives[i];
+                    alts += $"{s.Name}\n{s.Location.Thana}, {s.Location.District}\nScore = {s.Score}\n\n";
+                }
+                return ret + alts;
             });
             
         }
