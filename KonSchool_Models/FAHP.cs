@@ -32,7 +32,6 @@ namespace KonSchool_Models
         private void Validate()
         {
             
-            
             if (CriteriaCount != ComparisonMatrix.GetLength(1))
                 throw new InvalidDataException("Must be a square matrix.");
             
@@ -53,7 +52,7 @@ namespace KonSchool_Models
                     (d, e, f) = ComparisonMatrix[j, i];
                     double threshold = 1E-3;
                     if (Math.Abs(d - 1 / c) > threshold || Math.Abs(e - 1 / b) > threshold || Math.Abs(f - 1 / a) > threshold)
-                        throw new InvalidDataException($"TFN({i}, {j}) must be inverse of TFN({j}, {i}).");
+                        throw new InvalidDataException($"TFN({i}, {j}) = [{a}, {b}, {c}] must be inverse of TFN({j}, {i})  = [{d}, {e}, {f}].");
                 }
             }
         }

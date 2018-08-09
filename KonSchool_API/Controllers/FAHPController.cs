@@ -31,6 +31,7 @@ namespace KonSchool_API.Controllers
             if (max < 24)
                 return Ok("Missing some values!");
             string retVals = await GetValuesAsync(values);
+
             return Ok(retVals);
         }
 
@@ -66,7 +67,15 @@ namespace KonSchool_API.Controllers
                 query.CreateComparisonMatrix();
                 FAHP fAHP = new FAHP(query.ComparisonMatrix);
                 double[] weights = fAHP.CriteriaWeights;
-                return string.Join(',', weights);
+                string ret = string.Join(',', weights);
+                // string alts = "\n";
+                // School s;
+                // for (int i = 0; i < 5; i++)
+                // {
+                //     s = query.Alternatives[i];
+                //     alts += $"{s.Name}\t\t{s.Location.Thana}, {s.Location.District}\t\tScore = {s.Score}\n";
+                // }
+                return ret;
             });
             
         }

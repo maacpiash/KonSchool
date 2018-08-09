@@ -65,45 +65,57 @@ namespace KonSchool_Models
             Schools = (new SchoolFactory(filePath)).AllSchools;
             numberOfSchools = Schools.Length;
             SetValues();
-            
         }
 
         public ValueTuple<double, double, double>[,] CreateComparisonMatrix()
         {
+            int NumberofDegrees = 4;
             _comparisonMatrix = new ValueTuple<double, double, double>[CriteriaCount,CriteriaCount];
-            var TFNs = new List<ValueTuple<double, double, double>[]>()
+            var TFNs = new ValueTuple<double, double, double>[3, 9]
             {
-                new ValueTuple<double, double, double>[]
                 {
-                    (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0), (1.0 / 7.0, 1.0 / 6.0, 1.0 / 4.5),
-                    (1.0 / 5.5, 1.0 / 4.0, 1.0 / 2.5), (1.0 / 3.5, 1.0 / 2.0, 1.0),
-                    (1.0, 1.0, 1.0), (1.0, 2.0, 3.5), (2.5, 4.0, 5.5), (4.5, 6.0, 7.0), (7.0, 7.0, 7.0)
+                    (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0),
+                    (1.0 / 7.0, 1.0 / 6.0, 1.0 / 4.5),
+                    (1.0 / 5.5, 1.0 / 4.0, 1.0 / 2.5),
+                    (1.0 / 3.5, 1.0 / 2.0, 1.0),
+                    (1.0, 1.0, 1.0),
+                    (1.0, 2.0, 3.5),
+                    (2.5, 4.0, 5.5),
+                    (4.5, 6.0, 7.0),
+                    (7.0, 7.0, 7.0)
                 },
-
-                new ValueTuple<double, double, double>[]
                 {
-                    (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0), (1.0 / 6.0, 0.2, 0.25),
-                    (0.2, 0.25, 1.0 / 3.0), (1.0 / 3.0, 0.5, 1.0), (1.0, 1.0, 1.0),
-                    (1.0, 2.0, 3.0), (3.0, 4.0, 5.0),
-                    (5.0, 6.0, 7.0), (7.0, 7.0, 7.0)
+                    (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0),
+                    (1.0 / 7.0, 1.0 / 6.0, 1.0 / 5.0),
+                    (0.2, 0.25, 1.0 / 3.0),
+                    (1.0 / 3.0, 0.5, 1.0),
+                    (1.0, 1.0, 1.0),
+                    (1.0, 2.0, 3.0),
+                    (3.0, 4.0, 5.0),
+                    (5.0, 6.0, 7.0),
+                    (7.0, 7.0, 7.0)
                 },
-                new ValueTuple<double, double, double>[]
                 {
-                    (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0), (1.0 / 6.5, 1.0 / 6.0, 1.0 / 5.5),
-                    (1.0 / 4.5, 1.0 / 4.0, 1.0 / 3.5), (1.0 / 2.5, 1.0 / 2.0, 1.5),
-                    (1.0, 1.0, 1.0), (1.5, 2.0, 2.5), (3.5, 4.0, 4.5), (5.5, 6.0, 6.5), (7.0, 7.0, 7.0)
+                    (1.0 / 7.0, 1.0 / 7.0, 1.0 / 7.0),
+                    (1.0 / 6.5, 1.0 / 6.0, 1.0 / 5.5),
+                    (1.0 / 4.5, 1.0 / 4.0, 1.0 / 3.5),
+                    (1.0 / 2.5, 1.0 / 2.0, 1.0 / 1.5),
+                    (1.0, 1.0, 1.0),
+                    (1.5, 2.0, 2.5),
+                    (3.5, 4.0, 4.5),
+                    (5.5, 6.0, 6.5),
+                    (7.0, 7.0, 7.0)
                 }
             };
-
+            
             int n = 0, lim = CriteriaCount - 1;
-            var TFNset = TFNs[_confLevel];
             for (int i = 0; i < lim; i++)
                 for (int j = i + 1; j < CriteriaCount; j++)
                 {
                     try
                     {
-                        _comparisonMatrix[i, j] = TFNset[CriteriaCount + _fuzzyValues[n]];
-                        _comparisonMatrix[j, i] = TFNset[CriteriaCount - _fuzzyValues[n]];
+                        _comparisonMatrix[i, j] = TFNs[_confLevel, NumberofDegrees + _fuzzyValues[n]];
+                        _comparisonMatrix[j, i] = TFNs[_confLevel, NumberofDegrees - _fuzzyValues[n]];
                         n++;
                     }
                     catch (Exception x)
