@@ -26,5 +26,10 @@ namespace KonSchool_Models
         
         static double Phi(double z, double mu, double sigma)
             => Phi((z - mu) / sigma);
+        
+        internal static void ScalarMultiply (  // scalar multiplication of two 3D vectors
+            ref ValueTuple<double, double, double> t1,
+            ValueTuple<double, double, double> t2
+        ) => t1 = (t1.Item1 * t2.Item1, t1.Item2 * t2.Item2, t1.Item3 * t2.Item3);
     }
 }

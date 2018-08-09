@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 using static System.Math;
 using static System.Convert;
@@ -17,8 +18,10 @@ namespace KonSchool_Models
         private int _age;
         private string _occupation;
         private Address _location;
-        private int[] fuzzyValues;
+        private int[] _fuzzyValues;
+        private double[] _critWeights;
         private int _confLevel;
+        private ValueTuple<double, double, double>[,] _comparisonMatrix;
 #endregion
         
 #region Public Properties
@@ -28,17 +31,18 @@ namespace KonSchool_Models
         public int Age { get => _age; set => _age = value; }
         public string Occupation { get => _occupation; set => _occupation = GetOccupations().Contains(value) ? value : "Other"; }
         public Address Location { get => _location; set => _location = value; }
-        public int[] FuzzyValues { get => fuzzyValues; set => fuzzyValues = value; }
+        public int[] FuzzyValues { get => _fuzzyValues; set => _fuzzyValues = value; }
+        public double[] CritWeights { get => _critWeights ?? (new FAHP(ComparisonMatrix)).CriteriaWeights; set => _critWeights = value; }
         public int ConfLevel { get => _confLevel; set => _confLevel = value < 0 ? 0 : (value > 2 ? 2 : value); }
+        public ValueTuple<double, double, double>[,] ComparisonMatrix => _comparisonMatrix ?? CreateComparisonMatrix();
 #endregion
 
         private static List<string> Occupations;
         int numberOfSchools;
 
-        public int[] Alternatives; // Serial numbers (not EIINs) of schools selected by user
+        public List<School> Alternatives; // Serial numbers (not EIINs) of schools selected by user
         public int CriteriaCount;
         public School[] Schools; // ALL 14,274 schools from csv
-        public ValueTuple<double, double, double>[,] ComparisonMatrix;
 
         public static List<string> GetOccupations()
         {
@@ -57,16 +61,16 @@ namespace KonSchool_Models
         public Query(int NumberofCriteria, string filePath)
         {
             CriteriaCount = NumberofCriteria;
-            fuzzyValues = new int[(NumberofCriteria * (NumberofCriteria - 1)) / 2];
+            _fuzzyValues = new int[(NumberofCriteria * (NumberofCriteria - 1)) / 2];
             Schools = (new SchoolFactory(filePath)).AllSchools;
             numberOfSchools = Schools.Length;
             SetValues();
             
         }
 
-        public void CreateComparisonMatrix()
+        public ValueTuple<double, double, double>[,] CreateComparisonMatrix()
         {
-            ComparisonMatrix = new ValueTuple<double, double, double>[CriteriaCount,CriteriaCount];
+            _comparisonMatrix = new ValueTuple<double, double, double>[CriteriaCount,CriteriaCount];
             var TFNs = new List<ValueTuple<double, double, double>[]>()
             {
                 new ValueTuple<double, double, double>[]
@@ -96,19 +100,28 @@ namespace KonSchool_Models
             for (int i = 0; i < lim; i++)
                 for (int j = i + 1; j < CriteriaCount; j++)
                 {
-                    ComparisonMatrix[i, j] = TFNset[CriteriaCount + fuzzyValues[n]];
-                    ComparisonMatrix[j, i] = TFNset[CriteriaCount - fuzzyValues[n]];
-                    n++;
+                    try
+                    {
+                        _comparisonMatrix[i, j] = TFNset[CriteriaCount + _fuzzyValues[n]];
+                        _comparisonMatrix[j, i] = TFNset[CriteriaCount - _fuzzyValues[n]];
+                        n++;
+                    }
+                    catch (Exception x)
+                    {
+                        Console.WriteLine(x.ToString());
+                        Console.WriteLine($"i = {i}, j = {j}, n = {n}");
+                    }
                 }
 
             for (int k = 0; k < CriteriaCount; k++)                    
-                ComparisonMatrix[k, k] = (1.0, 1.0, 1.0);
+                _comparisonMatrix[k, k] = (1.0, 1.0, 1.0);
+            return _comparisonMatrix;
         }
 
         public void SetValues()
         {
             School s;
-            List<School> EligibleSchools = new List<School>();
+            Alternatives = new List<School>();
 
             for (int i = 0; i < numberOfSchools; i++)
             {
@@ -125,11 +138,14 @@ namespace KonSchool_Models
                 // SES
                 if (_social > 0)
                     s.SES = (s.SEScore[(int)(_social / 2.5) - 1] * 2 + s.SES) / 3;
+
+                Alternatives.Add(s);
             }
 
             // ADS
-            GetADS(EligibleSchools);
-            
+            GetADS(Alternatives);
+            NormalizeAllValues(Alternatives);
+            Finish();
         }
 
 #region ValueSetters
@@ -162,8 +178,18 @@ namespace KonSchool_Models
 
             double[] ageDiffs = new double[max];
             for (int i = 0; i < max; i++)
-                ageDiffs[i] = Abs(EligibleSchools[i].AverAge[_class - 6] - (double)_age);
-            
+            {
+                try
+                {
+                    ageDiffs[i] = Abs(EligibleSchools[i].AverAge[_class - 6] - (double)_age);
+                }
+                catch (Exception x)
+                {
+                    Console.WriteLine(x.GetType().ToString());
+                    Console.WriteLine($"i = {i}, max = {max}");
+                }
+
+            }
             double mean, sd, sum = 0, dev = 0;
             for (int i = 0; i < max; i++)
                 sum += ageDiffs[i];
@@ -205,7 +231,24 @@ namespace KonSchool_Models
                 Schools[i].Distance /= DIST;
             }
         }
-    
+
+        public void Finish()
+        {
+            double[] Score;
+            foreach (var item in Alternatives)
+            {
+                item.Score = 0;
+                Score = new double[]
+                {
+                    item.TSRatio, item.SES, item.MFRatio,
+                    item.Age, item.Distance, item.ADS
+                }; // According to the serial described in SerialNumbers class
+                for (int i = 0; i < CriteriaCount; i++)
+                    item.Score += Score[i] * CritWeights[i];
+                item.Score = Sqrt(item.Score);
+            }
+            
+            Alternatives = Alternatives.OrderBy(x => x.Score).ToList();
+        }
     }
 }
- 

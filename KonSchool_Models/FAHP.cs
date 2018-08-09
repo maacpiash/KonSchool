@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 using static System.IO.File;
+using static KonSchool_Models.Stat;
 
 namespace KonSchool_Models
 {
@@ -33,26 +34,26 @@ namespace KonSchool_Models
             
             
             if (CriteriaCount != ComparisonMatrix.GetLength(1))
-                throw new InvalidDataException("Must be a square matrix");
+                throw new InvalidDataException("Must be a square matrix.");
             
             if (ComparisonMatrix.GetLength(0) != CriteriaCount)
-                throw new InvalidDataException("Must have as many column/row as number of criteria");
+                throw new InvalidDataException("Must have as many column/row as number of criteria.");
 
             double a, b, c, d, e, f;
 
             for (int i = 0; i < CriteriaCount; i++)
             {
-                if (!ComparisonMatrix[i, i].Equals((1, 1, 1)))
-                    throw new InvalidDataException("Each criterion must have equal importance TFN compared to itself");
+                if (!ComparisonMatrix[i, i].Equals((1.0, 1.0, 1.0)))
+                    throw new InvalidDataException("Each criterion must have equal importance TFN compared to itself.");
                 for (int j = i + 1; j < CriteriaCount; j++)
                 {
                     (a, b, c) = ComparisonMatrix[i, j];
                     if (a > b || b > c)
-                        throw new InvalidDataException("Invalid TFN");
+                        throw new InvalidDataException($"Invalid TFN at position {i}, {j}.");
                     (d, e, f) = ComparisonMatrix[j, i];
                     double threshold = 1E-3;
                     if (Math.Abs(d - 1 / c) > threshold || Math.Abs(e - 1 / b) > threshold || Math.Abs(f - 1 / a) > threshold)
-                        throw new InvalidDataException("TFN(i, j) must be inverse of TFN(j, i) for all i, j <= CriteriaCount");
+                        throw new InvalidDataException($"TFN({i}, {j}) must be inverse of TFN({j}, {i}).");
                 }
             }
         }
@@ -95,12 +96,7 @@ namespace KonSchool_Models
             Normalize(ref weights);
 
             return weights;
-        }
-
-        internal static void ScalarMultiply (  // scalar multiplication of two 3D vectors
-            ref ValueTuple<double, double, double> t1,
-            ValueTuple<double, double, double> t2
-        ) => t1 = (t1.Item1 * t2.Item1, t1.Item2 * t2.Item2, t1.Item3 * t2.Item3);
+        }        
 
         internal static double[] Normalize(ref double[] numbers)
         {
