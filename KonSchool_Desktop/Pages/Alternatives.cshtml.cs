@@ -16,7 +16,6 @@ namespace KonSchool_Desktop.Pages
         public void OnGet()
         {
             query = Program.MyQuery;
-            fahp = new FAHP(query.ComparisonMatrix);
         }
 
 

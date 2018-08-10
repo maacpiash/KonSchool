@@ -64,7 +64,7 @@ namespace KonSchool_Models
             _fuzzyValues = new int[(NumberofCriteria * (NumberofCriteria - 1)) / 2];
             Schools = (new SchoolFactory(filePath)).AllSchools;
             numberOfSchools = Schools.Length;
-            SetValues();
+            //SetValues();
         }
 
         public ValueTuple<double, double, double>[,] CreateComparisonMatrix()
@@ -224,14 +224,43 @@ namespace KonSchool_Models
         {
             double MFR = 0, TSR = 0, SES = 0, ADS = 0, AS = 0, DIST = 0;
             int max = Schools.Count;
+            double[] maxNow = new double[]
+            {
+                Schools[0].MFRatio, Schools[0].TSRatio, Schools[0].SES,
+                Schools[0].ADS, Schools[0].Age, Schools[0].SES
+            };
+            double[] minNow = new double[]
+            {
+                Schools[0].MFRatio, Schools[0].TSRatio, Schools[0].SES,
+                Schools[0].ADS, Schools[0].Age, Schools[0].SES
+            };
+            
             for (int i = 0; i < max; i++)
             {
                 MFR += Schools[i].MFRatio;
+                //if (Schools[i].MFRatio > maxNow[0]) maxNow[0] = Schools[i].MFRatio;
+                //if (Schools[i].MFRatio < minNow[0]) minNow[0] = Schools[i].MFRatio;
+
                 TSR += Schools[i].TSRatio;
+                // if (Schools[i].MFRatio > maxNow[1]) maxNow[1] = Schools[i].MFRatio;
+                // if (Schools[i].MFRatio < minNow[1]) minNow[1] = Schools[i].MFRatio;
+
                 SES += Schools[i].SES;
+                // if (Schools[i].MFRatio > maxNow[2]) maxNow[2] = Schools[i].MFRatio;
+                // if (Schools[i].MFRatio < minNow[2]) minNow[2] = Schools[i].MFRatio;
+
                 ADS += Schools[i].ADS;
+                // if (Schools[i].MFRatio > maxNow[3]) maxNow[3] = Schools[i].MFRatio;
+                // if (Schools[i].MFRatio < minNow[3]) minNow[3] = Schools[i].MFRatio;
+
                 AS += Schools[i].Age;
+                // if (Schools[i].MFRatio > maxNow[4]) maxNow[4] = Schools[i].MFRatio;
+                // if (Schools[i].MFRatio < minNow[4]) minNow[4] = Schools[i].MFRatio;
+
                 DIST += Schools[i].Distance;
+                // if (Schools[i].MFRatio > maxNow[5]) maxNow[5] = Schools[i].MFRatio;
+                // if (Schools[i].MFRatio < minNow[5]) minNow[5] = Schools[i].MFRatio;
+
             }
             for (int i = 0; i < max; i++)
             {
@@ -249,18 +278,37 @@ namespace KonSchool_Models
             double[] Score;
             foreach (var item in Alternatives)
             {
-                item.Score = 0;
+                item.FinalScore = 0;
                 Score = new double[]
                 {
                     item.TSRatio, item.SES, item.MFRatio,
                     item.Age, item.Distance, item.ADS
                 }; // According to the serial described in SerialNumbers class
+                item.WeightedScores = new double[6];
                 for (int i = 0; i < CriteriaCount; i++)
-                    item.Score += Score[i] * CritWeights[i];
-                item.Score = Sqrt(item.Score);
+                {
+                    item.WeightedScores[i] = Score[i] * CritWeights[i];
+                    item.FinalScore += Sqrt(item.WeightedScores[i]);
+                }
+                item.FinalScore /= CriteriaCount;
             }
             
-            Alternatives = Alternatives.OrderBy(x => x.Score).ToList();
+            Alternatives = Alternatives.OrderBy(x => x.FinalScore).ToList();
+        }
+
+        public void Refine(bool ByDistrict = false, bool ByThana = false)
+        {
+            var Choices = new List<School>();
+            foreach (var s in Alternatives)
+            {
+                if (ByDistrict && s.Location.District == _location.District)
+                {
+                    Choices.Add(s);
+                    if (ByThana && s.Location.Thana == _location.Thana)
+                        Choices.Add(s);
+                }
+            }
+            Alternatives = Choices;
         }
     }
 }

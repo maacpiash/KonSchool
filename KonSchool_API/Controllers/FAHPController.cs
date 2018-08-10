@@ -72,14 +72,19 @@ namespace KonSchool_API.Controllers
                 double[] weights = fAHP.CriteriaWeights;
                 string ret = string.Join(',', weights);
                 query.SetValues();
-                query.Refine(choice == 1, choice == 2);
+                if (choice != 0)
+                    query.Refine(choice == 1, choice == 2);
                 string alts = "\n";
                 School s;
                 int limit = altC == 0 ? query.Alternatives.Count : altC;
                 for (int i = 0; i < limit; i++)
                 {
                     s = query.Alternatives[i];
-                    alts += $"{s.Name}\n{s.Location.Thana}, {s.Location.District}\nScore = {s.Score}\n\n";
+                    alts += $"{s.Name}\n{s.Location.Thana}, {s.Location.District}\n\n";
+                    alts += $"{s.TSRatio}, {s.SES}, {s.MFRatio}, {s.Age}, {s.Distance}, {s.ADS}\n";
+                            // According to the serial described in SerialNumbers class
+                    alts += string.Join(',', s.WeightedScores);
+                    alts += $"\nFinal Score = {s.FinalScore}\n\n";
                 }
                 return ret + alts;
             });
