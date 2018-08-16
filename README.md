@@ -21,7 +21,7 @@ The .NET Core solution is divided into three projects:
 - [KonSchool.Client](https://github.com/maacpiash/KonSchool/tree/master/KonSchool.Client), a "desktop" application developed with [Electron.NET](https://github.com/ElectronNET/Electron.NET), which can also be used as a general webpage.
 - [KonSchool.Models](https://github.com/maacpiash/KonSchool/tree/master/KonSchool.Models), the model classes and actual logic of Fuzzy AHP procedure, along with some helper classes.
 
-Additionally, there is an [xUnit test project](https://github.com/maacpiash/KonSchool/tree/master/KonSchool_Test) for general testing purposes.<br/>
+Additionally, there is an [xUnit test project](https://github.com/maacpiash/KonSchool/tree/master/KonSchool.Test) for general testing purposes.<br/>
 Each of these projects will have their own readme files, very soon 🤞🏽
 
 ### Acknowledgement

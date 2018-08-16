@@ -13,7 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\KonSchool_Models\KonSchool_Models.csproj" />
+    <ProjectReference Include="..\KonSchool.Models\KonSchool.Models.csproj" />
   </ItemGroup>
 
 </Project>

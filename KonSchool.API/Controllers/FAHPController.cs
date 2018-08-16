@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using System.IO;
 
-using KonSchool_Models;
+using KonSchool.Models;
 
-namespace KonSchool_API.Controllers
+namespace KonSchool.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]

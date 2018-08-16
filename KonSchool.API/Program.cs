@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
-namespace KonSchool_API
+namespace KonSchool.API
 {
     public class Program
     {
@@ -21,6 +21,6 @@ namespace KonSchool_API
             WebHost.CreateDefaultBuilder(args)
             .UseKestrel()
             .UseContentRoot(Directory.GetCurrentDirectory())
-            .UseStartup<Startup>();
+            .UseStartup<KonSchool.API.Startup>();
     }
 }
