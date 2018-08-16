@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-using static KonSchool_Models.SerialNumbers;
+using static KonSchool.Models.SerialNumbers;
 
-namespace KonSchool_Desktop.Pages
+namespace KonSchool.Client.Pages
 {
     public class Comparison1Model : PageModel
     {

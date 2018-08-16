@@ -6,19 +6,8 @@ os:
 dotnet: 2.0.0
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
-before_script: cd KonSchool_Tests
 install:
 - dotnet restore
 script:
-- cd KonSchool_API
 - dotnet build
-- cd ..
-- cd KonSchool_Desktop
-- dotnet build
-- cd ..
-- cd KonSchool_Models
-- dotnet build
-- cd ..
-- cd KonSchool_Test
-- dotnet build
-- dotnet test
+- dotnet test $TRAVIS_BUILD_DIR/KonSchool.Tests/KonSchool.Tests.csproj

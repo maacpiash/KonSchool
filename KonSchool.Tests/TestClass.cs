@@ -1,13 +1,13 @@
 ﻿using System;
 using Xunit;
-using KonSchool_Models;
+using KonSchool.Models;
 using System.IO;
 using System.Collections.Generic;
 using Xunit.Abstractions;
 
 using static System.IO.File;
 
-namespace KonSchool_Tests
+namespace KonSchool.Tests
 {
     public class TestClass
     {

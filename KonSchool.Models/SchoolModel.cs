@@ -1,4 +1,4 @@
-namespace KonSchool_Models
+namespace KonSchool.Models
 {
     public partial class School
     {

@@ -9,9 +9,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
 
 using ElectronNET.API;
-using KonSchool_Models;
+using KonSchool.Models;
 
-namespace KonSchool_Desktop
+namespace KonSchool.Client
 {
     public class Program
     {

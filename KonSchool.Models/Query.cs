@@ -4,10 +4,10 @@ using System.Linq;
 
 using static System.Math;
 using static System.Convert;
-using static KonSchool_Models.Stat;
-using static KonSchool_Models.SerialNumbers;
+using static KonSchool.Models.Stat;
+using static KonSchool.Models.SerialNumbers;
 
-namespace KonSchool_Models
+namespace KonSchool.Models
 {
     public class Query
     {

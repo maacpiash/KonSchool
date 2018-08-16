@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 
 using static System.IO.File;
-using static KonSchool_Models.Stat;
+using static KonSchool.Models.Stat;
 
-namespace KonSchool_Models
+namespace KonSchool.Models
 {
     public class FAHP
     {

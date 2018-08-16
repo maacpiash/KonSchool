@@ -6,9 +6,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-using KonSchool_Models;
+using KonSchool.Models;
 
-namespace KonSchool_Desktop.Pages
+namespace KonSchool.Client.Pages
 {
     public class IndexModel : PageModel
     {

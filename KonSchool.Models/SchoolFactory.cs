@@ -2,9 +2,9 @@ using System;
 using static System.Math;
 using static System.Convert;
 
-using static KonSchool_Models.Stat;
+using static KonSchool.Models.Stat;
 
-namespace KonSchool_Models
+namespace KonSchool.Models
 {
     public class SchoolFactory
     {

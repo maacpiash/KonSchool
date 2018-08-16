@@ -14,7 +14,7 @@
     <DotNetCliToolReference Include="ElectronNET.CLI" Version="0.0.9" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\KonSchool_Models\KonSchool_Models.csproj" />
+    <ProjectReference Include="..\KonSchool.Models\KonSchool.Models.csproj" />
   </ItemGroup>
   <ItemGroup>
     <Content Update="electron.manifest.json">

@@ -2,13 +2,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2027
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonSchool_Models", "KonSchool_Models\KonSchool_Models.csproj", "{006B16A8-CAC6-43A7-8DD4-BEB89CBA3A6A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonSchool.Models", "KonSchool.Models\KonSchool.Models.csproj", "{006B16A8-CAC6-43A7-8DD4-BEB89CBA3A6A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonSchool_API", "KonSchool_API\KonSchool_API.csproj", "{2E2ACF0F-8EDC-4A54-99CB-E5E9C7A521B2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonSchool.API", "KonSchool.API\KonSchool.API.csproj", "{2E2ACF0F-8EDC-4A54-99CB-E5E9C7A521B2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonSchool_Desktop", "KonSchool_Desktop\KonSchool_Desktop.csproj", "{78A41D6E-4969-4829-826F-C155EF33F637}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonSchool.Client", "KonSchool.Client\KonSchool.Client.csproj", "{78A41D6E-4969-4829-826F-C155EF33F637}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonSchool_Tests", "KonSchool_Tests\KonSchool_Tests.csproj", "{B3251292-5EF3-4B88-B2B7-6BF7B9546606}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonSchool.Tests", "KonSchool.Tests\KonSchool.Tests.csproj", "{B3251292-5EF3-4B88-B2B7-6BF7B9546606}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

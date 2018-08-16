@@ -4,7 +4,7 @@ using static System.Math;
 // This class contains an implementation of CDF for standard normal distribution. I found this code at
 // https://sites.google.com/site/softwareincidentanalysis/Downhome/statistics-1/ccdfnormaldistribution
 
-namespace KonSchool_Models
+namespace KonSchool.Models
 {
     public static class Stat
     {

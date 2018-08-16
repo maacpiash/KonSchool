@@ -2,7 +2,7 @@ using System;
 
 using static System.Array;
 
-namespace KonSchool_Models
+namespace KonSchool.Models
 {
     public class CSVreader
     {
