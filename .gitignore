@@ -1,5 +1,36 @@
 
-# Created by https://www.gitignore.io/api/aspnetcore,csharp,linux,macos,node,rider,visualstudio,visualstudiocode,windows
+# Created by https://www.gitignore.io/api/angular,aspnetcore,csharp,data,database,linux,macos,node,rider,visualstudio,visualstudiocode,windows
+
+### Angular ###
+## Angular ##
+# compiled output
+/dist
+/tmp
+/app/**/*.js
+/app/**/*.js.map
+
+# dependencies
+/node_modules
+/bower_components
+
+# IDEs and editors
+/.idea
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage/*
+/libpeerconnection.log
+npm-debug.log
+testem.log
+/typings
+
+# e2e
+/e2e/*.js
+/e2e/*.map
+
+#System Files
+.DS_Store
 
 ### ASPNETCore ###
 ## Ignore Visual Studio temporary files, build results, and
@@ -28,10 +59,6 @@ bld/
 
 # Visual Studio 2015 cache/options directory
 .vs/
-KonSchool_API/.vs
-KonSchool_Desktop/.vs
-KonSchool_Models/.vs
-KonSchool_Test/.vs
 # Uncomment if you have tasks that create the project's static files in wwwroot
 #wwwroot/
 
@@ -459,6 +486,30 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder
 .mfractor/
 
+# Local History for Visual Studio
+.localhistory/
+
+### Data ###
+*.csv
+*.dat
+*.efx
+*.gbr
+*.key
+*.pps
+*.ppt
+*.pptx
+*.tax2010
+*.vcf
+*.xml
+
+### Database ###
+*.accdb
+*.db
+*.dbf
+*.mdb
+*.sql
+*.sqlite3
+
 ### Linux ###
 
 # temporary files which can be created if a process still has a handle open of a deleted file
@@ -475,7 +526,6 @@ ASALocalRun/
 
 ### macOS ###
 # General
-.DS_Store
 .AppleDouble
 .LSOverride
 
@@ -598,6 +648,14 @@ typings/
 .idea/**/gradle.xml
 .idea/**/libraries
 
+# Gradle and Maven with auto-import
+# When using Gradle or Maven with auto-import, you should exclude module files,
+# since they will be recreated, and may cause churn.  Uncomment if using
+# auto-import.
+# .idea/modules.xml
+# .idea/*.iml
+# .idea/modules
+
 # CMake
 cmake-build-*/
 
@@ -630,22 +688,17 @@ fabric.properties
 
 ### VisualStudioCode ###
 .vscode/*
-.vscode/
-.vscode
-KonSchool_API/.vscode
-KonSchool_Desktop/.vscode
-KonSchool_Models/.vscode
-KonSchool_Test/.vscode
-.vscode/settings.json
-.vscode/tasks.json
-.vscode/launch.json
-.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
 
 ### Windows ###
 # Windows thumbnail cache files
 Thumbs.db
 ehthumbs.db
 ehthumbs_vista.db
+
 # Dump file
 *.stackdump
 
@@ -822,10 +875,7 @@ $RECYCLE.BIN/
 
 # MFractors (Xamarin productivity tool) working folder
 
-### VisualStudio Patch ###
-# By default, sensitive information, such as encrypted password
-# should be stored in the .pubxml.user file.
-*.pubxml.user
+# Local History for Visual Studio
 
 
-# End of https://www.gitignore.io/api/aspnetcore,csharp,linux,macos,node,rider,visualstudio,visualstudiocode,windows
+# End of https://www.gitignore.io/api/angular,aspnetcore,csharp,data,database,linux,macos,node,rider,visualstudio,visualstudiocode,windows
