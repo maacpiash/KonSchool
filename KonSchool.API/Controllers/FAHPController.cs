@@ -13,6 +13,10 @@ namespace KonSchool.API.Controllers
     [ApiController]
     public class FAHPController : ControllerBase
     {
+        private readonly SchoolDbContext _context;
+
+        public FAHPController(SchoolDbContext context) => _context = context;
+        
         // GET api/fahp
         [HttpGet]
         public ActionResult<string> Get()
