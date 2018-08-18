@@ -1,8 +1,8 @@
 # Kon School?
 
-| Linux/macOS | Windows |
-| -- | -------- |
-| [![Build Status](https://travis-ci.org/maacpiash/KonSchool.svg?branch=master)](https://travis-ci.org/maacpiash/KonSchool) | [![Build status](https://ci.appveyor.com/api/projects/status/bsmib72le6n8pc1u?svg=true)](https://ci.appveyor.com/project/maacpiash/konschool) |
+| Linux | macOS | Windows |
+| -- | -- | -------- |
+| [![Build Status](https://travis-ci-job-status.herokuapp.com/badge/maacpiash/KonSchool/master/linux)](https://travis-ci.org/maacpiash/KonSchool) | [![Build Status](https://travis-ci-job-status.herokuapp.com/badge/maacpiash/KonSchool/master/osx)](https://travis-ci.org/maacpiash/KonSchool) | [![Build status](https://ci.appveyor.com/api/projects/status/bsmib72le6n8pc1u?svg=true)](https://ci.appveyor.com/project/maacpiash/konschool) |
 
 
 *Kon School?* (Bengali: *কোন স্কুল?*, meaning *"Which school?"*) is a system that recommends a secondary school based on user's preferences and school data. The user gives student data (age, sex, class (grade), location, guardian's profession) as input. The user also compares every pair of criteria and gives each pair a relative linguistic value. Then the system
