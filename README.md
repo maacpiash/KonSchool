@@ -18,7 +18,7 @@ The dataset used for this system was compiled from several datasets originally c
 
 The .NET Core solution is divided into three projects:
 - [KonSchool.API](https://github.com/maacpiash/KonSchool/tree/master/KonSchool.API), a RESTful web API that outputs score values for each alternative schools, based on criteria preferences and alternative selection by the user.
-- [KonSchool.Client](https://github.com/maacpiash/KonSchool/tree/master/KonSchool.Client), a "desktop" application developed with [Electron.NET](https://github.com/ElectronNET/Electron.NET), which can also be used as a general webpage.
+- [KonSchool.App](https://github.com/maacpiash/KonSchool/tree/master/KonSchool.App), a "desktop" application developed with [Electron.NET](https://github.com/ElectronNET/Electron.NET), which can also be used as a general webpage.
 - [KonSchool.Models](https://github.com/maacpiash/KonSchool/tree/master/KonSchool.Models), the model classes and actual logic of Fuzzy AHP procedure, along with some helper classes.
 
 Additionally, there is an [xUnit test project](https://github.com/maacpiash/KonSchool/tree/master/KonSchool.Test) for general testing purposes.<br/>
