@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 using KonSchool.Models;
 
-namespace KonSchool.Client.Pages
+namespace KonSchool.App.Pages
 {
     public class IndexModel : PageModel
     {

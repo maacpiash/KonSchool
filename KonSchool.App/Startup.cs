@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
 
-namespace KonSchool.Client
+namespace KonSchool.App
 {
     public class Startup
     {

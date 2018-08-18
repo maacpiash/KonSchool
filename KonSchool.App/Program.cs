@@ -11,7 +11,7 @@ using Microsoft.Extensions.Logging;
 using ElectronNET.API;
 using KonSchool.Models;
 
-namespace KonSchool.Client
+namespace KonSchool.App
 {
     public class Program
     {

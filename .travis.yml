@@ -1,13 +1,9 @@
 language: csharp
-solution: KonSchool.sln
+mono: none
 os:
   - linux
   - osx
-dotnet: 2.0.0
-before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
-install:
-- dotnet restore
+dotnet: 2.1.300
 script:
+- dotnet restore
 - dotnet build
-# - dotnet test $TRAVIS_BUILD_DIR/KonSchool.Tests/KonSchool.Tests.csproj
