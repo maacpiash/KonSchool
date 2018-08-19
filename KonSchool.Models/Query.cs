@@ -16,8 +16,11 @@ namespace KonSchool.Models
         private double _social;
         private bool _isMale;
         private int _age;
+        private string _division;
+        private string _district;
+        private string _thana;
+        private string _union_ward;
         private string _occupation;
-        private Address _location;
         private int[] _fuzzyValues;
         private double[] _critWeights;
         private int _confLevel;
@@ -29,8 +32,11 @@ namespace KonSchool.Models
         public double Social { get => _social; set => _social = value; }
         public bool IsMale { get => _isMale; set => _isMale = value; }
         public int Age { get => _age; set => _age = value; }
+        public string Division { get => _division; set => _division = value; }
+        public string District { get => _district; set => _district = value; }
+        public string Thana { get => _thana; set => _thana = value; }
+        public string Union_Ward { get => _union_ward; set => _union_ward = value; }
         public string Occupation { get => _occupation; set => _occupation = GetOccupations().Contains(value) ? value : "Other"; }
-        public Address Location { get => _location; set => _location = value; }
         public int[] FuzzyValues { get => _fuzzyValues; set => _fuzzyValues = value; }
         public double[] CritWeights { get => _critWeights ?? (new FAHP(ComparisonMatrix)).CriteriaWeights; set => _critWeights = value; }
         public int ConfLevel { get => _confLevel; set => _confLevel = value < 0 ? 0 : (value > 2 ? 2 : value); }
@@ -62,16 +68,30 @@ namespace KonSchool.Models
         {
             CriteriaCount = NumberofCriteria;
             _fuzzyValues = new int[(NumberofCriteria * (NumberofCriteria - 1)) / 2];
-            Schools = (new SchoolFactory(filePath)).AllSchools;
+            
+            string path = Directory.GetParent(Environment.CurrentDirectory).FullName;
+            path = Path.Combine(path, "Schools.db");
+            
+            try
+            {
+                var optionsBuilder = new DbContextOptionsBuilder<SchoolDbContext>().UseSqlite("Data Source=" + path);
+                Schools = (new SchoolDbContext(optionsBuilder.Options)).Schools.ToArray();
+            }
+            catch (FileNotFoundException x)
+            {
+                Console.WriteLine($"{x} thrown: Database not found at {path}");
+                return;
+            }
             numberOfSchools = Schools.Length;
-            //SetValues();
+            SetValues();
         }
 
         public ValueTuple<double, double, double>[,] CreateComparisonMatrix()
         {
-            int NumberofDegrees = 4;
+            const int NumberofDegrees = 4;
+            const int ConfidenceLevels = 3;
             _comparisonMatrix = new ValueTuple<double, double, double>[CriteriaCount,CriteriaCount];
-            var TFNs = new ValueTuple<double, double, double>[3, 9]
+            var TFNs = new ValueTuple<double, double, double>[ConfidenceLevels, NumberofDegrees * 2 + 1]
             {
                 {
                     // Lo
@@ -153,7 +173,7 @@ namespace KonSchool.Models
                 if (_isMale) s.MFRatio = 1 - s.MFRatio;
 
                 // DIST
-                if (_location.Division != default(string))
+                if (_division != default(string))
                     GetDIST(s);
 
                 // SES
@@ -177,6 +197,7 @@ namespace KonSchool.Models
                             (_thana == s.Thana ?
                             (_union_ward == s.Union_Ward
                             ? 10.0 : 9.0) : 7.0) : 4.0) : 0.0;
+            
 
         public void GetADS(List<School> EligibleSchools)
         {
