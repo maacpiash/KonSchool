@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using KonSchool.Models;
 
 using static System.Math;
-using static System.Convert;
 using static KonSchool.Models.Stat;
-using static KonSchool.Models.SerialNumbers;
+using System.IO;
 
 namespace KonSchool.Models
 {
@@ -16,6 +17,7 @@ namespace KonSchool.Models
         private double _social;
         private bool _isMale;
         private int _age;
+        private Address _location;
         private string _division;
         private string _district;
         private string _thana;
@@ -32,6 +34,7 @@ namespace KonSchool.Models
         public double Social { get => _social; set => _social = value; }
         public bool IsMale { get => _isMale; set => _isMale = value; }
         public int Age { get => _age; set => _age = value; }
+        public Address Location { get => _location; set => _location = value; }
         public string Division { get => _division; set => _division = value; }
         public string District { get => _district; set => _district = value; }
         public string Thana { get => _thana; set => _thana = value; }
@@ -68,22 +71,24 @@ namespace KonSchool.Models
         {
             CriteriaCount = NumberofCriteria;
             _fuzzyValues = new int[(NumberofCriteria * (NumberofCriteria - 1)) / 2];
-            
-            string path = Directory.GetParent(Environment.CurrentDirectory).FullName;
-            path = Path.Combine(path, "Schools.db");
-            
-            try
-            {
-                var optionsBuilder = new DbContextOptionsBuilder<SchoolDbContext>().UseSqlite("Data Source=" + path);
-                Schools = (new SchoolDbContext(optionsBuilder.Options)).Schools.ToArray();
-            }
-            catch (FileNotFoundException x)
-            {
-                Console.WriteLine($"{x} thrown: Database not found at {path}");
-                return;
-            }
-            numberOfSchools = Schools.Length;
-            SetValues();
+
+            //string path = Directory.GetParent(Environment.CurrentDirectory).FullName;
+            //path = Path.Combine(path, "Schools.db");
+            //var path = "C:/Users/maacp/Desktop/Dataset.csv";
+
+            //try
+            //{
+            //    //var optionsBuilder = new DbContextOptionsBuilder<SchoolDbContext>().UseSqlite("Data Source=" + path);
+            //    //Schools = (new SchoolDbContext(optionsBuilder.Options)).Schools.ToArray();
+            //    Schools = (new SchoolFactory(path)).AllSchools;
+            //}
+            //catch (FileNotFoundException x)
+            //{
+            //    Console.WriteLine($"{x} thrown: Database not found at {path}");
+            //    return;
+            //}
+            //numberOfSchools = Schools.Length;
+            //SetValues();
         }
 
         public ValueTuple<double, double, double>[,] CreateComparisonMatrix()
@@ -192,10 +197,10 @@ namespace KonSchool.Models
 #region ValueSetters
         
         internal void GetDIST(School s)
-            => s.Distance = _division == s.Division ?
-                            (_district == s.District ?
-                            (_thana == s.Thana ?
-                            (_union_ward == s.Union_Ward
+            => s.Distance = _division == s.Location.Division ?
+                            (_district == s.Location.District ?
+                            (_thana == s.Location.Thana ?
+                            (_union_ward == s.Location.Union_Ward
                             ? 10.0 : 9.0) : 7.0) : 4.0) : 0.0;
             
 

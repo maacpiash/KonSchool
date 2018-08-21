@@ -13,9 +13,9 @@ namespace KonSchool.API.Controllers
     [ApiController]
     public class FAHPController : ControllerBase
     {
-        private readonly SchoolDbContext _context;
+        //private readonly SchoolDbContext _context;
 
-        public FAHPController(SchoolDbContext context) => _context = context;
+        //public FAHPController(SchoolDbContext context) => _context = context;
         
         // GET api/fahp
         [HttpGet]
@@ -74,8 +74,11 @@ namespace KonSchool.API.Controllers
                 query.CreateComparisonMatrix();
                 FAHP fAHP = new FAHP(query.ComparisonMatrix);
                 double[] weights = fAHP.CriteriaWeights;
-                string ret = string.Join(',', weights);
-                query.SetValues();
+                string ret = $"ConfLevel = {query.ConfLevel}," + string.Join(',', weights);
+                //Console.WriteLine($"ConfLevel = {values[23]}");
+                return ret;
+                /*
+                //query.SetValues();
                 if (choice != 0)
                     query.Refine(choice == 1, choice == 2);
                 string alts = "\n";
@@ -91,6 +94,7 @@ namespace KonSchool.API.Controllers
                     alts += $"\nFinal Score = {s.FinalScore}\n\n";
                 }
                 return ret + alts;
+                */
             });
             
         }
