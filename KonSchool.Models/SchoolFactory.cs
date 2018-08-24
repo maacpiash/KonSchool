@@ -28,13 +28,12 @@ namespace KonSchool.Models
                 {
                     Name = myReader[eiin, "INSTITUTE NAME"],
                     Age = ToDouble(myReader[eiin, "AS_SCORE"]),
-                    Location = new Address()
-                    {
-                        Division = myReader[eiin, "DIVISION"],
-                        District = myReader[eiin, "DISTRICT"],
-                        Thana = myReader[eiin, "THANA"],
-                        Union_Ward = myReader[eiin, "UNION_NAME"],
-                    },
+                    
+                    Division = myReader[eiin, "DIVISION"],
+                    District = myReader[eiin, "DISTRICT"],
+                    Thana = myReader[eiin, "THANA"],
+                    Union_Ward = myReader[eiin, "UNION_NAME"],
+                    
                     StreetAddr = myReader[eiin, "ADDRESS"],
                     MobileNum = myReader[eiin, "MOBILE"],
                     Type = myReader[eiin, "STUDENT_TYPE"],

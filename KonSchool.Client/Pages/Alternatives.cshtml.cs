@@ -6,7 +6,10 @@ using KonSchool.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
-namespace KonSchool.App.Pages
+using System.Net.Http;
+using System.Net.Http.Headers;
+
+namespace KonSchool.Client.Pages
 {
     public class AlternativesModel : PageModel
     {
@@ -16,6 +19,7 @@ namespace KonSchool.App.Pages
         public void OnGet()
         {
             query = Program.MyQuery;
+            
         }
 
 

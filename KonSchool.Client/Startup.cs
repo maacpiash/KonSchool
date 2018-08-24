@@ -10,7 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using ElectronNET.API;
 using ElectronNET.API.Entities;
 
-namespace KonSchool.App
+namespace KonSchool.Client
 {
     public class Startup
     {
@@ -34,7 +34,7 @@ namespace KonSchool.App
             app.UseDeveloperExceptionPage();
             if (env.IsDevelopment())
             {
-                
+                app.UseDeveloperExceptionPage();
                 app.UseBrowserLink();
             }
             else

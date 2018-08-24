@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 using static KonSchool.Models.SerialNumbers;
 
-namespace KonSchool.App.Pages
+namespace KonSchool.Client.Pages
 {
     public class Comparison1Model : PageModel
     {

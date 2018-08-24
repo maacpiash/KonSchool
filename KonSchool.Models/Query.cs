@@ -91,6 +91,13 @@ namespace KonSchool.Models
             //SetValues();
         }
 
+        /// <summary>
+        /// Creates a comparison matrix from FuzzyValues.
+        /// </summary>
+        
+        /// <returns>
+        /// The comparison matrix as a 2D array of ValueTuples-(double, double, double)
+        /// </returns>
         public ValueTuple<double, double, double>[,] CreateComparisonMatrix()
         {
             const int NumberofDegrees = 4;
@@ -164,6 +171,9 @@ namespace KonSchool.Models
             return _comparisonMatrix;
         }
 
+        /// <summary>
+        /// Sets MFR, DIST, SES, ADS attribute values after filtering according to query constraints.
+        /// </summary>
         public void SetValues()
         {
             School s;
@@ -190,7 +200,7 @@ namespace KonSchool.Models
 
             // ADS
             GetADS(Alternatives);
-            NormalizeAllValues(Alternatives);
+            //NormalizeAllValues(Alternatives);
             Finish();
         }
 
