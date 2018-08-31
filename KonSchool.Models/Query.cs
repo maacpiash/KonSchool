@@ -316,29 +316,20 @@ namespace KonSchool.Models
                 }; // According to the serial described in SerialNumbers class
                 item.WeightedScores = new double[6];
                 for (int i = 0; i < CriteriaCount; i++)
-                {
-                    item.WeightedScores[i] = Score[i] * CritWeights[i];
-                    item.FinalScore += Sqrt(item.WeightedScores[i]);
-                }
-                item.FinalScore /= CriteriaCount;
+                    item.FinalScore += Score[i] * CritWeights[i];
             }
             
             Alternatives = Alternatives.OrderBy(x => x.FinalScore).ToList();
         }
 
-        public void Refine(bool ByDistrict = false, bool ByThana = false)
-        {
-            var Choices = new List<School>();
-            foreach (var s in Alternatives)
-            {
-                if (ByDistrict && s.Location.District == _location.District)
-                {
-                    Choices.Add(s);
-                    if (ByThana && s.Location.Thana == _location.Thana)
-                        Choices.Add(s);
-                }
-            }
-            Alternatives = Choices;
+        public void Refine(bool ByDivision = false, bool ByDistrict = false, bool ByThana = false)
+        {            
+            if (ByThana)
+                Alternatives = Alternatives.Where(x => x.Thana == _location.Thana).OrderBy(x => x.FinalScore).ToList();
+            else if (ByDistrict)
+                Alternatives = Alternatives.Where(x => x.District == _location.District).OrderBy(x => x.FinalScore).ToList();
+            else if (ByDivision)
+                Alternatives = Alternatives.Where(x => x.Division == _location.Division).OrderBy(x => x.FinalScore).ToList();
         }
     }
 }

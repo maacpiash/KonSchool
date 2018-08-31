@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.IO;
 
 using KonSchool.Models;
+using Newtonsoft.Json;
 
 namespace KonSchool.API.Controllers
 {
@@ -62,9 +63,9 @@ namespace KonSchool.API.Controllers
                         query.FuzzyValues[i] = Convert.ToInt32(values[i + 8]);
                     query.ConfLevel = Convert.ToInt32(values[23]);
                     if (max > 24)
-                        choice = Convert.ToInt32(values[24]); // 0 = no refine, 1 = by dist, 2 = by thana
+                        choice = Convert.ToInt32(values[24]); // 0 = no refine, 1 = by div, 2 = by dist, 3 = by thana
                     if (max > 25)
-                        altC = Convert.ToInt32(values[25]); // altC = show all refined alternatives
+                        altC = Convert.ToInt32(values[25]); // altC = 0 => show all refined alternatives
                 }
                 catch (Exception x)
                 {
@@ -74,27 +75,11 @@ namespace KonSchool.API.Controllers
                 query.CreateComparisonMatrix();
                 FAHP fAHP = new FAHP(query.ComparisonMatrix);
                 double[] weights = fAHP.CriteriaWeights;
-                string ret = $"ConfLevel = {query.ConfLevel}," + string.Join(',', weights);
-                //Console.WriteLine($"ConfLevel = {values[23]}");
-                return ret;
-                /*
-                //query.SetValues();
+                Console.WriteLine($"ConfLevel = {query.ConfLevel}\n" + string.Join(',', weights));
+                query.SetValues();
                 if (choice != 0)
-                    query.Refine(choice == 1, choice == 2);
-                string alts = "\n";
-                School s;
-                int limit = altC == 0 ? query.Alternatives.Count : altC;
-                for (int i = 0; i < limit; i++)
-                {
-                    s = query.Alternatives[i];
-                    alts += $"{s.Name}\n{s.Location.Thana}, {s.Location.District}\n\n";
-                    alts += $"{s.TSRatio}, {s.SES}, {s.MFRatio}, {s.Age}, {s.Distance}, {s.ADS}\n";
-                            // According to the serial described in SerialNumbers class
-                    alts += string.Join(',', s.WeightedScores);
-                    alts += $"\nFinal Score = {s.FinalScore}\n\n";
-                }
-                return ret + alts;
-                */
+                    query.Refine(choice == 1, choice == 2, choice == 3);
+                return JsonConvert.SerializeObject(query.CritWeights) + JsonConvert.SerializeObject(query.Alternatives);
             });
             
         }
