@@ -1,7 +1,7 @@
 # Kon School?
 
 | Linux/macOS | Windows |
-| -- | -- | -------- |
+| -- | -------- |
 | [![Build Status](https://travis-ci.org/maacpiash/KonSchool.svg?branch=master)](https://travis-ci.org/maacpiash/KonSchool) | [![Build status](https://ci.appveyor.com/api/projects/status/bsmib72le6n8pc1u?svg=true)](https://ci.appveyor.com/project/maacpiash/konschool) |
 
 
