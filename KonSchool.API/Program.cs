@@ -20,6 +20,7 @@ namespace KonSchool.API
         public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
             .UseKestrel()
+            .UseUrls("https://localhost:31416")
             .UseContentRoot(Directory.GetCurrentDirectory())
             .UseStartup<KonSchool.API.Startup>();
     }
