@@ -18,12 +18,11 @@ The dataset used for this system was compiled from several datasets originally c
 
 The .NET Core solution is divided into three projects:
 - [KonSchool.API](https://github.com/maacpiash/KonSchool/tree/master/KonSchool.API), a RESTful web API that outputs score values for each alternative schools, based on criteria preferences and alternative selection by the user.
-- [KonSchool.Client](https://github.com/maacpiash/KonSchool/tree/master/KonSchool.Client), a "desktop" application developed with [Electron.NET](https://github.com/ElectronNET/Electron.NET), which can also be used as a general webpage. It consumes the REST API.
+- [KonSchool.Client](https://github.com/maacpiash/KonSchool/tree/master/KonSchool.Client), a web application developed with [Blazor](https://blazor.net), which consumes the REST API.
 - [KonSchool.Models](https://github.com/maacpiash/KonSchool/tree/master/KonSchool.Models), the model classes and actual logic of Fuzzy AHP procedure, along with some helper classes.
 
 Additionally, there is an [xUnit test project](https://github.com/maacpiash/KonSchool/tree/master/KonSchool.Test) for general testing purposes.<br/>
-Each of these projects will have their own readme files, very soon 🤞🏽
+Each of these projects has their own readme files, which can give you more details.
 
 ### Acknowledgement
-I am very grateful to [Dr. Mohammad Rashedur Rahman](http://ece.northsouth.edu/people/rashedur-rahman/) sir, our honorable instructor of the Fuzzy Logic course (CSE470) at North South University, who mentored my group on this project and made sure our research work got published in [The 11th edition of International Conference 
-on Multimedia & Network Information Systems](https://missi.pwr.edu.pl/2018/).<p>I would also like to thank my groupmates — N.S.M. Rezaur Rahman, for the development of the mathematical model; and [Abdullah-Al Nahian Siraj](https://github.com/Nahian-Siraj), for his cooperation.</p>
+I am very grateful to [Dr. Rashedur M. Rahman](http://ece.northsouth.edu/people/rashedur-rahman/) sir, Associate Professor at Department of Electrical and Computer Engineering, North South University; and our honorable instructor of the Fuzzy Logic course (CSE470). He mentored my group on this project and made sure our research work got [published](https://link.springer.com/chapter/10.1007/978-3-319-98678-4_29) in Springer and presented at a prestigeous [conference](https://missi.pwr.edu.pl/2018/).<p>I would also like to thank my groupmates — N.S.M. Rezaur Rahman, for the development of the mathematical model; and [Abdullah-Al Nahian Siraj](https://github.com/Nahian-Siraj), for his cooperation with finding related research paper.</p>
