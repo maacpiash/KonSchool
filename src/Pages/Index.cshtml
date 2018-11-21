@@ -1,0 +1,83 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<html>
+<head>
+    <script src="~/js/site.js"></script>
+    <script src="~/js/LocationDB.js"></script>
+</head>
+<body>
+    <div>
+        <h3>Welcome to "কোন স্কুল?"</h3>
+        <p>"কোন স্কুল?" is an app that is designed to help you find the best school for your child!</p>
+        <div>
+            <p>Please enter the details of your child and yourself:</p>
+            <form method="post">
+                <table>
+                    <tr>
+                        <td><p>Class</p></td>
+                        <td><p><select asp-for="Class" asp-items="Model.Classes"></select></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Age</p></td>
+                        <td><p><input asp-for="Age" /></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Guardian's occupation</p></td>
+                        <td><p><select asp-for="Occupation" asp-items="Model.Occupations"></select></p></td>
+                    </tr>
+                    <tr>
+                        <td><p>Sex</p></td>
+                        <td>
+                            <p>
+                                <input asp-for="Sex" type="radio" value="1" checked="checked" /> Male
+                                <input asp-for="Sex" type="radio" value="2" /> Female
+                            </p>
+                        </td>
+                    </tr>
+                </table>
+                <fieldset>
+                    <legend>Address</legend>
+                    <table>
+                        <tr>
+                            <td><p>Division</p></td>
+                            <td>
+                                <p>
+                                    <select id="division" asp-for="@Model.Division" onchange="DivDistChange(this);">
+                                        <option value="empty">Select a division</option>
+                                        <option value="BARISAL">BARISAL</option>
+                                        <option value="CHITTAGONG">CHITTAGONG</option>
+                                        <option value="DHAKA">DHAKA</option>
+                                        <option value="MYMENSINGH">MYMENSINGH</option>
+                                        <option value="KHULNA">KHULNA</option>
+                                        <option value="RAJSHAHI">RAJSHAHI</option>
+                                        <option value="RANGPUR">RANGPUR</option>
+                                        <option value="SYLHET">SYLHET</option>
+                                    </select>
+                                </p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><p>District</p></td>
+                            <td><p><select id="district" asp-for="@Model.District" onchange="DistThanaChange(this);"></select></p></td>
+                        </tr>
+                        <tr>
+                            <td><p>Thana</p></td>
+                            <td><p><select id="thana" asp-for="@Model.Thana" onchange="ThanaUWChange(this);"></select></p></td>
+                        </tr>
+                        <tr>
+                            <td><p>Union/Ward</p></td>
+                            <td><p><select id="uw" asp-for="@Model.UW"></select></p></td>
+                        </tr>
+                    </table>
+
+                </fieldset>
+                <input type="submit" value="Next" />
+            </form>
+        </div>
+    </div>
+</body>
+</html>

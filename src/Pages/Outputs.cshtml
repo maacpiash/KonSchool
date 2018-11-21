@@ -1,0 +1,81 @@
+﻿@page
+@model KonSchool.Pages.OutputsModel
+@{
+    ViewData["Title"] = "Outputs";
+}
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/Comparison.css">
+</head>
+<body>
+    <h2>Outputs</h2>
+
+    <table>
+        <thead>
+            <tr>
+                <th style="text-align: center">Criteria</th>
+                <th style="text-align: center">Weights</th>
+            </tr>
+        </thead>
+        <tbody>
+            @for (int i = 0; i < 6; i++)
+            {
+                <tr>
+                    <td><p>@Model.Criteria[i]</p></td>
+                    <td><p>@Program.Query.Weights[i]</p></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4>Confidence Level: @Model.ConfLevel</h4>
+    <h4>Standard Deviation: @Model.StdDev</h4>
+
+    "Teacher-Student Ratio", "Male-Female Ratio",
+    "Socio-Economic Status", "Location of School",
+    "Age of School", "Average Age of Students"
+
+    <table>
+        <thead>
+            <tr>
+                <th style="text-align: center">EIIN</th>
+                <th style="text-align: center">Name</th>
+                <th style="text-align: center">Street Address</th>
+                <th style="text-align: center">Union/Ward</th>
+                <th style="text-align: center">Thana</th>
+                <th style="text-align: center">District</th>
+                <th style="text-align: center">Division</th>
+                <th style="text-align: center">Teacher-Student Ratio</th>
+                <th style="text-align: center">Male-Female Ratio</th>
+                <th style="text-align: center">Socio-Economic Status</th>
+                <th style="text-align: center">Location of School</th>
+                <th style="text-align: center">Age of School</th>
+                <th style="text-align: center">Average Age of Students</th>
+                <th style="text-align: center">Compatibility Score</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var s in Program.Query.Alternatives)
+            {
+            <tr>
+                <td style="text-align: center">@s.EIIN</td>
+                <td style="text-align: center">@s.Name</td>
+                <td style="text-align: center">@s.StreetAddr</td>
+                <td style="text-align: center">@s.Union_Ward</td>
+                <td style="text-align: center">@s.Thana</td>
+                <td style="text-align: center">@s.District</td>
+                <td style="text-align: center">@s.Division</td>
+                <td style="text-align: center">@s.TSR</td>
+                <td style="text-align: center">@s.MFR</td>
+                <td style="text-align: center">@s.SES</td>
+                <td style="text-align: center">@s.LOC</td>
+                <td style="text-align: center">@s.OLD</td>
+                <td style="text-align: center">@s.AGE</td>
+                <td style="text-align: center">@s.FinalScore</td>
+            </tr>
+            }
+        </tbody>
+    </table>
+</body>
+</html>

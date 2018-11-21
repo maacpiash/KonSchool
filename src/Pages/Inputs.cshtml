@@ -1,0 +1,116 @@
+﻿@page
+@model KonSchool.Pages.InputsModel
+@{
+    ViewData["Title"] = "Inputs";
+}
+
+<html>
+<head>
+    <link rel="stylesheet" href="~/css/Comparison.css">
+</head>
+<body>
+    <h2>Inputs</h2>
+
+    <h3>Levels of comparison: weakly >> moderately >> highly >> strongly >> absolutely</h3>
+
+    <form method="POST">
+        <h4>Teacher-Student Ratio vs. Male-Female Ratio</h4>
+        <table>
+            <tr>
+                <td><p>Teacher-Student Ratio</p></td>
+                <td>
+                    <p><input type="range" min="-9" max="9" value="0" class="slider" asp-for="@Model.Values[0]" id="sl1" oninput="UpdateComparison('sl1', 'demo1', 'Teacher-Student Ratio', 'Male-Female Ratio');"></p>
+                </td>
+                <td>
+                    <p>Male-Female Ratio</p>
+                </td>
+            </tr>
+        </table>
+        <p>Comparison: <span id="demo1">Both are equally important.</span></p>
+
+        <h4>Male-Female Ratio vs. Socio-Economic Status</h4>
+        <table>
+            <tr>
+                <td><p>Male-Female Ratio</p></td>
+                <td>
+                    <p><input type="range" min="-9" max="9" value="0" class="slider" asp-for="@Model.Values[1]" id="sl2" oninput="UpdateComparison('sl2', 'demo2', 'Male-Female Ratio', 'Socio-Economic Status');"></p>
+                </td>
+                <td>
+                    <p>Socio-Economic Status</p>
+                </td>
+            </tr>
+        </table>
+        <p>Comparison: <span id="demo2">Both are equally important.</span></p>
+
+        <h4>Socio-Economic Status vs. Location of School</h4>
+        <table>
+            <tr>
+                <td><p>Socio-Economic Status</p></td>
+                <td>
+                    <p><input type="range" min="-9" max="9" value="0" class="slider" asp-for="@Model.Values[2]" id="sl3" oninput="UpdateComparison('sl3', 'demo3', 'Socio-Economic Status', 'Distance from Residence');"></p>
+                </td>
+                <td>
+                    <p>Location of School</p>
+                </td>
+            </tr>
+        </table>
+        <p>Comparison: <span id="demo3">Both are equally important.</span></p>
+
+        <h4>Location of School vs. Age of School</h4>
+        <table>
+            <tr>
+                <td><p>Location of School</p></td>
+                <td>
+                    <p><input type="range" min="-9" max="9" value="0" class="slider" asp-for="@Model.Values[3]" id="sl4" oninput="UpdateComparison('sl4', 'demo4', 'Distance from Residence', 'Age of School');"></p>
+                </td>
+                <td>
+                    <p>Age of School</p>
+                </td>
+            </tr>
+        </table>
+        <p>Comparison: <span id="demo4">Both are equally important.</span></p>
+
+        <h4>Age of School vs. Average Age of Students</h4>
+        <table>
+            <tr>
+                <td><p>Age of School</p></td>
+                <td>
+                    <p><input type="range" min="-9" max="9" value="0" class="slider" asp-for="@Model.Values[4]" id="sl5" oninput="UpdateComparison('sl5', 'demo5', 'Age of School', 'Average Age of Students in Intended Class (Grade)');"></p>
+                </td>
+                <td>
+                    <p>Average Age of Students</p>
+                </td>
+            </tr>
+        </table>
+        <p>Comparison: <span id="demo5">Both are equally important.</span></p>
+
+        <br/>
+        <h4>Level of confidence</h4>
+        <p>How confident are you about these comparisons?</p>
+        <select asp-for="ConfLevel">
+            <option value=2>High</option>
+            <option value=1>Medium</option>
+            <option value=0>Low</option>
+        </select>
+
+        <input type="submit" value="View Result" />
+    </form>
+    <script>
+        var Comp = [
+            "weakly", "more than weakly",
+            "moderately", "more than moderately",
+            "highly", "more than highly",
+            "strongly", "more than strongly",
+            "absolutely"
+        ];
+
+        var UpdateComparison = function (slider, id, x, y) {
+            var v = parseInt(document.getElementById(slider).value);
+            var output = document.getElementById(id);
+            if (v == 0) output.innerHTML = "Both are equally important.";
+            else if (v > 0) output.innerHTML = y + " is <b>" + Comp[v - 1] + "</b> more important compared to " + x;
+            else output.innerHTML = x + " is <b>" + Comp[- v - 1] + "</b> more important compared to " + y;
+        }
+    </script>
+</body>
+</html>
