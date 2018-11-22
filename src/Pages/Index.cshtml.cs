@@ -50,7 +50,7 @@ namespace KonSchool.Pages
         {
             if (!ModelState.IsValid)
                 return Page();
-            Program.Query = new Models.Query("Dataset.csv");
+            Program.Query = new Models.Query("Schools.csv");
             Program.Query.Class = Convert.ToInt32(Class);
             Program.Query.Occupation = Occupation;
             switch (Occupation)
