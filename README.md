@@ -5,6 +5,7 @@
 [![.NET Core 2.1](https://img.shields.io/badge/.NETCore-2.1-692079.svg)](https://github.com/maacpiash/KonSchool/blob/master/src/KonSchool.csproj#L4)
 [![Open issues](https://img.shields.io/github/issues/maacpiash/KonSchool.svg)](https://github.com/maacpiash/KonSchool/issues)
 [![Contributors](https://img.shields.io/github/contributors/maacpiash/KonSchool.svg)](https://github.com/maacpiash/KonSchool/graphs/contributors)
+[![Recent Activities](https://img.shields.io/github/commit-activity/w/maacpiash/KonSchool.svg)](https://github.com/maacpiash/KonSchool/commits/master)
 [![HitCount](http://hits.dwyl.io/maacpiash/KonSchool.svg)](http://hits.dwyl.io/maacpiash/KonSchool)
 
 *Kon School?* (Bengali: *কোন স্কুল?*, meaning *"Which school?"*) is a system that recommends a secondary school based on user's preferences and school data. The user gives student data (age, sex, class (grade), location, guardian's profession) as input. The user also compares every pair of criteria and gives each pair a relative linguistic value. Then the system
