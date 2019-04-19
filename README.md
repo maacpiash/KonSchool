@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/maacpiash/KonSchool.svg?branch=master)](https://travis-ci.org/maacpiash/KonSchool)
 [![Build status](https://ci.appveyor.com/api/projects/status/bsmib72le6n8pc1u?svg=true)](https://ci.appveyor.com/project/maacpiash/konschool)
 [![.NET Core 2.1](https://img.shields.io/badge/.NETCore-2.1-692079.svg)](https://github.com/maacpiash/KonSchool/blob/master/src/KonSchool.csproj#L4)
-![Platforms](https://img.shields.io/badge/Platforms-Windows%20%7C%20Linux%20%7C%20macOS-008000.svg)
 [![Open issues](https://img.shields.io/github/issues/maacpiash/KonSchool.svg)](https://github.com/maacpiash/KonSchool/issues)
 [![Contributors](https://img.shields.io/github/contributors/maacpiash/KonSchool.svg)](https://github.com/maacpiash/KonSchool/graphs/contributors)
 [![Recent Activities](https://img.shields.io/github/commit-activity/w/maacpiash/KonSchool.svg)](https://github.com/maacpiash/KonSchool/commits/master)
