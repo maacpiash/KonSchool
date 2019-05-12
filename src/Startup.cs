@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using KonSchool.Models;
+using KonSchool.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -12,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-//using Microsoft.EntityFrameworkCore.Sqlite;
+
 
 namespace KonSchool
 {
@@ -34,6 +35,8 @@ namespace KonSchool
                 options.CheckConsentNeeded = context => true;
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
+
+            services.AddScoped<SchoolDbService>();
 
             //services.AddDbContext<SchoolDbContext>(x => x.UseSqlite(Configuration.GetConnectionString("Data Source=~/Schools.db")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

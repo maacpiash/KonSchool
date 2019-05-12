@@ -66,7 +66,7 @@ namespace KonSchool.Models
 
         public Query(string csvPath)
         {
-            Alternatives = new SchoolFactory(csvPath).Schools;
+            //Alternatives = new SchoolFactory(csvPath).Schools;
         }
 
         public void SetValues()

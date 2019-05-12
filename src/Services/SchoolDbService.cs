@@ -4,17 +4,35 @@ using KonSchool.Models;
 using Microsoft.Extensions.Configuration;
 using MongoDB.Driver;
 
-namespace SchoolsApi.Services
+namespace KonSchool.Services
 {
-    public class SchoolService
+    public class SchoolDbService
     {
         private readonly IMongoCollection<School> _Schools;
 
-        public SchoolService(IConfiguration config)
+        public SchoolDbService()
         {
-            var client = new MongoClient(config.GetConnectionString("SchoolStoreDb"));
-            var database = client.GetDatabase("SchoolStoreDb");
-            _Schools = database.GetCollection<School>("Schools");
+            // Credentials
+            //string username = "konschool";
+            //string password = "q12121";
+            //string mongoDbAuthMechanism = "SCRAM-SHA-1";
+            //MongoInternalIdentity internalIdentity = new MongoInternalIdentity("admin", username);
+            //PasswordEvidence passwordEvidence = new PasswordEvidence(password);
+            //MongoCredential mongoCredential = new MongoCredential(mongoDbAuthMechanism, internalIdentity, passwordEvidence);
+            
+
+            var credential = MongoCredential.CreateCredential("bdschooldb", "konschool", "q12121");
+            var server = new MongoServerAddress("mongodb://ds016138.mlab.com");
+
+            var setting = new MongoClientSettings();
+            setting.Server = server;
+            setting.Credential = credential;
+
+            MongoClient client = new MongoClient(setting);
+            
+            var db = client.GetDatabase("bdschooldb");
+            _Schools = db.GetCollection<School>("schools");
+            // if (_Schools != null) System.Console.WriteLine($"SUCCESS! {_Schools.Database.ToString()}");
         }
 
         public List<School> Get()
@@ -22,30 +40,9 @@ namespace SchoolsApi.Services
             return _Schools.Find(School => true).ToList();
         }
 
-        public School Get(string id)
+        public School Get(string eiin)
         {
-            return _Schools.Find<School>(School => School.EIIN == int.Parse(id)).FirstOrDefault();
-        }
-
-        public School Create(School School)
-        {
-            _Schools.InsertOne(School);
-            return School;
-        }
-
-        public void Update(string id, School SchoolIn)
-        {
-            _Schools.ReplaceOne(School => School.EIIN == int.Parse(id), SchoolIn);
-        }
-
-        public void Remove(School SchoolIn)
-        {
-            _Schools.DeleteOne(School => School.EIIN == SchoolIn.EIIN);
-        }
-
-        public void Remove(string id)
-        {
-            _Schools.DeleteOne(School => School.EIIN == int.Parse(id));
+            return _Schools.Find(School => School.EIIN.Equals(eiin)).FirstOrDefault();
         }
     }
 }
