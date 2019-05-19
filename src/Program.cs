@@ -14,7 +14,6 @@ namespace KonSchool
 {
     public class Program
     {
-        public static Query Query { get; set; }
 
         public static void Main(string[] args)
         {

@@ -23,7 +23,7 @@
             {
                 <tr>
                     <td><p>@Model.Criteria[i]</p></td>
-                    <td><p>@Program.Query.Weights[i]</p></td>
+                    <td><p>@Model._Query.Weights[i]</p></td>
                 </tr>
             }
         </tbody>
@@ -56,7 +56,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var s in Program.Query.Alternatives)
+            @foreach (var s in Model._Query.Alternatives)
             {
             <tr>
                 <td style="text-align: center">@s.EIIN</td>

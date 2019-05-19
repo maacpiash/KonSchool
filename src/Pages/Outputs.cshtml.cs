@@ -11,6 +11,10 @@ namespace KonSchool.Pages
 {
     public class OutputsModel : PageModel
     {
+        public Query _Query { get; set; }
+
+        public OutputsModel(Query query) => _Query = query;
+        
         [BindProperty] public List<string> Criteria { get; set; }
         [BindProperty] public double StdDev { get; set; }
         [BindProperty] public string ConfLevel { get; set; }
@@ -24,14 +28,14 @@ namespace KonSchool.Pages
                 "Age of School", "Average Age of Students"
             };
 
-            StdDev = Stat.StdDev(Program.Query.Weights);
-            ConfLevel = new string[] { "Low", "Medium", "High" }[Program.Query.ConfLevel];
+            StdDev = Stat.StdDev(_Query.Weights);
+            ConfLevel = new string[] { "Low", "Medium", "High" }[_Query.ConfLevel];
 
-            double[] w = Program.Query.Weights;
-            foreach (School s in Program.Query.Alternatives)
+            double[] w = _Query.Weights;
+            foreach (School s in _Query.Alternatives)
                 s.FinalScore = s.TSR * w[0] + s.MFR * w[1] + s.SES * w[2] + s.LOC * w[3] + s.OLD * w[4] + s.AGE * w[6];
                    
-            Program.Query.Alternatives = Program.Query.Alternatives.OrderByDescending(x => x.FinalScore).ToList();
+            _Query.Alternatives = _Query.Alternatives.OrderByDescending(x => x.FinalScore).ToList();
                 
         }
 

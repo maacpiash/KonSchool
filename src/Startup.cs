@@ -37,7 +37,7 @@ namespace KonSchool
             });
 
             services.AddScoped<SchoolDbService>();
-
+            services.AddSingleton<Query>();
             //services.AddDbContext<SchoolDbContext>(x => x.UseSqlite(Configuration.GetConnectionString("Data Source=~/Schools.db")));
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
