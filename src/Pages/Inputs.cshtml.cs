@@ -2,13 +2,19 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using KonSchool.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+
 
 namespace KonSchool.Pages
 {
     public class InputsModel : PageModel
     {
+        public Query _Query;
+
+        public InputsModel(Query query) => _Query = query;
+        
         [BindProperty] public int[] Values { get; set; }
 
         [BindProperty] public int ConfLevel { get; set; }
@@ -17,10 +23,10 @@ namespace KonSchool.Pages
         
         public IActionResult OnPost()
         {
-            Program.Query.ConfLevel = ConfLevel;
+            _Query.ConfLevel = ConfLevel;
             var compmat = Models.Inference.ComparisonMatrix(Values, ConfLevel);
-            Program.Query.CompMat = compmat;
-            Program.Query.Weights = new Models.FAHP(compmat).CriteriaWeights;
+            _Query.CompMat = compmat;
+            _Query.Weights = new Models.FAHP(compmat).CriteriaWeights;
             return RedirectToPage("/Outputs");
         }
     }

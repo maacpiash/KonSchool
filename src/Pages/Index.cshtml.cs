@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
+using KonSchool.Models;
+
 namespace KonSchool.Pages
 {
     public class IndexModel : PageModel
@@ -27,6 +29,10 @@ namespace KonSchool.Pages
         [BindProperty] public string Thana { get; set; }
 
         [BindProperty] public string UW { get; set; }
+
+        public Query _Query { get; set; }
+
+        public IndexModel(Query query) => _Query = query;
 
         public void OnGet()
         {
@@ -50,41 +56,41 @@ namespace KonSchool.Pages
         {
             if (!ModelState.IsValid)
                 return Page();
-            Program.Query = new Models.Query("Schools.csv");
-            Program.Query.Class = Convert.ToInt32(Class);
-            Program.Query.Occupation = Occupation;
+            _Query = new Query("Schools.csv");
+            _Query.Class = Convert.ToInt32(Class);
+            _Query.Occupation = Occupation;
             switch (Occupation)
             {
                 case "Worker":
                 case "Tati":
                 case "Fisherman":
                 case "Kamar/Kumar":
-                    Program.Query.SES = 2.5;
+                    _Query.SES = 2.5;
                     break;
                 case "Cultivation":
                 case "Expatriate":
                 case "Small business":
-                    Program.Query.SES = 5.0;
+                    _Query.SES = 5.0;
                     break;
                 case "Govt. job":
                 case "Private job":
                 case "Teacher":
-                    Program.Query.SES = 7.5;
+                    _Query.SES = 7.5;
                     break;
                 case "Lawyer":
                 case "Doctor":
                 case "Engineer":
                 case "Businessman":
-                    Program.Query.SES = 10.0;
+                    _Query.SES = 10.0;
                     break;
                 default:
-                    Program.Query.SES = 1.0;
+                    _Query.SES = 1.0;
                     break;
             }
-            Program.Query.IsMale = Sex == 1;
-            Program.Query.Age = Age;
+            _Query.IsMale = Sex == 1;
+            _Query.Age = Age;
             string uw = UW == null ? "BHATARA" : UW.Split('[')[0].Trim();
-            Program.Query.SetLocation(Division ?? "DHAKA", District ?? "DHAKA", Thana ?? "BHATARA", uw);
+            _Query.SetLocation(Division ?? "DHAKA", District ?? "DHAKA", Thana ?? "BHATARA", uw);
             return RedirectToPage("/Inputs");
         }
     }
