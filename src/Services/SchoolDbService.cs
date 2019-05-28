@@ -9,6 +9,7 @@ namespace KonSchool.Services
     public class SchoolDbService
     {
         private readonly IMongoCollection<School> _Schools;
+        private string APIKey;
 
         public SchoolDbService()
         {
@@ -22,11 +23,13 @@ namespace KonSchool.Services
             
 
             var credential = MongoCredential.CreateCredential("bdschooldb", "konschool", "q12121");
-            var server = new MongoServerAddress("mongodb://ds016138.mlab.com");
+            var server = new MongoServerAddress("mongodb://ds016138.mlab.com", 16138);
+            const string connectionString = "mongodb://konschool:q12121@ds016138.mlab.com:16138";
 
-            var setting = new MongoClientSettings();
-            setting.Server = server;
-            setting.Credential = credential;
+            var setting = new MongoClientSettings
+            {
+                Server = server, Credential = credential
+            };
 
             MongoClient client = new MongoClient(setting);
             
@@ -44,5 +47,7 @@ namespace KonSchool.Services
         {
             return _Schools.Find(School => School.EIIN.Equals(eiin)).FirstOrDefault();
         }
+
+        public void UseApiKey(string key) => APIKey = key;
     }
 }
