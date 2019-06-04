@@ -30,20 +30,21 @@ branches:
     - master
 
 matrix:
-  # include:
-  #   - os: linux 
-  #     dist: trusty # Ubuntu 14.04
-  #     dotnet: 2.1
-  #   - os: osx
-  #     dotnet: 2.1.200
-  #     # osx_image: xcode9.4 # dotnet requires at least this version
+  include:
+    - os: linux 
+      dist: trusty # Ubuntu 14.04
+      dotnet: 2.2
+    - os: osx
+      dotnet: 2.2
+      osx_image: xcode9.4 # dotnet requires at least this version
   allow_failures:
     - os: osx
 
 before_install:
-  - if [ $TRAVIS_OS_NAME = ubuntu ]; then sudo apt-get update; fi
+  - if [ $TRAVIS_OS_NAME = ubuntu ]; then sudo apt update; fi
   - if [ $TRAVIS_OS_NAME = osx ]; then brew update; fi
 
 script:
-  - dotnet restore
+  - dotnet restore --verbosity m
   - dotnet build
+  - dotnet test tests/KonSchool.Tests.csproj

@@ -6,7 +6,7 @@ namespace KonSchool.Models
 {
     public static class Stat
     {
-        public static double[] Normalize(ref double[] numbers)
+        public static double[] NormalizeBySum(ref double[] numbers)
         {
             int max = numbers.Length;
             double sum = numbers.Sum();
@@ -15,7 +15,7 @@ namespace KonSchool.Models
             return numbers;
         }
 
-        public static double[] Normalize(ref double[] numbers, double lower = 0.0, double upper = 1.0)
+        public static double[] NormalizeByLimits(ref double[] numbers, double lower = 0.0, double upper = 1.0)
         {
             int length = numbers.Length;
             double min = numbers[0], max = numbers[0];
@@ -38,11 +38,11 @@ namespace KonSchool.Models
         public static double StdDev(double[] values)
         {
             double ret = 0;
-            if (values.Count() > 0)
+            if (values.Length > 0)
             {
                 double avg = values.Average();
                 double sum = values.Sum(d => Pow(d - avg, 2));
-                ret = Sqrt((sum) / (values.Count() - 1));
+                ret = Sqrt(sum / (values.Length - 1));
             }
             return ret;
         }

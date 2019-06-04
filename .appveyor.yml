@@ -14,8 +14,6 @@ install:
 before_build:
   # Display .NET Core version
   - cmd: dotnet --version
-  # Installing Blazor templates
-  - cmd: dotnet new -i Microsoft.AspNetCore.Blazor.Templates
   # Display minimal restore text
   - cmd: dotnet restore --verbosity m
 
@@ -29,6 +27,7 @@ build_script:
 #    type: WebDeployPackage
 clone_depth: 1
 test_script:
+  - cmd: dotnet test tests/KonSchool.Tests.csproj
   # restore packages for our unit tests
   # - cmd: dotnet restore ./tests/tests.csproj --verbosity m
   # run the unit tests (requires changing into the test directory)
