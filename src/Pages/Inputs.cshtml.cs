@@ -17,16 +17,13 @@ namespace KonSchool.Pages
         
         [BindProperty] public int[] Values { get; set; }
 
-        [BindProperty] public int ConfLevel { get; set; }
-
         public void OnGet() => Values = new int[6];
         
         public IActionResult OnPost()
         {
-            _Query.ConfLevel = ConfLevel;
-            var compmat = Models.Inference.ComparisonMatrix(Values, ConfLevel);
+            var compmat = Inference.ComparisonMatrix(Values);
             _Query.CompMat = compmat;
-            _Query.Weights = new Models.FAHP(compmat).CriteriaWeights;
+            _Query.Weights = new FAHP(compmat).CriteriaWeights;
             return RedirectToPage("/Outputs");
         }
     }

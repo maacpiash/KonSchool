@@ -3,77 +3,66 @@
 @{
     ViewData["Title"] = "Outputs";
 }
+@using KonSchool.Models
 
 <html>
 <head>
     <link rel="stylesheet" href="~/css/Comparison.css">
 </head>
 <body>
-    <h2>Outputs</h2>
-
-    <table>
+    <h1>Outputs</h1>
+    <h3>Weights</h3>
+    <br>
+    <table class="table">
         <thead>
             <tr>
                 <th style="text-align: center">Criteria</th>
-                <th style="text-align: center">Weights</th>
+                @for (int i = 0; i < 6; i++)
+                {
+                    <th>
+                        @Model.Criteria[i]
+                    </th>
+                }
             </tr>
         </thead>
         <tbody>
-            @for (int i = 0; i < 6; i++)
-            {
-                <tr>
-                    <td><p>@Model.Criteria[i]</p></td>
-                    <td><p>@Model._Query.Weights[i]</p></td>
-                </tr>
-            }
+            <tr>
+                <td><b>Weights</b></td>
+                @for (int i = 0; i < 6; i++)
+                {
+                    <td style="text-align: center">
+                        @Model.ToShortNumber(@Model._Query.Weights[i])
+                    </td>
+                }
+            </tr>
         </tbody>
     </table>
 
-    <h4>Confidence Level: @Model.ConfLevel</h4>
-    <h4>Standard Deviation: @Model.StdDev</h4>
-
-    "Teacher-Student Ratio", "Male-Female Ratio",
-    "Socio-Economic Status", "Location of School",
-    "Age of School", "Average Age of Students"
-
-    <table>
+    <p>
+        <h4>Standard Deviation: @Model.StdDev</h4>
+    </p>
+    <br>
+    <h3>Schools</h3>
+    <h4>Number of eligible schools: @Model._Query.Alternatives.Count</h4>
+    <br>
+    <table class="table table-striped">
         <thead>
             <tr>
-                <th style="text-align: center">EIIN</th>
-                <th style="text-align: center">Name</th>
-                <th style="text-align: center">Street Address</th>
-                <th style="text-align: center">Union/Ward</th>
-                <th style="text-align: center">Thana</th>
-                <th style="text-align: center">District</th>
-                <th style="text-align: center">Division</th>
-                <th style="text-align: center">Teacher-Student Ratio</th>
-                <th style="text-align: center">Male-Female Ratio</th>
-                <th style="text-align: center">Socio-Economic Status</th>
-                <th style="text-align: center">Location of School</th>
-                <th style="text-align: center">Age of School</th>
-                <th style="text-align: center">Average Age of Students</th>
-                <th style="text-align: center">Compatibility Score</th>
+                <th>Name</th>
+                <th>Address</th>
+                <th>Mobile Number</th>
+                <th>Compatibility</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var s in Model._Query.Alternatives)
             {
-            <tr>
-                <td style="text-align: center">@s.EIIN</td>
-                <td style="text-align: center">@s.Name</td>
-                <td style="text-align: center">@s.StreetAddr</td>
-                <td style="text-align: center">@s.Union_Ward</td>
-                <td style="text-align: center">@s.Thana</td>
-                <td style="text-align: center">@s.District</td>
-                <td style="text-align: center">@s.Division</td>
-                <td style="text-align: center">@s.TSR</td>
-                <td style="text-align: center">@s.MFR</td>
-                <td style="text-align: center">@s.SES</td>
-                <td style="text-align: center">@s.LOC</td>
-                <td style="text-align: center">@s.OLD</td>
-                <td style="text-align: center">@s.AGE</td>
-                <td style="text-align: center">@s.FinalScore</td>
-            </tr>
+                <tr>
+                    <td>@s.Name</td>
+                    <td>@s.StreetAddr, @s.Union_Ward, @s.Thana, @s.District</td>
+                    <td>@s.MobileNum</td>
+                    <td style="text-align: right;">@Model.ToShortNumber(@s.FinalScore)</td>
+                </tr>
             }
         </tbody>
     </table>

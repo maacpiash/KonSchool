@@ -15,20 +15,15 @@ namespace KonSchool.Pages
         public List<SelectListItem> Classes, Occupations, Divisions, Districts, Thanas, Unions_Wards;
 
         [BindProperty] public string Class { get; set; }
-
         [BindProperty] public string Occupation { get; set; }
-
         [BindProperty] public int Sex { get; set; }
-
         [BindProperty] public int Age { get; set; }
-
         [BindProperty] public string Division { get; set; }
-
         [BindProperty] public string District { get; set; }
-
         [BindProperty] public string Thana { get; set; }
-
         [BindProperty] public string UW { get; set; }
+        [BindProperty] public bool ByDiv { get; set; }
+        [BindProperty] public bool ByDist { get; set; }
 
         public Query _Query { get; set; }
 
@@ -46,7 +41,7 @@ namespace KonSchool.Pages
 
             Occupations = new List<SelectListItem>();
             string[] collection = { "Worker", "Tati", "Fisherman", "Kamar/Kumar", "Cultivation", "Expatriate", "Small business",
-            "Govt. job", "Private job", "Teacher", "lawyer", "Doctor", "Engineer", "Businessman" };
+            "Govt. job", "Private job", "Teacher", "Lawyer", "Doctor", "Engineer", "Businessman" };
             foreach (var item in collection)
                 Occupations.Add(new SelectListItem { Value = item, Text = item });
             Occupations.Add(new SelectListItem() { Value = "Other", Text = "(Other)" });
@@ -56,7 +51,6 @@ namespace KonSchool.Pages
         {
             if (!ModelState.IsValid)
                 return Page();
-            _Query = new Query("Schools.csv");
             _Query.Class = Convert.ToInt32(Class);
             _Query.Occupation = Occupation;
             switch (Occupation)
@@ -65,32 +59,34 @@ namespace KonSchool.Pages
                 case "Tati":
                 case "Fisherman":
                 case "Kamar/Kumar":
-                    _Query.SES = 2.5;
+                    _Query.Social = 2.5;
                     break;
                 case "Cultivation":
                 case "Expatriate":
                 case "Small business":
-                    _Query.SES = 5.0;
+                    _Query.Social = 5.0;
                     break;
                 case "Govt. job":
                 case "Private job":
                 case "Teacher":
-                    _Query.SES = 7.5;
+                    _Query.Social = 7.5;
                     break;
                 case "Lawyer":
                 case "Doctor":
                 case "Engineer":
                 case "Businessman":
-                    _Query.SES = 10.0;
+                    _Query.Social = 10.0;
                     break;
                 default:
-                    _Query.SES = 1.0;
+                    _Query.Social = 1.0;
                     break;
             }
             _Query.IsMale = Sex == 1;
             _Query.Age = Age;
             string uw = UW == null ? "BHATARA" : UW.Split('[')[0].Trim();
             _Query.SetLocation(Division ?? "DHAKA", District ?? "DHAKA", Thana ?? "BHATARA", uw);
+            _Query.LimitByDivision = ByDiv;
+            _Query.LimitByDistrict = ByDist;
             return RedirectToPage("/Inputs");
         }
     }

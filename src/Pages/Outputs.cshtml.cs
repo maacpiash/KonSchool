@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 
 using KonSchool.Models;
+using KonSchool.Services;
 
 namespace KonSchool.Pages
 {
@@ -13,15 +14,18 @@ namespace KonSchool.Pages
     {
         public Query _Query { get; set; }
 
-        public OutputsModel(Query query) => _Query = query;
-        
-        [BindProperty] public List<string> Criteria { get; set; }
+        public OutputsModel(Query query, SchoolService schoolService)
+        {
+            _Query = query;
+        }
+
+        [BindProperty] public string[] Criteria { get; set; }
         [BindProperty] public double StdDev { get; set; }
-        [BindProperty] public string ConfLevel { get; set; }
+        [BindProperty] public string[] Numbers { get; set; }
 
         public void OnGet()
         {
-            Criteria = new List<string>
+            Criteria = new string[]
             {
                 "Teacher-Student Ratio", "Male-Female Ratio",
                 "Socio-Economic Status", "Location of School",
@@ -29,15 +33,17 @@ namespace KonSchool.Pages
             };
 
             StdDev = Stat.StdDev(_Query.Weights);
-            ConfLevel = new string[] { "Low", "Medium", "High" }[_Query.ConfLevel];
 
             double[] w = _Query.Weights;
+            _Query.SetValues();
+            
+            
             foreach (School s in _Query.Alternatives)
-                s.FinalScore = s.TSR * w[0] + s.MFR * w[1] + s.SES * w[2] + s.LOC * w[3] + s.OLD * w[4] + s.AGE * w[6];
+                s.FinalScore = s.TSR * w[0] + s.MFR * w[1] + s.SES * w[2] + s.LOC * w[3] + s.OLD * w[4] + s.ADS * w[5];
                    
             _Query.Alternatives = _Query.Alternatives.OrderByDescending(x => x.FinalScore).ToList();
-                
         }
 
+        public string ToShortNumber(double number) => string.Format("{0:0.00}%", number * 100);
     }
 }
