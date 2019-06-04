@@ -36,9 +36,9 @@ namespace KonSchool
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddScoped<SchoolDbService>();
             services.AddSingleton<Query>();
-            //services.AddDbContext<SchoolDbContext>(x => x.UseSqlite(Configuration.GetConnectionString("Data Source=~/Schools.db")));
+            services.AddSingleton<SchoolService>();
+
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
 

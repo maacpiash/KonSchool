@@ -27,35 +27,32 @@ namespace KonSchool.Models
         {
             CriteriaCount = ComparisonMatrix.GetLength(0);
             this.ComparisonMatrix = ComparisonMatrix;
-            Validate();
+
+            try
+            {
+                Validate();
+            }
+            catch (Exception e)
+            {
+                Console.Error.WriteLine(e.ToString());
+                return;
+            }
+
             RunFAHP();
         }
 
         private void Validate()
         {
-
             if (ComparisonMatrix.GetLength(0) != ComparisonMatrix.GetLength(1))
                 throw new InvalidDataException("Must be a square matrix.");
 
             if (ComparisonMatrix.GetLength(0) != CriteriaCount)
                 throw new InvalidDataException("Must have as many column/row as number of criteria.");
 
-            // double a, b, c, d, e, f;
-
             for (int i = 0; i < CriteriaCount; i++)
             {
                 if (!ComparisonMatrix[i, i].Equals((1.0, 1.0, 1.0)))
                     throw new InvalidDataException("Each criterion must have equal importance TFN compared to itself.");
-                //for (int j = i + 1; j < CriteriaCount; j++)
-                //{
-                //    (a, b, c) = ComparisonMatrix[i, j];
-                //    if (a > b || b > c)
-                //        throw new InvalidDataException($"Invalid TFN at position {i}, {j}.");
-                //    (d, e, f) = ComparisonMatrix[j, i];
-                //    double threshold = 1E-3;
-                //    if (Abs(d - 1 / c) > threshold || Abs(e - 1 / b) > threshold || Abs(f - 1 / a) > threshold)
-                //        throw new InvalidDataException($"TFN({i}, {j}) = [{a}, {b}, {c}] must be inverse of TFN({j}, {i})  = [{d}, {e}, {f}].");
-                //}
             }
         }
 
@@ -73,7 +70,6 @@ namespace KonSchool.Models
                 for (int j = 0; j < CriteriaCount; j++)
                     temp = temp.ScalarMultiply(ComparisonMatrix[i, j]);
                 geomean[i] = (Pow(temp.Item1, power), Pow(temp.Item2, power), Pow(temp.Item3, power));
-
             }
 
             // Step 2 : Multiplying with Inverse Vector
@@ -93,7 +89,9 @@ namespace KonSchool.Models
             }
 
             // Step 5: Normalization
-            Normalize(ref weights);
+            NormalizeBySum(ref weights);
+            // Since the optional parameters are not mentioned,
+            // the Normalize method without those is invoked here.
 
             return weights;
         }

@@ -6,7 +6,7 @@ namespace KonSchool.Models
 {
     public static class Inference
     {
-        public static (double, double, double)[,] ComparisonMatrix(int[] values, int ConfLevel)
+        public static (double, double, double)[,] ComparisonMatrix(int[] values)
         {
             int i;
 
@@ -17,28 +17,13 @@ namespace KonSchool.Models
             for (i = 0; i < 4; i++)
                 if (values[i] < -9 || values[i] > 9)
                     throw new ArgumentException($"Error at {i} = {values[i]}: Fuzzy input must be between -9 and +9.");
-
-            if (ConfLevel < 0 || ConfLevel > 2)
-                throw new ArgumentException("Confidence level must be between 1 and 3.");
             #endregion
             
-            (double, double, double)[,] TFNs =
-            {
-                {
-                    (1, 1, 1), (1, 2, 3), (2, 3, 4),
-                    (3, 4, 5), (4, 5, 6), (5, 6, 7),
-                    (6, 7, 8), (7, 8, 9), (9, 9, 9)
-                },
-                {
-                    (1, 1, 1), (1.5, 2, 2.5), (2.5, 3, 3.5),
-                    (3.5, 4, 4.5), (4.5, 5, 5.5), (5.5, 6, 6.5),
-                    (6.5, 7, 7.5), (7.5, 8, 8.5), (9, 9, 9)
-                },
-                {
-                    (1, 1, 1), (2, 2, 2), (3, 3, 3),
-                    (4, 4, 4), (5, 5, 5), (6, 6, 6),
-                    (7, 7, 7), (8, 8, 8), (9, 9, 9)
-                }
+            (double, double, double)[] TFNs =
+            {                
+                (1, 1, 1), (1, 2, 3), (2, 3, 4),
+                (3, 4, 5), (4, 5, 6), (5, 6, 7),
+                (6, 7, 8), (7, 8, 9), (9, 9, 9)                
             };
 
 
@@ -54,9 +39,9 @@ namespace KonSchool.Models
             for (i = 0; i < 5; i++)
             {
                 if (values[i] < 0)
-                    CompMat[i, i + 1] = TFNs[ConfLevel, -1 - values[i]];
+                    CompMat[i, i + 1] = TFNs[-1 - values[i]];
                 else if (values[i] > 0)
-                    CompMat[i, i + 1] = TFNs[ConfLevel, -1 + values[i]].Inverse();
+                    CompMat[i, i + 1] = TFNs[-1 + values[i]].Inverse();
                 else
                     CompMat[i, i + 1] = (1, 1, 1);
             }

@@ -3,32 +3,40 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text;
 
+using Newtonsoft.Json;
+
 namespace KonSchool.Models
 {
 
     public class School
     {
         #region Must-have
+        [JsonProperty("ID")]
         public int EIIN { get; set; }
+        [JsonProperty("Name")]
         public string Name { get; set; }
         #endregion
 
         #region Age of School
+        [JsonProperty("Age")]
         public double OLD { get; set; }
         #endregion
 
         #region Location
+        [JsonProperty("Division")]
         public string Division { get; set; }
+        [JsonProperty("District")]
         public string District { get; set; }
+        [JsonProperty("Thana")]
         public string Thana { get; set; }
+        [JsonProperty("Union_Ward")]
         public string Union_Ward { get; set; }
 
-        private string mobilenum;
-        public string MobileNum
-        {
-            get => mobilenum;
-            set => mobilenum = value.Contains("+880") ? (value) : (value.StartsWith("0") ? "+88" + value : "+880" + value);
-        }
+        [JsonProperty("MobileNum")]
+        public string MobileNum { get; set; }
+
+        [JsonProperty("StreetAddr")]
+
         public string StreetAddr { get; set; }
         
         [NotMapped]
@@ -41,10 +49,15 @@ namespace KonSchool.Models
         #endregion
 
         #region AverAge
+        [JsonProperty("AverAge6")]
         public double AverAge6 { get; set; }
+        [JsonProperty("AverAge7")]
         public double AverAge7 { get; set; }
+        [JsonProperty("AverAge8")]
         public double AverAge8 { get; set; }
+        [JsonProperty("AverAge9")]
         public double AverAge9 { get; set; }
+        [JsonProperty("AverAgeX")]
         public double AverAgeX { get; set; }
 
         private double[] averAge;
@@ -76,19 +89,25 @@ namespace KonSchool.Models
         
         // Actual age difference, stored when Query objct modifies the class instance.
         [NotMapped]
-        public double AGE { get; set; }
+        public double ADS { get; set; }
         #endregion
 
         #region Ratio
+        [JsonProperty("MFRatio")]
         public double MFR { get; set; }
+        [JsonProperty("TSRatio")]
         public double TSR { get; set; }
 
         #endregion
 
         #region Socio-Economic Status (SES)
+        [JsonProperty("SEScore1")]
         public double SEScore1 { get; set; }
+        [JsonProperty("SEScore2")]
         public double SEScore2 { get; set; }
+        [JsonProperty("SEScore3")]
         public double SEScore3 { get; set; }
+        [JsonProperty("SEScore4")]
         public double SEScore4 { get; set; }
 
         private double[] seScore;
@@ -117,6 +136,7 @@ namespace KonSchool.Models
         }
 
         // Stores Area-Score while reading from dataset. Will store actual SES after Query objct modifies the class instance.
+        [JsonProperty("Area")]
         public double SES { get; set; }
         #endregion
 
@@ -133,8 +153,11 @@ namespace KonSchool.Models
         #endregion
 
         #region Optional
+        [NotMapped]
         public bool EthnicStudents { get; set; }
+        [NotMapped]
         public bool HasBusiness { get; set; }
+        [NotMapped]
         public bool HasVocational { get; set; }
         #endregion
     }
