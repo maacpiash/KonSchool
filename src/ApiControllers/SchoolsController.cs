@@ -13,30 +13,56 @@ namespace KonSchool.ApiControllers
     [ApiController]
     public class SchoolsController : ControllerBase
     {
-        private readonly SchoolDbService _bookService;
+        private readonly SchoolService _schoolService;
 
-        public SchoolsController(SchoolDbService bookService)
+        public SchoolsController(SchoolService schoolService)
         {
-            _bookService = bookService;
+            _schoolService = schoolService;
         }
 
         [HttpGet]
-        public ActionResult<List<School>> Get()
+        public IEnumerable<School> Get()
         {
-            return _bookService.Get();
+            return _schoolService.Schools;
         }
 
-        [HttpGet("{id:length(24)}", Name = "GetBook")]
-        public ActionResult<School> Get(string id)
+        [HttpGet("{id}")]
+        public ActionResult<School> GetOneSchool(string id)
         {
-            var book = _bookService.Get(id);
+            var school = _schoolService.Schools.Where(s => s.EIIN == int.Parse(id)).First();
 
-            if (book == null)
+            if (school == null)
             {
                 return NotFound();
             }
 
-            return book;
+            return Ok(school);
+        }
+
+        [HttpGet("div/{div}")]
+        public ActionResult<IEnumerable<School>> GetSchoolsByDivision(string div)
+        {
+            var schools = _schoolService.Schools.Where(s => s.Division == div);
+
+            if (schools == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(schools);
+        }
+
+        [HttpGet("dis/{dis}")]
+        public ActionResult<IEnumerable<School>> GetSchoolsByDistrict(string dis)
+        {
+            var schools = _schoolService.Schools.Where(s => s.District == dis);
+
+            if (schools == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(schools);
         }
 
     }
