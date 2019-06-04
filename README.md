@@ -7,9 +7,9 @@
 [![Open issues](https://img.shields.io/github/issues/maacpiash/KonSchool.svg)](https://github.com/maacpiash/KonSchool/issues)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=round-square)](https://github.com/maacpiash/KonSchool/pulls)
 [![Contributors](https://img.shields.io/github/contributors/maacpiash/KonSchool.svg)](https://github.com/maacpiash/KonSchool/graphs/contributors)
-[![Recent Activities](https://img.shields.io/github/commit-activity/w/maacpiash/KonSchool.svg)](https://github.com/maacpiash/KonSchool/commits/master)
 
 *Kon School?* (Bengali: *কোন স্কুল?*, meaning *"Which school?"*) is a system that recommends a secondary school based on user's preferences and school data. The user gives student data (age, sex, class (grade), location, guardian's profession) as input. The user also compares every pair of criteria and gives each pair a relative linguistic value. Then the system
+
 - uses these linguitic values to run Fuzzy Analytic Hierarchy Process (Fuzzy AHP) to evaluate weights of each criterion
 - takes data from a dataset on secondary schools of Bangladesh and calculates comparative values for each criterion
 - gives each school a score, which is a sum of weighted criteria-values.
