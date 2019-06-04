@@ -878,5 +878,5 @@ $RECYCLE.BIN/
 
 # Local History for Visual Studio
 
-
 # End of https://www.gitignore.io/api/angular,aspnetcore,csharp,data,database,linux,macos,node,rider,visualstudio,visualstudiocode,windows
+src/appsettings.json
