@@ -90,8 +90,6 @@ namespace KonSchool.Models
 
             // Step 5: Normalization
             NormalizeBySum(ref weights);
-            // Since the optional parameters are not mentioned,
-            // the Normalize method without those is invoked here.
 
             return weights;
         }
