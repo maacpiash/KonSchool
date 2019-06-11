@@ -101,7 +101,7 @@ This endpoint can be used to access data of schools. Schools can be queried abou
 - `/api/schools` would return the data of all the schools.
 - `/api/schools/div/RAJSHAHI` would return the data of all the schools inside the division of Rajshahi.
 - `/api/schools/dis/BOGRA` would return the data of all the schools inside the district of Bogra.
-- `/api/schools/100005` would return the data of the school with EIIN 1005.
+- `/api/schools/100005` would return the data of the school with EIIN 100005.
 
 ## Acknowledgement
 
