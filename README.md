@@ -1,13 +1,15 @@
 # Kon School?
 
-[![Build status](https://ci.appveyor.com/api/projects/status/bsmib72le6n8pc1u?svg=true)](https://ci.appveyor.com/project/maacpiash/konschool)
-[![Docker pulls](https://img.shields.io/docker/pulls/maacpiash/konschool.svg)](https://hub.docker.com/r/maacpiash/konschool)
-[![.NET Core 2.2](https://img.shields.io/badge/Core-v2.2-692079.svg?logo=.net)](https://github.com/maacpiash/KonSchool/blob/master/src/KonSchool.csproj#L4)
-[![Docs](https://inch-ci.org/github/maacpiash/konschool.svg?branch=master)](https://github.com/maacpiash/KonSchool/blob/master/docs)
-[![License](https://img.shields.io/github/license/maacpiash/KonSchool.svg)](https://github.com/maacpiash/KonSchool/blob/master/LICENSE)
-[![Open issues](https://img.shields.io/github/issues/maacpiash/KonSchool.svg)](https://github.com/maacpiash/KonSchool/issues)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=round-square)](https://github.com/maacpiash/KonSchool/pulls)
-[![Contributors](https://img.shields.io/github/contributors/maacpiash/KonSchool.svg)](https://github.com/maacpiash/KonSchool/graphs/contributors)
+[![Live on Azure](https://img.shields.io/badge/Azure-Live-0089D6.svg?style=flat-square&logo=microsoft-azure)](https://KonSchool.azurewebsites.net)
+[![AppVeyor](https://img.shields.io/appveyor/ci/maacpiash/KonSchool.svg?logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/maacpiash/konschool)
+[![AppVeyor tests](https://img.shields.io/appveyor/tests/maacpiash/KonSchool.svg?compact_message&logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/maacpiash/konschool)
+[![Docker pulls](https://img.shields.io/docker/pulls/maacpiash/konschool.svg?logo=docker&style=flat-square)](https://hub.docker.com/r/maacpiash/konschool)
+[![.NET Core 2.2](https://img.shields.io/badge/Core-v2.2-692079.svg?logo=.net&style=flat-square)](https://github.com/maacpiash/KonSchool/blob/master/src/KonSchool.csproj#L4)
+[![Read the Docs](https://img.shields.io/readthedocs/konschool.svg?logo=read-the-docs&style=flat-square)](https://github.com/maacpiash/KonSchool/blob/master/docs)
+[![License](https://img.shields.io/github/license/maacpiash/KonSchool.svg?style=flat-square)](https://github.com/maacpiash/KonSchool/blob/master/LICENSE)
+[![Open issues](https://img.shields.io/github/issues/maacpiash/KonSchool.svg?logo=github&style=flat-square)](https://github.com/maacpiash/KonSchool/issues)
+[![Contributors](https://img.shields.io/github/contributors/maacpiash/KonSchool.svg?logo=git&style=flat-square)](https://github.com/maacpiash/KonSchool/graphs/contributors)
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?logo=github&style=flat-square)](https://github.com/maacpiash/KonSchool/pulls)
 
 *Kon School?* (Bengali: *কোন স্কুল?*, meaning *"Which school?"*) is a system that recommends a secondary school based on user's preferences and school data.
 
