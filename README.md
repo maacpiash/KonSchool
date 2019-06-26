@@ -7,8 +7,7 @@
 <a href="https://hub.docker.com/r/maacpiash/konschool"><img src="https://img.shields.io/docker/pulls/maacpiash/konschool.svg?logo=docker&amp;style=flat-square" alt="Docker pulls"></a>
 <a href="https://github.com/maacpiash/KonSchool/blob/master/src/KonSchool.csproj#L4"><img src="https://img.shields.io/badge/Core-v2.2-692079.svg?logo=.net&amp;style=flat-square" alt=".NET Core 2.2"></a>
 <a href="https://github.com/maacpiash/KonSchool/blob/master/docs"><img src="https://img.shields.io/readthedocs/konschool.svg?logo=read-the-docs&amp;style=flat-square" alt="Read the Docs"></a>
-</p>
-<p align="center">
+<br>
 <a href="https://github.com/maacpiash/KonSchool/blob/master/LICENSE"><img src="https://img.shields.io/github/license/maacpiash/KonSchool.svg?logo=gnu&amp;style=flat-square" alt="License"></a>
 <a href="https://github.com/maacpiash/KonSchool/issues"><img src="https://img.shields.io/github/issues/maacpiash/KonSchool.svg?logo=github&amp;style=flat-square" alt="Open issues"></a>
 <a href="https://github.com/maacpiash/KonSchool/graphs/contributors"><img src="https://img.shields.io/github/contributors/maacpiash/KonSchool.svg?logo=git&amp;style=flat-square" alt="Contributors"></a>
