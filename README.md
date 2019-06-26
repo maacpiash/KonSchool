@@ -1,15 +1,20 @@
-# Kon School?
+<h1 align="center">Kon School?</h1>
 
-[![Live on Azure](https://img.shields.io/badge/Azure-Live-0089D6.svg?style=flat-square&logo=microsoft-azure)](https://KonSchool.azurewebsites.net)
-[![AppVeyor](https://img.shields.io/appveyor/ci/maacpiash/KonSchool.svg?logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/maacpiash/konschool)
-[![AppVeyor tests](https://img.shields.io/appveyor/tests/maacpiash/KonSchool.svg?compact_message&logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/maacpiash/konschool)
-[![Docker pulls](https://img.shields.io/docker/pulls/maacpiash/konschool.svg?logo=docker&style=flat-square)](https://hub.docker.com/r/maacpiash/konschool)
-[![.NET Core 2.2](https://img.shields.io/badge/Core-v2.2-692079.svg?logo=.net&style=flat-square)](https://github.com/maacpiash/KonSchool/blob/master/src/KonSchool.csproj#L4)
-[![Read the Docs](https://img.shields.io/readthedocs/konschool.svg?logo=read-the-docs&style=flat-square)](https://github.com/maacpiash/KonSchool/blob/master/docs)
-[![License](https://img.shields.io/github/license/maacpiash/KonSchool.svg?style=flat-square)](https://github.com/maacpiash/KonSchool/blob/master/LICENSE)
-[![Open issues](https://img.shields.io/github/issues/maacpiash/KonSchool.svg?logo=github&style=flat-square)](https://github.com/maacpiash/KonSchool/issues)
-[![Contributors](https://img.shields.io/github/contributors/maacpiash/KonSchool.svg?logo=git&style=flat-square)](https://github.com/maacpiash/KonSchool/graphs/contributors)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?logo=github&style=flat-square)](https://github.com/maacpiash/KonSchool/pulls)
+<p align="center">
+<a href="https://KonSchool.azurewebsites.net"><img src="https://img.shields.io/badge/Azure-Live-0089D6.svg?style=flat-square&amp;logo=microsoft-azure" alt="Live on Azure"></a>
+<a href="https://ci.appveyor.com/project/maacpiash/konschool"><img src="https://img.shields.io/appveyor/ci/maacpiash/KonSchool.svg?logo=appveyor&amp;style=flat-square" alt="AppVeyor"></a>
+<a href="https://ci.appveyor.com/project/maacpiash/konschool"><img src="https://img.shields.io/appveyor/tests/maacpiash/KonSchool.svg?compact_message&amp;logo=appveyor&amp;style=flat-square" alt="AppVeyor tests"></a>
+<a href="https://hub.docker.com/r/maacpiash/konschool"><img src="https://img.shields.io/docker/pulls/maacpiash/konschool.svg?logo=docker&amp;style=flat-square" alt="Docker pulls"></a>
+<a href="https://github.com/maacpiash/KonSchool/blob/master/src/KonSchool.csproj#L4"><img src="https://img.shields.io/badge/Core-v2.2-692079.svg?logo=.net&amp;style=flat-square" alt=".NET Core 2.2"></a>
+<a href="https://github.com/maacpiash/KonSchool/blob/master/docs"><img src="https://img.shields.io/readthedocs/konschool.svg?logo=read-the-docs&amp;style=flat-square" alt="Read the Docs"></a>
+</p>
+<p align="center">
+<a href="https://github.com/maacpiash/KonSchool/blob/master/LICENSE"><img src="https://img.shields.io/github/license/maacpiash/KonSchool.svg?logo=gnu&amp;style=flat-square" alt="License"></a>
+<a href="https://github.com/maacpiash/KonSchool/issues"><img src="https://img.shields.io/github/issues/maacpiash/KonSchool.svg?logo=github&amp;style=flat-square" alt="Open issues"></a>
+<a href="https://github.com/maacpiash/KonSchool/graphs/contributors"><img src="https://img.shields.io/github/contributors/maacpiash/KonSchool.svg?logo=git&amp;style=flat-square" alt="Contributors"></a>
+<a href="https://github.com/maacpiash/KonSchool/pulls"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?logo=github&amp;style=flat-square" alt="PRs welcome"></a>
+<a href="https://github.com/maacpiash/KonSchool/commits"><img src="https://img.shields.io/github/last-commit/maacpiash/KonSchool.svg?logo=git&amp;style=flat-square" alt="GitHub last commit"></a>
+</p>
 
 *Kon School?* (Bengali: *কোন স্কুল?*, meaning *"Which school?"*) is a system that recommends a secondary school based on user's preferences and school data.
 
