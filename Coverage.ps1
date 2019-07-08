@@ -19,7 +19,7 @@ $toolsLocation = EndPathInSlash $toolsLocation
 $outputLocation = DefaultValue $outputLocation 'testResults\'
 $outputLocation = EndPathInSlash $outputLocation
 if ($null -eq $testProjectLocations) {
-  $testProjectLocations = Get-ChildItem 'test' | ForEach-Object FullName
+  $testProjectLocations = Get-ChildItem 'tests  ' | ForEach-Object FullName
 } else {
 	for ($i = 0; $i -ne $testProjectLocations.length; ++$i) {
 		$testProjectLocations[$i] = (Resolve-Path $testProjectLocations[$i]).Path
