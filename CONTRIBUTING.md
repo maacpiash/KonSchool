@@ -1,6 +1,6 @@
 # Contributing
 
-See [license](https://github.com/maacpiash/KonSchool/blob/master/README.md) and [code of conduct](https://github.com/maacpiash/KonSchool/blob/master/CODE_OF_CONDUCT.md) before you proceed.
+See [license](https://github.com/maacpiash/KonSchool/blob/master/LICENSE.md) and [code of conduct](https://github.com/maacpiash/KonSchool/blob/master/CODE_OF_CONDUCT.md) before you proceed.
 
 ## Guideline
 

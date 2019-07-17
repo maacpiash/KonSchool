@@ -125,4 +125,4 @@ I am very grateful to Dr. Rashedur M. Rahman ([NSU ECE](http://ece.northsouth.ed
 
 ## Contributing
 
-This project is under [GNU General Public License 3.0](https://github.com/maacpiash/KonSchool/blob/master/LICENSE). Please read the [contribution guideline](https://github.com/maacpiash/KonSchool/blob/master/CONTRIBUTING.md) in advance.
+This project is under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License](https://github.com/maacpiash/KonSchool/blob/master/LICENSE.md). Please read the [contribution guideline](https://github.com/maacpiash/KonSchool/blob/master/CONTRIBUTING.md) in advance.
