@@ -8,7 +8,7 @@ See [license](https://github.com/maacpiash/KonSchool/blob/master/LICENSE.md) and
 
 Please take a look at the roadmap listed down [here](#Roadmap) before working on any issue or feature. The enhancements that I require for this project are listed here, sort of a *wishlist*. Also look at the list of open [issue(s)](https://github.com/maacpiash/KonSchool/issues) that might need fixing. You might find find interest in one or two of them.
 
-To work on a new issue or feature, please [email me](mailto:maacpiash@outlook.com) or [open an issue](https://github.com/maacpiash/KonSchool/issues/new) before forking. After discussion, if the issue is deemed necessary to be addressed, we can start working on it.
+To work on a new issue or feature, please [email me](mailto:maacpiash@outlook.com) or [open an issue](https://github.com/maacpiash/KonSchool/issues/new) before forking. It is recommended that you follow one of the templates described [here](https://github.com/maacpiash/KonSchool/tree/master/docs). After discussion, if the issue is deemed necessary to be addressed, we can start working on it.
 
 To work on the issue, fork this repository as a project under your own GitHub username. You may want to create a new branch, properly named after the issue. This would help you if you would like to work on more issues down the road.
 
