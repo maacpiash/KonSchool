@@ -8,7 +8,7 @@ using static KonSchool.Models.Stat;
 
 namespace KonSchool.Tests
 {
-    public class Stat
+    public class StatTests
     {
         [Fact]
         public void Can_Normalize_BySum()
