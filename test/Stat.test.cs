@@ -40,6 +40,8 @@ namespace KonSchool.Tests
             double[] dummy = new double[] { 1, 2, 3, 4, 5 };
             double nd = NORMDIST(5, 3, 1.5811388300841898, false);
             Assert.Equal(0.11337165224497912, nd, 6);
+            nd = NORMDIST(5, 3, 1.5811388300841898, true);
+            Assert.Equal(0.897048388225841, nd, 6);
         }
     }
 }
