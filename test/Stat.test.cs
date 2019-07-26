@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Xunit;
+﻿using Xunit;
 
-using KonSchool.Models;
 using static KonSchool.Models.Stat;
 
 namespace KonSchool.Tests
