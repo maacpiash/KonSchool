@@ -6,6 +6,39 @@ namespace KonSchool.Tests
     public class SchoolTests
     {
         [Fact]
+        public void Can_GetSetValues()
+        {
+            School school = new School(121212)
+            {
+                Name = "Ideal School & College",
+                OLD = 0.7,
+                Division = "Dhaka",
+                District = "Dhaka",
+                Thana = "Motijheel",
+                Union_Ward = "Ward no. 10",
+                StreetAddr = "Motijheel",
+                MobileNum = "01212121212",
+                LOC = 0.5,
+                Type = "co-ed",
+                Level = "hi-sec",
+                ADS = 0.2,
+                MFR = 1.0,
+                TSR = 0.3,
+                SES = 0.4,
+                WeightedScores = new double[] { },
+                EthnicStudents = true,
+                HasBusiness = true,
+                HasVocational = false
+            };
+
+            for (int i = 0; i < 5; i++)
+                Assert.Equal(0.0, school.AverAge[i]);
+            for (int i = 0; i < 4; i++)
+                Assert.Equal(0.0, school.SEScore[i]);
+        }
+
+
+        [Fact]
         public void Can_SetValuesFromArray()
         {
             School school = new School(121212);
