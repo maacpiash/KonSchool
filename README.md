@@ -8,9 +8,11 @@
 
 **Build Status:**
 
-| Windows (VS2017) | macOS (High Sierra) | Linux (Ubuntu, Bionic Beaver) |
-| --- | --- | --- |
-| [![AppVeyor](https://img.shields.io/appveyor/ci/maacpiash/KonSchool.svg?logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/maacpiash/konschool) | [![Build Status](https://dev.azure.com/maacintush/KonSchool/_apis/build/status/KonSchool?branchName=master)](https://dev.azure.com/maacintush/KonSchool/_build/latest?definitionId=3&branchName=master) | [![Travis (.org)](https://img.shields.io/travis/maacpiash/KonSchool.svg?logo=travis&style=flat-square)](https://travis-ci.org/maacpiash/KonSchool) |
+| Platform | Status |
+| --- | --- |
+| Widows (VS2017) | [![Build Status](https://dev.azure.com/maacintush/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20windows)](https://dev.azure.com/maacintush/KonSchool/_build/latest?definitionId=3&branchName=master) |
+| macOS (10.13) | [![Build Status](https://dev.azure.com/maacintush/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20mac)](https://dev.azure.com/maacintush/KonSchool/_build/latest?definitionId=3&branchName=master) |
+| Linux (Ubuntu 16.04) | [![Build Status](https://dev.azure.com/maacintush/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20linux)](https://dev.azure.com/maacintush/KonSchool/_build/latest?definitionId=3&branchName=master) |
 
 **Tests and code Coverage:**
 
