@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 using KonSchool.Models;
@@ -32,6 +31,21 @@ namespace KonSchool.Tests
             var compMat = ComparisonMatrix(values);
             for (int i = 0; i < 5; i++)
                 Assert.Equal((1.0, 1.0, 1.0), compMat[i, i]);
+        }
+
+        [Theory]
+        [InlineData("1", "2", "3", "4", "At least 5 integers are expected.")]
+        [InlineData("10", "2", "3", "4", "At least 5 integers are expected.")]
+        [InlineData("-10", "-9"," -8", "-7", "-6", "Error at 0 = -10: Fuzzy input must be between -9 and +9.")]
+        public void ThrowsErrorForInvalidData(params string[] comparisonValues)
+        {
+            List<int> values = new List<int>();
+            int max = comparisonValues.Length - 1;
+            for (int i = 0; i < max; i++)
+                values.Add(int.Parse(comparisonValues[i]));
+
+            Exception ex = Assert.Throws<ArgumentException>(() => ComparisonMatrix(values.ToArray()));
+            Assert.Equal(comparisonValues[max], ex.Message);
         }
     }
 }

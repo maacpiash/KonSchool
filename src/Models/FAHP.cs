@@ -15,9 +15,11 @@ namespace KonSchool.Models
         private double[] criteriaWeights;
         public double[] CriteriaWeights
         {
-            get => criteriaWeights ?? RunFAHP();
+            get => criteriaWeights ?? (ValidMatrix ? RunFAHP() : null);
             set => criteriaWeights = value;
         }
+
+        public bool ValidMatrix { get; set; }
 
         public (double, double, double)[,] ComparisonMatrix;
 
@@ -27,33 +29,18 @@ namespace KonSchool.Models
         {
             CriteriaCount = ComparisonMatrix.GetLength(0);
             this.ComparisonMatrix = ComparisonMatrix;
-
-            try
-            {
-                Validate();
-            }
-            catch (Exception e)
-            {
-                Console.Error.WriteLine(e.ToString());
-                return;
-            }
-
-            RunFAHP();
+            ValidMatrix = IsValid();
+            if (ValidMatrix) RunFAHP();
         }
 
-        private void Validate()
+        private bool IsValid()
         {
-            if (ComparisonMatrix.GetLength(0) != ComparisonMatrix.GetLength(1))
-                throw new InvalidDataException("Must be a square matrix.");
-
-            if (ComparisonMatrix.GetLength(0) != CriteriaCount)
-                throw new InvalidDataException("Must have as many column/row as number of criteria.");
-
             for (int i = 0; i < CriteriaCount; i++)
             {
                 if (!ComparisonMatrix[i, i].Equals((1.0, 1.0, 1.0)))
-                    throw new InvalidDataException("Each criterion must have equal importance TFN compared to itself.");
+                    return false;
             }
+            return true;
         }
 
         private double[] RunFAHP()
