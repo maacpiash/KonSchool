@@ -1,20 +1,16 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
+using System.Collections.Generic;
 using System.Net;
-using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
+
 using KonSchool.Models;
-using Microsoft.Extensions.Configuration;
 using Newtonsoft.Json;
 
 namespace KonSchool.Services
 {
-    public class SchoolService
+    public class SchoolService : ISchoolService
     {
-        public readonly List<School> Schools;
+        readonly List<School> Schools;
 
         public SchoolService()
         {
@@ -39,13 +35,20 @@ namespace KonSchool.Services
             // Console.WriteLine("Response stream received.");
             string json = readStream.ReadToEnd();
             Schools = JsonConvert.DeserializeObject<List<School>>(json);
-            Console.WriteLine("NUMBER OF SCHOOLS: " + Schools?.Count);
 
             response.Close();
             readStream.Close();
         }
 
+        public IEnumerable<School> GetSchools() => Schools;
+
         public School Get(string eiin) => Schools.Find(School => School.EIIN.Equals(eiin));
         
+    }
+
+    public interface ISchoolService
+    {
+        School Get(string eiin);
+        IEnumerable<School> GetSchools();
     }
 }

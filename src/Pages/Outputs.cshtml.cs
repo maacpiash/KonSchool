@@ -14,7 +14,7 @@ namespace KonSchool.Pages
     {
         public Query _Query { get; set; }
 
-        public OutputsModel(Query query, SchoolService schoolService)
+        public OutputsModel(Query query)
         {
             _Query = query;
         }

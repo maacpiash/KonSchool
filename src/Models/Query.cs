@@ -28,12 +28,12 @@ namespace KonSchool.Models
         private static List<string> occupations;
         public List<School> Alternatives;
 
-        public SchoolService _SchoolService { get; set; }
+        public ISchoolService _SchoolService { get; set; }
 
-        public Query(SchoolService schoolService)
+        public Query(ISchoolService schoolService)
         {
             _SchoolService = schoolService;
-            Alternatives = _SchoolService.Schools;
+            Alternatives = _SchoolService.GetSchools().ToList();
         }
 
         public static List<string> Occupations

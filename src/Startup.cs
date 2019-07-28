@@ -37,7 +37,7 @@ namespace KonSchool
             });
 
             services.AddSingleton<Query>();
-            services.AddSingleton<SchoolService>();
+            services.AddSingleton<ISchoolService, SchoolService>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
         }
