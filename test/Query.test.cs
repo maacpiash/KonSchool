@@ -5,34 +5,44 @@ using System.Collections.Generic;
 
 namespace KonSchool.Tests
 {
-   public class QueryTests
-   {
-       public static TestSchoolService schoolService;
+    public class QueryTests
+    {
+        [Fact]
+        public void CtorTest()
+        {
+            Query query = new Query(new TestSchoolService())
+            {
+                Class = 10,
+                Social = 10.0,
+                IsMale = false,
+                Age = 16,
+                Occupation = "Soidi",
+                CompMat = new (double, double, double)[,]
+                 {
+                    { (1.0, 1.0, 1.0), (1.0, 3.0, 5.0) },
+                    { (1.0, 3.0, 5.0), (1.0, 1.0, 1.0) },
+                 },
+                Weights = new double[] { 0.1667, 0.1667, 0.1667, 0.1667, 0.1667, 0.1667 },
+                LimitByDistrict = false,
+                LimitByDivision = false
+            };
 
-       [Fact]
-       public void CtorTest()
-       {
-           schoolService = new TestSchoolService();
-           Query query = new Query(schoolService)
-           {
-               Class = 10,
-               Social = 10.0,
-               IsMale = false,
-               Age = 16,
-               Division = "Dhaka",
-               District = "Dhaka",
-               Thana = "Rampura",
-               Union_Ward = "Ward no. 1",
-               Occupation = "Expatriate",
-               CompMat = new (double, double, double)[,]
-               {
-                   { (1.0, 1.0, 1.0), (1.0, 3.0, 5.0) },
-                   { (1.0, 3.0, 5.0), (1.0, 1.0, 1.0) },
-               },
-               Weights = new double[] { 0.1667, 0.1667, 0.1667, 0.1667, 0.1667, 0.1667 }
-           };
-       }
-   }
+            Assert.Equal(1, query.Alternatives.Count);
+            Assert.Equal("Other", query.Occupation);
+        }
+
+        [Fact]
+        public void Can_SetLocation()
+        {
+            Query query = new Query(new TestSchoolService());
+            query.SetLocation("Dhaka", "Dhaka", "Rampura", "Ward no. 1");
+            Assert.Equal("Dhaka", query.Division);
+            Assert.Equal("Dhaka", query.District);
+            Assert.Equal("Rampura", query.Thana);
+            Assert.Equal("Ward no. 1", query.Union_Ward);
+        }
+
+    }
 
     public class TestSchoolService : ISchoolService
     {
