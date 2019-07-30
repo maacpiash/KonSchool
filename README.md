@@ -10,9 +10,9 @@
 
 | Platform | Status |
 | --- | --- |
-| Widows (VS2017) | [![Build Status](https://dev.azure.com/maacintush/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20windows)](https://dev.azure.com/maacintush/KonSchool/_build/latest?definitionId=3&branchName=master) |
-| macOS (10.13) | [![Build Status](https://dev.azure.com/maacintush/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20mac)](https://dev.azure.com/maacintush/KonSchool/_build/latest?definitionId=3&branchName=master) |
-| Linux (Ubuntu 16.04) | [![Build Status](https://dev.azure.com/maacintush/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20linux)](https://dev.azure.com/maacintush/KonSchool/_build/latest?definitionId=3&branchName=master) |
+| Widows (VS2017) | [![Build Status](https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20windows)](https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master) |
+| macOS (10.13) | [![Build Status](https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20mac)](https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master) |
+| Linux (Ubuntu 16.04) | [![Build Status](https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20linux)](https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master) |
 
 **Tests and code Coverage:**
 
