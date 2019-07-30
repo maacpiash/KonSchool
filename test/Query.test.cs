@@ -27,7 +27,7 @@ namespace KonSchool.Tests
                 LimitByDivision = false
             };
 
-            Assert.Equal(1, query.Alternatives.Count);
+            Assert.Equal(5, query.Alternatives.Count);
             Assert.Equal("Other", query.Occupation);
         }
 
