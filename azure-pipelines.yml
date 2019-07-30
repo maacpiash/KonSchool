@@ -12,15 +12,12 @@ strategy:
     windows:
       imageName: 'vs2017-win2016'
 
-variables:
-  buildConfiguration: 'Release'
-
 steps:
 - script: dotnet restore
-  displayName: 'dotnet restore'
+  displayName: 'Restore packages'
 
-- script: dotnet build --configuration $(buildConfiguration)
-  displayName: 'dotnet build $(buildConfiguration)'
+- script: dotnet build
+  displayName: 'Build projects'
 
 - script: dotnet test ./test/KonSchool.Tests.csproj
-  displayName: 'dotnet test'
+  displayName: 'Run unit tests'
