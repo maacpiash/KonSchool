@@ -1,7 +1,7 @@
-using Xunit;
+using System.Collections.Generic;
 using KonSchool.Models;
 using KonSchool.Services;
-using System.Collections.Generic;
+using Xunit;
 
 namespace KonSchool.Tests
 {
@@ -18,10 +18,10 @@ namespace KonSchool.Tests
                 Age = 16,
                 Occupation = "Soidi",
                 CompMat = new (double, double, double)[,]
-                 {
+                {
                     { (1.0, 1.0, 1.0), (1.0, 3.0, 5.0) },
                     { (1.0, 3.0, 5.0), (1.0, 1.0, 1.0) },
-                 },
+                },
                 Weights = new double[] { 0.1667, 0.1667, 0.1667, 0.1667, 0.1667, 0.1667 },
                 LimitByDistrict = false,
                 LimitByDivision = false
@@ -42,6 +42,37 @@ namespace KonSchool.Tests
             Assert.Equal("Ward no. 1", query.Union_Ward);
         }
 
+        [Fact]
+        public void Can_CheckEligibility ()
+        {
+            Query query = new Query(new TestSchoolService())
+            {
+                Class = 10,
+                Social = 10.0,
+                IsMale = false,
+                Age = 16,
+                Occupation = "Soidi",
+                CompMat = new (double, double, double)[,]
+                {
+                    { (1.0, 1.0, 1.0), (1.0, 3.0, 5.0) },
+                    { (1.0, 3.0, 5.0), (1.0, 1.0, 1.0) },
+                },
+                Weights = new double[] { 0.1667, 0.1667, 0.1667, 0.1667, 0.1667, 0.1667 },
+                LimitByDistrict = false,
+                LimitByDivision = true,
+                Division = "Dhaka",
+                District = "Dhaka"
+            };
+
+            query.SetValues();
+
+            Assert.Equal(2, query.Alternatives.Count);
+
+            query.LimitByDistrict = true;
+            query.SetValues();
+
+            Assert.Equal(1, query.Alternatives.Count);
+        }
     }
 
     public class TestSchoolService : ISchoolService
@@ -53,6 +84,38 @@ namespace KonSchool.Tests
             Schools = new List<School>
             {
                 new School(1212)
+                {
+                    Type = "BOYS",
+                    Level = "Junior secondary",
+                    Division = "Comilla"
+                },
+                new School(3434)
+                {
+                    Type = "BOYS",
+                    Level = "Junior secondary",
+                    Division = "Dhaka",
+                    District = "Faridpur"
+                },
+                new School(5656)
+                {
+                    Type = "BOYS",
+                    Level = "Secondary",
+                    Division = "Dhaka"
+                },
+                new School(7878)
+                {
+                    Type = "GIRLS",
+                    Level = "Secondary",
+                    Division = "Dhaka",
+                    District = "Gazipur"
+                },
+                new School(7878)
+                {
+                    Type = "GIRLS",
+                    Level = "Secondary",
+                    Division = "Dhaka",
+                    District = "Dhaka"
+                }
             };
         }
 
