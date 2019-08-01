@@ -65,7 +65,6 @@ For more details on calculation of weights from fuzzy inputs, please check the [
 - Weights of 6 criteria
 - Compatibility scores for all eligible schools
 
-
 ## Data on schools
 
 The dataset on schools that is used for this system was compiled from several datasets that were originally collected from [Bangladesh Open Data](http://data.gov.bd/dataset). It contains the data on 14,274 schools across thecountry. The SQLite database can be found [here](https://drive.google.com/open?id=1_MZnVRHl0ZLHEMab7lBhpUvuS3yaLoPZ). You can also use API endpoints to access the data (view the [REST API section](#REST-API) below for further instructions).
@@ -135,4 +134,4 @@ I am very grateful to Dr. Rashedur M. Rahman ([NSU ECE](http://ece.northsouth.ed
 
 ## Contributing
 
-This project is under [Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International Public License](https://github.com/maacpiash/KonSchool/blob/master/LICENSE.md). Please read the [contribution guideline](https://github.com/maacpiash/KonSchool/blob/master/CONTRIBUTING.md) in advance.
+This project is under [GNU Affero General Public License v3](https://github.com/maacpiash/KonSchool/blob/master/LICENSE.md). Please read the [contribution guideline](https://github.com/maacpiash/KonSchool/blob/master/CONTRIBUTING.md) in advance.
