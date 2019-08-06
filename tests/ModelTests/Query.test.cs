@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using KonSchool.Models;
-using KonSchool.Services;
+using KonSchool.Tests.Mocks;
 using Xunit;
 
 namespace KonSchool.Tests.ModelTests
@@ -10,7 +10,7 @@ namespace KonSchool.Tests.ModelTests
         [Fact]
         public void CtorTest()
         {
-            Query query = new Query(new TestSchoolService())
+            Query query = new Query(new SchoolServiceMock())
             {
                 Class = 10,
                 Social = 10.0,
@@ -34,7 +34,7 @@ namespace KonSchool.Tests.ModelTests
         [Fact]
         public void Can_SetLocation()
         {
-            Query query = new Query(new TestSchoolService());
+            Query query = new Query(new SchoolServiceMock());
             query.SetLocation("Dhaka", "Dhaka", "Rampura", "Ward no. 1");
             Assert.Equal("Dhaka", query.Division);
             Assert.Equal("Dhaka", query.District);
@@ -45,7 +45,7 @@ namespace KonSchool.Tests.ModelTests
         [Fact]
         public void Can_CheckEligibility_Female()
         {
-            Query query = new Query(new TestSchoolService())
+            Query query = new Query(new SchoolServiceMock())
             {
                 Class = 10,
                 Social = 10.0,
@@ -77,7 +77,7 @@ namespace KonSchool.Tests.ModelTests
         [Fact]
         public void Can_CheckEligibility_Male()
         {
-            Query query = new Query(new TestSchoolService())
+            Query query = new Query(new SchoolServiceMock())
             {
                 Class = 7,
                 Social = 10.0,
@@ -105,60 +105,5 @@ namespace KonSchool.Tests.ModelTests
 
             Assert.Equal(2, query.Alternatives.Count);
         }
-    }
-
-    public class TestSchoolService : ISchoolService
-    {
-        public List<School> Schools { get; }
-
-        public TestSchoolService()
-        {
-            Schools = new List<School>
-            {
-                new School(1212)
-                {
-                    Type = "BOYS",
-                    Level = "Junior secondary",
-                    Division = "Comilla"
-                },
-                new School(3434)
-                {
-                    Type = "BOYS",
-                    Level = "Junior secondary",
-                    Division = "Dhaka",
-                    District = "Faridpur"
-                },
-                new School(5656)
-                {
-                    Type = "BOYS",
-                    Level = "Secondary",
-                    Division = "Dhaka"
-                },
-                new School(7878)
-                {
-                    Type = "GIRLS",
-                    Level = "Secondary",
-                    Division = "Dhaka",
-                    District = "Gazipur"
-                },
-                new School(9090)
-                {
-                    Type = "GIRLS",
-                    Level = "Secondary",
-                    Division = "Dhaka",
-                    District = "Dhaka"
-                },
-                new School(1010)
-                {
-                    Type = "BOYS",
-                    Level = "Junior secondary",
-                    Division = default(string)
-                }
-            };
-        }
-
-        public IEnumerable<School> GetSchools() => Schools;
-
-        public School Get(string eiin) => Schools.Find(school => school.EIIN.Equals(eiin));
     }
 }
