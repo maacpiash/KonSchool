@@ -23,8 +23,11 @@ For commit messages, please follow [this guideline](https://chris.beams.io/posts
 
 - [ ] Write more unit tests for the classes in `KonSchool.Models` namespace.
 - [ ] Add pagination to the page that show the list of eligible schools.
+- [ ] Add a swagger for the REST API endpoints.
+  - [ ] `/api/fahp`
+  - [ ] `/api/schools`
 - [ ] *Optional:* Add UI elements that can add/remove location-based (division/district) constraints on list of schools page.
 - [ ] *Optional:* Fix a CI/CD pipeline so that the app can be deployed on Heroku with every commit push.
-- [ ] *Optional:* Upgrade app to the upcoming .NET Core 3.0 to leverage the performance boost and the Blazor library.
+- [ ] *Optional:* Upgrade app to the upcoming .NET Core 3.0 to leverage the performance boost and the Blazor library. (I will start working on it as soon as .NET Core 3.0 RC comes out.)
   - [ ] A large part of the UI would require to be rewritten.
-
+  - [ ] Some UI tests would have to be fixed.

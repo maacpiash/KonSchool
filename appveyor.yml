@@ -9,9 +9,8 @@ init:
 
 before_build:
 - nuget restore
-- choco install xunit
-- choco install opencover.portable
-- choco install codecov
+- choco install xunit opencover.portable codecov
+- dotnet --version
 
 build:
   project: KonSchool.sln
