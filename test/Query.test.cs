@@ -27,7 +27,7 @@ namespace KonSchool.Tests
                 LimitByDivision = false
             };
 
-            Assert.Equal(5, query.Alternatives.Count);
+            Assert.Equal(6, query.Alternatives.Count);
             Assert.Equal("Other", query.Occupation);
         }
 
@@ -43,7 +43,7 @@ namespace KonSchool.Tests
         }
 
         [Fact]
-        public void Can_CheckEligibility ()
+        public void Can_CheckEligibility_Female()
         {
             Query query = new Query(new TestSchoolService())
             {
@@ -71,7 +71,39 @@ namespace KonSchool.Tests
             query.LimitByDistrict = true;
             query.SetValues();
 
-            Assert.Equal(1, query.Alternatives.Count);
+            Assert.Single(query.Alternatives);
+        }
+
+        [Fact]
+        public void Can_CheckEligibility_Male()
+        {
+            Query query = new Query(new TestSchoolService())
+            {
+                Class = 7,
+                Social = 10.0,
+                IsMale = true,
+                Age = 13,
+                Occupation = "Govt. job",
+                CompMat = new (double, double, double)[,]
+                {
+                    { (1.0, 1.0, 1.0), (1.0, 3.0, 5.0) },
+                    { (1.0, 3.0, 5.0), (1.0, 1.0, 1.0) },
+                },
+                Weights = new double[] { 0.1667, 0.1667, 0.1667, 0.1667, 0.1667, 0.1667 },
+                LimitByDistrict = false,
+                LimitByDivision = false
+            };
+
+            query.SetValues();
+            
+            Assert.Equal(4, query.Alternatives.Count);
+
+            query.Division = "Dhaka";
+            query.LimitByDivision = true;
+
+            query.SetValues();
+
+            Assert.Equal(2, query.Alternatives.Count);
         }
     }
 
@@ -109,12 +141,18 @@ namespace KonSchool.Tests
                     Division = "Dhaka",
                     District = "Gazipur"
                 },
-                new School(7878)
+                new School(9090)
                 {
                     Type = "GIRLS",
                     Level = "Secondary",
                     Division = "Dhaka",
                     District = "Dhaka"
+                },
+                new School(1010)
+                {
+                    Type = "BOYS",
+                    Level = "Junior secondary",
+                    Division = default(string)
                 }
             };
         }

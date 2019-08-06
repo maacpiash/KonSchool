@@ -78,17 +78,15 @@ namespace KonSchool.Models
             foreach (School s in Alternatives)
                 if (IsEligible(s)) eligibleSchools.Add(s);
             
-
             foreach (School s in eligibleSchools)
             { 
-
                 // MFR
                 if (IsMale) s.MFR = 1 - s.MFR;
 
                 // LOC
                 if (Division != default(string))
                     s.LOC = Division == s.Division ? (District == s.District ? (Thana == s.Thana ?
-                            (Union_Ward == s.Union_Ward ? 1.0 : 0.9) : 0.7) : 0.4) : 0.0;
+                        (Union_Ward == s.Union_Ward ? 1.0 : 0.9) : 0.7) : 0.4) : 0.0;
                 else
                     Console.Error.WriteLine("LOC not set!");
 
