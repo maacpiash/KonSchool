@@ -13,25 +13,25 @@ namespace KonSchool.ApiControllers
     [ApiController]
     public class SchoolsController : ControllerBase
     {
-        private readonly SchoolService _schoolService;
+        private readonly ISchoolService _schoolService;
         private List<School> _schools;
 
-        public SchoolsController(SchoolService schoolService)
+        public SchoolsController(ISchoolService schoolService)
         {
             _schoolService = schoolService;
             _schools = _schoolService.GetSchools().ToList();
         }
 
         [HttpGet]
-        public IEnumerable<School> Get()
+        public ActionResult<IEnumerable<School>> Get()
         {
-            return _schools;
+            return Ok(_schools);
         }
 
         [HttpGet("{id}")]
         public ActionResult<School> GetOneSchool(string id)
         {
-            var school = _schools.Where(s => s.EIIN == int.Parse(id)).First();
+            var school = _schools.Where(s => s.EIIN == int.Parse(id)).FirstOrDefault();
 
             if (school == null)
             {
@@ -46,7 +46,7 @@ namespace KonSchool.ApiControllers
         {
             var schools = _schools.Where(s => s.Division == div);
 
-            if (schools == null)
+            if (schools == null || schools.Count() == 0)
             {
                 return NotFound();
             }
@@ -59,7 +59,7 @@ namespace KonSchool.ApiControllers
         {
             var schools = _schools.Where(s => s.District == dis);
 
-            if (schools == null)
+            if (schools == null || schools.Count() == 0)
             {
                 return NotFound();
             }
