@@ -880,5 +880,4 @@ $RECYCLE.BIN/
 
 # End of https://www.gitignore.io/api/angular,aspnetcore,csharp,data,database,linux,macos,node,rider,visualstudio,visualstudiocode,windows
 src/appsettings.json
-test/coverage.json
-tests/*
+tests/coverage.json

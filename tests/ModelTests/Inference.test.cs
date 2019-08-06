@@ -5,7 +5,7 @@ using Xunit;
 using KonSchool.Models;
 using static KonSchool.Models.Inference;
 
-namespace KonSchool.Tests
+namespace KonSchool.Tests.ModelTests
 {
     public class InferenceTests
     {

@@ -2,7 +2,7 @@
 
 using static KonSchool.Models.Stat;
 
-namespace KonSchool.Tests
+namespace KonSchool.Tests.ModelTests
 {
     public class StatTests
     {

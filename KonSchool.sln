@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KonSchool", "src\KonSchool.csproj", "{94C0A97F-2405-446D-9A92-9203F6BBD436}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KonSchool.Tests", "test\KonSchool.Tests.csproj", "{7EFDDAD5-9934-460E-94E6-A588E93852E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KonSchool.Tests", "tests\KonSchool.Tests.csproj", "{7EFDDAD5-9934-460E-94E6-A588E93852E0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

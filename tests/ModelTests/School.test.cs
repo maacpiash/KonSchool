@@ -1,7 +1,7 @@
 using Xunit;
 using KonSchool.Models;
 
-namespace KonSchool.Tests
+namespace KonSchool.Tests.ModelTests
 {
     public class SchoolTests
     {

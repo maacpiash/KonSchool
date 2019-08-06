@@ -3,7 +3,7 @@ using KonSchool.Models;
 using KonSchool.Services;
 using Xunit;
 
-namespace KonSchool.Tests
+namespace KonSchool.Tests.ModelTests
 {
     public class QueryTests
     {
