@@ -46,7 +46,7 @@ namespace KonSchool.ApiControllers
         {
             var schools = _schools.Where(s => s.Division == div);
 
-            if (schools == null || schools.Count() == 0)
+            if (schools.Count() == 0)
             {
                 return NotFound();
             }
@@ -59,7 +59,7 @@ namespace KonSchool.ApiControllers
         {
             var schools = _schools.Where(s => s.District == dis);
 
-            if (schools == null || schools.Count() == 0)
+            if (schools.Count() == 0)
             {
                 return NotFound();
             }
