@@ -2,24 +2,53 @@
 
 [![Live on Azure](https://img.shields.io/badge/Azure-Live-0089D6.svg?style=flat-square&logo=microsoft-azure)](https://KonSchool.azurewebsites.net)
 [![Docker pulls](https://img.shields.io/docker/pulls/maacpiash/konschool.svg?logo=docker&style=flat-square)](https://hub.docker.com/r/maacpiash/konschool)
-[![.NET Core 2.2](https://img.shields.io/badge/Core-v2.2-692079.svg?logo=.net&style=flat-square)](https://github.com/maacpiash/KonSchool/blob/master/src/KonSchool.csproj#L4)
+[![.NET Core 2.2](https://img.shields.io/badge/Core-v2.2-692079.svg?logo=.net&style=flat-square)](https://dot.net/get-core)
 [![GitHub last commit](https://img.shields.io/github/last-commit/maacpiash/KonSchool.svg?logo=git&style=flat-square)](https://github.com/maacpiash/KonSchool/commits)
 [![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?logo=github&style=flat-square)](https://github.com/maacpiash/KonSchool/pulls)
 
 **Build Status:**
 
-| Platform | Status |
-| --- | --- |
-| Widows (VS2017) | [![Build Status](https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20windows)](https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master) |
-| macOS (10.13) | [![Build Status](https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20mac)](https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master) |
-| Linux (Ubuntu 16.04) | [![Build Status](https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20linux)](https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master) |
+<table>
+  <thead>
+    <tr>
+      <th>Server</th>
+      <th>Platform</th>
+      <th>Status</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="center" rowspan=4>Azure<br/>Pipelines</td>
+      <td align="center">Windows (VS 2017)</td>
+      <td align="center"><a href="https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master" target="blank"><img src="https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20windows" alt="Build Status"></td>
+    <tr>
+    <tr>
+      <td align="center">macOS (10.13)</td>
+      <td align="center"><a href="https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master" target="blank"><img src="https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20mac" alt="Build Status"></td>
+    </tr>
+    <tr>
+      <td align="center">Linux (Ubuntu 16.04)</td>
+      <td align="center"><a href="https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master" target="blank"><img src="https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20linux" alt="Build Status"></td>
+    </tr>
+    <tr>
+      <td align="center">AppVeyor</td>
+      <td align="center">Windows (VS 2017)</td>
+      <td align="center"><a href="https://ci.appveyor.com/project/maacpiash/konschool" target="blank"><img src="https://img.shields.io/appveyor/ci/maacpiash/KonSchool?style=flat-square&logo=appveyor" alt="AppVeyor"></a></td>
+    </tr>
+    <tr>
+      <td align="center">Travis CI</td>
+      <td align="center">Linux (Ubuntu 18.04)</td>
+      <td align="center"><a href="https://travis-ci.org/maacpiash/KonSchool" target="blank"><img src="https://img.shields.io/travis/maacpiash/KonSchool?style=flat-square&logo=travis" alt="Travis (.org)"></a></td>
+    </tr>
+  </tbody>
+</table>
 
-**Tests and code Coverage:**
+**Unit tests and code coverage:**
 
 [![AppVeyor tests](https://img.shields.io/appveyor/tests/maacpiash/KonSchool.svg?compact_message&logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/maacpiash/konschool)
 [![Codecov](https://img.shields.io/codecov/c/gh/maacpiash/KonSchool.svg?logo=codecov&style=flat-square)](https://codecov.io/gh/maacpiash/KonSchool)
 
-*Kon School?* (Bengali: *কোন স্কুল?*, meaning *"Which school?"*) is a system that recommends a secondary school based on user's preferences and school data.
+*Kon School?* (Bengali: *কোন স্কুল?*, meaning *"Which school?"*) is a recommendation system that gives secondary schools personalized compatibility scores based on user's preferences.
 
 - [Process](#Process)
   - [Criteria of schools](#Criteria-of-schools)
@@ -27,10 +56,12 @@
   - [Calculation](#Calculation)
   - [Outputs](#Outputs)
 - [Data on Schools](#Data-on-schools)
-- [Running the web app](#Running-the-web-app)
+- [Running the web app locally](#Running-the-web-app-locally)
   - [Compilation of source](#Compilation-of-source)
   - [Docker image](#Docker-image)
 - [REST API](#REST-API)
+  - [Fuzzy AHP endpoint, `/api/fahp`](#Fuzzy-AHP-endpoint-apifahp)
+  - [School data endpoint, `/api/schools`](#School-data-endpoint-apischools)
 - [Acknowledgement](#Acknowledgement)
 - [Contributing](#Contributing)
 
@@ -71,7 +102,7 @@ The dataset on schools that is used for this system was compiled from several da
 
 The collection of data and its preprocessing is discussed in the [`docs`](https://github.com/maacpiash/KonSchool/tree/master/docs).
 
-## Running the web app
+## Running the web app locally
 
 There are two ways.
 
