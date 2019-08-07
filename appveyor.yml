@@ -12,7 +12,7 @@ before_build:
 - choco install xunit
 - choco install opencover.portable
 - choco install codecov
-- dotnet --version
+- dotnet --info
 
 build:
   project: KonSchool.sln
