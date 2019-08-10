@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
 using KonSchool.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace KonSchool.Pages
 {
@@ -14,16 +15,16 @@ namespace KonSchool.Pages
     {
         public List<SelectListItem> Classes, Occupations, Divisions, Districts, Thanas, Unions_Wards;
 
-        [BindProperty] public string Class { get; set; }
-        [BindProperty] public string Occupation { get; set; }
-        [BindProperty] public int Sex { get; set; }
-        [BindProperty] public int Age { get; set; }
-        [BindProperty] public string Division { get; set; }
-        [BindProperty] public string District { get; set; }
-        [BindProperty] public string Thana { get; set; }
-        [BindProperty] public string UW { get; set; }
-        [BindProperty] public bool ByDiv { get; set; }
-        [BindProperty] public bool ByDist { get; set; }
+        [BindProperty] [Required] public string Class { get; set; }
+        [BindProperty] [Required] public string Occupation { get; set; }
+        [BindProperty] [Required] public int Sex { get; set; }
+        [BindProperty] [Required] public int Age { get; set; }
+        [BindProperty] [Required] public string Division { get; set; }
+        [BindProperty] [Required] public string District { get; set; }
+        [BindProperty] [Required] public string Thana { get; set; }
+        [BindProperty] [Required] public string UW { get; set; }
+        [BindProperty] [Required] public bool ByDiv { get; set; }
+        [BindProperty] [Required] public bool ByDist { get; set; }
 
         public Query _Query { get; set; }
 
@@ -83,8 +84,8 @@ namespace KonSchool.Pages
             }
             _Query.IsMale = Sex == 1;
             _Query.Age = Age;
-            string uw = UW == null ? "BHATARA" : UW.Split('[')[0].Trim();
-            _Query.SetLocation(Division ?? "DHAKA", District ?? "DHAKA", Thana ?? "BHATARA", uw);
+            string uw = UW.Split('[')[0].Trim();
+            _Query.SetLocation(Division, District, Thana, uw);
             _Query.LimitByDivision = ByDiv;
             _Query.LimitByDistrict = ByDist;
             return RedirectToPage("/Inputs");

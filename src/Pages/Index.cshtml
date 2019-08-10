@@ -12,7 +12,7 @@
 </head>
 <body onload="DivDistChange(document.getElementById('division');">
     <h3>Welcome to "কোন স্কুল?"</h3>
-    <h4>"কোন স্কুল?" is an app designed to help you find the best school for your child or dependant!</h4>
+    <h4>"কোন স্কুল?" is an app designed to help you find the most suitable schools for your child or dependant!</h4>
     <div>
         <p>Please enter the details of your child/dependant and yourself:</p>
         <br />
@@ -24,8 +24,10 @@
                     </div>
                     <div class="col-md-3">
                         <select id="classInput" class="form-control" asp-for="Class" asp-items="Model.Classes"></select>
+                        <span asp-validation-for="Class"></span>
                     </div>
                 </div>
+                <br />
                 <br />
                 <br />
                 <div class="input-group-prepend">
@@ -34,8 +36,10 @@
                     </div>
                     <div class="col-md-3">
                         <input id="ageInput" class="form-control" asp-for="Age" placeholder="Student's age" />
+                        <span asp-validation-for="Age"></span>
                     </div>
                 </div>
+                <br />
                 <br />
                 <br />
                 <div class="input-group-prepend">
@@ -44,8 +48,10 @@
                     </div>
                     <div class="col-md-3">
                         <select id="occupationInput" class="form-control" asp-for="Occupation" asp-items="Model.Occupations"></select>
+                        <span asp-validation-for="Occupation"></span>
                     </div>
                 </div>
+                <br />
                 <br />
                 <br />
                 <div class="input-group-prepend">
@@ -69,7 +75,7 @@
                             <label class="col-form-label">Division</label>
                         </div>
                         <div class="col-md-3">
-                            <select id="division" class="form-control" asp-for="@Model.Division" onload="DivDistChange(this)" onchange="DivDistChange(this);">
+                            <select id="division" class="form-control" asp-for="Division" onload="DivDistChange(this)" onchange="DivDistChange(this);">
                                 <option value="empty">Select a division</option>
                                 <option value="BARISAL">BARISAL</option>
                                 <option value="CHITTAGONG">CHITTAGONG</option>
@@ -84,14 +90,17 @@
                     </div>
                     <br />
                     <br />
+                    <br />
                     <div class="input-group-prepend">
                         <div class="col-md-3">
                             <label class="col-form-label">District</label>
                         </div>
                         <div class="col-md-3">
                             <select id="district" class="form-control" asp-for="@Model.District" onchange="DistThanaChange(this);"></select>
+                            <span asp-validation-for="District"></span>
                         </div>
                     </div>
+                    <br />
                     <br />
                     <br />
                     <div class="input-group-prepend">
@@ -100,8 +109,10 @@
                         </div>
                         <div class="col-md-3">
                             <select id="thana" class="form-control" asp-for="@Model.Thana" onchange="ThanaUWChange(this);"></select>
+                            <span asp-validation-for="Thana"></span>
                         </div>
                     </div>
+                    <br />
                     <br />
                     <br />
                     <div class="input-group-prepend">
@@ -110,6 +121,7 @@
                         </div>
                         <div class="col-md-3">
                             <select id="uw" class="form-control" asp-for="@Model.UW"></select>
+                            <span asp-validation-for="UW"></span>
                         </div>
                     </div>
                 </fieldset>
