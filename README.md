@@ -112,7 +112,7 @@ If you have .NET Core SDK (2.x) installed, you can run the application directly 
 
 ```bash
 git clone https://github.com/maacpiash/KonSchool
-dotnet run KonSchool/src/KonSchool.csproj
+dotnet run --project KonSchool/src/KonSchool.csproj
 ```
 
 Now, navigate to either http://localhost:5000 or https://localhost:5001.
