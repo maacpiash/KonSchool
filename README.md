@@ -40,6 +40,18 @@
       <td align="center">Linux (Ubuntu 18.04)</td>
       <td align="center"><a href="https://travis-ci.org/maacpiash/KonSchool" target="blank"><img src="https://img.shields.io/travis/maacpiash/KonSchool?style=flat-square&logo=travis" alt="Travis (.org)"></a></td>
     </tr>
+    <tr>
+      <td align="center" rowspan=4>GitHub<br>Actions</td>
+    </tr>
+    <tr>
+      <td align="center" colspan=3><a href="https://github.com/maacpiash/KonSchool/actions?workflowID=Windows"><img src="https://github.com/maacpiash/KonSchool/workflows/Windows/badge.svg" alt="Actions Status"></a></td>
+    </tr>
+    <tr>
+      <td align="center" colspan=3><a href="https://github.com/maacpiash/KonSchool/actions?workflowID=macOS"><img src="https://github.com/maacpiash/KonSchool/workflows/macOS/badge.svg" alt="Actions Status"></a></td>
+    </tr>
+    <tr>
+      <td align="center" colspan=3><a href="https://github.com/maacpiash/KonSchool/actions?workflowID=Ubuntu"><img src="https://github.com/maacpiash/KonSchool/workflows/Ubuntu/badge.svg" alt="Actions Status"></a></td>
+    </tr>
   </tbody>
 </table>
 
