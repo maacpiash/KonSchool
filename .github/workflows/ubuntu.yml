@@ -13,6 +13,8 @@ jobs:
       uses: actions/setup-dotnet@v1
       with:
         dotnet-version: 2.2.401
+    - name: Display dotnet info
+      run: dotnet --info
     - name: Build all projects
       run: dotnet build
     - name: Run unit tests
