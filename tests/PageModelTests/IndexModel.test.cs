@@ -14,7 +14,7 @@ namespace KonSchool.Tests.PageModelTests
         [Fact]
         public void Can_OnGet()
         {
-            var indexPage = new IndexModel(new Query(new SchoolServiceMock()));
+            var indexPage = new IndexModel(new Query());
             indexPage.OnGet();
             Assert.Equal(NUMBER_OF_CLASSES, indexPage.Classes.Count);
             Assert.Equal(NUMBER_OF_OCCUPATIONS, indexPage.Occupations.Count);
@@ -23,7 +23,7 @@ namespace KonSchool.Tests.PageModelTests
         [Fact]
         public void Can_RedirectTo_InputsPage_OnPost()
         {
-            var indexPage = new IndexModel(new Query(new SchoolServiceMock()))
+            var indexPage = new IndexModel(new Query())
             {
                 Class = "6",
                 Division = "Dhaka",

@@ -13,10 +13,12 @@ namespace KonSchool.Pages
     public class OutputsModel : PageModel
     {
         public Query _Query { get; set; }
+        public ISchoolService _SchoolService;
 
-        public OutputsModel(Query query)
+        public OutputsModel(Query query, ISchoolService schoolService)
         {
             _Query = query;
+            _SchoolService = schoolService;
         }
 
         [BindProperty] public string[] Criteria { get; set; }
@@ -36,7 +38,8 @@ namespace KonSchool.Pages
 
             double[] w = _Query.Weights;
             _Query.SetValues();
-            
+
+            _Query._SchoolService = _SchoolService;
             
             foreach (School s in _Query.Alternatives)
                 s.FinalScore = s.TSR * w[0] + s.MFR * w[1] + s.SES * w[2] + s.LOC * w[3] + s.OLD * w[4] + s.ADS * w[5];

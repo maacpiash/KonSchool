@@ -26,15 +26,14 @@ namespace KonSchool.Models
 
         private static readonly object key = new object();
         private static List<string> occupations;
-        public List<School> Alternatives;
+        public List<School> Alternatives
+        {
+            get => _SchoolService?.GetSchools()?.ToList() ?? alternatives ?? new List<School>();
+            set => alternatives = value;
+        }
+        private List<School> alternatives;
 
         public ISchoolService _SchoolService { get; set; }
-
-        public Query(ISchoolService schoolService)
-        {
-            _SchoolService = schoolService;
-            Alternatives = _SchoolService.GetSchools().ToList();
-        }
 
         public static List<string> Occupations
         {

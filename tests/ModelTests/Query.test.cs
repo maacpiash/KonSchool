@@ -10,7 +10,7 @@ namespace KonSchool.Tests.ModelTests
         [Fact]
         public void CtorTest()
         {
-            Query query = new Query(new SchoolServiceMock())
+            Query query = new Query()
             {
                 Class = 10,
                 Social = 10.0,
@@ -24,7 +24,8 @@ namespace KonSchool.Tests.ModelTests
                 },
                 Weights = new double[] { 0.1667, 0.1667, 0.1667, 0.1667, 0.1667, 0.1667 },
                 LimitByDistrict = false,
-                LimitByDivision = false
+                LimitByDivision = false,
+                _SchoolService = new SchoolServiceMock()
             };
 
             Assert.Equal(6, query.Alternatives.Count);
@@ -34,7 +35,10 @@ namespace KonSchool.Tests.ModelTests
         [Fact]
         public void Can_SetLocation()
         {
-            Query query = new Query(new SchoolServiceMock());
+            Query query = new Query()
+            {
+                _SchoolService = new SchoolServiceMock()
+            };
             query.SetLocation("Dhaka", "Dhaka", "Rampura", "Ward no. 1");
             Assert.Equal("Dhaka", query.Division);
             Assert.Equal("Dhaka", query.District);
@@ -45,7 +49,7 @@ namespace KonSchool.Tests.ModelTests
         [Fact]
         public void Can_CheckEligibility_Female()
         {
-            Query query = new Query(new SchoolServiceMock())
+            Query query = new Query()
             {
                 Class = 10,
                 Social = 10.0,
@@ -61,7 +65,8 @@ namespace KonSchool.Tests.ModelTests
                 LimitByDistrict = false,
                 LimitByDivision = true,
                 Division = "Dhaka",
-                District = "Dhaka"
+                District = "Dhaka",
+                _SchoolService = new SchoolServiceMock()
             };
 
             query.SetValues();
@@ -77,7 +82,7 @@ namespace KonSchool.Tests.ModelTests
         [Fact]
         public void Can_CheckEligibility_Male()
         {
-            Query query = new Query(new SchoolServiceMock())
+            Query query = new Query()
             {
                 Class = 7,
                 Social = 10.0,
@@ -91,7 +96,8 @@ namespace KonSchool.Tests.ModelTests
                 },
                 Weights = new double[] { 0.1667, 0.1667, 0.1667, 0.1667, 0.1667, 0.1667 },
                 LimitByDistrict = false,
-                LimitByDivision = false
+                LimitByDivision = false,
+                _SchoolService = new SchoolServiceMock()
             };
 
             query.SetValues();
