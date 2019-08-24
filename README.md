@@ -1,6 +1,7 @@
 # Kon School?
 
 [![Live on Azure](https://img.shields.io/badge/Azure-Live-0089D6.svg?style=flat-square&logo=microsoft-azure)](https://KonSchool.azurewebsites.net)
+[![Live on Heroku](https://img.shields.io/badge/Heroku-Live-79589F.svg?style=flat-square&logo=heroku)](https://KonSchool.herokuapp.com)
 [![Docker pulls](https://img.shields.io/docker/pulls/maacpiash/konschool.svg?logo=docker&style=flat-square)](https://hub.docker.com/r/maacpiash/konschool)
 [![.NET Core 2.2](https://img.shields.io/badge/Core-v2.2-692079.svg?logo=.net&style=flat-square)](https://dot.net/get-core)
 [![GitHub last commit](https://img.shields.io/github/last-commit/maacpiash/KonSchool.svg?logo=git&style=flat-square)](https://github.com/maacpiash/KonSchool/commits)
@@ -57,7 +58,7 @@
 
 **QC:**
 
-[![AppVeyor tests](https://img.shields.io/appveyor/tests/maacpiash/KonSchool.svg?compact_message&logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/maacpiash/konschool)
+[![AppVeyor tests](https://img.shields.io/appveyor/tests/maacpiash/KonSchool.svg?logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/maacpiash/konschool)
 [![Codecov](https://img.shields.io/codecov/c/gh/maacpiash/KonSchool.svg?logo=codecov&style=flat-square)](https://codecov.io/gh/maacpiash/KonSchool)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/maacpiash/KonSchool?style=flat-square)](https://www.codefactor.io/repository/github/maacpiash/konschool)
 
