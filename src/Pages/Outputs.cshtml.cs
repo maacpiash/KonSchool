@@ -15,6 +15,8 @@ namespace KonSchool.Pages
         public Query _Query { get; set; }
         public ISchoolService _SchoolService;
 
+        public List<School> Schools { get; set; }
+
         public OutputsModel(Query query, ISchoolService schoolService)
         {
             _Query = query;
@@ -35,16 +37,15 @@ namespace KonSchool.Pages
             };
 
             StdDev = Stat.StdDev(_Query.Weights);
+            _Query._SchoolService = _SchoolService;
 
             double[] w = _Query.Weights;
             _Query.SetValues();
-
-            _Query._SchoolService = _SchoolService;
             
             foreach (School s in _Query.Alternatives)
                 s.FinalScore = s.TSR * w[0] + s.MFR * w[1] + s.SES * w[2] + s.LOC * w[3] + s.OLD * w[4] + s.ADS * w[5];
                    
-            _Query.Alternatives = _Query.Alternatives.OrderByDescending(x => x.FinalScore).ToList();
+            Schools = _Query.Alternatives.OrderByDescending(x => x.FinalScore).ToList();
         }
 
         public string ToShortNumber(double number) => string.Format("{0:0.00}%", number * 100);
