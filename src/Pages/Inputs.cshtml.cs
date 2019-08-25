@@ -22,7 +22,6 @@ namespace KonSchool.Pages
         public IActionResult OnPost()
         {
             var compmat = Inference.ComparisonMatrix(Values);
-            foreach (var value in Values) Console.WriteLine(value);
             _Query.CompMat = compmat;
             _Query.Weights = new FAHP(compmat).CriteriaWeights;
             return RedirectToPage("/Outputs");
