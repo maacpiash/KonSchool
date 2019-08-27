@@ -61,6 +61,7 @@
 [![AppVeyor tests](https://img.shields.io/appveyor/tests/maacpiash/KonSchool.svg?logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/maacpiash/konschool)
 [![Codecov](https://img.shields.io/codecov/c/gh/maacpiash/KonSchool.svg?logo=codecov&style=flat-square)](https://codecov.io/gh/maacpiash/KonSchool)
 [![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/maacpiash/KonSchool?style=flat-square)](https://www.codefactor.io/repository/github/maacpiash/konschool)
+[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/maacpiash/KonSchool?logo=code-climate&style=flat-square)](https://codeclimate.com/github/maacpiash/KonSchool)
 
 *Kon School?* (Bengali: *কোন স্কুল?*, meaning *"Which school?"*) is a recommendation system that gives secondary schools personalized compatibility scores based on user's preferences.
 
