@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - KonSchool API-Analytics</title>
+    
+    <!-- Import Google's Material Design Icon Font, Text Font, Font-awesome Icon Font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
+          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+    
+    
+    <environment include="Development">
+        <link rel="stylesheet" href="~/lib/materialize/css/materialize.css" />
+    </environment>
+    <environment exclude="Development">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
+              asp-fallback-href="~/lib/materialize/css/materialize.min.css"
+              asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+    </environment>
+</head>
+<body>
+    <header>
+        <nav class="blue darken-2">
+            <div class="nav-wrapper">
+                <a asp-page="/Analysis" class="brand-logo" id="page-logo"><i class="material-icons" id="page-logo-icon">layers_clear</i> KonSchool-Analytics</a>
+                <a href="#" class="sidenav-trigger" data-target="mobile-nav">
+                    <i class="material-icons">menu</i>
+                </a>
+                <ul class="right hide-on-med-and-down ">
+                    <li>
+                        <a class="tooltipped" data-position="bottom" data-tooltip="GitHub" target="_blank"
+                           href="https://github.com/maacpiash/KonSchool">
+                            <i class="fab fa-github"></i>
+                        </a>
+                    </li>
+                    <li><a asp-page="/About">About</a></li>
+                    <li><a asp-page="/Contact">Contact</a></li>
+                </ul>
+            </div>
+        </nav>
+        
+        <ul class="sidenav" id="mobile-nav">
+            <li>
+                <a class="tooltipped" data-position="bottom" data-tooltip="GitHub" target="_blank"
+                   href="https://github.com/maacpiash/KonSchool">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+            </li>
+            <li><a asp-page="/About">About</a></li>
+            <li><a asp-page="/Contact">Contact</a></li>
+         </ul>
+    </header>
+
+
+    <div class="section">
+        <main role="main" class="main">
+            @RenderBody()
+        </main>
+    </div>
+
+    <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
+        <script src="~/lib/materialize/js/materialize.js"></script>
+    </environment>
+
+    <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js"
+                asp-fallback-src="~/lib/jquery/dist/jquery.min.js"
+                asp-fallback-test="window.jQuery"
+                crossorigin="anonymous"
+                integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT">
+            </script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
+                asp-fallback-src="~/lib/materialize/js/materialize.min.js">
+        </script>
+    </environment>
+
+    <script src="~/js/__initLayout__.js" asp-append-version="true"></script>
+
+@RenderSection("Scripts", required: false)
+</body>
+</html>
