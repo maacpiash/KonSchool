@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css?family=Hind+Siliguri&display=swap');
+
+.bangladesh {
+    max-width: 800px;
+    width: 100%;
+    margin: auto;
+}
+
+.bangladesh h3 {
+    text-align: center;
+    padding: 24px 12px;
+    position: relative
+}
+
+.bangladesh h3::before {
+    content: '';
+    width: 12%;
+    height: 3px;
+    background-color: #3764eb;
+    position: absolute;
+    bottom: 15px;
+    left: 44%
+}
+
+.bangladesh h3::after {
+    content: '';
+    width: 25%;
+    height: 1px;
+    background-color: #3764eb;
+    position: absolute;
+    bottom: 14px;
+    left: 38%
+}
+
+.districtLargeArea {
+    font-size: 16px;
+    fill: #FFF;
+    font-weight: 400;
+    font-family: 'Hind Siliguri', sans-serif;
+    cursor: pointer;
+}
+
+.districtMediumArea,
+.seat_300_map .districtLargeArea {
+    fill: #388e3c;
+    stroke: #FFF;
+    stroke-width: .5;
+    stroke-miterlimit: 10;
+    cursor: pointer;
+}
+
+g:hover path,
+path:hover,
+a:hover path,
+polyline:hover,
+a:hover polyline {
+    fill: #ffab40
+}
+
+@media only screen and (max-width:823px) {
+    .districtLargeArea {
+        font-size: 20px
+    }
+}
+
+.redZone{
+    font-size: 16px;
+    font-weight: 700;
+    fill: #e53935;
+    stroke: #FFF;
+    stroke-width: .5;
+    stroke-miterlimit: 10;
+}
