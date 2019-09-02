@@ -6,28 +6,36 @@
 }
 
 <div class="row">
-    <div class="col s12 l6">
+    <div class="col s12 l7">
         <div class="section">
             <div id="description" class="white-text">
-                <h5 class="white-text center-align">For district-wise analytical results, Click over the map </h5><br/><hr/>
-                <p class="text-justify">By clicking over any of the district over the map of Bangladesh, You will get some overview and analytical results about the schools based on some parameters like:</p>
-                <ol>
-                    <li> Number of primary and secondary schools </li>
-                    <li> School areas </li>
-                    <li> Male-Female student ratio</li>
-                    <li> Teacher-Student ratio </li>
-                    <li> Average age </li>
-                    <li> Weighted Score</li>
-                    <li> Has ethnic students or, not</li>
-                    <li> Runs business</li>
-                    <li> Has vocational education</li>
-                </ol>
-                <p class="text-justify">This is an extended version of the web-application <b>KonSchool</b> which comes with the idea of how the application programming interface (API) can be used in various ways as well as keeping in mind with material design to enhance the look and feel and enriching user experience.</p>
+                <div class="card grey darken-4">
+                    <div class="card-content blue-grey darken-4 white-text">
+                      <span class="card-title center-align">For district-wise analytical results, click over the map</span>
+                      <p class="text-justify">By clicking over any of the district over the map of Bangladesh, You will get some overview and analytical results about the schools based on some parameters like:</p>
+                      <ol>
+                          <li> Number of primary and secondary schools </li>
+                          <li> School areas </li>
+                          <li> Male-Female student ratio</li>
+                          <li> Teacher-Student ratio </li>
+                          <li> Average age </li>
+                          <li> Weighted Score</li>
+                          <li> Has ethnic students or, not</li>
+                          <li> Runs business</li>
+                          <li> Has vocational education</li>
+                      </ol>
+                      <p class="text-justify">This is an extended version of the web-application <b>KonSchool</b> which comes with the idea of how the application programming interface (API) can be used in various ways as well as keeping in mind with material design to enhance the look and feel and enriching user experience.</p>
+                    </div>
+                    <div class="card-action blue-grey darken-3">
+                      <a href="/api/schools" target="_blank">API Source</a>
+                      <a href="https://github.com/maacpiash/KonSchool/issues" target="_blank">FAQ's</a>
+                    </div>
+                  </div>
             </div>
         </div>
     </div>
     
-    <div id="mapCol" class="col s12 l6">
+    <div id="mapCol" class="col s12 l5">
         <div class="bangladesh">
             <partial name="_VectorMap"/>
         </div>
@@ -35,5 +43,5 @@
 </div>
 
 <div id="analyticalResults">
-    <h1 class="white-text">Yo</h1>
+    <h4 class="center-align white-text" id="_analyticalResultHeading"></h4><hr/>
 </div>
