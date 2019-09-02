@@ -44,4 +44,102 @@
 
 <div id="analyticalResults">
     <h4 class="center-align white-text" id="_analyticalResultHeading"></h4><hr/>
+    <div id="_analyticalResultPreloader" class="center-align">
+      <div class="preloader-wrapper big active">
+        <div class="spinner-layer spinner-blue">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+    
+        <div class="spinner-layer spinner-red">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+    
+        <div class="spinner-layer spinner-yellow">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+    
+        <div class="spinner-layer spinner-green">
+          <div class="circle-clipper left">
+            <div class="circle"></div>
+          </div><div class="gap-patch">
+            <div class="circle"></div>
+          </div><div class="circle-clipper right">
+            <div class="circle"></div>
+          </div>
+        </div>
+      </div>
+      <p class="center-align">Have patience, Fetching Information</p>
+    </div>
+  
+    <div id="_analyticalResultContent">
+      <div id="chartjs-pie-chart" class="card grey darken-4 white-text">
+          <div class="card-content">
+             <div class="row">
+               <div class="col s12">
+                 <div class="row">
+                   <div class="col s12 m6 l6">
+                     <div class="sample-chart-wrapper">
+                       <canvas id="_maleFemaleCombinedDoughnut" height="220"></canvas>
+                     </div><br/>
+                   </div>
+                   <div class="col s12 m6 l6">
+                     <table class="responsive-table">
+                       <thead class="blue darken-4">
+                       <th>Parameter</th>
+                       <th>Value</th>
+                       </thead>
+                       <tbody>
+                       <tr>
+                         <td>Boys school having only boys</td>
+                         <td id="_td1"></td>
+                       </tr>
+                       <tr>
+                         <td>Girls school having only girls</td>
+                         <td id="_td2"></td>
+                       </tr>
+                       <tr>
+                         <td>Combined</td>
+                         <td id="_td3"></td>
+                       </tr>
+                       <tr>
+                         <td>Boys school, having girls also</td>
+                         <td id="_td4"></td>
+                       </tr>
+                       <tr>
+                         <td>Girls school, having boys also</td>
+                         <td id="_td5"></td>
+                       </tr>
+                       <tr>
+                         <td>In total</td>
+                         <td id="_td6"></td>
+                       </tr>
+                       </tbody>
+                     </table>
+                   </div>
+                 </div>
+               </div>
+             </div>
+          </div>
+       </div>
+    </div>
+
+    
 </div>

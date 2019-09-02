@@ -8,6 +8,7 @@
     <!-- Import Google's Material Design Icon Font, Text Font, Font-awesome Icon Font -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
     <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
           integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     
@@ -15,11 +16,13 @@
     <link rel="stylesheet" type="text/css" href="~/css/analytics.css"/>
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/materialize/css/materialize.css" />
+        <link rel="stylesheet" href="~/lib/materialize/css/custom.css" />
     </environment>
     <environment exclude="Development">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css"
               asp-fallback-href="~/lib/materialize/css/materialize.min.css"
               asp-fallback-test-class="sr-only" asp-fallback-test-property="position" asp-fallback-test-value="absolute" />
+        <link rel="stylesheet" href="~/lib/materialize/css/custom.min.css" />
     </environment>
 </head>
 <body class="grey darken-4">
@@ -73,6 +76,7 @@
     </environment>
 
     <script src="~/js/__initLayout__.js" asp-append-version="true"></script>
+    <script src="~/lib/chartjs/chart.js" asp-append-version="true"></script>
 @RenderSection("Scripts", required: false)
 </body>
 </html>
