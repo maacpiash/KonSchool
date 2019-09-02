@@ -1,3 +1,26 @@
 #page-logo {
     font-family: 'Poiret One', cursive;
 }
+
+.text-justify {
+    text-align: justify;
+    text-justify: inter-word;
+}
+
+#description{
+    font-size: 16px;
+}
+
+/*Page logo fixing for iphone 5/SE*/
+@media screen and (device-aspect-ratio: 40/71) {
+    #page-logo{
+        font-size: 13px;
+        font-weight: bolder;
+    }
+}
+
+@media only screen and (max-width:823px) {
+    #description{
+        font-size: 11px;
+    }
+}
