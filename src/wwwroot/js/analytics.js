@@ -3,6 +3,7 @@ var konSchoolAPI = 'api';
 var mfDoughnutChart = null;
 
 var maleFemaleRatio = { "maleOnly":0, "femaleOnly":0, "combined":0, "typeBoysHasGirls":0, "typeGirlsHasBoys":0 };
+var schoolLevelRatio = {"higher":0, "juniorSecondary":0, "secondary": 0};
 var colorScheme01 = ['#35326B','#553E8A','#7A4B94','#B66673','#C38980'];
 var colorScheme02 = ['#2A639B','#75CFB4','#ADE2D2','#A9859E','#7F5080','#702474'];
 var colorScheme03 = ['#476088','#FFC562','#FF6D74','#A9859E','#4FDDC3','#61A8E8'];
@@ -13,6 +14,7 @@ $(document).ready(function() {
     Chart.defaults.global.defaultFontColor = "#fff";
     Chart.defaults.global.defaultFontFamily = "'Manjari'";
     Chart.defaults.global.defaultFontSize = 15;
+    Chart.defaults.global.animation.duration = 1500;
     
     $('#analyticalResults').hide();
     $('#_analyticalResultPreloader').hide();
@@ -28,8 +30,8 @@ $(document).ready(function() {
         requestToAPI = $.get(konSchoolAPI + '/schools/dis/' + districtName.toUpperCase() , function (apiData, status) {
             $('#_analyticalResultHeading').text("Schools of " + toTitleCase(districtName));
             filterAPIData(apiData);
-            $('#_analyticalResultPreloader').fadeOut();
-            $('#_analyticalResultContent').slideDown();
+            $('#_analyticalResultPreloader').hide();
+            $('#_analyticalResultContent').fadeIn();
         });
     });
 });
@@ -37,11 +39,12 @@ $(document).ready(function() {
 function scrollToAnalyticalResultDivision(){
     $('html, body').animate({
         scrollTop: $("#analyticalResults").offset().top
-    }, 1000);
+    }, 1300);
 }
 
 function clearOnRecurrentRequests() {
     maleFemaleRatio = { "maleOnly":0, "femaleOnly":0, "combined":0, "typeBoysHasGirls":0, "typeGirlsHasBoys":0 };
+    schoolLevelRatio = {"higher":0, "juniorSecondary":0, "secondary": 0};
     // Destroy chart on recurrent requests
     if(mfDoughnutChart != null) {
         mfDoughnutChart.destroy();
@@ -60,11 +63,15 @@ function toTitleCase(str) {
 function filterAPIData(data) {
     for(var i = data.length - 1; i >=0 ; i--){
         filterMaleFemaleRatio(data[i]["MFRatio"], data[i]["type"]);
+        filterSchoolLevel(data[i]["level"]);
     }
 
     var mfPropertiesArray = $.map(maleFemaleRatio, function (v) { return v; });
     createDoughnutBasedOnMFRatio(Object.keys(maleFemaleRatio), mfPropertiesArray, 'doughnut', $('#_maleFemaleCombinedDoughnut'), '');
     summarizeMFinTable(data.length);
+    
+    summarizeSchoolLevelInCards();
+    wordCounterAnimation();
 }
 
 function filterMaleFemaleRatio(ratio, typeOfSchool) {
@@ -101,7 +108,7 @@ function createDoughnutBasedOnMFRatio(keys, dataArray, chartType, context, title
                 fontSize: 25
             },
             responsive: true,
-            responsiveAnimationDuration: 1000,
+            responsiveAnimationDuration: 1300,
             mainAspectRatio: false
         }
     });
@@ -114,4 +121,34 @@ function summarizeMFinTable(len) {
     $('#_td4').text(maleFemaleRatio["typeBoysHasGirls"]);
     $('#_td5').text(maleFemaleRatio["typeGirlsHasBoys"]);
     $('#_td6').text(len);
+}
+
+function filterSchoolLevel(level){
+    if(level === 'Higher Secondary'){
+        schoolLevelRatio["higher"]++;
+    }else if(level === 'Junior Secondary'){
+        schoolLevelRatio["juniorSecondary"]++;
+    }else{
+        schoolLevelRatio["secondary"]++;
+    }
+}
+
+function summarizeSchoolLevelInCards() {
+    $('#_analyticalResultCard01').text(schoolLevelRatio["higher"]);
+    $('#_analyticalResultCard02').text(schoolLevelRatio["juniorSecondary"]);
+    $('#_analyticalResultCard03').text(schoolLevelRatio["secondary"]);
+}
+
+function wordCounterAnimation() {
+    $(".count").each(function() {
+        $(this).prop("Counter", 0).animate({
+            Counter: $(this).text()
+        }, {
+            duration: 3e3,
+            easing: "swing",
+            step: function(e) {
+                $(this).text(Math.ceil(e))
+            }
+        })
+    })
 }

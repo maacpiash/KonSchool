@@ -89,57 +89,103 @@
       <p class="center-align">Have patience, Fetching Information</p>
     </div>
   
-    <div id="_analyticalResultContent">
-      <div id="chartjs-pie-chart" class="card grey darken-4 white-text">
-          <div class="card-content">
-             <div class="row">
-               <div class="col s12">
-                 <div class="row">
-                   <div class="col s12 m6 l6">
-                     <div class="sample-chart-wrapper">
-                       <canvas id="_maleFemaleCombinedDoughnut" height="220"></canvas>
-                     </div><br/>
-                   </div>
-                   <div class="col s12 m6 l6">
-                     <table class="responsive-table">
-                       <thead class="blue darken-4">
-                       <th>Parameter</th>
-                       <th>Value</th>
-                       </thead>
-                       <tbody>
-                       <tr>
-                         <td>Boys school having only boys</td>
-                         <td id="_td1"></td>
-                       </tr>
-                       <tr>
-                         <td>Girls school having only girls</td>
-                         <td id="_td2"></td>
-                       </tr>
-                       <tr>
-                         <td>Combined</td>
-                         <td id="_td3"></td>
-                       </tr>
-                       <tr>
-                         <td>Boys school, having girls also</td>
-                         <td id="_td4"></td>
-                       </tr>
-                       <tr>
-                         <td>Girls school, having boys also</td>
-                         <td id="_td5"></td>
-                       </tr>
-                       <tr>
-                         <td>In total</td>
-                         <td id="_td6"></td>
-                       </tr>
-                       </tbody>
-                     </table>
-                   </div>
-                 </div>
-               </div>
-             </div>
+  <div id="_analyticalResultContent">
+    
+    <div class="row">
+      <div class="row" id="gradient-Analytics">
+        <div class="col s12 m6 l4 card-width">
+          <div class="card gradient-45deg-indigo-blue white-text padding-4 mt-5">
+            <div class="col s7 m7">
+              <i class="material-icons background-round mt-5 mb-5">sentiment_very_satisfied</i>
+              <p>Higher Schools</p>
+            </div>
+            <div class="col s5 m5 right-align">
+              <h5 class="mb-0 white-text">02</h5>
+              <br/>
+              <h5 class="count white-text" id="_analyticalResultCard01"></h5>
+            </div>
           </div>
-       </div>
+        </div>
+        <div class="col s12 m6 l4 card-width">
+          <div class="card gradient-45deg-purple-deep-orange darken-4  white-text padding-4 mt-5">
+            <div class="col s7 m7">
+              <i class="material-icons background-round mt-5 mb-5">sentiment_very_dissatisfied</i>
+              <p>Junior Secondary Schools</p>
+            </div>
+            <div class="col s5 m5 right-align">
+              <h5 class="mb-0 white-text">03</h5>
+              <br/>
+              <h5 class="count white-text" id="_analyticalResultCard02"></h5>
+            </div>
+          </div>
+        </div>
+        <div class="col s12 m6 l4 card-width">
+          <div class="card gradient-45deg-purple-deep-purple white-text padding-4 mt-5">
+            <div class="col s7 m7">
+              <i class="material-icons background-round mt-5 mb-5">send</i>
+              <p>Secondary Schools</p>
+            </div>
+            <div class="col s5 m5 right-align">
+              <h5 class="mb-0 white-text">01</h5>
+              <br/>
+              <h5 class="count white-text" id="_analyticalResultCard03"></h5>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+    
+    
+    <div id="chartjs-pie-chart" class="card grey darken-4 white-text">
+      <div class="card-content">
+        <div class="row">
+          <div class="col s12">
+            <div class="row">
+              <div class="col s12 m6 l6">
+                <div class="sample-chart-wrapper">
+                  <canvas id="_maleFemaleCombinedDoughnut" height="220"></canvas>
+                </div><br/>
+              </div>
+              <div class="col s12 m6 l6">
+                <table class="responsive-table">
+                  <thead class="blue darken-4">
+                  <th>Parameter</th>
+                  <th>Value</th>
+                  </thead>
+                  <tbody>
+                  <tr>
+                    <td>Boys schools having only boys</td>
+                    <td id="_td1"></td>
+                  </tr>
+                  <tr>
+                    <td>Girls schools having only girls</td>
+                    <td id="_td2"></td>
+                  </tr>
+                  <tr>
+                    <td>Combined</td>
+                    <td id="_td3"></td>
+                  </tr>
+                  <tr>
+                    <td>Boys schools, having girls also</td>
+                    <td id="_td4"></td>
+                  </tr>
+                  <tr>
+                    <td>Girls schools, having boys also</td>
+                    <td id="_td5"></td>
+                  </tr>
+                  <tr>
+                    <td>In total</td>
+                    <td id="_td6"></td>
+                  </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
     
 </div>
