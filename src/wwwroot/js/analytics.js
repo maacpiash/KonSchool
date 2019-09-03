@@ -19,6 +19,12 @@ var areaStatusCode = {0.1:1, 0.2:2, 0.4:3, 0.5:4, 0.7:5, 0.9:6, 1.0:7};
 var areaDataSet = [];
 var areaRegressionIndependentData = [];
 var areaRegressionDependentData = [];
+var areaRegressionIndependentDataSquare = [];
+var areaRegressionDependentDataSquare = [];
+var summationOfY = 0;
+var summationOfX = 0;
+var summationOfYSquare = 0;
+var summationOfXSquare = 0;
 
 var colorScheme01 = ['#35326B','#553E8A','#7A4B94','#B66673','#C38980'];
 var colorScheme02 = ['#2A639B','#75CFB4','#ADE2D2','#A9859E','#7F5080','#702474'];
@@ -68,6 +74,12 @@ function clearOnRecurrentRequests() {
     areaDataSet = [];
     areaRegressionIndependentData = [];
     areaRegressionDependentData = [];
+    areaRegressionIndependentDataSquare = [];
+    areaRegressionDependentDataSquare = [];
+    summationOfY = 0;
+    summationOfX = 0;
+    summationOfYSquare = 0;
+    summationOfXSquare = 0;
 }
 
 function toTitleCase(str) {
@@ -92,7 +104,11 @@ function filterAPIData(data) {
     
     summarizeSchoolLevelInCards();
     wordCounterAnimation();
+    
+    // Regression
     formRegressionDependency();
+    performSquareOnDependency();
+    performSummationOnDependency();
 }
 
 function filterMaleFemaleRatio(ratio, typeOfSchool) {
@@ -191,4 +207,16 @@ function formRegressionDependency() {
 function pushRegressionDependency(key, prop) {
     areaRegressionIndependentData.push(key);
     areaRegressionDependentData.push(prop);
+}
+
+function performSquareOnDependency(){
+    areaRegressionIndependentDataSquare = areaRegressionIndependentData.map(function (a){return a*a;});
+    areaRegressionDependentDataSquare = areaRegressionDependentData.map(function (a){return a*a;});
+}
+
+function performSummationOnDependency() {
+    summationOfY = areaRegressionDependentData.reduce(function(x, y) { return x + y; }, 0);
+    summationOfX = areaRegressionIndependentData.reduce(function(a, b) { return a + b; }, 0);
+    summationOfYSquare = areaRegressionDependentDataSquare.reduce(function(c, d) { return c + d; }, 0);
+    summationOfXSquare = areaRegressionIndependentDataSquare.reduce(function(e, f) { return e + f; }, 0);
 }
