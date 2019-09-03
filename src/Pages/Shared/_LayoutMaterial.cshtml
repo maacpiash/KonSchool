@@ -66,17 +66,21 @@
     </div>
 
     <environment include="Development">
+        <script src="~/lib/jquery/dist/jquery.js"></script>
         <script src="~/lib/materialize/js/materialize.js"></script>
     </environment>
 
     <environment exclude="Development">
+        <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.3.1.min.js" asp-fallback-src="~/lib/jquery/dist/jquery.min.js" asp-fallback-test="window.jQuery" crossorigin="anonymous" integrity="sha384-tsQFqpEReu7ZLhBV2VZlAu7zcOV+rXbYlF2cqB8txI/8aZajjp4Bqd+V6D5IgvKT"> </script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"
-                asp-fallback-src="~/lib/materialize/js/materialize.min.js">
-        </script>
+                        asp-fallback-src="~/lib/materialize/js/materialize.min.js">
+                </script>
     </environment>
 
-    <script src="~/js/__initLayout__.js" asp-append-version="true"></script>
-    <script src="~/lib/chartjs/chart.js" asp-append-version="true"></script>
+<script src="~/js/__initLayout__.js" asp-append-version="true"></script>
+<script src="~/lib/chartjs/chart.js" asp-append-version="true"></script>
+<script src="~/js/analytics.js" asp-append-version="true"></script>
+
 @RenderSection("Scripts", required: false)
 </body>
 </html>

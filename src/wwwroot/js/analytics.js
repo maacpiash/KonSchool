@@ -4,6 +4,22 @@ var mfDoughnutChart = null;
 
 var maleFemaleRatio = { "maleOnly":0, "femaleOnly":0, "combined":0, "typeBoysHasGirls":0, "typeGirlsHasBoys":0 };
 var schoolLevelRatio = {"higher":0, "juniorSecondary":0, "secondary": 0};
+
+/*
+** Indexing areas as 
+** Rural Area = 1
+** Upazila Sadar But not Municipality = 2
+** Other Municipality Area = 3
+** Upazila Sadar Municipality = 4
+** District Sadar Municipality = 5
+** City Corporation = 6
+** Metropolitan = 7
+ */
+var areaStatusCode = {0.1:1, 0.2:2, 0.4:3, 0.5:4, 0.7:5, 0.9:6, 1.0:7};
+var areaDataSet = [];
+var areaRegressionIndependentData = [];
+var areaRegressionDependentData = [];
+
 var colorScheme01 = ['#35326B','#553E8A','#7A4B94','#B66673','#C38980'];
 var colorScheme02 = ['#2A639B','#75CFB4','#ADE2D2','#A9859E','#7F5080','#702474'];
 var colorScheme03 = ['#476088','#FFC562','#FF6D74','#A9859E','#4FDDC3','#61A8E8'];
@@ -49,6 +65,9 @@ function clearOnRecurrentRequests() {
     if(mfDoughnutChart != null) {
         mfDoughnutChart.destroy();
     }
+    areaDataSet = [];
+    areaRegressionIndependentData = [];
+    areaRegressionDependentData = [];
 }
 
 function toTitleCase(str) {
@@ -64,6 +83,7 @@ function filterAPIData(data) {
     for(var i = data.length - 1; i >=0 ; i--){
         filterMaleFemaleRatio(data[i]["MFRatio"], data[i]["type"]);
         filterSchoolLevel(data[i]["level"]);
+        prepareLinearRegressionDataSet(data[i]["Area"]);
     }
 
     var mfPropertiesArray = $.map(maleFemaleRatio, function (v) { return v; });
@@ -72,6 +92,7 @@ function filterAPIData(data) {
     
     summarizeSchoolLevelInCards();
     wordCounterAnimation();
+    formRegressionDependency();
 }
 
 function filterMaleFemaleRatio(ratio, typeOfSchool) {
@@ -151,4 +172,23 @@ function wordCounterAnimation() {
             }
         })
     })
+}
+
+function prepareLinearRegressionDataSet(area) {
+    var obj = {};
+    obj[area] = areaStatusCode[area];
+    areaDataSet.push(obj);
+}
+
+function formRegressionDependency() {
+    var obj = {};
+    for (var i = 0; i<areaDataSet.length; i++){
+        obj = areaDataSet[i];
+        pushRegressionDependency(parseFloat(Object.keys(obj)[0]), parseFloat(obj[Object.keys(obj)[0]]));
+    }
+}
+
+function pushRegressionDependency(key, prop) {
+    areaRegressionIndependentData.push(key);
+    areaRegressionDependentData.push(prop);
 }

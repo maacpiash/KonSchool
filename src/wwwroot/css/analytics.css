@@ -11,6 +11,7 @@
     font-size: 17px;
 }
 
+
 /*Page logo fixing for iphone 5/SE*/
 @media screen and (device-aspect-ratio: 40/71) {
     #page-logo{
@@ -23,4 +24,12 @@
     #description{
         font-size: 11px;
     }
+}
+
+#analyticalResults{
+    display: none;
+}
+
+#_analyticalResultPreloader{
+    display: none;
 }
