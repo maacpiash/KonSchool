@@ -21,6 +21,7 @@ var areaRegressionIndependentData = [];
 var areaRegressionDependentData = [];
 var areaRegressionIndependentDataSquare = [];
 var areaRegressionDependentDataSquare = [];
+var areaRegressionMultiplication = [];
 var summationOfY = 0;
 var summationOfX = 0;
 var summationOfYSquare = 0;
@@ -76,6 +77,7 @@ function clearOnRecurrentRequests() {
     areaRegressionDependentData = [];
     areaRegressionIndependentDataSquare = [];
     areaRegressionDependentDataSquare = [];
+    areaRegressionMultiplication = [];
     summationOfY = 0;
     summationOfX = 0;
     summationOfYSquare = 0;
@@ -109,6 +111,7 @@ function filterAPIData(data) {
     formRegressionDependency();
     performSquareOnDependency();
     performSummationOnDependency();
+    performMultiplicationBetweenDependencies();
 }
 
 function filterMaleFemaleRatio(ratio, typeOfSchool) {
@@ -219,4 +222,10 @@ function performSummationOnDependency() {
     summationOfX = areaRegressionIndependentData.reduce(function(a, b) { return a + b; }, 0);
     summationOfYSquare = areaRegressionDependentDataSquare.reduce(function(c, d) { return c + d; }, 0);
     summationOfXSquare = areaRegressionIndependentDataSquare.reduce(function(e, f) { return e + f; }, 0);
+}
+
+function performMultiplicationBetweenDependencies() {
+    areaRegressionMultiplication = areaRegressionIndependentData.map(function(x, index){
+        return x * areaRegressionDependentData[index];
+    });
 }
