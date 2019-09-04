@@ -21,15 +21,15 @@
     <tr>
       <td align="center" rowspan=4>Azure<br/>Pipelines</td>
       <td align="center">Windows (VS 2017)</td>
-      <td align="center"><a href="https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master" target="blank"><img src="https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20windows" alt="Build Status"></td>
+      <td align="center"><a href="https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master" target="blank"><img src="https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20windows&label=Build" alt="Build Status"></td>
     <tr>
     <tr>
       <td align="center">macOS (10.13)</td>
-      <td align="center"><a href="https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master" target="blank"><img src="https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20mac" alt="Build Status"></td>
+      <td align="center"><a href="https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master" target="blank"><img src="https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20mac&label=Build" alt="Build Status"></td>
     </tr>
     <tr>
       <td align="center">Linux (Ubuntu 16.04)</td>
-      <td align="center"><a href="https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master" target="blank"><img src="https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20linux" alt="Build Status"></td>
+      <td align="center"><a href="https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master" target="blank"><img src="https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20linux&label=Build" alt="Build Status"></td>
     </tr>
     <tr>
       <td align="center">AppVeyor</td>
