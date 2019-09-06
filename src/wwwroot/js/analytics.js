@@ -57,6 +57,7 @@ $(document).ready(function() {
         var districtName = $(this).data("value");
         $('#analyticalResults').slideDown();
         $('#_analyticalResultPreloader').fadeIn();
+        $('#_analyticalResultHeading').fadeOut();
         scrollToAnalyticalResultDivision();
 
         requestToAPI = $.get(konSchoolAPI + '/schools/dis/' + districtName.toUpperCase() , function (apiData, status) {
