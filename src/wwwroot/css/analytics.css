@@ -45,3 +45,11 @@
 #_regressionResultArea1{
     text-align: justify;
 }
+
+.collection{
+    border: none;
+}
+
+.collection-item{
+    border: none;
+}

@@ -32,6 +32,8 @@ var dataTableDependencies = [];
 var sizeOfDataSet = 0;
 var yBar = 0;
 var xBar = 0;
+var schoolNameTSR = [];
+var schoolMin5TSR = [["School Name", "Student", "Teacher"]];
 
 var colorScheme01 = ['#35326B','#553E8A','#7A4B94','#B66673','#C38980'];
 var colorScheme02 = ['#2A639B','#75CFB4','#ADE2D2','#A9859E','#7F5080','#702474'];
@@ -98,6 +100,8 @@ function clearOnRecurrentRequests() {
     sizeOfDataSet = 0;
     yBar = 0;
     xBar = 0;
+    schoolNameTSR = [];
+    schoolMin5TSR = [["School Name", "Student", "Teacher"]];
 }
 
 function toTitleCase(str) {
@@ -114,6 +118,7 @@ function filterAPIData(data) {
         filterMaleFemaleRatio(data[i]["MFRatio"], data[i]["type"]);
         filterSchoolLevel(data[i]["level"]);
         prepareLinearRegressionDataSet(data[i]["Area"]);
+        formSchoolWithTSR(data[i]["Name"], data[i]["TSRatio"]);
     }
 
     var mfPropertiesArray = $.map(maleFemaleRatio, function (v) { return v; });
@@ -130,6 +135,13 @@ function filterAPIData(data) {
     performSummationOnDependency();
     mergeDependenciesForDataTable();
     visualizeRegressionData();
+    
+    //TSR
+    var sortedTSR  = [];
+    sortedTSR = schoolNameTSR.sort(function (a, b) {
+        return a["numberOfTeachers"] - b["numberOfTeachers"];
+    });
+    showSchoolsWithLessTeacher(sortedTSR, 5);
 }
 
 function filterMaleFemaleRatio(ratio, typeOfSchool) {
@@ -279,9 +291,12 @@ function visualizeRegressionData() {
     $('#_summationOfXY').text('Σ(X*Y) = ' + summationOfXY);
     $('#_summationOfXsq').text('Σ(X²) = ' + summationOfXSquare);
     $('#_intercept').text('β₁ = (Σ(X*Y)-((Σ(X) * Σ(Y))/n)) / Σ(X²) - ((Σ(X))²/n) = ' + calculateLinearIntercept());
-    $('#_slope').text('β₀ = y̅ - β₁*x̅  => β₀ = ' + calculateLinearSlope());
-    $('#_areaRegressionModel').text('Y = β₀ + β₁X => Y = ' + calculateLinearSlope().toPrecision(3) + ' + ' + calculateLinearIntercept().toPrecision(3) + 'X');
     
+    var linearSlopeText = $('#_slope').text('β₀ = y̅ - β₁*x̅ \n => β₀ = ' + calculateLinearSlope());
+    linearSlopeText.html(linearSlopeText.html().replace(/\n/g,'<br/>'));
+    
+    var linearModelText = $('#_areaRegressionModel').text('Y = β₀ + β₁X \n => Y = ' + calculateLinearSlope().toPrecision(3) + ' + ' + calculateLinearIntercept().toPrecision(3) + 'X');
+    linearModelText.html(linearModelText.html().replace(/\n/g,'<br/>'));
 }
 
 function calculateLinearIntercept() {
@@ -290,5 +305,21 @@ function calculateLinearIntercept() {
 
 function calculateLinearSlope() {
     return yBar - (calculateLinearIntercept()*xBar);
+}
+
+function formSchoolWithTSR(school, tsr) {
+    schoolNameTSR.push({
+        "schoolName" : toTitleCase(school),
+        "numberOfStudents" : 100,
+        "numberOfTeachers" : tsr*100
+    });
+}
+
+function showSchoolsWithLessTeacher(sortedTSR, size) {
+    for(var x=0; x<size; x++){
+        $('#_tsr-school0'+(x+1)).text(sortedTSR[x]["schoolName"]);
+        $('#_tsr-Teacher'+(x+1)).text(sortedTSR[x]["numberOfTeachers"]);
+        $('#_tsr-Student'+(x+1)).text(sortedTSR[x]["numberOfStudents"])
+    }
 }
 
