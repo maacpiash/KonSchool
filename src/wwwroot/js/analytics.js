@@ -57,7 +57,11 @@ $(document).ready(function() {
         scrollToAnalyticalResultDivision();
         
         requestToAPI = $.get(konSchoolAPI + '/schools/dis/' + districtName.toUpperCase() , function (apiData, status) {
-            $('#_analyticalResultHeading').text("Schools of " + toTitleCase(districtName));
+            var headingOfContent = $('#_analyticalResultHeading');
+            headingOfContent.fadeOut(1500, function () {
+                $(this).text("Schools of " + toTitleCase(districtName)).fadeIn(500); 
+            });
+            
             filterAPIData(apiData);
             $('#_analyticalResultPreloader').hide();
             $('#_analyticalResultContent').fadeIn();
@@ -258,23 +262,6 @@ function mergeDependenciesForDataTable() {
             "AreaEvaluationYSquare" : areaRegressionDependentDataSquare[i],
             "AreaStatusXSquare" : areaRegressionIndependentDataSquare[i]
         });
-    }
-}
-
-function createRegressionTable(){
-    var table = document.getElementById('_analyticalResultsRegression');
-    for(var i=1; i<dataTableDependencies.length; i++){
-        var row = table.insertRow(i);
-        var cell1 = row.insertCell(0);
-        var cell2 = row.insertCell(1);
-        var cell3 = row.insertCell(2);
-        var cell4 = row.insertCell(3);
-        var cell5 = row.insertCell(4);
-        cell1.innerHTML = dataTableDependencies[i-1]["AreaEvaluationY"];
-        cell2.innerHTML = dataTableDependencies[i-1]["AreaStatusX"];
-        cell3.innerHTML = dataTableDependencies[i-1]["X_Multiply_Y"];
-        cell4.innerHTML = dataTableDependencies[i-1]["AreaEvaluationYSquare"];
-        cell5.innerHTML = dataTableDependencies[i-1]["AreaStatusXSquare"];
     }
 }
 
