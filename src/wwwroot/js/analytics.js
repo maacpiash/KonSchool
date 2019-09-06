@@ -279,8 +279,14 @@ function createRegressionTable(){
 }
 
 function visualizeRegressionData() {
-    $('#demoRegressionAPI').text(JSON.stringify(dataTableDependencies[0],null,2));
-    $('#_fullRegressionAPI').text(JSON.stringify(dataTableDependencies,null,2));
+    $('#demoRegressionAPI').text(JSON.stringify(dataTableDependencies[0],function(key, val) {
+        return val.toFixed ? Number(val.toFixed(3)) : val;
+    },2));
+    
+    $('#_fullRegressionAPI').text(JSON.stringify(dataTableDependencies,function(key, val) {
+        return val.toFixed ? Number(val.toFixed(3)) : val;
+    },2));
+    
     $('#_summationOfX').text('Σ(X) = ' + summationOfX);
     $('#_summationOfY').text('Σ(Y) = ' + summationOfY);
     $('#_summationOfXY').text('Σ(X*Y) = ' + summationOfXY);
