@@ -46,24 +46,24 @@ $(document).ready(function() {
     Chart.defaults.global.defaultFontFamily = "'Manjari'";
     Chart.defaults.global.defaultFontSize = 15;
     Chart.defaults.global.animation.duration = 1500;
-    
+
     $('#analyticalResults').hide();
     $('#_analyticalResultPreloader').hide();
     $('#_analyticalResultContent').hide();
-    
+
     $("#mapCol a").click(function() {
         clearOnRecurrentRequests();
         var districtName = $(this).data("value");
         $('#analyticalResults').slideDown();
         $('#_analyticalResultPreloader').fadeIn();
         scrollToAnalyticalResultDivision();
-        
+
         requestToAPI = $.get(konSchoolAPI + '/schools/dis/' + districtName.toUpperCase() , function (apiData, status) {
             var headingOfContent = $('#_analyticalResultHeading');
             headingOfContent.fadeOut(1500, function () {
-                $(this).text("Schools of " + toTitleCase(districtName)).fadeIn(500); 
+                $(this).text("Schools of " + toTitleCase(districtName)).fadeIn(500);
             });
-            
+
             filterAPIData(apiData);
             $('#_analyticalResultPreloader').hide();
             $('#_analyticalResultContent').fadeIn();
@@ -124,10 +124,10 @@ function filterAPIData(data) {
     var mfPropertiesArray = $.map(maleFemaleRatio, function (v) { return v; });
     createDoughnutBasedOnMFRatio(Object.keys(maleFemaleRatio), mfPropertiesArray, 'doughnut', $('#_maleFemaleCombinedDoughnut'), '');
     summarizeMFinTable(data.length);
-    
+
     summarizeSchoolLevelInCards();
     wordCounterAnimation();
-    
+
     // Regression
     formRegressionDependency();
     performSquareOnDependency();
@@ -135,7 +135,7 @@ function filterAPIData(data) {
     performSummationOnDependency();
     mergeDependenciesForDataTable();
     visualizeRegressionData();
-    
+
     //TSR
     var sortedTSR  = [];
     sortedTSR = schoolNameTSR.sort(function (a, b) {
@@ -281,20 +281,20 @@ function visualizeRegressionData() {
     $('#demoRegressionAPI').text(JSON.stringify(dataTableDependencies[0],function(key, val) {
         return val.toFixed ? Number(val.toFixed(3)) : val;
     },2));
-    
+
     $('#_fullRegressionAPI').text(JSON.stringify(dataTableDependencies,function(key, val) {
         return val.toFixed ? Number(val.toFixed(3)) : val;
     },2));
-    
+
     $('#_summationOfX').text('Σ(X) = ' + summationOfX);
     $('#_summationOfY').text('Σ(Y) = ' + summationOfY);
     $('#_summationOfXY').text('Σ(X*Y) = ' + summationOfXY);
     $('#_summationOfXsq').text('Σ(X²) = ' + summationOfXSquare);
     $('#_intercept').text('β₁ = (Σ(X*Y)-((Σ(X) * Σ(Y))/n)) / Σ(X²) - ((Σ(X))²/n) = ' + calculateLinearIntercept());
-    
+
     var linearSlopeText = $('#_slope').text('β₀ = y̅ - β₁*x̅ \n => β₀ = ' + calculateLinearSlope());
     linearSlopeText.html(linearSlopeText.html().replace(/\n/g,'<br/>'));
-    
+
     var linearModelText = $('#_areaRegressionModel').text('Y = β₀ + β₁X \n => Y = ' + calculateLinearSlope().toPrecision(3) + ' + ' + calculateLinearIntercept().toPrecision(3) + 'X');
     linearModelText.html(linearModelText.html().replace(/\n/g,'<br/>'));
 }
@@ -322,4 +322,3 @@ function showSchoolsWithLessTeacher(sortedTSR, size) {
         $('#_tsr-Student'+(x+1)).text(sortedTSR[x]["numberOfStudents"])
     }
 }
-
