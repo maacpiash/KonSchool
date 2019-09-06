@@ -7,10 +7,8 @@
     
     <!-- Import Google's Material Design Icon Font, Text Font, Font-awesome Icon Font -->
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Poiret+One|Quicksand&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Quicksand&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Manjari&display=swap" rel="stylesheet">
-    <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css'
-          integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
     
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/materialize/css/materialize.css" />
@@ -30,32 +28,22 @@
     <header>
         <nav class="blue-grey darken-3">
             <div class="nav-wrapper">
-                <a asp-page="/Analysis" class="brand-logo" id="page-logo"><i class="material-icons" id="page-logo-icon">school</i> KonSchool</a>
+                <a asp-page="/Home" class="brand-logo" id="page-logo"><i class="material-icons" id="page-logo-icon">school</i> KonSchool</a>
                 <a href="#" class="sidenav-trigger" data-target="mobile-nav">
                     <i class="material-icons">menu</i>
                 </a>
                 <ul class="right hide-on-med-and-down ">
-                    <li>
-                        <a class="tooltipped" data-position="bottom" data-tooltip="GitHub" target="_blank"
-                           href="https://github.com/maacpiash/KonSchool">
-                            <i class="fab fa-github"></i>
-                        </a>
-                    </li>
+                    <li><a asp-page="/Index">Home</a></li>
                     <li><a asp-page="/About">About</a></li>
                     <li><a asp-page="/Contact">Contact</a></li>
                 </ul>
             </div>
         </nav>
         
-        <ul class="sidenav" id="mobile-nav">
-            <li>
-                <a class="tooltipped" data-position="bottom" data-tooltip="GitHub" target="_blank"
-                   href="https://github.com/maacpiash/KonSchool">
-                    <i class="fab fa-github"></i> GitHub
-                </a>
-            </li>
-            <li><a asp-page="/About">About</a></li>
-            <li><a asp-page="/Contact">Contact</a></li>
+        <ul class="sidenav grey darken-4" id="mobile-nav">
+            <li><a class="white-text" asp-page="/Index"><i class="material-icons green-text">home</i>  Home</a></li>
+            <li><a class="white-text" asp-page="/About"><i class="material-icons red-text">description</i>  About</a></li>
+            <li><a class="white-text" asp-page="/Contact"><i class="material-icons blue-text">perm_contact_calendar</i>  Contact</a></li>
          </ul>
     </header>
 

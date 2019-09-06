@@ -1,9 +1,21 @@
+nav {
+    height: 54px;
+    line-height: 52px;
+    font-family: 'Manjari', sans-serif;
+}
+
+nav i, nav [class^="mdi-"], nav [class*="mdi-"], nav i.material-icons {
+    height: 55px;
+    line-height: 52px;
+}
+
 *{
     font-family: 'Quicksand', sans-serif;
 }
 
 #page-logo {
-    font-family: 'Poiret One', cursive;
+    font-size: 22px;
+    font-weight: 300;
 }
 
 .text-justify {
