@@ -50,6 +50,7 @@ $(document).ready(function() {
     $('#analyticalResults').hide();
     $('#_analyticalResultPreloader').hide();
     $('#_analyticalResultContent').hide();
+    $('#_analyticalResultHeading').hide();
 
     $("#mapCol a").click(function() {
         clearOnRecurrentRequests();
