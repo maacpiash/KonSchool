@@ -12,4 +12,5 @@ $( document ).ready(function() {
         belowOrigin: true,
         alignment: 'left'
     });
+    $('.carousel').carousel();
 });

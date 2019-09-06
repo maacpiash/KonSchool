@@ -26,7 +26,12 @@ var summationOfY = 0;
 var summationOfX = 0;
 var summationOfYSquare = 0;
 var summationOfXSquare = 0;
+var summationOfXY = 0;
+var averageOfY = 0;
 var dataTableDependencies = [];
+var sizeOfDataSet = 0;
+var yBar = 0;
+var xBar = 0;
 
 var colorScheme01 = ['#35326B','#553E8A','#7A4B94','#B66673','#C38980'];
 var colorScheme02 = ['#2A639B','#75CFB4','#ADE2D2','#A9859E','#7F5080','#702474'];
@@ -84,6 +89,11 @@ function clearOnRecurrentRequests() {
     summationOfYSquare = 0;
     summationOfXSquare = 0;
     dataTableDependencies = [];
+    summationOfXY = 0;
+    averageOfY = 0;
+    sizeOfDataSet = 0;
+    yBar = 0;
+    xBar = 0;
 }
 
 function toTitleCase(str) {
@@ -112,9 +122,10 @@ function filterAPIData(data) {
     // Regression
     formRegressionDependency();
     performSquareOnDependency();
-    performSummationOnDependency();
     performMultiplicationBetweenDependencies();
+    performSummationOnDependency();
     mergeDependenciesForDataTable();
+    visualizeRegressionData();
 }
 
 function filterMaleFemaleRatio(ratio, typeOfSchool) {
@@ -225,6 +236,11 @@ function performSummationOnDependency() {
     summationOfX = areaRegressionIndependentData.reduce(function(a, b) { return a + b; }, 0);
     summationOfYSquare = areaRegressionDependentDataSquare.reduce(function(c, d) { return c + d; }, 0);
     summationOfXSquare = areaRegressionIndependentDataSquare.reduce(function(e, f) { return e + f; }, 0);
+    summationOfXY = areaRegressionMultiplication.reduce(function(g, h) { return g + h; }, 0);
+    averageOfY = summationOfY/areaRegressionDependentData.length;
+    sizeOfDataSet = areaRegressionIndependentData.length;
+    yBar = summationOfY/sizeOfDataSet;
+    xBar = summationOfX/sizeOfDataSet;
 }
 
 function performMultiplicationBetweenDependencies() {
@@ -244,3 +260,42 @@ function mergeDependenciesForDataTable() {
         });
     }
 }
+
+function createRegressionTable(){
+    var table = document.getElementById('_analyticalResultsRegression');
+    for(var i=1; i<dataTableDependencies.length; i++){
+        var row = table.insertRow(i);
+        var cell1 = row.insertCell(0);
+        var cell2 = row.insertCell(1);
+        var cell3 = row.insertCell(2);
+        var cell4 = row.insertCell(3);
+        var cell5 = row.insertCell(4);
+        cell1.innerHTML = dataTableDependencies[i-1]["AreaEvaluationY"];
+        cell2.innerHTML = dataTableDependencies[i-1]["AreaStatusX"];
+        cell3.innerHTML = dataTableDependencies[i-1]["X_Multiply_Y"];
+        cell4.innerHTML = dataTableDependencies[i-1]["AreaEvaluationYSquare"];
+        cell5.innerHTML = dataTableDependencies[i-1]["AreaStatusXSquare"];
+    }
+}
+
+function visualizeRegressionData() {
+    $('#demoRegressionAPI').text(JSON.stringify(dataTableDependencies[0],null,2));
+    $('#_fullRegressionAPI').text(JSON.stringify(dataTableDependencies,null,2));
+    $('#_summationOfX').text('Σ(X) = ' + summationOfX);
+    $('#_summationOfY').text('Σ(Y) = ' + summationOfY);
+    $('#_summationOfXY').text('Σ(X*Y) = ' + summationOfXY);
+    $('#_summationOfXsq').text('Σ(X²) = ' + summationOfXSquare);
+    $('#_intercept').text('β₁ = (Σ(X*Y)-((Σ(X) * Σ(Y))/n)) / Σ(X²) - ((Σ(X))²/n) = ' + calculateLinearIntercept());
+    $('#_slope').text('β₀ = y̅ - β₁*x̅  => β₀ = ' + calculateLinearSlope());
+    $('#_areaRegressionModel').text('Y = β₀ + β₁X => Y = ' + calculateLinearSlope().toPrecision(3) + ' + ' + calculateLinearIntercept().toPrecision(3) + 'X');
+    
+}
+
+function calculateLinearIntercept() {
+    return (summationOfXY - ((summationOfX * summationOfY)/sizeOfDataSet))/(summationOfXSquare - (Math.pow(summationOfX, 2)/sizeOfDataSet));
+}
+
+function calculateLinearSlope() {
+    return yBar - (calculateLinearIntercept()*xBar);
+}
+
