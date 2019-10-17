@@ -1,13 +1,26 @@
 # Kon School?
 
+> FAHP-based recommendation system for secondary schools in Bangladesh 🏫 🇧🇩
+
+**Try it out!**
+
 [![Live on Azure](https://img.shields.io/badge/Azure-Live-0089D6.svg?style=flat-square&logo=microsoft-azure)](https://KonSchool.azurewebsites.net)
 [![Live on Heroku](https://img.shields.io/badge/Heroku-Live-79589F.svg?style=flat-square&logo=heroku)](https://KonSchool.herokuapp.com)
 [![Docker pulls](https://img.shields.io/docker/pulls/maacpiash/konschool.svg?logo=docker&style=flat-square)](https://hub.docker.com/r/maacpiash/konschool)
-[![.NET Core 2.2](https://img.shields.io/badge/Core-v2.2-692079.svg?logo=.net&style=flat-square)](https://dot.net/get-core)
-[![GitHub last commit](https://img.shields.io/github/last-commit/maacpiash/KonSchool.svg?logo=git&style=flat-square)](https://github.com/maacpiash/KonSchool/commits)
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?logo=github&style=flat-square)](https://github.com/maacpiash/KonSchool/pulls)
 
-**Build Status:**
+**Specs**
+
+[![.NET Core 2.1](https://img.shields.io/badge/Core-v2.1-692079.svg?logo=.net&style=flat-square)](https://dotnet.microsoft.com/download/dotnet-core/2.1)
+[![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/maacpiash/konschool?logo=nuget&style=flat-square)](https://github.com/maacpiash/KonSchool/blob/master/src/KonSchool.csproj)
+
+**Development status**
+
+[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?logo=github&style=flat-square)](https://github.com/maacpiash/KonSchool/pulls)
+[![GitHub last commit](https://img.shields.io/github/last-commit/maacpiash/KonSchool.svg?logo=git&style=flat-square)](https://github.com/maacpiash/KonSchool/commits)
+[![GitHub closed issues](https://img.shields.io/github/issues-closed/maacpiash/KonSchool.svg?logo=git&style=flat-square)](https://github.com/maacpiash/KonSchool/issues?q=is%3Aissue+is%3Aclosed)
+[![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/maacpiash/KonSchool?logo=github&style=flat-square)](https://github.com/maacpiash/KonSchool/pulls?q=is%3Apr+is%3Aclosed)
+
+**Build Status**
 
 <table>
   <thead>
@@ -56,7 +69,7 @@
   </tbody>
 </table>
 
-**QC:**
+**QC**
 
 [![AppVeyor tests](https://img.shields.io/appveyor/tests/maacpiash/KonSchool.svg?logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/maacpiash/konschool)
 [![Codecov](https://img.shields.io/codecov/c/gh/maacpiash/KonSchool.svg?logo=codecov&style=flat-square)](https://codecov.io/gh/maacpiash/KonSchool)
