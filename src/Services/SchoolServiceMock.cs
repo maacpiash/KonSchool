@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using KonSchool.Models;
 using KonSchool.Services;
 
-namespace KonSchool.Tests.Mocks
+namespace KonSchool.Services
 {
     public class SchoolServiceMock : ISchoolService
     {

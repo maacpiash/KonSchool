@@ -1,7 +1,7 @@
 using Xunit;
 using KonSchool.Models;
 using KonSchool.Pages;
-using KonSchool.Tests.Mocks;
+using KonSchool.Services;
 
 namespace KonSchool.Tests.PageModelTests
 {

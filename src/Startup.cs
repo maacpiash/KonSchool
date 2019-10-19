@@ -14,17 +14,16 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
 
-
 namespace KonSchool
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IHostingEnvironment environment)
         {
-            Configuration = configuration;
+            Environment = environment;
         }
 
-        public IConfiguration Configuration { get; }
+        public IHostingEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -37,7 +36,11 @@ namespace KonSchool
             });
 
             services.AddSingleton<Query>();
-            services.AddSingleton<ISchoolService, SchoolService>();
+
+            bool dev = Environment.IsDevelopment();
+            services.AddSingleton<ISchoolService>(s =>
+                dev ? (ISchoolService)new SchoolServiceMock() : (ISchoolService)new SchoolService()
+            );
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -58,7 +61,6 @@ namespace KonSchool
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
-
             app.UseMvc();
         }
     }

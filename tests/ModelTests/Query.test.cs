@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using KonSchool.Models;
-using KonSchool.Tests.Mocks;
+using KonSchool.Services;
 using Xunit;
 
 namespace KonSchool.Tests.ModelTests

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using KonSchool.Models;
 using KonSchool.ApiControllers;
-using KonSchool.Tests.Mocks;
+using KonSchool.Services;
 
 namespace KonSchool.Tests.ApiControllerTests
 {
