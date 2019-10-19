@@ -19,7 +19,11 @@ namespace KonSchool.Models
         public string Thana { get; set; }
         public string Union_Ward { get; set; }
         private string _occupation;
-        public string Occupation { get => _occupation ?? "Other" ; set => _occupation = Occupations.Contains(value) ? value : "Other"; }
+        public string Occupation
+        {
+            get => _occupation ?? "Other";
+            set => _occupation = Occupations.Contains(value) ? value : "Other";
+        }
         public (double, double, double)[,] CompMat { get; set; }
         public double[] Weights { get; set; }
         #endregion
@@ -34,6 +38,7 @@ namespace KonSchool.Models
         {
             _SchoolService = schoolService;
             Alternatives = _SchoolService.GetSchools().ToList();
+            Weights = new double[6];
         }
 
         public static List<string> Occupations

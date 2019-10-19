@@ -13,7 +13,6 @@ namespace KonSchool.ApiControllers
         [HttpGet("{numbers}")]
         public ActionResult<IEnumerable<double>> Get(string numbers)
         {
-            Console.WriteLine("NUMBERS " + numbers);
             int[] values;
             try
             {
