@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Http;
 
 using KonSchool.Models;
 using System.ComponentModel.DataAnnotations;
@@ -25,10 +26,6 @@ namespace KonSchool.Pages
         [BindProperty] [Required] public string UW { get; set; }
         [BindProperty] [Required] public bool ByDiv { get; set; }
         [BindProperty] [Required] public bool ByDist { get; set; }
-
-        public Query _Query { get; set; }
-
-        public IndexModel(Query query) => _Query = query;
 
         public void OnGet()
         {
@@ -52,42 +49,46 @@ namespace KonSchool.Pages
         {
             if (!ModelState.IsValid)
                 return Page();
-            _Query.Class = Convert.ToInt32(Class);
-            _Query.Occupation = Occupation;
+            HttpContext.Session.SetInt32("_Class", Convert.ToInt32(Class));
+            HttpContext.Session.SetInt32("_Age", Age);
+            HttpContext.Session.SetString("_Sex", Sex == 1 ? "Male" : "Female");
+            HttpContext.Session.SetString("_Occupation", Occupation);
+
             switch (Occupation)
             {
                 case "Worker":
                 case "Tati":
                 case "Fisherman":
                 case "Kamar/Kumar":
-                    _Query.Social = 2.5;
+                    HttpContext.Session.SetString("_Social", "2.5");
                     break;
                 case "Cultivation":
                 case "Expatriate":
                 case "Small business":
-                    _Query.Social = 5.0;
+                    HttpContext.Session.SetString("_Social", "5.0");
                     break;
                 case "Govt. job":
                 case "Private job":
                 case "Teacher":
-                    _Query.Social = 7.5;
+                    HttpContext.Session.SetString("_Social", "7.5");
                     break;
                 case "Lawyer":
                 case "Doctor":
                 case "Engineer":
                 case "Businessman":
-                    _Query.Social = 10.0;
+                    HttpContext.Session.SetString("_Social", "10.0");
                     break;
                 default:
-                    _Query.Social = 1.0;
+                    HttpContext.Session.SetString("_Social", "1.0");
                     break;
             }
-            _Query.IsMale = Sex == 1;
-            _Query.Age = Age;
-            string uw = UW.Split('[')[0].Trim();
-            _Query.SetLocation(Division, District, Thana, uw);
-            _Query.LimitByDivision = ByDiv;
-            _Query.LimitByDistrict = ByDist;
+            
+            HttpContext.Session.SetString("_Division", Division);
+            HttpContext.Session.SetString("_District", District);
+            HttpContext.Session.SetString("_Thana", Thana);
+            HttpContext.Session.SetString("_UW", UW.Split('[')[0].Trim());
+            HttpContext.Session.SetString("_ByDiv", ByDiv.ToString());
+            HttpContext.Session.SetString("_ByDist", ByDist.ToString());
             return RedirectToPage("/Inputs");
         }
     }

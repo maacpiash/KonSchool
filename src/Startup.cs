@@ -35,7 +35,11 @@ namespace KonSchool
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-            services.AddSingleton<Query>();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(30);
+                options.Cookie.IsEssential = true;
+            });
 
             bool dev = Environment.IsDevelopment();
             services.AddSingleton<ISchoolService>(s =>
@@ -61,6 +65,7 @@ namespace KonSchool
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseSession();
             app.UseMvc();
         }
     }

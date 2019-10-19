@@ -2,7 +2,6 @@ using Xunit;
 using Microsoft.AspNetCore.Mvc;
 using KonSchool.Pages;
 using KonSchool.Models;
-using KonSchool.Services;
 
 namespace KonSchool.Tests.PageModelTests
 {
@@ -14,7 +13,7 @@ namespace KonSchool.Tests.PageModelTests
         [Fact]
         public void Can_OnGet()
         {
-            var indexPage = new IndexModel(new Query(new SchoolServiceMock()));
+            var indexPage = new IndexModel();
             indexPage.OnGet();
             Assert.Equal(NUMBER_OF_CLASSES, indexPage.Classes.Count);
             Assert.Equal(NUMBER_OF_OCCUPATIONS, indexPage.Occupations.Count);
@@ -23,7 +22,7 @@ namespace KonSchool.Tests.PageModelTests
         [Fact]
         public void Can_RedirectTo_InputsPage_OnPost()
         {
-            var indexPage = new IndexModel(new Query(new SchoolServiceMock()))
+            var indexPage = new IndexModel()
             {
                 Class = "6",
                 Division = "Dhaka",

@@ -3,7 +3,6 @@ using Microsoft.AspNetCore.Mvc;
 
 using KonSchool.Pages;
 using KonSchool.Models;
-using KonSchool.Services;
 
 namespace KonSchool.Tests.PageModelTests
 {
@@ -12,7 +11,7 @@ namespace KonSchool.Tests.PageModelTests
         [Fact]
         public void Can_OnGet()
         {
-            var inputsModel = new InputsModel(new Query(new SchoolServiceMock()));
+            var inputsModel = new InputsModel();
             inputsModel.OnGet();
             Assert.NotNull(inputsModel.Values);
         }
@@ -20,7 +19,7 @@ namespace KonSchool.Tests.PageModelTests
         [Fact]
         public void Can_RedirectTo_OutputsPage_OnPost()
         {
-            var inputsModel = new InputsModel(new Query(new SchoolServiceMock()));
+            var inputsModel = new InputsModel();
             inputsModel.OnGet();
             Assert.True(inputsModel.ModelState.IsValid);
             var response_on_submit = inputsModel.OnPost() as RedirectToPageResult;
