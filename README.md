@@ -7,6 +7,7 @@
 [![Live on Azure](https://img.shields.io/badge/Azure-Live-0089D6.svg?style=flat-square&logo=microsoft-azure)](https://KonSchool.azurewebsites.net)
 [![Live on Heroku](https://img.shields.io/badge/Heroku-Live-79589F.svg?style=flat-square&logo=heroku)](https://KonSchool.herokuapp.com)
 [![Docker pulls](https://img.shields.io/docker/pulls/maacpiash/konschool.svg?logo=docker&style=flat-square)](https://hub.docker.com/r/maacpiash/konschool)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmaacpiash%2FKonSchool.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmaacpiash%2FKonSchool?ref=badge_shield)
 
 **Specs**
 
@@ -198,3 +199,7 @@ This project is under [GNU Affero General Public License v3](https://github.com/
 
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg?style=flat-square)](https://saythanks.io/to/maacpiash)
 [![Twitter URL](https://img.shields.io/twitter/url/https/github.com/maacpiash/KonSchool?style=social)](https://twitter.com/intent/tweet?url=https%3A//konschool.azurewebsites.net)
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fmaacpiash%2FKonSchool.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fmaacpiash%2FKonSchool?ref=badge_large)
