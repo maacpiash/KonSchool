@@ -1,80 +1,43 @@
-# Kon School?
+<h1 align="center">Kon School?</h1>
+<h3 align="center">FAHP-based recommendation system for secondary schools in Bangladesh 🏫 🇧🇩</h3>
 
-> FAHP-based recommendation system for secondary schools in Bangladesh 🏫 🇧🇩
-
-**Try it out!**
-
-[![Live on Azure](https://img.shields.io/badge/Azure-Live-0089D6.svg?style=flat-square&logo=microsoft-azure)](https://KonSchool.azurewebsites.net)
-[![Live on Heroku](https://img.shields.io/badge/Heroku-Live-79589F.svg?style=flat-square&logo=heroku)](https://KonSchool.herokuapp.com)
-[![Docker pulls](https://img.shields.io/docker/pulls/maacpiash/konschool.svg?logo=docker&style=flat-square)](https://hub.docker.com/r/maacpiash/konschool)
-
-**Specs**
-
-[![.NET Core 2.1](https://img.shields.io/badge/Core-v2.1-692079.svg?logo=.net&style=flat-square)](https://dotnet.microsoft.com/download/dotnet-core/2.1)
-[![Libraries.io dependency status for GitHub repo](https://img.shields.io/librariesio/github/maacpiash/konschool?logo=nuget&style=flat-square)](https://github.com/maacpiash/KonSchool/blob/master/src/KonSchool.csproj)
-
-**Development status**
-
-[![PRs welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?logo=github&style=flat-square)](https://github.com/maacpiash/KonSchool/pulls)
-[![GitHub last commit](https://img.shields.io/github/last-commit/maacpiash/KonSchool.svg?logo=git&style=flat-square)](https://github.com/maacpiash/KonSchool/commits)
-[![GitHub closed issues](https://img.shields.io/github/issues-closed/maacpiash/KonSchool.svg?logo=git&style=flat-square)](https://github.com/maacpiash/KonSchool/issues?q=is%3Aissue+is%3Aclosed)
-[![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/maacpiash/KonSchool?logo=github&style=flat-square)](https://github.com/maacpiash/KonSchool/pulls?q=is%3Apr+is%3Aclosed)
-
-**Build Status**
-
-<table>
-  <thead>
-    <tr>
-      <th>Server</th>
-      <th>Platform</th>
-      <th>Status</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td align="center" rowspan=4>Azure<br/>Pipelines</td>
-      <td align="center">Windows (VS 2017)</td>
-      <td align="center"><a href="https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master" target="blank"><img src="https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20windows&label=Build" alt="Build Status"></td>
-    <tr>
-    <tr>
-      <td align="center">macOS (10.13)</td>
-      <td align="center"><a href="https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master" target="blank"><img src="https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20mac&label=Build" alt="Build Status"></td>
-    </tr>
-    <tr>
-      <td align="center">Linux (Ubuntu 16.04)</td>
-      <td align="center"><a href="https://dev.azure.com/ahadc/KonSchool/_build/latest?definitionId=3&branchName=master" target="blank"><img src="https://dev.azure.com/ahadc/KonSchool/_apis/build/status/KonSchool?branchName=master&jobName=Job&configuration=Job%20linux&label=Build" alt="Build Status"></td>
-    </tr>
-    <tr>
-      <td align="center">AppVeyor</td>
-      <td align="center">Windows (VS 2017)</td>
-      <td align="center"><a href="https://ci.appveyor.com/project/maacpiash/konschool" target="blank"><img src="https://img.shields.io/appveyor/ci/maacpiash/KonSchool?style=flat-square&logo=appveyor" alt="AppVeyor"></a></td>
-    </tr>
-    <tr>
-      <td align="center">Travis CI</td>
-      <td align="center">Linux (Ubuntu 18.04)</td>
-      <td align="center"><a href="https://travis-ci.org/maacpiash/KonSchool" target="blank"><img src="https://img.shields.io/travis/maacpiash/KonSchool?style=flat-square&logo=travis" alt="Travis (.org)"></a></td>
-    </tr>
-    <tr>
-      <td align="center" rowspan=4>GitHub<br>Actions</td>
-    </tr>
-    <tr>
-      <td align="center" colspan=3><a href="https://github.com/maacpiash/KonSchool/actions?workflowID=Windows"><img src="https://github.com/maacpiash/KonSchool/workflows/Windows/badge.svg" alt="Actions Status"></a></td>
-    </tr>
-    <tr>
-      <td align="center" colspan=3><a href="https://github.com/maacpiash/KonSchool/actions?workflowID=macOS"><img src="https://github.com/maacpiash/KonSchool/workflows/macOS/badge.svg" alt="Actions Status"></a></td>
-    </tr>
-    <tr>
-      <td align="center" colspan=3><a href="https://github.com/maacpiash/KonSchool/actions?workflowID=Ubuntu"><img src="https://github.com/maacpiash/KonSchool/workflows/Ubuntu/badge.svg" alt="Actions Status"></a></td>
-    </tr>
-  </tbody>
-</table>
-
-**QC**
-
-[![AppVeyor tests](https://img.shields.io/appveyor/tests/maacpiash/KonSchool.svg?logo=appveyor&style=flat-square)](https://ci.appveyor.com/project/maacpiash/konschool)
-[![Codecov](https://img.shields.io/codecov/c/gh/maacpiash/KonSchool.svg?logo=codecov&style=flat-square)](https://codecov.io/gh/maacpiash/KonSchool)
-[![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/maacpiash/KonSchool?style=flat-square)](https://www.codefactor.io/repository/github/maacpiash/konschool)
-[![Code Climate maintainability](https://img.shields.io/codeclimate/maintainability-percentage/maacpiash/KonSchool?logo=code-climate&style=flat-square)](https://codeclimate.com/github/maacpiash/KonSchool)
+<p align="center">
+  <a href="https://KonSchool.azurewebsites.net">
+    <img src="https://img.shields.io/badge/Azure-Live-0089D6.svg?style=flat-square&logo=microsoft-azure" alt="Live on Azure">
+  </a>
+  <a href="https://KonSchool.herokuapp.com">
+    <img src="https://img.shields.io/badge/Heroku-Live-79589F.svg?style=flat-square&logo=heroku" alt="Live on Heroku">
+  </a>
+  <a href="https://hub.docker.com/r/maacpiash/konschool">
+    <img src="https://img.shields.io/docker/pulls/maacpiash/konschool.svg?logo=docker&style=flat-square" alt="Docker pulls">
+  </a>
+  <a href="https://dotnet.microsoft.com/download/dotnet-core/2.1">
+    <img src="https://img.shields.io/badge/Core-v2.1-692079.svg?logo=.net&style=flat-square" alt=".NET Core 2.1">
+  </a>
+  <a href="https://github.com/maacpiash/KonSchool/blob/master/src/KonSchool.csproj">
+    <img src="https://img.shields.io/librariesio/github/maacpiash/konschool?logo=nuget&style=flat-square" alt="Libraries.io dependency status for GitHub repo">
+  </a>
+  <a href="https://www.codefactor.io/repository/github/maacpiash/konschool">
+    <img src="https://img.shields.io/codefactor/grade/github/maacpiash/KonSchool?style=flat-square" alt="CodeFactor Grade">
+  </a>
+  <br>
+  <a href="https://ci.appveyor.com/project/maacpiash/konschool">
+    <img src="https://img.shields.io/appveyor/ci/maacpiash/KonSchool?label=Windows&logo=appveyor&style=flat-square" alt="AppVeyor">
+  </a>
+  <a href="https://travis-ci.org/maacpiash/KonSchool">
+    <img src="https://img.shields.io/travis/maacpiash/KonSchool?label=macOS%2FUbuntu&logo=travis&style=flat-square" alt="Travis (.org)">
+  </a>
+  <a href="https://ci.appveyor.com/project/maacpiash/konschool">
+    <img src="https://img.shields.io/appveyor/tests/maacpiash/KonSchool.svg?logo=appveyor&style=flat-square" alt="AppVeyor tests">
+  </a>
+  <a href="https://codecov.io/gh/maacpiash/KonSchool">
+    <img src="https://img.shields.io/codecov/c/gh/maacpiash/KonSchool.svg?logo=codecov&style=flat-square"
+    alt="Codecov">
+  </a>
+  <a href="https://codeclimate.com/github/maacpiash/KonSchool">
+    <img src="https://img.shields.io/codeclimate/maintainability-percentage/maacpiash/KonSchool?logo=code-climate&style=flat-square" alt="Code Climate maintainability">
+  </a>
+</p>
 
 *Kon School?* (Bengali: *কোন স্কুল?*, meaning *"Which school?"*) is a recommendation system that gives secondary schools personalized compatibility scores based on user's preferences.
 
@@ -136,7 +99,7 @@ There are two ways.
 
 ### Compilation of source
 
-If you have .NET Core SDK (2.x) installed, you can run the application directly from the source:
+If you have .NET Core SDK (v2.1) installed, you can run the application directly from the source:
 
 ```bash
 git clone https://github.com/maacpiash/KonSchool
@@ -145,18 +108,27 @@ dotnet run --project KonSchool/src/KonSchool.csproj
 
 Now, navigate to either http://localhost:5000 or https://localhost:5001.
 
-I recommend this method over the next one. You can download .NET Core SDK installer or binary from [Microsoft](https://dot.net/get-core).
+I recommend this method over the next one. You can download .NET Core SDK from [Microsoft](https://dotnet.microsoft.com/download/dotnet-core/2.1).
 
 ### Docker image
 
-You may run from the docker image:
+If you do not have Docker installed, please follow the official [documentation](https://docs.docker.com/install/).
+
+For the first time, you may run the following command, which would download the docker image from Docker Hub, create a container from the image and start the container:
 
 ```bash
-docker container run -it -p 80:80 maacpiash/konschool
+docker run -it -p 5000:80 --name konschool maacpiash/konschool
 ```
 
-The app can now be accessed from http://localhost:80.
-You can get instructions on installing Docker from their [documentation](https://docs.docker.com/install/).
+Now the application can be accessed via http://localhost:5000. Omit the `-it` part from the command if you want to keep it running in the background.
+
+From then on, every time you need to use the app, run the following command to start the container that was built the first time:
+
+```bash
+docker container start -i konschool
+```
+
+The app can now be accessed from http://localhost:5000. Omit the `-i` part from the command if you want to keep it running in the background.
 
 ## REST API
 
