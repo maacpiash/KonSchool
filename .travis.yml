@@ -8,9 +8,10 @@ jobs:
       osx_image: xcode11.2
   allow_failures:
     - os: osx
-dotnet: 2.1
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+  - curl https://dot.net/v1/dotnet-install.sh
+  - bash dotnet-install.sh --version 2.1.802
 branches:
   only:
   - master
