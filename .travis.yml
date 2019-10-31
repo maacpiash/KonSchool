@@ -1,11 +1,21 @@
+language: csharp
+solution: KonSchool.sln
+jobs:
+  include:
+    - os: linux
+      dist: bionic
+    - os: osx
+      osx_image: xcode11.2
+  allow_failures:
+    - os: osx
+dotnet: 2.1
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
 branches:
   only:
   - master
-language: csharp
 mono: none
 sudo: required
-dist: bionic
-dotnet: 2.1
 script:
     - dotnet restore
     - dotnet build
