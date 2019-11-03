@@ -1,12 +1,12 @@
 <h1 align="center">Kon School?</h1>
-<h3 align="center">FAHP-based recommendation system for secondary schools in Bangladesh 🏫 🇧🇩</h3>
+<h3 align="center">Fuzzy-AHP-based recommendation system for secondary schools in Bangladesh 🏫 🇧🇩</h3>
 
 <p align="center">
   <a href="https://KonSchool.azurewebsites.net">
-    <img src="https://img.shields.io/badge/Azure-Live-0089D6.svg?style=flat-square&logo=microsoft-azure" alt="Live on Azure">
+    <img src="https://img.shields.io/badge/Azure-Live-0089D6.svg?logo=microsoft-azure&style=flat-square" alt="Live on Azure">
   </a>
   <a href="https://KonSchool.herokuapp.com">
-    <img src="https://img.shields.io/badge/Heroku-Live-79589F.svg?style=flat-square&logo=heroku" alt="Live on Heroku">
+    <img src="https://img.shields.io/badge/Heroku-Live-79589F.svg?logo=heroku&style=flat-square" alt="Live on Heroku">
   </a>
   <a href="https://hub.docker.com/r/maacpiash/konschool">
     <img src="https://img.shields.io/docker/pulls/maacpiash/konschool.svg?logo=docker&style=flat-square" alt="Docker pulls">
@@ -18,7 +18,7 @@
     <img src="https://img.shields.io/librariesio/github/maacpiash/konschool?logo=nuget&style=flat-square" alt="Libraries.io dependency status for GitHub repo">
   </a>
   <a href="https://www.codefactor.io/repository/github/maacpiash/konschool">
-    <img src="https://img.shields.io/codefactor/grade/github/maacpiash/KonSchool?style=flat-square" alt="CodeFactor Grade">
+    <img src="https://img.shields.io/codefactor/grade/github/maacpiash/KonSchool?logo=codefactor&style=flat-square" alt="CodeFactor Grade">
   </a>
   <br>
   <a href="https://ci.appveyor.com/project/maacpiash/konschool">
@@ -130,6 +130,12 @@ docker container start -i konschool
 
 The app can now be accessed from http://localhost:5000. Omit the `-i` part from the command if you want to keep it running in the background.
 
+To stop the container running in the foreground, press `Ctrl` + `C`. If you started the container in the background (as a Windows service or a daemon on Unix/Linux), run the following command to stop the container:
+
+```bash
+docker container stop konschool
+```
+
 ## REST API
 
 In addition to the server-side-rendered pages, there are two RESTful API endpoints:
@@ -164,6 +170,7 @@ All these endpoints return response in standard JSON format.
 I am very grateful to Dr. Rashedur M. Rahman ([NSU ECE](http://ece.northsouth.edu/people/rashedur-rahman/), [Google Scholar](https://scholar.google.ca/citations?user=L9S6rlUAAAAJ)), Professor at Department of Electrical and Computer Engineering, North South University; and our honorable instructor of the Fuzzy Logic course (CSE470). He mentored my group on this project and made sure our research work got [published](https://link.springer.com/chapter/10.1007/978-3-319-98678-4_29) in Springer and presented at a prestigeous [conference](https://missi.pwr.edu.pl/2018/).
 
 I would also like to thank my groupmates — N.S.M. Rezaur Rahman, for the development of the mathematical model; and [Abdullah-Al Nahian Siraj](https://github.com/Nahian-Siraj), for his cooperation with finding related research paper.
+
 ## Contributing
 
 This project is under [GNU Affero General Public License v3](https://github.com/maacpiash/KonSchool/blob/master/LICENSE.md). Please read the [contribution guideline](https://github.com/maacpiash/KonSchool/blob/master/CONTRIBUTING.md) in advance.
