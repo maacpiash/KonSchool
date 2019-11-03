@@ -8,11 +8,9 @@ init:
 - git config --global core.autocrlf true
 
 before_build:
-- nuget restore
-- choco install xunit
-- choco install opencover.portable
-- choco install codecov
 - dotnet --info
+- choco install xunit opencover.portable codecov
+- dotnet restore
 
 build:
   project: KonSchool.sln

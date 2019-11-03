@@ -1,22 +1,21 @@
 language: csharp
+mono: none
+dotnet: 2.1.802 # LTS
 solution: KonSchool.sln
-jobs:
-  include:
-    - os: linux
-      dist: bionic
-    - os: osx
-      osx_image: xcode11.2
-  allow_failures:
-    - os: osx
-before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
-  - curl https://dot.net/v1/dotnet-install.sh
-  - bash dotnet-install.sh --version 2.1.802
+sudo: required
 branches:
   only:
   - master
-mono: none
-sudo: required
+jobs:
+  include:
+    - os: linux
+      dist: bionic # Ubuntu 18.04 (LTS)
+    - os: osx
+      osx_image: xcode11.2 # macOS 10.14 (Mojave)
+  allow_failures:
+    - os: osx
+before_install:
+  - dotnet --info
 script:
     - dotnet restore
     - dotnet build
