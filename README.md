@@ -20,6 +20,9 @@
   <a href="https://www.codefactor.io/repository/github/maacpiash/konschool">
     <img src="https://img.shields.io/codefactor/grade/github/maacpiash/KonSchool?logo=codefactor&style=flat-square" alt="CodeFactor Grade">
   </a>
+  <a href="https://codeclimate.com/github/maacpiash/KonSchool">
+    <img src="https://img.shields.io/codeclimate/maintainability-percentage/maacpiash/KonSchool?logo=code-climate&style=flat-square" alt="Code Climate maintainability">
+  </a>
   <br>
   <a href="https://ci.appveyor.com/project/maacpiash/konschool">
     <img src="https://img.shields.io/appveyor/ci/maacpiash/KonSchool?label=Windows&logo=appveyor&style=flat-square" alt="AppVeyor">
@@ -27,15 +30,15 @@
   <a href="https://travis-ci.org/maacpiash/KonSchool">
     <img src="https://img.shields.io/travis/maacpiash/KonSchool?label=macOS%2FUbuntu&logo=travis&style=flat-square" alt="Travis (.org)">
   </a>
+  <a href="https://hub.docker.com/r/maacpiash/konschool">
+    <img src="https://img.shields.io/docker/cloud/build/maacpiash/konschool?logo=docker&style=flat-square" alt="Travis (.org)">
+  </a>
   <a href="https://ci.appveyor.com/project/maacpiash/konschool">
     <img src="https://img.shields.io/appveyor/tests/maacpiash/KonSchool.svg?logo=appveyor&style=flat-square" alt="AppVeyor tests">
   </a>
   <a href="https://codecov.io/gh/maacpiash/KonSchool">
     <img src="https://img.shields.io/codecov/c/gh/maacpiash/KonSchool.svg?logo=codecov&style=flat-square"
     alt="Codecov">
-  </a>
-  <a href="https://codeclimate.com/github/maacpiash/KonSchool">
-    <img src="https://img.shields.io/codeclimate/maintainability-percentage/maacpiash/KonSchool?logo=code-climate&style=flat-square" alt="Code Climate maintainability">
   </a>
 </p>
 
