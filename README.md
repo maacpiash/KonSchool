@@ -3,22 +3,22 @@
 
 <p align="center">
   <a href="https://KonSchool.azurewebsites.net">
-    <img src="https://img.shields.io/badge/Azure-Live-0089D6.svg?logo=microsoft-azure&style=flat-square" alt="Live on Azure">
+    <img src="https://img.shields.io/website?label=www&logo=microsoft-azure&style=flat-square&up_color=deepgreen&url=https%3A%2F%2FKonSchool.azurewebsites.net" alt="Live on Azure">
   </a>
   <a href="https://KonSchool.herokuapp.com">
-    <img src="https://img.shields.io/badge/Heroku-Live-79589F.svg?logo=heroku&style=flat-square" alt="Live on Heroku">
+    <img src="https://img.shields.io/website?label=www&logo=heroku&style=flat-square&up_color=deepgreen&url=https%3A%2F%2FKonSchool.herokuapp.com" alt="Live on Heroku">
   </a>
   <a href="https://hub.docker.com/r/maacpiash/konschool">
-    <img src="https://img.shields.io/docker/pulls/maacpiash/konschool.svg?logo=docker&style=flat-square" alt="Docker pulls">
+    <img src="https://img.shields.io/docker/pulls/maacpiash/konschool.svg?label=pulls&logo=docker&style=flat-square" alt="Docker pulls">
   </a>
   <a href="https://dotnet.microsoft.com/download/dotnet-core/2.1">
     <img src="https://img.shields.io/badge/Core-v2.1-692079.svg?logo=.net&style=flat-square" alt=".NET Core 2.1">
   </a>
   <a href="https://github.com/maacpiash/KonSchool/blob/master/src/KonSchool.csproj">
-    <img src="https://img.shields.io/librariesio/github/maacpiash/konschool?logo=nuget&style=flat-square" alt="Libraries.io dependency status for GitHub repo">
+    <img src="https://img.shields.io/librariesio/github/maacpiash/konschool?label=deps&logo=nuget&style=flat-square" alt="Libraries.io dependency status for GitHub repo">
   </a>
   <a href="https://www.codefactor.io/repository/github/maacpiash/konschool">
-    <img src="https://img.shields.io/codefactor/grade/github/maacpiash/KonSchool?logo=codefactor&style=flat-square" alt="CodeFactor Grade">
+    <img src="https://img.shields.io/codefactor/grade/github/maacpiash/KonSchool?label=quality&logo=codefactor&style=flat-square" alt="CodeFactor Grade">
   </a>
   <a href="https://codeclimate.com/github/maacpiash/KonSchool">
     <img src="https://img.shields.io/codeclimate/maintainability-percentage/maacpiash/KonSchool?logo=code-climate&style=flat-square" alt="Code Climate maintainability">
@@ -44,6 +44,8 @@
 
 *Kon School?* (Bengali: *কোন স্কুল?*, meaning *"Which school?"*) is a recommendation system that gives secondary schools personalized compatibility scores based on user's preferences.
 
+<div id="toc">
+
 - [Process](#Process)
   - [Criteria of schools](#Criteria-of-schools)
   - [Inputs](#Inputs)
@@ -58,6 +60,8 @@
   - [School data endpoint, `/api/schools`](#School-data-endpoint-apischools)
 - [Acknowledgement](#Acknowledgement)
 - [Contributing](#Contributing)
+
+</div>
 
 ## Process
 
@@ -90,11 +94,15 @@ For more details on calculation of weights from fuzzy inputs, please check the [
 - Weights of 6 criteria
 - Compatibility scores for all eligible schools
 
+**[⬆ back to toc](#toc)**
+
 ## Data on schools
 
 The dataset on schools that is used for this system was compiled from several datasets that were originally collected from [Bangladesh Open Data](http://data.gov.bd/dataset). It contains the data on 14,274 schools across the country. The SQLite database can be found [here](https://drive.google.com/open?id=1_MZnVRHl0ZLHEMab7lBhpUvuS3yaLoPZ). You can also use API endpoints to access the data (view the [REST API section](#REST-API) below for further instructions).
 
 The collection of data and its preprocessing is discussed in the [`docs`](https://github.com/maacpiash/KonSchool/tree/master/docs).
+
+**[⬆ back to toc](#toc)**
 
 ## Running the web app locally
 
@@ -139,6 +147,8 @@ To stop the container running in the foreground, press `Ctrl` + `C`. If you star
 docker container stop konschool
 ```
 
+**[⬆ back to toc](#toc)**
+
 ## REST API
 
 In addition to the server-side-rendered pages, there are two RESTful API endpoints:
@@ -168,11 +178,15 @@ This endpoint can be used to access data of schools. Schools can be queried abou
 
 All these endpoints return response in standard JSON format.
 
+**[⬆ back to toc](#toc)**
+
 ## Acknowledgement
 
 I am very grateful to Dr. Rashedur M. Rahman ([NSU ECE](http://ece.northsouth.edu/people/rashedur-rahman/), [Google Scholar](https://scholar.google.ca/citations?user=L9S6rlUAAAAJ)), Professor at Department of Electrical and Computer Engineering, North South University; and our honorable instructor of the Fuzzy Logic course (CSE470). He mentored my group on this project and made sure our research work got [published](https://link.springer.com/chapter/10.1007/978-3-319-98678-4_29) in Springer and presented at a prestigeous [conference](https://missi.pwr.edu.pl/2018/).
 
 I would also like to thank my groupmates — N.S.M. Rezaur Rahman, for the development of the mathematical model; and [Abdullah-Al Nahian Siraj](https://github.com/Nahian-Siraj), for his cooperation with finding related research paper.
+
+**[⬆ back to toc](#toc)**
 
 ## Contributing
 
@@ -180,3 +194,5 @@ This project is under [GNU Affero General Public License v3](https://github.com/
 
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg?style=flat-square)](https://saythanks.io/to/maacpiash)
 [![Twitter URL](https://img.shields.io/twitter/url/https/github.com/maacpiash/KonSchool?style=social)](https://twitter.com/intent/tweet?url=https%3A//konschool.azurewebsites.net)
+
+**[⬆ back to toc](#toc)**
