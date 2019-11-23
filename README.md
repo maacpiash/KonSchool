@@ -3,10 +3,10 @@
 
 <p align="center">
   <a href="https://KonSchool.azurewebsites.net">
-    <img src="https://img.shields.io/website?label=www&logo=microsoft-azure&style=flat-square&up_color=deepgreen&url=https%3A%2F%2FKonSchool.azurewebsites.net" alt="Live on Azure">
+    <img src="https://img.shields.io/website?logo=microsoft-azure&style=flat-square&url=https%3A%2F%2FKonSchool.azurewebsites.net" alt="Live on Azure">
   </a>
   <a href="https://KonSchool.herokuapp.com">
-    <img src="https://img.shields.io/website?label=www&logo=heroku&style=flat-square&up_color=deepgreen&url=https%3A%2F%2FKonSchool.herokuapp.com" alt="Live on Heroku">
+    <img src="https://img.shields.io/website?logo=heroku&style=flat-square&url=https%3A%2F%2FKonSchool.herokuapp.com" alt="Live on Heroku">
   </a>
   <a href="https://hub.docker.com/r/maacpiash/konschool">
     <img src="https://img.shields.io/docker/pulls/maacpiash/konschool.svg?label=pulls&logo=docker&style=flat-square" alt="Docker pulls">
