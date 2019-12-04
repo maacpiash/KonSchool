@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-using KonSchool.Models;
+using KonSchool.Lib;
 
 namespace KonSchool.ApiControllers
 {

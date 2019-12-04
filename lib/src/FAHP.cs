@@ -4,9 +4,9 @@ using System.IO;
 using System.Text;
 
 using static System.Math;
-using static KonSchool.Models.Stat;
+using static KonSchool.Lib.Stat;
 
-namespace KonSchool.Models
+namespace KonSchool.Lib
 {
     public class FAHP
     {

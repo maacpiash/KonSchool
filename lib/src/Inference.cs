@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
-namespace KonSchool.Models
+namespace KonSchool.Lib
 {
     public static class Inference
     {

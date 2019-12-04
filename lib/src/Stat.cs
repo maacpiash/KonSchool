@@ -2,7 +2,7 @@
 
 using static System.Math;
 
-namespace KonSchool.Models
+namespace KonSchool.Lib
 {
     public static class Stat
     {

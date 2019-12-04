@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using KonSchool.Services;
 using static System.Math;
 
-namespace KonSchool.Models
+namespace KonSchool.Lib
 {
     public class Query
     {

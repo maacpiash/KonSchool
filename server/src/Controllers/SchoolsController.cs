@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
-using KonSchool.Models;
-using KonSchool.Services;
-using Microsoft.AspNetCore.Http;
+using KonSchool.Lib;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KonSchool.ApiControllers
