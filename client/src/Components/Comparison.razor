@@ -6,6 +6,7 @@
             min="-9"
             max="9"
             step="1"
+            class="slider"
             @bind-value="SliderValue"
             @oninput="ShowMessage"
             @onclick="ShowMessage"
@@ -23,7 +24,7 @@
     [Parameter]
     public string Criteria2 { get; set; }
 
-    string Message ="Both are equally important";
+    string Message = "Both are equally important";
     
     int SliderValue;
 
@@ -44,17 +45,17 @@
 
         if (SliderValue > 0)
         {
-            Message = Criteria2 + " is " + comparisons[SliderValue]
+            Message = Criteria2 + " is " + comparisons[SliderValue - 1]
                 + " more important than " + Criteria1;
         }
         else if (SliderValue < 0)
         {
-            Message = Criteria1 + " is " + comparisons[SliderValue]
+            Message = Criteria1 + " is " + comparisons[- SliderValue - 1]
                 + " more important than " + Criteria2;
         }
         else
         {
-            Message = "Both are equally important.";
+            Message = "Both are equally important";
         }
     }
 }
