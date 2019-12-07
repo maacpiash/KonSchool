@@ -1,0 +1,60 @@
+﻿<div class="row">
+    <div class="column">@Criteria1</div>
+    <div class="column">
+        <input
+            type="range"
+            min="-9"
+            max="9"
+            step="1"
+            @bind-value="SliderValue"
+            @oninput="ShowMessage"
+            @onclick="ShowMessage"
+        />
+    </div>
+    <div class="column">@Criteria2</div>
+</div>
+<div>@Message</div>
+
+
+@code {
+    [Parameter]
+    public string Criteria1 { get; set; }
+    
+    [Parameter]
+    public string Criteria2 { get; set; }
+
+    string Message ="Both are equally important";
+    
+    int SliderValue;
+
+    private void ShowMessage()
+    {
+        string[] comparisons = new string[9]
+        {
+            "weakly",
+            "more than weakly",
+            "moderately",
+            "more than moderately",
+            "highly",
+            "more than highly",
+            "strongly",
+            "more than strongly",
+            "absolutely"
+        };
+
+        if (SliderValue > 0)
+        {
+            Message = Criteria2 + " is " + comparisons[SliderValue]
+                + " more important than " + Criteria1;
+        }
+        else if (SliderValue < 0)
+        {
+            Message = Criteria1 + " is " + comparisons[SliderValue]
+                + " more important than " + Criteria2;
+        }
+        else
+        {
+            Message = "Both are equally important.";
+        }
+    }
+}
