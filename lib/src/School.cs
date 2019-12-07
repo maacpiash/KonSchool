@@ -84,7 +84,7 @@ namespace KonSchool.Lib
         }
         
         // Actual age difference, stored when Query objct modifies the class instance.
-        [NotMapped]
+        [JsonIgnore]
         public double ADS { get; set; }
         #endregion
 
@@ -107,7 +107,7 @@ namespace KonSchool.Lib
         public double SEScore4 { get; set; }
 
         private double[] seScore;
-        [NotMapped]
+        [JsonIgnore]
         public double[] SEScore
         {
             get
@@ -137,10 +137,10 @@ namespace KonSchool.Lib
         #endregion
 
         #region Finalization
-        [NotMapped]
+        [JsonIgnore]
         public double[] WeightedScores { get; set; }
 
-        [NotMapped]
+        [JsonIgnore]
         public double FinalScore { get; internal set; }
         #endregion
 
@@ -149,11 +149,11 @@ namespace KonSchool.Lib
         #endregion
 
         #region Optional
-        [NotMapped]
+        [JsonIgnore]
         public bool EthnicStudents { get; set; }
-        [NotMapped]
+        [JsonIgnore]
         public bool HasBusiness { get; set; }
-        [NotMapped]
+        [JsonIgnore]
         public bool HasVocational { get; set; }
         #endregion
     }
