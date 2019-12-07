@@ -12,10 +12,10 @@ jobs:
     - name: Setup .NET Core
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 2.1.802
+        dotnet-version: 3.1.100
     - name: Display dotnet info
       run: dotnet --info
     - name: Build all projects
       run: dotnet build
     - name: Run unit tests
-      run: dotnet test tests/KonSchool.Tests.csproj
+      run: dotnet test
