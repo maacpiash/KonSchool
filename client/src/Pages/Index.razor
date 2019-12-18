@@ -1,4 +1,29 @@
 ﻿@using KonSchool.Client.Components
 @page "/"
 
-<Comparison Criteria1="TSR" Criteria2="MFR" />
+@for (int i = 0; i < 6; i++)
+{
+    <Comparison Criterion1="TSR" Criterion2="MFR" HandleValue="@(e => SetValue(i, e))" />
+}
+
+
+@code {
+    public static string[] CriteriaList = new string[]
+    {
+        "Teacher-Student Ratio",
+        "Male-Female Ratio",
+        "Socio-Economic Status",
+        "Location of School",
+        "Age of School",
+        "Average Age of Students"
+    };
+
+    public int[] Inputs { get; set; } = new int[6];
+
+
+    public void SetValue(int index, int value)
+    {
+        Inputs[index] = value;
+        Console.WriteLine(Inputs);
+    }
+}
