@@ -1,11 +1,14 @@
 ﻿@using KonSchool.Client.Components
 @page "/"
 
-@for (int i = 0; i < 6; i++)
+@for (int i = 0; i < 5; i++)
 {
-    <Comparison Criterion1="TSR" Criterion2="MFR" HandleValue="@(e => SetValue(i, e))" />
+    <Comparison
+        Criterion1="@CriteriaList[i]"
+        Criterion2="@CriteriaList[i + 1]"
+        HandleValue="@(e => SetValue(i, e))"
+    />
 }
-
 
 @code {
     public static string[] CriteriaList = new string[]
@@ -18,12 +21,11 @@
         "Average Age of Students"
     };
 
-    public int[] Inputs { get; set; } = new int[6];
-
+    public int[] Inputs { get; set; } = new int[6] { 0, 0, 0, 0, 0, 0 };
 
     public void SetValue(int index, int value)
     {
+        System.Console.WriteLine($"{index}, {value}");
         Inputs[index] = value;
-        Console.WriteLine(Inputs);
     }
 }

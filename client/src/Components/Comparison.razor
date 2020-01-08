@@ -7,13 +7,13 @@
             max="9"
             step="1"
             class="column slider"
-            @bind-value="SliderValue"
-            @onclick="ShowMessage"
+            @bind="SliderValue"
+            @bind:event="oninput"
         />
     </div>
     <div class="column" style="margin-left: 10px">@Criterion2</div>
 </div>
-<div style="padding: 10px">@Message</div>
+<div style="padding: 10px">@ShowMessage()</div>
 
 
 @code {
@@ -26,40 +26,37 @@
     [Parameter]
     public EventCallback<int> HandleValue { get; set; }
 
-    string Message = "Both are equally important";
+    string[] comparisons = new string[9]
+    {
+        "weakly",
+        "more than weakly",
+        "moderately",
+        "more than moderately",
+        "highly",
+        "more than highly",
+        "strongly",
+        "more than strongly",
+        "absolutely"
+    };
 
     int SliderValue;
 
-    private void ShowMessage()
+    public string ShowMessage()
     {
-        string[] comparisons = new string[9]
-        {
-            "weakly",
-            "more than weakly",
-            "moderately",
-            "more than moderately",
-            "highly",
-            "more than highly",
-            "strongly",
-            "more than strongly",
-            "absolutely"
-        };
+        string message = "Both are equally important";
 
         if (SliderValue > 0)
         {
-            Message = Criterion2 + " is " + comparisons[SliderValue - 1]
+            message = Criterion2 + " is " + comparisons[SliderValue - 1]
                 + " more important than " + Criterion1;
         }
         else if (SliderValue < 0)
         {
-            Message = Criterion1 + " is " + comparisons[- SliderValue - 1]
+            message = Criterion1 + " is " + comparisons[- SliderValue - 1]
                 + " more important than " + Criterion2;
-        }
-        else
-        {
-            Message = "Both are equally important";
         }
 
         HandleValue.InvokeAsync(SliderValue);
+        return message;
     }
 }
