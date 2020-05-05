@@ -14,6 +14,16 @@ namespace KonSchool.Pages
         
         [BindProperty] public int[] Values { get; set; }
 
+        public static string[] Criteria = new string[]
+        {
+            "Teacher-Student Ratio",
+            "Male-Female Ratio",
+            "Socio-Economic Status",
+            "Location of School",
+            "Age of School",
+            "Average Age of Students",
+        };
+
         public void OnGet() => Values = new int[6];
         
         public IActionResult OnPost()

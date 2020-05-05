@@ -14,75 +14,40 @@
     <h4>Levels of comparison: weakly >> moderately >> highly >> strongly >> absolutely</h4>
     
     <form method="POST">
-        <h4>Teacher-Student Ratio vs. Male-Female Ratio</h4>
-        <table>
-            <tr>
-                <td><p>Teacher-Student Ratio</p></td>
-                <td>
-                    <p><input type="range" min="-9" max="9" value="0" class="slider" asp-for="@Model.Values[0]" id="sl1" oninput="UpdateComparison('sl1', 'demo1', 'Teacher-Student Ratio', 'Male-Female Ratio');"></p>
-                </td>
-                <td>
-                    <p>Male-Female Ratio</p>
-                </td>
-            </tr>
-        </table>
-        <p>Comparison: <span id="demo1">Both are equally important.</span></p>
+        @for (int i = 0; i < 5; i++)
+        {
+            var value = Model.Values[i];
+            var criteria1 = InputsModel.Criteria[i];
+            var criteria2 = InputsModel.Criteria[i + 1];
+            var slider_id = "sl" + i;
+            var span_id = "demo" + i;
+            <h4>@criteria1 vs. @criteria2</h4>
+            <table>
+                <tr>
+                    <td>@criteria1</td>
+                    <td>
+                        <input
+                            type="range"
+                            min="-9"
+                            max="9"
+                            value="0"
+                            class="slider"
+                            asp-for="@Model.Values[i]"
+                            id=@slider_id
+                            oninput='UpdateComparison(
+                                @('"' + slider_id + '"'),
+                                @('"' + span_id + '"'),
+                                @('"' + criteria1 + '"'),
+                                @('"' + criteria2 + '"'))'
+                            )
+                        >
+                    </td>
+                    <td>@criteria2</td>
+                </tr>
+            </table>
+            <p>Comparison: <span id=@span_id>Both are equally important.</span></p>
 
-        <h4>Male-Female Ratio vs. Socio-Economic Status</h4>
-        <table>
-            <tr>
-                <td><p>Male-Female Ratio</p></td>
-                <td>
-                    <p><input type="range" min="-9" max="9" value="0" class="slider" asp-for="@Model.Values[1]" id="sl2" oninput="UpdateComparison('sl2', 'demo2', 'Male-Female Ratio', 'Socio-Economic Status');"></p>
-                </td>
-                <td>
-                    <p>Socio-Economic Status</p>
-                </td>
-            </tr>
-        </table>
-        <p>Comparison: <span id="demo2">Both are equally important.</span></p>
-
-        <h4>Socio-Economic Status vs. Location of School</h4>
-        <table>
-            <tr>
-                <td><p>Socio-Economic Status</p></td>
-                <td>
-                    <p><input type="range" min="-9" max="9" value="0" class="slider" asp-for="@Model.Values[2]" id="sl3" oninput="UpdateComparison('sl3', 'demo3', 'Socio-Economic Status', 'Distance from Residence');"></p>
-                </td>
-                <td>
-                    <p>Location of School</p>
-                </td>
-            </tr>
-        </table>
-        <p>Comparison: <span id="demo3">Both are equally important.</span></p>
-
-        <h4>Location of School vs. Age of School</h4>
-        <table>
-            <tr>
-                <td><p>Location of School</p></td>
-                <td>
-                    <p><input type="range" min="-9" max="9" value="0" class="slider" asp-for="@Model.Values[3]" id="sl4" oninput="UpdateComparison('sl4', 'demo4', 'Distance from Residence', 'Age of School');"></p>
-                </td>
-                <td>
-                    <p>Age of School</p>
-                </td>
-            </tr>
-        </table>
-        <p>Comparison: <span id="demo4">Both are equally important.</span></p>
-
-        <h4>Age of School vs. Average Age of Students</h4>
-        <table>
-            <tr>
-                <td><p>Age of School</p></td>
-                <td>
-                    <p><input type="range" min="-9" max="9" value="0" class="slider" asp-for="@Model.Values[4]" id="sl5" oninput="UpdateComparison('sl5', 'demo5', 'Age of School', 'Average Age of Students in Intended Class (Grade)');"></p>
-                </td>
-                <td>
-                    <p>Average Age of Students</p>
-                </td>
-            </tr>
-        </table>
-        <p>Comparison: <span id="demo5">Both are equally important.</span></p>
+        }
 
         <input class="btn btn-primary" type="submit" value="View Result" />
     </form>
