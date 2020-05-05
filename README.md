@@ -2,21 +2,26 @@
 <h3 align="center">Fuzzy-AHP-based recommendation system for secondary schools in Bangladesh 🏫 🇧🇩</h3>
 
 <p align="center">
-  <a href="https://ci.appveyor.com/project/maacpiash/konschool">
-    <img src="https://img.shields.io/appveyor/ci/maacpiash/KonSchool?label=Windows&logo=appveyor&style=flat-square" alt="AppVeyor">
+  <a href="https://dotnet.microsoft.com/download/dotnet-core/3.1">
+    <img src="https://img.shields.io/badge/Core-v3.1%20(LTS)-5C2D91?logo=.net&style=flat-square" alt=".NET Core SDK version 3.1 (LTS)">
   </a>
-  <a href="https://travis-ci.org/maacpiash/KonSchool">
-    <img src="https://img.shields.io/travis/maacpiash/KonSchool?label=macOS%2FUbuntu&logo=travis&style=flat-square" alt="Travis (.org)">
+  <a href="https://github.com/maacpiash/KonSchool/actions?query=workflow%3AmacOS">
+    <img src="https://img.shields.io/github/workflow/status/maacpiash/KonSchool/macOS?label=macOS&logo=apple&style=flat-square" alt="macOS build status">
+  </a>
+  <a href="https://github.com/maacpiash/KonSchool/actions?query=workflow%3AUbuntu">
+    <img src="https://img.shields.io/github/workflow/status/maacpiash/KonSchool/Ubuntu?label=Ubuntu&logo=ubuntu&style=flat-square" alt="Ubuntu build status">
+  </a>
+  <a href="https://github.com/maacpiash/KonSchool/actions?query=workflow%3AWindows">
+    <img src="https://img.shields.io/github/workflow/status/maacpiash/KonSchool/macOS?label=Windows&logo=microsoft&style=flat-square" alt="Windows build status">
+  </a>
+  <a href="https://ci.appveyor.com/project/maacpiash/konschool">
+    <img src="https://img.shields.io/appveyor/tests/maacpiash/KonSchool.svg?label=Unit%20tests&logo=appveyor&style=flat-square" alt="Unit tests">
   </a>
   <a href="https://hub.docker.com/r/maacpiash/konschool">
     <img src="https://img.shields.io/docker/pulls/maacpiash/konschool.svg?logo=docker&style=flat-square" alt="Docker pulls">
   </a>
-  <a href="https://ci.appveyor.com/project/maacpiash/konschool">
-    <img src="https://img.shields.io/appveyor/tests/maacpiash/KonSchool.svg?logo=appveyor&style=flat-square" alt="AppVeyor tests">
-  </a>
   <a href="https://codecov.io/gh/maacpiash/KonSchool">
-    <img src="https://img.shields.io/codecov/c/gh/maacpiash/KonSchool.svg?logo=codecov&style=flat-square"
-    alt="Codecov">
+    <img src="https://img.shields.io/codecov/c/gh/maacpiash/KonSchool.svg?logo=codecov&style=flat-square" alt="Codecov">
   </a>
 </p>
 
@@ -88,7 +93,7 @@ There are two ways.
 
 ### Compilation of source
 
-If you have .NET Core SDK (v2.1) installed, you can run the application directly from the source:
+If you have .NET Core SDK (v3.1) installed, you can run the application directly from the source:
 
 ```bash
 git clone https://github.com/maacpiash/KonSchool
@@ -97,7 +102,7 @@ dotnet run --project KonSchool/src/KonSchool.csproj
 
 Now, navigate to either http://localhost:5000 or https://localhost:5001.
 
-I recommend this method over the next one. You can download .NET Core SDK from [Microsoft](https://dotnet.microsoft.com/download/dotnet-core/2.1).
+I recommend this method over the next one. You can download .NET Core SDK from [Microsoft](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
 ### Docker image
 

@@ -1,11 +1,11 @@
 language: csharp
 mono: none
-dotnet: 2.1.802 # LTS
+dotnet: 3.1.201 # LTS
 solution: KonSchool.sln
 sudo: required
 branches:
   only:
-  - master
+  - v3.1-lts
 jobs:
   include:
     - os: linux
