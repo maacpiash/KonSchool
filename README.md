@@ -2,26 +2,26 @@
 <h3 align="center">Fuzzy-AHP-based recommendation system for secondary schools in Bangladesh 🏫 🇧🇩</h3>
 
 <p align="center">
+  <a href="https://konschool.azurewebsites.net">
+    <img src="https://img.shields.io/badge/Live-Azure-0089D6?logo=microsoft-azure&style=flat-square" alt=".NET Core SDK version 3.1 (LTS)">
+  </a>
+  <a href="https://konschool.herokuapp.com">
+    <img src="https://img.shields.io/badge/Live-Heroku-430098?logo=heroku&style=flat-square" alt=".NET Core SDK version 3.1 (LTS)">
+  </a>
   <a href="https://dotnet.microsoft.com/download/dotnet-core/3.1">
     <img src="https://img.shields.io/badge/Core-v3.1%20(LTS)-5C2D91?logo=.net&style=flat-square" alt=".NET Core SDK version 3.1 (LTS)">
   </a>
-  <a href="https://github.com/maacpiash/KonSchool/actions?query=workflow%3AmacOS">
-    <img src="https://img.shields.io/github/workflow/status/maacpiash/KonSchool/macOS?label=macOS&logo=apple&style=flat-square" alt="macOS build status">
-  </a>
-  <a href="https://github.com/maacpiash/KonSchool/actions?query=workflow%3AUbuntu">
-    <img src="https://img.shields.io/github/workflow/status/maacpiash/KonSchool/Ubuntu?label=Ubuntu&logo=ubuntu&style=flat-square" alt="Ubuntu build status">
-  </a>
-  <a href="https://github.com/maacpiash/KonSchool/actions?query=workflow%3AWindows">
-    <img src="https://img.shields.io/github/workflow/status/maacpiash/KonSchool/macOS?label=Windows&logo=microsoft&style=flat-square" alt="Windows build status">
-  </a>
   <a href="https://ci.appveyor.com/project/maacpiash/konschool">
-    <img src="https://img.shields.io/appveyor/tests/maacpiash/KonSchool.svg?label=Unit%20tests&logo=appveyor&style=flat-square" alt="Unit tests">
-  </a>
-  <a href="https://hub.docker.com/r/maacpiash/konschool">
-    <img src="https://img.shields.io/docker/pulls/maacpiash/konschool.svg?logo=docker&style=flat-square" alt="Docker pulls">
+    <img src="https://img.shields.io/appveyor/build/maacpiash/KonSchool?logo=appveyor&style=flat-square" alt="AppVeyor">
   </a>
   <a href="https://codecov.io/gh/maacpiash/KonSchool">
     <img src="https://img.shields.io/codecov/c/gh/maacpiash/KonSchool.svg?logo=codecov&style=flat-square" alt="Codecov">
+  </a>
+  <a href="https://www.codefactor.io/repository/github/maacpiash/konschool">
+    <img src="https://img.shields.io/codefactor/grade/github/maacpiash/KonSchool?logo=codefactor&style=flat-square" alt="CodeFactor Grade">
+  </a>
+  <a href="https://hub.docker.com/r/maacpiash/konschool">
+    <img src="https://img.shields.io/docker/pulls/maacpiash/konschool.svg?logo=docker&style=flat-square" alt="Docker pulls">
   </a>
 </p>
 
