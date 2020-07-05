@@ -14,6 +14,9 @@
   <a href="https://ci.appveyor.com/project/maacpiash/konschool">
     <img src="https://img.shields.io/appveyor/build/maacpiash/KonSchool?logo=appveyor&style=flat-square" alt="AppVeyor">
   </a>
+  <a href="https://travis-ci.org/github/maacpiash/KonSchool">
+    <img src="https://img.shields.io/travis/maacpiash/KonSchool?logo=travis&style=flat-square" alt="Travis (.org)">
+  </a>
   <a href="https://codecov.io/gh/maacpiash/KonSchool">
     <img src="https://img.shields.io/codecov/c/gh/maacpiash/KonSchool.svg?logo=codecov&style=flat-square" alt="Codecov">
   </a>
