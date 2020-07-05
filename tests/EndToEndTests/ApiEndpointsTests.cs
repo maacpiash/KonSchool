@@ -6,8 +6,7 @@ using System.Net;
 namespace KonSchool.Tests.EndToEndTests
 {
 
-    public class ApiEndpointsTests
-        : IClassFixture<WebApplicationFactory<KonSchool.Startup>>
+    public class ApiEndpointsTests : IClassFixture<WebApplicationFactory<KonSchool.Startup>>
     {
         private readonly WebApplicationFactory<KonSchool.Startup> factory;
 

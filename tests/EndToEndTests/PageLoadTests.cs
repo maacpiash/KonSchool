@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 namespace KonSchool.Tests.EndToEndTests
 {
 
-    public class PageLoadTests
-        : IClassFixture<WebApplicationFactory<KonSchool.Startup>>
+    public class PageLoadTests : IClassFixture<WebApplicationFactory<KonSchool.Startup>>
     {
         private readonly WebApplicationFactory<KonSchool.Startup> factory;
 
