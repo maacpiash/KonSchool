@@ -9,8 +9,7 @@ namespace KonSchool.Tests.EndToEndTests
     {
         private readonly WebApplicationFactory<KonSchool.Startup> factory;
 
-        public PageLoadTests(WebApplicationFactory<KonSchool.Startup> factory) =>
-            this.factory = factory;
+        public PageLoadTests(WebApplicationFactory<KonSchool.Startup> factory) => this.factory = factory;
 
         [Theory]
         [InlineData("/")]
