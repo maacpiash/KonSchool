@@ -55,7 +55,5 @@ namespace KonSchool.Services
         }
 
         public IEnumerable<School> GetSchools() => Schools;
-
-        public School Get(string eiin) => Schools.Find(school => school.EIIN.Equals(eiin));
     }
 }

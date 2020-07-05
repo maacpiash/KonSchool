@@ -25,11 +25,11 @@ namespace KonSchool.Services
 
             // Console.WriteLine("Content length is {0}", response.ContentLength);
             // Console.WriteLine("Content type is {0}", response.ContentType);
-             
+
             // Get the stream associated with the response.
             Stream receiveStream = response.GetResponseStream();
 
-            // Pipes the stream to a higher level stream reader with the required encoding format. 
+            // Pipes the stream to a higher level stream reader with the required encoding format.
             StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
 
             // Console.WriteLine("Response stream received.");
@@ -42,13 +42,10 @@ namespace KonSchool.Services
 
         public IEnumerable<School> GetSchools() => Schools;
 
-        public School Get(string eiin) => Schools.Find(School => School.EIIN.Equals(eiin));
-        
     }
 
     public interface ISchoolService
     {
-        School Get(string eiin);
         IEnumerable<School> GetSchools();
     }
 }
