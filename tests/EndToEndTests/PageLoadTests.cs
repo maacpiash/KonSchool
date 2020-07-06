@@ -20,6 +20,8 @@ namespace KonSchool.Tests.EndToEndTests
         [InlineData("/About")]
         [InlineData("/Privacy")]
         [InlineData("/Contact")]
+        [InlineData("/Analysis")]
+        [InlineData("/Error")]
         public async Task Get_EndpointsReturnSuccessAndCorrectContentType(string url)
         {
             // Arrange
