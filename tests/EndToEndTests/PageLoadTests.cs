@@ -5,11 +5,12 @@ using System.Threading.Tasks;
 namespace KonSchool.Tests.EndToEndTests
 {
 
-    public class PageLoadTests : IClassFixture<WebApplicationFactory<KonSchool.Startup>>
+    public class PageLoadTests : IClassFixture<WebApplicationFactory<Startup>>
     {
-        private readonly WebApplicationFactory<KonSchool.Startup> factory;
+        private readonly WebApplicationFactory<Startup> factory;
+		private static string responseType = "text/html; charset=utf-8";
 
-        public PageLoadTests(WebApplicationFactory<KonSchool.Startup> factory) => this.factory = factory;
+		public PageLoadTests(WebApplicationFactory<Startup> factory) => this.factory = factory;
 
         [Theory]
         [InlineData("/")]
@@ -29,8 +30,7 @@ namespace KonSchool.Tests.EndToEndTests
 
             // Assert
             response.EnsureSuccessStatusCode();
-            Assert.Equal("text/html; charset=utf-8",
-                response.Content.Headers.ContentType.ToString());
+            Assert.Equal(responseType, response.Content.Headers.ContentType.ToString());
         }
     }
 }

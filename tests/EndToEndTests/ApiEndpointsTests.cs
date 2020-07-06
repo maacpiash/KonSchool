@@ -1,21 +1,17 @@
 using Xunit;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Threading.Tasks;
-using KonSchool.Models;
-using KonSchool.Services;
 using System.Text.Json;
-using System.Text.Json.Serialization;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace KonSchool.Tests.EndToEndTests
 {
 
-    public class ApiEndpointsTests : IClassFixture<WebApplicationFactory<KonSchool.Startup>>
+    public class ApiEndpointsTests : IClassFixture<WebApplicationFactory<Startup>>
     {
-        private readonly WebApplicationFactory<KonSchool.Startup> factory;
+        private readonly WebApplicationFactory<Startup> factory;
 		private static string responseType = "application/json; charset=utf-8";
 
-        public ApiEndpointsTests(WebApplicationFactory<KonSchool.Startup> factory) => this.factory = factory;
+        public ApiEndpointsTests(WebApplicationFactory<Startup> factory) => this.factory = factory;
 
         [Theory]
         [InlineData("/api/schools/1212", 1, false, "")]
