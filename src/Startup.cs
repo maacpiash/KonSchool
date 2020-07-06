@@ -41,6 +41,8 @@ namespace KonSchool
                 options.Cookie.IsEssential = true;
             });
 
+			services.AddHttpContextAccessor();
+
             services.AddSingleton(s =>
                 Environment.IsDevelopment()
                 ? (ISchoolService)new SchoolServiceMock()

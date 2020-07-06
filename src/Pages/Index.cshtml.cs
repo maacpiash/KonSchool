@@ -27,6 +27,10 @@ namespace KonSchool.Pages
         [BindProperty] [Required] public bool ByDiv { get; set; }
         [BindProperty] [Required] public bool ByDist { get; set; }
 
+		private ISession session;
+
+		public IndexModel(IHttpContextAccessor httpCtxAccessor) => session = httpCtxAccessor.HttpContext.Session;
+
         public void OnGet()
         {
             Classes = new List<SelectListItem>();
@@ -49,10 +53,10 @@ namespace KonSchool.Pages
         {
             if (!ModelState.IsValid)
                 return Page();
-            HttpContext.Session.SetInt32("_Class", Convert.ToInt32(Class));
-            HttpContext.Session.SetInt32("_Age", Age);
-            HttpContext.Session.SetString("_Sex", Sex == 1 ? "Male" : "Female");
-            HttpContext.Session.SetString("_Occupation", Occupation);
+            session.SetInt32("_Class", Convert.ToInt32(Class));
+            session.SetInt32("_Age", Age);
+            session.SetString("_Sex", Sex == 1 ? "Male" : "Female");
+            session.SetString("_Occupation", Occupation);
 
             switch (Occupation)
             {
@@ -60,35 +64,35 @@ namespace KonSchool.Pages
                 case "Tati":
                 case "Fisherman":
                 case "Kamar/Kumar":
-                    HttpContext.Session.SetString("_Social", "2.5");
+                    session.SetString("_Social", "2.5");
                     break;
                 case "Cultivation":
                 case "Expatriate":
                 case "Small business":
-                    HttpContext.Session.SetString("_Social", "5.0");
+                    session.SetString("_Social", "5.0");
                     break;
                 case "Govt. job":
                 case "Private job":
                 case "Teacher":
-                    HttpContext.Session.SetString("_Social", "7.5");
+                    session.SetString("_Social", "7.5");
                     break;
                 case "Lawyer":
                 case "Doctor":
                 case "Engineer":
                 case "Businessman":
-                    HttpContext.Session.SetString("_Social", "10.0");
+                    session.SetString("_Social", "10.0");
                     break;
                 default:
-                    HttpContext.Session.SetString("_Social", "1.0");
+                    session.SetString("_Social", "1.0");
                     break;
             }
-            
-            HttpContext.Session.SetString("_Division", Division);
-            HttpContext.Session.SetString("_District", District);
-            HttpContext.Session.SetString("_Thana", Thana);
-            HttpContext.Session.SetString("_UW", UW.Split('[')[0].Trim());
-            HttpContext.Session.SetString("_ByDiv", ByDiv.ToString());
-            HttpContext.Session.SetString("_ByDist", ByDist.ToString());
+
+            session.SetString("_Division", Division);
+            session.SetString("_District", District);
+            session.SetString("_Thana", Thana);
+            session.SetString("_UW", UW.Split('[')[0].Trim());
+            session.SetString("_ByDiv", ByDiv.ToString());
+            session.SetString("_ByDist", ByDist.ToString());
             return RedirectToPage("/Inputs");
         }
     }
