@@ -3,28 +3,52 @@
 
 <p align="center">
   <a href="https://konschool.azurewebsites.net">
-    <img src="https://img.shields.io/badge/Live-Azure-0089D6?logo=microsoft-azure&style=flat-square" alt=".NET Core SDK version 3.1 (LTS)">
+    <img
+      src="https://img.shields.io/badge/App-Live-0089D6?logo=microsoft-azure&style=flat-square"
+      alt="Azure"
+    >
   </a>
   <a href="https://konschool.herokuapp.com">
-    <img src="https://img.shields.io/badge/Live-Heroku-430098?logo=heroku&style=flat-square" alt=".NET Core SDK version 3.1 (LTS)">
+    <img
+      src="https://img.shields.io/badge/App-Live-430098?logo=heroku&style=flat-square"
+      alt="Heroku"
+    >
   </a>
   <a href="https://dotnet.microsoft.com/download/dotnet-core/3.1">
-    <img src="https://img.shields.io/badge/Core-v3.1%20(LTS)-5C2D91?logo=.net&style=flat-square" alt=".NET Core SDK version 3.1 (LTS)">
+    <img
+      src="https://img.shields.io/badge/Core-v3.1-5C2D91?logo=.net&style=flat-square"
+      alt=".NET Core SDK version 3.1 (LTS)"
+    >
   </a>
   <a href="https://ci.appveyor.com/project/maacpiash/konschool">
-    <img src="https://img.shields.io/appveyor/build/maacpiash/KonSchool?logo=appveyor&style=flat-square" alt="AppVeyor">
+    <img
+      src="https://img.shields.io/appveyor/build/maacpiash/KonSchool?label=Windows&logo=appveyor&style=flat-square"
+      alt="AppVeyor"
+    >
   </a>
   <a href="https://travis-ci.org/github/maacpiash/KonSchool">
-    <img src="https://img.shields.io/travis/maacpiash/KonSchool?logo=travis&style=flat-square" alt="Travis (.org)">
+    <img
+      src="https://img.shields.io/travis/maacpiash/KonSchool?label=Unix-like&logo=travis&style=flat-square"
+      alt="Travis (.org)"
+    >
   </a>
   <a href="https://codecov.io/gh/maacpiash/KonSchool">
-    <img src="https://img.shields.io/codecov/c/gh/maacpiash/KonSchool.svg?logo=codecov&style=flat-square" alt="Codecov">
+    <img
+      src="https://img.shields.io/codecov/c/gh/maacpiash/KonSchool.svg?logo=codecov&style=flat-square"
+      alt="Codecov"
+    >
   </a>
   <a href="https://www.codefactor.io/repository/github/maacpiash/konschool">
-    <img src="https://img.shields.io/codefactor/grade/github/maacpiash/KonSchool?logo=codefactor&style=flat-square" alt="CodeFactor Grade">
+    <img
+      src="https://img.shields.io/codefactor/grade/github/maacpiash/KonSchool?label=grade&logo=codefactor&style=flat-square"
+      alt="CodeFactor Grade"
+    >
   </a>
   <a href="https://hub.docker.com/r/maacpiash/konschool">
-    <img src="https://img.shields.io/docker/pulls/maacpiash/konschool.svg?logo=docker&style=flat-square" alt="Docker pulls">
+    <img
+      src="https://img.shields.io/docker/pulls/maacpiash/konschool.svg?label=pulls&logo=docker&style=flat-square"
+      alt="Docker pulls"
+    >
   </a>
 </p>
 
