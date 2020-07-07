@@ -2,13 +2,13 @@ using System.Collections.Generic;
 using KonSchool.Models;
 using KonSchool.Services;
 
-namespace KonSchool.Services
+namespace KonSchool.Tests.Mocks
 {
-    public class SchoolServiceMock : ISchoolService
+    public class MockSchoolService : ISchoolService
     {
         public List<School> Schools { get; }
 
-        public SchoolServiceMock()
+        public MockSchoolService()
         {
             Schools = new List<School>
             {

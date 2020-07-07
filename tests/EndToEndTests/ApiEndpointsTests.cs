@@ -2,6 +2,9 @@ using Xunit;
 using Microsoft.AspNetCore.Mvc.Testing;
 using System.Threading.Tasks;
 using System.Text.Json;
+using Microsoft.Extensions.DependencyInjection;
+using KonSchool.Services;
+using KonSchool.Tests.Mocks;
 
 namespace KonSchool.Tests.EndToEndTests
 {
@@ -20,7 +23,10 @@ namespace KonSchool.Tests.EndToEndTests
         public async Task Get_SchoolsEndpoint_ReturnsSuccessAndCorrectContentType(string url, int expectedCount, bool isArray, string field)
         {
             // Arrange
-            var client = factory.CreateClient();
+            var client = factory.WithWebHostBuilder(builder =>
+				builder.ConfigureServices(services => services.AddSingleton<ISchoolService, MockSchoolService>())
+			)
+			.CreateClient();
 
             // Act
             var response = await client.GetAsync(url);

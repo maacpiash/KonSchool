@@ -2,6 +2,7 @@ using Xunit;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using KonSchool.Pages;
+using KonSchool.Tests.Mocks;
 using Moq;
 
 namespace KonSchool.Tests.PageModelTests

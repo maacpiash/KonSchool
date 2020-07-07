@@ -43,11 +43,7 @@ namespace KonSchool
 
 			services.AddHttpContextAccessor();
 
-            services.AddSingleton(s =>
-                Environment.IsDevelopment()
-                ? (ISchoolService)new SchoolServiceMock()
-                : (ISchoolService)new SchoolService()
-            );
+			services.AddSingleton<ISchoolService, SchoolService>();
 
             services.AddRazorPages();
         }

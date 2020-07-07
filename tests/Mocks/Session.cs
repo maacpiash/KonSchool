@@ -4,7 +4,7 @@ using System.Threading;
 using Microsoft.AspNetCore.Http;
 using static System.Text.Encoding;
 
-namespace KonSchool.Tests.PageModelTests
+namespace KonSchool.Tests.Mocks
 {
 	class MockSession : ISession
 	{

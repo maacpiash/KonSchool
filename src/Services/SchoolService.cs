@@ -20,11 +20,5 @@ namespace KonSchool.Services
         }
 
         public IEnumerable<School> GetSchools() => Schools.Find(Schools => true).ToList();
-
-    }
-
-    public interface ISchoolService
-    {
-        IEnumerable<School> GetSchools();
     }
 }
