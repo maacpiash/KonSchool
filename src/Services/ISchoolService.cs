@@ -1,4 +1,7 @@
-public interface ISchoolService
+namespace KonSchool.Services
 {
-	System.Collections.Generic.IEnumerable<KonSchool.Models.School> GetSchools();
+	public interface ISchoolService
+	{
+		System.Collections.Generic.IEnumerable<KonSchool.Models.School> GetSchools();
+	}
 }
