@@ -4,22 +4,29 @@
 <p align="center">
   <a href="https://konschool.azurewebsites.net" target="_blank">
     <img
-      src="https://img.shields.io/badge/Visit-App-0089D6?logo=microsoft-azure&style=flat-square"
+      src="https://img.shields.io/badge/Deployed%20on-Azure-0089D6?logo=microsoft-azure&style=flat-square"
       alt="Azure"
     >
   </a>
   <a href="https://konschool.herokuapp.com" target="_blank">
     <img
-      src="https://img.shields.io/badge/Visit-App-430098?logo=heroku&style=flat-square"
+      src="https://img.shields.io/badge/Deployed%20on-Heroku-430098?logo=heroku&style=flat-square"
       alt="Heroku"
     >
   </a>
   <a href="https://hub.docker.com/r/maacpiash/konschool" target="_blank">
     <img
-      src="https://img.shields.io/badge/Pull-Image-2496ED?logo=docker&style=flat-square"
-      alt="Azure"
+      src="https://img.shields.io/docker/image-size/maacpiash/konschool?logo=docker&style=flat-square"
+      alt="Docker image size"
     >
   </a>
+  <a href="https://dotnet.microsoft.com/download/dotnet-core/3.1" target="_blank">
+    <img
+      src="https://img.shields.io/badge/Core-v3.1%20(LTS)-5C2D91?logo=.net&style=flat-square"
+      alt=".NET Core SDK/runtime version"
+    >
+  </a>
+  <br>
   <a href="https://ci.appveyor.com/project/maacpiash/konschool" target="_blank">
     <img
       src="https://img.shields.io/appveyor/build/maacpiash/KonSchool?label=Windows&logo=appveyor&style=flat-square"
@@ -28,7 +35,7 @@
   </a>
   <a href="https://travis-ci.org/github/maacpiash/KonSchool" target="_blank">
     <img
-      src="https://img.shields.io/travis/maacpiash/KonSchool?label=Unix-like&logo=travis&style=flat-square"
+      src="https://img.shields.io/travis/maacpiash/konschool?label=macOS%2FUbuntu&logo=travis&style=flat-square"
       alt="Travis (.org)"
     >
   </a>
