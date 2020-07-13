@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using KonSchool.Models;
 using KonSchool.Services;
-using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 
 namespace KonSchool.ApiControllers
@@ -13,11 +13,13 @@ namespace KonSchool.ApiControllers
     [ApiController]
     public class SchoolsController : ControllerBase
     {
+		private ILogger _logger;
         private readonly ISchoolService _schoolService;
         private List<School> _schools;
 
-        public SchoolsController(ISchoolService schoolService)
+        public SchoolsController(ISchoolService schoolService, ILogger<SchoolsController> logger)
         {
+			_logger = logger;
             _schoolService = schoolService;
             _schools = _schoolService.GetSchools().ToList();
         }
@@ -25,6 +27,7 @@ namespace KonSchool.ApiControllers
         [HttpGet]
         public ActionResult<IEnumerable<School>> Get()
         {
+			_logger.LogInformation("Returing details of all the schools.");
             return Ok(_schools);
         }
 
@@ -35,6 +38,7 @@ namespace KonSchool.ApiControllers
 
             if (school == null)
             {
+				_logger.LogInformation($"School with EIIN {id} not found.");
                 return NotFound();
             }
 
@@ -48,9 +52,11 @@ namespace KonSchool.ApiControllers
 
             if (schools.Count() == 0)
             {
+				_logger.LogInformation($"No school in division {div} found.");
                 return NotFound();
             }
 
+			_logger.LogInformation($"{schools.Count()} school(s) found in the division of {div}");
             return Ok(schools);
         }
 
@@ -61,9 +67,11 @@ namespace KonSchool.ApiControllers
 
             if (schools.Count() == 0)
             {
+				_logger.LogInformation($"No school in district {dis} found.");
                 return NotFound();
             }
 
+			_logger.LogInformation($"{schools.Count()} school(s) found in the district of {dis}.");
             return Ok(schools);
         }
 
