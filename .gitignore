@@ -344,3 +344,4 @@ $RECYCLE.BIN/
 
 src/global.json
 tests/global.json
+.env
