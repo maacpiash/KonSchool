@@ -18,6 +18,16 @@ namespace KonSchool.Tests.ModelTests
                 Assert.Equal(0.1666667, compMat[i], 6);
         }
 
+		[Fact]
+		public void Can_SetGet_CriteriaWeights()
+		{
+			int[] values = new int[] { 1, 1, 1, 1, 1 };
+            var FAHP = new KonSchool.Models.FAHP(ComparisonMatrix(values));
+			var weights = new double[] { 0.166667, 0.166667, 0.166667, 0.166667, 0.166667, 0.166667 };
+			FAHP.CriteriaWeights = weights;
+			Assert.Equal(weights, FAHP.CriteriaWeights);
+		}
+
         [Fact]
         public void WontFAHP_forInvalidDiagonalTuple()
         {
@@ -27,7 +37,6 @@ namespace KonSchool.Tests.ModelTests
                 { (2.0, 2.0, 2.0), (1.0, 1.0, 1.0) }
             };
             var FAHP = new KonSchool.Models.FAHP(ComparisonMatrix);
-            
             Assert.Null(FAHP.CriteriaWeights);
         }
     }

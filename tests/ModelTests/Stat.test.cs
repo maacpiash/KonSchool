@@ -14,12 +14,14 @@ namespace KonSchool.Tests.ModelTests
             Assert.Equal(0.2, dummy[2]);
         }
 
-        [Fact]
-        public void Can_Normalize_ByLimits()
+        [Theory]
+		[InlineData(0.5, 1.0, 2.0, 3.0, 4.0, 5.0)] // ascending
+		[InlineData(0.5, 5.0, 4.0, 3.0, 2.0, 1.0)] // descending
+        public void Can_Normalize_ByLimits(double value, params double[] numbers)
         {
-            double[] dummy = new double[] { 1, 2, 3, 4, 5 };
+            double[] dummy = numbers;
             NormalizeByLimits(ref dummy);
-            Assert.Equal(0.5, dummy[2]);
+            Assert.Equal(value, dummy[2]);
         }
 
         [Fact]

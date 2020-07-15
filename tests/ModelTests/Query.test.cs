@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using KonSchool.Models;
 using KonSchool.Tests.Mocks;
 using Xunit;
+using Moq;
 
 namespace KonSchool.Tests.ModelTests
 {
@@ -31,6 +32,18 @@ namespace KonSchool.Tests.ModelTests
             Assert.Equal("Other", query.Occupation);
         }
 
+		[Theory]
+		[InlineData(null, "Other")]
+		[InlineData("Superman", "Other")]
+		[InlineData("Worker", "Worker")]
+		public void Can_SetOccupation(string providedValue, string setValue)
+		{
+			Query query = new Query(new MockSchoolService());
+			query.Occupation = providedValue;
+			Assert.Equal(setValue, query.Occupation);
+		}
+
+
         [Fact]
         public void Can_SetLocation()
         {
@@ -41,6 +54,31 @@ namespace KonSchool.Tests.ModelTests
             Assert.Equal("Rampura", query.Thana);
             Assert.Equal("Ward no. 1", query.Union_Ward);
         }
+
+		[Theory]
+		[InlineData("Dhaka", "Dhaka", "Rampura", "Ward no. 1", 1.0)]
+		[InlineData("Dhaka", "Dhaka", "Rampura", "Ward no. 2", 0.9)]
+		[InlineData("Dhaka", "Dhaka", "Banani", "Ward no. 1", 0.7)]
+		[InlineData("Dhaka", "Gazipur", "Rampura", "Ward no. 1", 0.4)]
+		[InlineData("Comilla", "Dhaka", "Rampura", "Ward no. 1", 0.0)]
+		public void Can_SetLOC(string div, string dis, string thana, string uw, double loc)
+		{
+			var schoolService = new Mock<KonSchool.Services.ISchoolService>();
+			schoolService.Setup(ss => ss.GetSchools()).Returns(new List<School>
+			{
+				new School(1212121)
+				{
+					Division = "Dhaka",
+					District = "Dhaka",
+					Thana = "Rampura",
+					Union_Ward = "Ward no. 1"
+				}
+			});
+            Query query = new Query(schoolService.Object);
+            query.SetLocation(div, dis, thana, uw);
+			query.SetValues();
+			Assert.Equal(loc, query.Alternatives[0].LOC);
+		}
 
         [Fact]
         public void Can_CheckEligibility_Female()
@@ -105,5 +143,13 @@ namespace KonSchool.Tests.ModelTests
 
             Assert.Equal(2, query.Alternatives.Count);
         }
+
+		[Fact]
+		public void Can_CheckEligibility_JunSec()
+		{
+			School s = new School(1212121) { Level = "Junior Secondary" };
+            Query query = new Query(new MockSchoolService()) { Class = 9 };
+			Assert.False(query.IsEligible(s));
+		}
     }
 }
