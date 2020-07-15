@@ -35,7 +35,7 @@
   </a>
   <a href="https://travis-ci.org/github/maacpiash/KonSchool" target="_blank">
     <img
-      src="https://img.shields.io/travis/maacpiash/konschool?label=macOS%2FUbuntu&logo=travis&style=flat-square"
+      src="https://img.shields.io/travis/maacpiash/konschool?label=Unix-like&logo=travis&style=flat-square"
       alt="Travis (.org)"
     >
   </a>
@@ -104,7 +104,7 @@ After getting the inputs, the system
 - takes data from a dataset on secondary schools of Bangladesh and calculates comparative values for each criterion
 - gives each school a score, which is a sum of weighted criteria-values.
 
-For more details on calculation of weights from fuzzy inputs, please check the [`docs`](https://github.com/maacpiash/KonSchool/tree/master/docs).
+For more details on calculation of weights from fuzzy inputs, please check the [`docs`](/docs).
 
 ### Outputs
 
