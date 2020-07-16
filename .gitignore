@@ -1,4 +1,3 @@
-
 # Created by https://www.gitignore.io/api/linux,macos,windows,aspnetcore
 # Edit at https://www.gitignore.io/?templates=linux,macos,windows,aspnetcore
 
@@ -345,3 +344,4 @@ $RECYCLE.BIN/
 src/global.json
 tests/global.json
 .env
+report
