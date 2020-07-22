@@ -117,7 +117,7 @@ For more details on calculation of weights from fuzzy inputs, please check the [
 
 The dataset on schools that is used for this system was compiled from several datasets that were originally collected from [Bangladesh Open Data](http://data.gov.bd/dataset). It contains the data on 14,274 schools across the country. The SQLite database can be found [here](https://drive.google.com/open?id=1_MZnVRHl0ZLHEMab7lBhpUvuS3yaLoPZ). You can also use API endpoints to access the data (view the [REST API section](#REST-API) below for further instructions).
 
-The collection of data and its preprocessing is discussed in the [`docs`](https://github.com/maacpiash/KonSchool/tree/master/docs).
+The collection of data and its preprocessing is discussed in the [`docs`](./docs).
 
 **[⬆ back to toc](#toc)**
 
@@ -180,7 +180,7 @@ This endpoint can be used to get results of 6 criteria by providing 5 integers (
 - [`/api/fahp/1,2,3,4,5`](https://konschool.azurewebsites.net/api/fahp/1,2,3,4,5) would return 6 weights that are exponentially increasing.
 - [`/api/fahp/-5,-4,-3,-2,-1`](https://konschool.azurewebsites.net/api/fahp/-5,-4,-3,-2,-1) would return 6 weights that are exponentially decreasing.
 
-For detailed information regarding the integer values, please check the [`docs`](https://github.com/maacpiash/KonSchool/tree/master/src).
+For detailed information regarding the integer values, please check the [`docs`](./docs).
 
 ### School data endpoint, `/api/schools`
 
@@ -207,7 +207,7 @@ I would also like to thank my groupmates — N.S.M. Rezaur Rahman, for the devel
 
 ## Contributing
 
-This project is under [GNU Affero General Public License v3](https://github.com/maacpiash/KonSchool/blob/master/LICENSE.md). Please read the [contribution guideline](https://github.com/maacpiash/KonSchool/blob/master/CONTRIBUTING.md) in advance.
+This project is under [GNU Affero General Public License v3](./LICENSE.md). Please read the [contribution guideline](./CONTRIBUTING.md) in advance.
 
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg?style=flat-square)](https://saythanks.io/to/maacpiash)
 [![Twitter URL](https://img.shields.io/twitter/url/https/github.com/maacpiash/KonSchool?style=social)](https://twitter.com/intent/tweet?url=https%3A//konschool.azurewebsites.net)
