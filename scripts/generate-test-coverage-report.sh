@@ -9,9 +9,9 @@
 dotnet build
 
 # Now, let's run the tests and collect the coverage
-coverlet tests/bin/Debug/netcoreapp3.1/KonSchool.Tests.dll `
-    --target "dotnet" `
-    --targetargs "test tests/KonSchool.Tests.csproj --no-build" `
+coverlet tests/bin/Debug/netcoreapp3.1/KonSchool.Tests.dll \
+    --target "dotnet" \
+    --targetargs "test tests/KonSchool.Tests.csproj --no-build" \
     --format opencover
 
 reportgenerator -reports:./coverage.opencover.xml -reporttypes:Html -targetdir:./report

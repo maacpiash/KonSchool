@@ -345,3 +345,4 @@ src/global.json
 tests/global.json
 .env
 report
+coverage*xml
