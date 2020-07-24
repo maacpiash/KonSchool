@@ -1,17 +1,18 @@
-version: '1.0.{build}'
+version: "1.0.{build}"
 image: Visual Studio 2019
 branches:
   only:
-  - v3.1-mono
+    - master
+    - v3.1-mono
 
 init:
-- git config --global core.autocrlf true
+  - git config --global core.autocrlf true
 
 before_build:
-- dotnet --info
-- choco install codecov
-- dotnet tool install --global coverlet.console
-- dotnet restore
+  - dotnet --info
+  - choco install codecov
+  - dotnet tool install --global coverlet.console
+  - dotnet restore
 
 build:
   project: KonSchool.sln
@@ -19,7 +20,7 @@ build:
   publish_wap: true
 
 build_script:
-- dotnet build
+  - dotnet build
 
 after_build:
   - cmd: dotnet publish src\KonSchool.csproj --output %APPVEYOR_BUILD_FOLDER%\dist
@@ -28,15 +29,17 @@ artifacts:
   - path: dist
 
 test_script:
-- coverlet tests/bin/Debug/netcoreapp3.1/KonSchool.Tests.dll --target "dotnet" --targetargs "test tests/KonSchool.Tests.csproj --no-build" --format opencover
-- codecov -f "coverage.opencover.xml" -t %CODECOV_TOKEN%
+  - coverlet tests/bin/Debug/netcoreapp3.1/KonSchool.Tests.dll --target "dotnet" --targetargs "test tests/KonSchool.Tests.csproj --no-build" --format opencover
+  - codecov -f "coverage.opencover.xml" -t %CODECOV_TOKEN%
 
 deploy:
-  provider: WebDeploy
-  server: https://konschool.scm.azurewebsites.net:443/msdeploy.axd?site=KonSchool
-  website: KonSchool
-  username: $KonSchool
-  password:
-    secure: 1kfpmAnJMc699Y32qORP2BtyaMmdmHxVdZATVRHNV24pxDlz7MjGMzHYDwo0i9Odgw+UGJVZfzr6X+h67I1aWw==
-  ntlm: false
-  remove_files: false
+  - provider: WebDeploy
+    server: https://konschool.scm.azurewebsites.net:443/msdeploy.axd?site=KonSchool
+    website: KonSchool
+    username: $KonSchool
+    password:
+      secure: 1kfpmAnJMc699Y32qORP2BtyaMmdmHxVdZATVRHNV24pxDlz7MjGMzHYDwo0i9Odgw+UGJVZfzr6X+h67I1aWw==
+    ntlm: false
+    remove_files: false
+    on:
+      branch: master
