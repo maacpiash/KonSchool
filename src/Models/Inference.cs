@@ -18,12 +18,12 @@ namespace KonSchool.Models
                 if (values[i] < -9 || values[i] > 9)
                     throw new ArgumentException($"Error at {i} = {values[i]}: Fuzzy input must be between -9 and +9.");
             #endregion
-            
+
             (double, double, double)[] TFNs =
-            {                
+            {
                 (1, 1, 1), (1, 2, 3), (2, 3, 4),
                 (3, 4, 5), (4, 5, 6), (5, 6, 7),
-                (6, 7, 8), (7, 8, 9), (9, 9, 9)                
+                (6, 7, 8), (7, 8, 9), (9, 9, 9)
             };
 
 
@@ -47,13 +47,13 @@ namespace KonSchool.Models
             }
 
             // Now, inference by multiplication
-            
+
             for (int j = 3; j >= 0; j--)
             {
                 for (int k = 0; k <= j; k++)
                     CompMat[k, k + 5 - j] = CompMat[k, k + 4 - j].FuzzyMultiply(CompMat[k + 4 - j, k + 5 - j]);
             }
-            
+
             // Finally, ij = 1 / ji
 
             for (int r = 1; r <= 5; r++)
@@ -69,7 +69,7 @@ namespace KonSchool.Models
                                 // a1b1 a1b3 a3b1 a3b3
             double Left = Items[0], Middle = a.Item2 * b.Item2, Right = Items[0];
 
-            for (int i = 0; i < 4; i++)
+            for (int i = 1; i < 4; i++)
             {
                 if (Items[i] < Left)
                     Left = Items[i];
