@@ -66,21 +66,26 @@ namespace KonSchool.Models
         public static (double, double, double) FuzzyMultiply(this (double, double, double) a, (double, double, double) b)
         {
             double[] Items = { a.Item1 * b.Item1, a.Item1 * b.Item3, a.Item3 * b.Item1, a.Item3 * b.Item3 };
-                                // a1b1 a1b3 a3b1 a3b3
-            double Left = Items[0], Middle = a.Item2 * b.Item2, Right = Items[0];
-
-            for (int i = 1; i < 4; i++)
-            {
-                if (Items[i] < Left)
-                    Left = Items[i];
-                if (Items[i] > Right)
-                    Right = Items[i];
-            }
-
+								// a1b1 a1b3 a3b1 a3b3
+			var (Left, Right) = GetMinMax(Items);
+			double Middle = a.Item2 * b.Item2;
             return (Left, Middle, Right);
         }
 
         public static (double, double, double) Inverse(this (double, double, double) a)
             => (1.0 / a.Item3, 1.0 / a.Item2, 1.0 / a.Item1);
+
+		public static (double, double) GetMinMax(double[] values)
+		{
+			double min = values[0], max = values[0];
+			for (int i = 1; i < values.Length; i++)
+			{
+				if (values[i] < min)
+					min = values[i];
+				if (values[i] > max)
+					max = values[i];
+			}
+			return (min, max);
+		}
     }
 }

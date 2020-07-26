@@ -8,8 +8,9 @@ namespace KonSchool.Tests.ModelTests
         [Fact]
         public void Can_GetSetValues()
         {
-            School school = new School(121212)
+            School school = new School(108277)
             {
+				Id = "108277",
                 Name = "Ideal School & College",
                 OLD = 0.7,
                 Division = "Dhaka",
