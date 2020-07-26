@@ -20,7 +20,6 @@ namespace KonSchool.Pages
 
         [BindProperty] public string[] Criteria { get; set; }
         [BindProperty] public double StdDev { get; set; }
-        [BindProperty] public string[] Numbers { get; set; }
         [BindProperty] public Query _Query { get; set; }
 
         public ISchoolService SchoolService { get; set; }
