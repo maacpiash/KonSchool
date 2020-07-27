@@ -11,6 +11,11 @@ namespace KonSchool.Tests.ModelTests
         [Fact]
         public void CtorTest()
         {
+			var compMat = new (double, double, double)[,]
+			{
+				{ (1.0, 1.0, 1.0), (1.0, 3.0, 5.0) },
+				{ (1.0, 3.0, 5.0), (1.0, 1.0, 1.0) },
+			};
             Query query = new Query(new MockSchoolService())
             {
                 Class = 10,
@@ -18,11 +23,7 @@ namespace KonSchool.Tests.ModelTests
                 IsMale = false,
                 Age = 16,
                 Occupation = "Soidi",
-                CompMat = new (double, double, double)[,]
-                {
-                    { (1.0, 1.0, 1.0), (1.0, 3.0, 5.0) },
-                    { (1.0, 3.0, 5.0), (1.0, 1.0, 1.0) },
-                },
+                CompMat = compMat,
                 Weights = new double[] { 0.1667, 0.1667, 0.1667, 0.1667, 0.1667, 0.1667 },
                 LimitByDistrict = false,
                 LimitByDivision = false
@@ -30,6 +31,7 @@ namespace KonSchool.Tests.ModelTests
 
             Assert.Equal(6, query.Alternatives.Count);
             Assert.Equal("Other", query.Occupation);
+			Assert.Equal(compMat, query.CompMat);
         }
 
 		[Theory]

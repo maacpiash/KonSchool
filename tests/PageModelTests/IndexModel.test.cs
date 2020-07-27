@@ -37,6 +37,9 @@ namespace KonSchool.Tests.PageModelTests
 		{
 			var indexPage = new IndexModel(httpCtxAccessor.Object)
 			{
+				Age = 13,
+				ByDiv = false,
+				ByDist = false,
 				Class = "6",
                 Division = "Dhaka",
                 District = "Faridpur",
