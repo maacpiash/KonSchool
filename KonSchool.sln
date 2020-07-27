@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.26124.0
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KonSchool", "src\KonSchool.csproj", "{94C0A97F-2405-446D-9A92-9203F6BBD436}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonSchool", "src\KonSchool.csproj", "{94C0A97F-2405-446D-9A92-9203F6BBD436}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KonSchool.Tests", "tests\KonSchool.Tests.csproj", "{7EFDDAD5-9934-460E-94E6-A588E93852E0}"
 EndProject
@@ -15,9 +15,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 		Release|x64 = Release|x64
 		Release|x86 = Release|x86
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{94C0A97F-2405-446D-9A92-9203F6BBD436}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -44,5 +41,11 @@ Global
 		{7EFDDAD5-9934-460E-94E6-A588E93852E0}.Release|x64.Build.0 = Release|Any CPU
 		{7EFDDAD5-9934-460E-94E6-A588E93852E0}.Release|x86.ActiveCfg = Release|Any CPU
 		{7EFDDAD5-9934-460E-94E6-A588E93852E0}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {6BBFA44B-B818-45BA-9C86-4D25AFD3846A}
 	EndGlobalSection
 EndGlobal

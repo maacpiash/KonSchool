@@ -2,21 +2,60 @@
 <h3 align="center">Fuzzy-AHP-based recommendation system for secondary schools in Bangladesh 🏫 🇧🇩</h3>
 
 <p align="center">
-  <a href="https://ci.appveyor.com/project/maacpiash/konschool">
-    <img src="https://img.shields.io/appveyor/ci/maacpiash/KonSchool?label=Windows&logo=appveyor&style=flat-square" alt="AppVeyor">
+  <a href="https://konschool.azurewebsites.net" target="_blank">
+    <img
+      src="https://img.shields.io/badge/Deployed%20on-Azure-0089D6?logo=microsoft-azure&style=flat-square"
+      alt="Azure"
+    >
   </a>
-  <a href="https://travis-ci.org/maacpiash/KonSchool">
-    <img src="https://img.shields.io/travis/maacpiash/KonSchool?label=macOS%2FUbuntu&logo=travis&style=flat-square" alt="Travis (.org)">
+  <a href="https://konschool.herokuapp.com" target="_blank">
+    <img
+      src="https://img.shields.io/badge/Deployed%20on-Heroku-430098?logo=heroku&style=flat-square"
+      alt="Heroku"
+    >
   </a>
-  <a href="https://hub.docker.com/r/maacpiash/konschool">
-    <img src="https://img.shields.io/docker/pulls/maacpiash/konschool.svg?logo=docker&style=flat-square" alt="Docker pulls">
+  <a href="https://hub.docker.com/r/maacpiash/konschool" target="_blank">
+    <img
+      src="https://img.shields.io/docker/image-size/maacpiash/konschool?logo=docker&style=flat-square"
+      alt="Docker image size"
+    >
   </a>
-  <a href="https://ci.appveyor.com/project/maacpiash/konschool">
-    <img src="https://img.shields.io/appveyor/tests/maacpiash/KonSchool.svg?logo=appveyor&style=flat-square" alt="AppVeyor tests">
+  <a href="https://dotnet.microsoft.com/download/dotnet-core/3.1" target="_blank">
+    <img
+      src="https://img.shields.io/badge/Core-v3.1%20(LTS)-5C2D91?logo=.net&style=flat-square"
+      alt=".NET Core SDK/runtime version"
+    >
   </a>
-  <a href="https://codecov.io/gh/maacpiash/KonSchool">
-    <img src="https://img.shields.io/codecov/c/gh/maacpiash/KonSchool.svg?logo=codecov&style=flat-square"
-    alt="Codecov">
+  <br>
+  <a href="https://ci.appveyor.com/project/maacpiash/konschool" target="_blank">
+    <img
+      src="https://img.shields.io/appveyor/build/maacpiash/KonSchool?label=Windows&logo=appveyor&style=flat-square"
+      alt="AppVeyor"
+    >
+  </a>
+  <a href="https://travis-ci.org/github/maacpiash/KonSchool" target="_blank">
+    <img
+      src="https://img.shields.io/travis/maacpiash/konschool?label=Unix-like&logo=travis&style=flat-square"
+      alt="Travis (.org)"
+    >
+  </a>
+  <a href="https://codecov.io/gh/maacpiash/KonSchool" target="_blank">
+    <img
+      src="https://img.shields.io/codecov/c/gh/maacpiash/KonSchool.svg?logo=codecov&style=flat-square"
+      alt="Codecov"
+    >
+  </a>
+  <a href="https://www.codefactor.io/repository/github/maacpiash/konschool" target="_blank">
+    <img
+      src="https://img.shields.io/codefactor/grade/github/maacpiash/KonSchool?logo=codefactor&style=flat-square"
+      alt="CodeFactor Grade"
+    >
+  </a>
+  <a href="https://codeclimate.com/github/maacpiash/KonSchool/maintainability" target="_blank">
+    <img
+      src="https://img.shields.io/codeclimate/maintainability-percentage/maacpiash/KonSchool?logo=code-climate&style=flat-square"
+      alt="Code Climate maintainability"
+    >
   </a>
 </p>
 
@@ -65,7 +104,7 @@ After getting the inputs, the system
 - takes data from a dataset on secondary schools of Bangladesh and calculates comparative values for each criterion
 - gives each school a score, which is a sum of weighted criteria-values.
 
-For more details on calculation of weights from fuzzy inputs, please check the [`docs`](https://github.com/maacpiash/KonSchool/tree/master/docs).
+For more details on calculation of weights from fuzzy inputs, please check the [`docs`](/docs).
 
 ### Outputs
 
@@ -78,7 +117,7 @@ For more details on calculation of weights from fuzzy inputs, please check the [
 
 The dataset on schools that is used for this system was compiled from several datasets that were originally collected from [Bangladesh Open Data](http://data.gov.bd/dataset). It contains the data on 14,274 schools across the country. The SQLite database can be found [here](https://drive.google.com/open?id=1_MZnVRHl0ZLHEMab7lBhpUvuS3yaLoPZ). You can also use API endpoints to access the data (view the [REST API section](#REST-API) below for further instructions).
 
-The collection of data and its preprocessing is discussed in the [`docs`](https://github.com/maacpiash/KonSchool/tree/master/docs).
+The collection of data and its preprocessing is discussed in the [`docs`](./docs).
 
 **[⬆ back to toc](#toc)**
 
@@ -88,7 +127,7 @@ There are two ways.
 
 ### Compilation of source
 
-If you have .NET Core SDK (v2.1) installed, you can run the application directly from the source:
+If you have .NET Core SDK (v3.1) installed, you can run the application directly from the source:
 
 ```bash
 git clone https://github.com/maacpiash/KonSchool
@@ -97,7 +136,7 @@ dotnet run --project KonSchool/src/KonSchool.csproj
 
 Now, navigate to either http://localhost:5000 or https://localhost:5001.
 
-I recommend this method over the next one. You can download .NET Core SDK from [Microsoft](https://dotnet.microsoft.com/download/dotnet-core/2.1).
+I recommend this method over the next one. You can download .NET Core SDK from [Microsoft](https://dotnet.microsoft.com/download/dotnet-core/3.1).
 
 ### Docker image
 
@@ -141,7 +180,7 @@ This endpoint can be used to get results of 6 criteria by providing 5 integers (
 - [`/api/fahp/1,2,3,4,5`](https://konschool.azurewebsites.net/api/fahp/1,2,3,4,5) would return 6 weights that are exponentially increasing.
 - [`/api/fahp/-5,-4,-3,-2,-1`](https://konschool.azurewebsites.net/api/fahp/-5,-4,-3,-2,-1) would return 6 weights that are exponentially decreasing.
 
-For detailed information regarding the integer values, please check the [`docs`](https://github.com/maacpiash/KonSchool/tree/master/src).
+For detailed information regarding the integer values, please check the [`docs`](./docs).
 
 ### School data endpoint, `/api/schools`
 
@@ -168,7 +207,7 @@ I would also like to thank my groupmates — N.S.M. Rezaur Rahman, for the devel
 
 ## Contributing
 
-This project is under [GNU Affero General Public License v3](https://github.com/maacpiash/KonSchool/blob/master/LICENSE.md). Please read the [contribution guideline](https://github.com/maacpiash/KonSchool/blob/master/CONTRIBUTING.md) in advance.
+This project is under [GNU Affero General Public License v3](./LICENSE.md). Please read the [contribution guideline](./CONTRIBUTING.md) in advance.
 
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg?style=flat-square)](https://saythanks.io/to/maacpiash)
 [![Twitter URL](https://img.shields.io/twitter/url/https/github.com/maacpiash/KonSchool?style=social)](https://twitter.com/intent/tweet?url=https%3A//konschool.azurewebsites.net)

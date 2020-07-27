@@ -8,8 +8,9 @@ namespace KonSchool.Tests.ModelTests
         [Fact]
         public void Can_GetSetValues()
         {
-            School school = new School(121212)
+            School school = new School(108277)
             {
+				Id = "108277",
                 Name = "Ideal School & College",
                 OLD = 0.7,
                 Division = "Dhaka",
@@ -55,6 +56,14 @@ namespace KonSchool.Tests.ModelTests
             Assert.Equal(0.4, school.SEScore2);
             Assert.Equal(0.3, school.SEScore3);
             Assert.Equal(0.1, school.SEScore4);
+        }
+
+		[Fact]
+        public void Can_ThrowException_ForInvalidArrays()
+        {
+            School school = new School(121212);
+			Assert.Throws<System.Exception>(() => school.AverAge = new double[] { 11.0, 12.0, 13.0, 14.0 });
+			Assert.Throws<System.Exception>(() => school.SEScore = new double[] { 0.2, 0.4, 0.3 });
         }
     }
 }

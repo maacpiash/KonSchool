@@ -1,27 +1,34 @@
 language: csharp
 mono: none
-dotnet: 2.1.802 # LTS
+dotnet: 3.1.301
 solution: KonSchool.sln
 sudo: required
 branches:
   only:
-  - master
+    - master
+    - v3.1-mono
 jobs:
   include:
     - os: linux
-      dist: bionic # Ubuntu 18.04 (LTS)
+      dist: bionic
     - os: osx
-      osx_image: xcode11.2 # macOS 10.14 (Mojave)
+      osx_image: xcode11.2
   allow_failures:
     - os: osx
 before_install:
   - dotnet --info
 script:
-    - dotnet restore
-    - dotnet build
-    - dotnet test tests/KonSchool.Tests.csproj
+  - dotnet restore
+  - dotnet build
+  - dotnet test tests/KonSchool.Tests.csproj
 global:
-    - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
-    - DOTNET_CLI_TELEMETRY_OPTOUT=1
+  - DOTNET_SKIP_FIRST_TIME_EXPERIENCE=true
+  - DOTNET_CLI_TELEMETRY_OPTOUT=1
+  - ASPNETCORE_ENVIRONMENT=Development
 deploy:
-  provider: azure_web_apps
+  provider: heroku
+  api_key:
+    secure: yg9LRW7QbW02gCubGPe4pOYf0TmkzkYl6j/HUy6Vu3c3zMfriugQtnvid7bDpiHhrLluBk1KK7PYMUsUAYUgzNS8HeOaN8B6F3nLXIZKBiAEJLYBJ4NT6ahTAOqClFstxg/ntzFR6eQ9Ut9Hd2bTZrTMCjd3tMtNQhpEUoqtSidaTEBw0t9FR7BK8Hbrhd6FWb4LmBNwj4FyxaZsUp4xeJlSfYi+BBP0xk3Nr+cS0DI9ApdbLIg/K8rpldby4QcogJT2CXX/8XWeDs1zwkDdThG7SJkLcganVGiMzKn/EBf2oxiPsP2FNab5d0x4V0IpdyeGAirnvAso3t8BhpXR11X/13hgvMR3vdaIBWVSHSHLsvlOnKeKFIq5bprLxKqzAlaE4ZS6a9OLGFC8mP+gOADssKEMTVMi2cIULaIy2/x+bV2KeZAvDTKovIUuLi3clkxq2vwh12w2mLwaEknF6Itln3iXyyrKCsIrpClGP+D4lhwlST1RKAzaHmzyuP0pY8k7KwsVKWgvYstbavyMlpJo36vyHSz4nnZqgMPNlZEYAxpf0+fvI+lPzIgDAPwZzcwhTJB+7QEO7SOwuarSCZJwNUGYMZU7jgq6KO+KhqE7TZzZRJzMpZKpfx1ZjBY4wwWSG2RAkm0xsO+H/pieK0PGQ8ZY0FR+T+3iua+ta28=
+  app: konschool
+  on:
+    branch: master

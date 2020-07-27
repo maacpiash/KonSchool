@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.AspNetCore.Http;
-using Newtonsoft.Json;
 using KonSchool.Models;
 using KonSchool.Services;
 
@@ -14,14 +10,16 @@ namespace KonSchool.Pages
 {
     public class OutputsModel : PageModel
     {
-        public OutputsModel(ISchoolService schoolService)
+		private ISession session;
+
+        public OutputsModel(ISchoolService schoolService, IHttpContextAccessor httpCtxAccessor)
         {
             SchoolService = schoolService;
+			session = httpCtxAccessor.HttpContext.Session;
         }
 
         [BindProperty] public string[] Criteria { get; set; }
         [BindProperty] public double StdDev { get; set; }
-        [BindProperty] public string[] Numbers { get; set; }
         [BindProperty] public Query _Query { get; set; }
 
         public ISchoolService SchoolService { get; set; }
@@ -30,17 +28,17 @@ namespace KonSchool.Pages
         {
             _Query = new Query(SchoolService)
             {
-                Class = HttpContext.Session.GetInt32("_Class") ?? 10,
-                Age = HttpContext.Session.GetInt32("_Age") ?? 16,
-                Social = Convert.ToDouble(HttpContext.Session.GetString("_Social")),
-                IsMale = HttpContext.Session.GetString("_Sex") == "Male",
-                Occupation = HttpContext.Session.GetString("_Occupation"),
-                Division = HttpContext.Session.GetString("_Division"),
-                District = HttpContext.Session.GetString("_District"),
-                Thana = HttpContext.Session.GetString("_Thana"),
-                Union_Ward = HttpContext.Session.GetString("_UW"),
-                LimitByDivision = HttpContext.Session.GetString("_ByDiv") == "True",
-                LimitByDistrict = HttpContext.Session.GetString("_ByDist") == "True"
+                Class = session.GetInt32("_Class") ?? 10,
+                Age = session.GetInt32("_Age") ?? 16,
+                Social = Convert.ToDouble(session.GetString("_Social")),
+                IsMale = session.GetString("_Sex") == "Male",
+                Occupation = session.GetString("_Occupation"),
+                Division = session.GetString("_Division"),
+                District = session.GetString("_District"),
+                Thana = session.GetString("_Thana"),
+                Union_Ward = session.GetString("_UW"),
+                LimitByDivision = session.GetString("_ByDiv") == "True",
+                LimitByDistrict = session.GetString("_ByDist") == "True"
             };
 
             Criteria = new string[]
@@ -52,17 +50,17 @@ namespace KonSchool.Pages
 
             for (int i = 0; i < 6; i++)
             {
-                _Query.Weights[i] = Convert.ToDouble(HttpContext.Session.GetString("_Weight" + i));
+                _Query.Weights[i] = Convert.ToDouble(session.GetString("_Weight" + i));
             }
 
             StdDev = Stat.StdDev(_Query.Weights);
 
             double[] w = _Query.Weights;
             _Query.SetValues();
-            
+
             foreach (School s in _Query.Alternatives)
                 s.FinalScore = s.TSR * w[0] + s.MFR * w[1] + s.SES * w[2] + s.LOC * w[3] + s.OLD * w[4] + s.ADS * w[5];
-                   
+
             _Query.Alternatives = _Query.Alternatives.OrderByDescending(x => x.FinalScore).ToList();
         }
 

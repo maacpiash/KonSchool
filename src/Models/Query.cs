@@ -45,13 +45,13 @@ namespace KonSchool.Models
         {
             get
             {
-                if (occupations == null) 
+                if (occupations == null)
                 {
                     lock (key)
                     {
                         if (occupations == null)
                         {
-                            occupations = new List<string>()
+                            occupations = new List<string>
                             {
                                 "Worker", "Fisherman", "Tati", "Kamar/Kumar",
                                 "Cultivation", "Expatriate", "Small business",
@@ -82,9 +82,9 @@ namespace KonSchool.Models
             List<School> eligibleSchools = new List<School>();
             foreach (School s in Alternatives)
                 if (IsEligible(s)) eligibleSchools.Add(s);
-            
+
             foreach (School s in eligibleSchools)
-            { 
+            {
                 // MFR
                 if (IsMale) s.MFR = 1 - s.MFR;
 

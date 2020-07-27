@@ -18,12 +18,12 @@ namespace KonSchool.Models
                 if (values[i] < -9 || values[i] > 9)
                     throw new ArgumentException($"Error at {i} = {values[i]}: Fuzzy input must be between -9 and +9.");
             #endregion
-            
+
             (double, double, double)[] TFNs =
-            {                
+            {
                 (1, 1, 1), (1, 2, 3), (2, 3, 4),
                 (3, 4, 5), (4, 5, 6), (5, 6, 7),
-                (6, 7, 8), (7, 8, 9), (9, 9, 9)                
+                (6, 7, 8), (7, 8, 9), (9, 9, 9)
             };
 
 
@@ -47,13 +47,13 @@ namespace KonSchool.Models
             }
 
             // Now, inference by multiplication
-            
+
             for (int j = 3; j >= 0; j--)
             {
                 for (int k = 0; k <= j; k++)
                     CompMat[k, k + 5 - j] = CompMat[k, k + 4 - j].FuzzyMultiply(CompMat[k + 4 - j, k + 5 - j]);
             }
-            
+
             // Finally, ij = 1 / ji
 
             for (int r = 1; r <= 5; r++)
@@ -66,21 +66,26 @@ namespace KonSchool.Models
         public static (double, double, double) FuzzyMultiply(this (double, double, double) a, (double, double, double) b)
         {
             double[] Items = { a.Item1 * b.Item1, a.Item1 * b.Item3, a.Item3 * b.Item1, a.Item3 * b.Item3 };
-                                // a1b1 a1b3 a3b1 a3b3
-            double Left = Items[0], Middle = a.Item2 * b.Item2, Right = Items[0];
-
-            for (int i = 0; i < 4; i++)
-            {
-                if (Items[i] < Left)
-                    Left = Items[i];
-                if (Items[i] > Right)
-                    Right = Items[i];
-            }
-
+								// a1b1 a1b3 a3b1 a3b3
+			var (Left, Right) = GetMinMax(Items);
+			double Middle = a.Item2 * b.Item2;
             return (Left, Middle, Right);
         }
 
         public static (double, double, double) Inverse(this (double, double, double) a)
             => (1.0 / a.Item3, 1.0 / a.Item2, 1.0 / a.Item1);
+
+		public static (double, double) GetMinMax(double[] values)
+		{
+			double min = values[0], max = values[0];
+			for (int i = 1; i < values.Length; i++)
+			{
+				if (values[i] < min)
+					min = values[i];
+				if (values[i] > max)
+					max = values[i];
+			}
+			return (min, max);
+		}
     }
 }

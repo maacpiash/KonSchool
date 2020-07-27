@@ -1,54 +1,73 @@
 using System.IO;
 using System.Collections.Generic;
-using System.Net;
-using System.Text;
-
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
+using Microsoft.Extensions.Logging;
+using MongoDB.Driver;
+using DotNetEnv;
 using KonSchool.Models;
-using Newtonsoft.Json;
+using static System.Environment;
 
 namespace KonSchool.Services
 {
     public class SchoolService : ISchoolService
     {
-        readonly List<School> Schools;
+		readonly IMongoCollection<School> Schools;
+		private readonly ILogger _logger;
+		private string[] keys, env;
+		private int connStr = 0, dbName = 1, collName = 2;
 
-        public SchoolService()
+        public SchoolService(IWebHostEnvironment hostEnvironment, ILogger<SchoolService> logger)
         {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://konschool-mlab-host.herokuapp.com/api/schools/");
+			_logger = logger;
+			keys = new string[] { "CONNECTIONSTRING", "DBNAME", "COLLECTIONNAME" };
+			env = new string[3];
+			if (hostEnvironment.IsDevelopment())
+			{
+				var loadOptions = new Env.LoadOptions(parseVariables: true);
+				string envPath = Path.Combine(Directory.GetParent(Directory.GetCurrentDirectory()).FullName, ".env");
+				try
+				{
+					if (File.Exists(envPath))
+						_logger.LogInformation($"Trying to read environmental variables from {envPath}");
+					else
+						throw new System.Exception($"Environmental variables file not found at {envPath}");
+					Env.Load(envPath, loadOptions);
+					for (int i = 0; i < 3; i++)
+						env[i] = Env.GetString(keys[i]);
+					foreach (var value in env)
+						if (value is null)
+							throw new System.Exception($"Value of {value} not found in file {envPath}");
+					_logger.LogInformation($"Environmental variables are read from {envPath}");
+				}
+				catch (System.Exception e)
+				{
+					_logger.LogError(e.Message);
+					TryToGetValuesFromEnv();
+				}
+			}
+			else
+				TryToGetValuesFromEnv();
 
-            // Set some reasonable limits on resources used by this request
-            request.MaximumAutomaticRedirections = 4;
-            request.MaximumResponseHeadersLength = 4;
-            // Set credentials to use for this request.
-            request.Credentials = CredentialCache.DefaultCredentials;
-            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
-
-            // Console.WriteLine("Content length is {0}", response.ContentLength);
-            // Console.WriteLine("Content type is {0}", response.ContentType);
-             
-            // Get the stream associated with the response.
-            Stream receiveStream = response.GetResponseStream();
-
-            // Pipes the stream to a higher level stream reader with the required encoding format. 
-            StreamReader readStream = new StreamReader(receiveStream, Encoding.UTF8);
-
-            // Console.WriteLine("Response stream received.");
-            string json = readStream.ReadToEnd();
-            Schools = JsonConvert.DeserializeObject<List<School>>(json);
-
-            response.Close();
-            readStream.Close();
+			var client = new MongoClient(env[connStr]);
+            var database = client.GetDatabase(env[dbName]);
+            Schools = database.GetCollection<School>(env[collName]);
         }
 
-        public IEnumerable<School> GetSchools() => Schools;
+		private void TryToGetValuesFromEnv()
+		{
+			try
+			{
+				for (int i = 0; i < 3; i++)
+					env[i] = GetEnvironmentVariable(keys[i]);
+			}
+			catch (System.Exception ex)
+			{
+				_logger.LogError("Environmental variables not found in the environment.");
+				throw ex;
+			}
+		}
 
-        public School Get(string eiin) => Schools.Find(School => School.EIIN.Equals(eiin));
-        
-    }
-
-    public interface ISchoolService
-    {
-        School Get(string eiin);
-        IEnumerable<School> GetSchools();
+        public IEnumerable<School> GetSchools() => Schools.Find(Schools => true).ToList();
     }
 }

@@ -9,6 +9,16 @@ namespace KonSchool.Tests.ModelTests
 {
     public class InferenceTests
     {
+		[Theory]
+		[InlineData(1.0, 2.0, 3.0, 4.0, 5.0)]
+		[InlineData(5.0, 4.0, 3.0, 2.0, 1.0)]
+		public void Can_GetMinMax(params double[] values)
+		{
+			var (min, max) = GetMinMax(values);
+			Assert.Equal(1.0, min);
+			Assert.Equal(5.0, max);
+		}
+
         [Fact]
         public void Can_FuzzyMultiply()
         {

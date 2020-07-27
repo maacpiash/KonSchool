@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.AspNetCore.Mvc;
-
+using Microsoft.Extensions.Logging;
 using KonSchool.Models;
 
 namespace KonSchool.ApiControllers
@@ -10,6 +11,10 @@ namespace KonSchool.ApiControllers
     [ApiController]
     public class FAHPController : ControllerBase
     {
+		private ILogger _logger;
+
+		public FAHPController(ILogger<FAHPController> logger) => _logger = logger;
+
         [HttpGet("{numbers}")]
         public ActionResult<IEnumerable<double>> Get(string numbers)
         {
@@ -20,13 +25,13 @@ namespace KonSchool.ApiControllers
             }
             catch (Exception e)
             {
-                Console.Error.WriteLine(e.ToString());
+                _logger.LogInformation(e.Message);
                 return BadRequest(e);
             }
 
             if (values.Length < 5)
             {
-                Console.Error.WriteLine("Insufficient values!");
+                _logger.LogInformation("Insufficient values!");
                 return BadRequest("Insufficient values!");
             }
 
@@ -34,12 +39,16 @@ namespace KonSchool.ApiControllers
             {
                 if (item > 9 || item < -9)
                 {
-                    Console.Error.WriteLine("All values must be between +9 and -9.");
+                    _logger.LogInformation("All values must be between +9 and -9.");
                     return BadRequest("All values must be between +9 and -9.");
                 }
             }
-            
-            return Ok(new FAHP(Inference.ComparisonMatrix(values)).CriteriaWeights);
+
+			_logger.LogInformation("Returning values for " + string.Join(",", values.Select(x => x.ToString()).ToArray()));
+			var fahp = new FAHP(Inference.ComparisonMatrix(values));
+			var weights = fahp.CriteriaWeights;
+			_logger.LogInformation("Values: " + string.Join(",", weights.Select(x => x.ToString("0.00000")).ToArray()));
+			return Ok(weights);
         }
     }
 }
