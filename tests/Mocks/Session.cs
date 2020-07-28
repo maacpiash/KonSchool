@@ -24,7 +24,7 @@ namespace KonSchool.Tests.Mocks
 		public bool TryGetValue(string key, out byte[] value)
 		{
 			var returnValue = session.TryGetValue(key, out string val);
-			value = UTF8.GetBytes(val);
+			value = val is null ? null : UTF8.GetBytes(val);
 			return returnValue;
 		}
 	}
