@@ -209,6 +209,7 @@ I would also like to thank my groupmates — N.S.M. Rezaur Rahman, for the devel
 
 This project is under [GNU Affero General Public License v3](./LICENSE.md). Please read the [contribution guideline](./CONTRIBUTING.md) in advance.
 
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/56f8d062329b4870aba4b140def898bc)](https://app.codacy.com/manual/maacpiash/KonSchool?utm_source=github.com&utm_medium=referral&utm_content=maacpiash/KonSchool&utm_campaign=Badge_Grade_Dashboard)
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg?style=flat-square)](https://saythanks.io/to/maacpiash)
 [![Twitter URL](https://img.shields.io/twitter/url/https/github.com/maacpiash/KonSchool?style=social)](https://twitter.com/intent/tweet?url=https%3A//konschool.azurewebsites.net)
 
