@@ -51,7 +51,13 @@
       alt="CodeFactor Grade"
     >
   </a>
-  <a href="https://codeclimate.com/github/maacpiash/KonSchool/maintainability" target="_blank">
+  <a href="https://app.codacy.com/manual/maacpiash/KonSchool/dashboard" target="_blank">
+    <img
+      src="https://img.shields.io/codacy/grade/afb9d85a377040b2971d2787c973ef25?logo=codacy&style=flat-square"
+      alt="Codacy grade"
+    >
+  </a>
+  <a href="https://codeclimate.com/github/maacpiash/KonSchool" target="_blank">
     <img
       src="https://img.shields.io/codeclimate/maintainability-percentage/maacpiash/KonSchool?logo=code-climate&style=flat-square"
       alt="Code Climate maintainability"
