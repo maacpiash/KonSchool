@@ -41,6 +41,7 @@ namespace KonSchool
 			services.AddSingleton<ISchoolService, SchoolService>();
 
             services.AddRazorPages();
+			services.AddServerSideBlazor();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -69,6 +70,8 @@ namespace KonSchool
             {
                 endpoints.MapControllers();
 				endpoints.MapRazorPages();
+				endpoints.MapBlazorHub();
+				endpoints.MapFallbackToPage("/_Host");
             });
         }
     }

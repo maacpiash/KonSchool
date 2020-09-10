@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <base href="~/" />
     <title>@ViewData["Title"] - KonSchool</title>
 
     <environment include="Development">
@@ -71,5 +72,6 @@
     </environment>
 
     @RenderSection("Scripts", required: false)
+    <script src="_framework/blazor.server.js"></script>
 </body>
 </html>
