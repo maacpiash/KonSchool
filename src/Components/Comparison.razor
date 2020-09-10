@@ -1,0 +1,56 @@
+﻿<div class="row">
+    <div class="column" style="margin-right: 10px">@Criterion1</div>
+    <div class="column">
+        <input
+            type="range"
+            min="-9"
+            max="9"
+            step="1"
+            class="column slider"
+            @bind="SliderValue"
+            @bind:event="oninput"
+        />
+    </div>
+    <div class="column" style="margin-left: 10px">@Criterion2</div>
+</div>
+<div style="padding: 10px">@ShowMessage()</div>
+
+
+@code {
+    [Parameter]
+    public string Criterion1 { get; set; }
+
+    [Parameter]
+    public string Criterion2 { get; set; }
+
+    [Parameter]
+    public EventCallback<int> HandleValue { get; set; }
+
+    static string[] degrees = new string[]
+    {
+        "weakly",
+        "more than weakly",
+        "moderately",
+        "more than moderately",
+        "highly",
+        "more than highly",
+        "strongly",
+        "more than strongly",
+        "absolutely"
+    };
+
+    int SliderValue;
+
+    public string ShowMessage()
+    {
+        string message = "Both are equally important";
+
+        if (SliderValue > 0)
+            message = $"{Criterion2} is {degrees[SliderValue - 1]} more important compared to {Criterion1}";
+        else if (SliderValue < 0)
+            message = $"{Criterion1} is {degrees[- SliderValue - 1]} more important compared to {Criterion2}";
+
+        @* HandleValue.InvokeAsync(SliderValue); *@
+        return message;
+    }
+}
