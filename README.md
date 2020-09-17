@@ -26,6 +26,12 @@
       alt=".NET Core SDK/runtime version"
     >
   </a>
+  <a href="https://libraries.io/github/maacpiash/KonSchool#dependencies" target="_blank">
+    <img
+      src="https://img.shields.io/librariesio/github/maacpiash/KonSchool?logo=nuget&style=flat-square"
+      alt="Libraries.io dependency status for GitHub repo"
+    >
+  </a>
   <br>
   <a href="https://ci.appveyor.com/project/maacpiash/konschool" target="_blank">
     <img
