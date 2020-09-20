@@ -219,7 +219,7 @@ I would also like to thank my groupmates — N.S.M. Rezaur Rahman, for the devel
 
 ## Contributing
 
-This project is under [GNU Affero General Public License v3](./LICENSE.md). Please read the [contribution guideline](./CONTRIBUTING.md) in advance.
+This project is under [GNU Affero General Public License v3](./LICENSE). Please read the [contribution guideline](./docs/CONTRIBUTING.md) in advance.
 
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg?style=flat-square)](https://saythanks.io/to/maacpiash)
 [![Twitter URL](https://img.shields.io/twitter/url/https/github.com/maacpiash/KonSchool?style=social)](https://twitter.com/intent/tweet?url=https%3A//konschool.azurewebsites.net)
