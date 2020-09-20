@@ -27,8 +27,8 @@ For commit messages, please try to follow [this guideline](https://chris.beams.i
 - [ ] Upgrade to Blazor (SSR)
 - [ ] Component for comparisons of criteria
 - [ ] Component for the list of eligible schools
- - [ ] Pagination
- - [ ] Add/remove location-based (division/district) constraints.
+  - [ ] Pagination
+  - [ ] Add/remove location-based (division/district) constraints.
 - [ ] Add a swagger for the Web API endpoints.
 - [x] Fix a CI/CD pipeline so that the app can be deployed on Heroku with every commit push.
 - [ ] Upgrade app to the upcoming .NET 5 to leverage the performance boost. (Since .NET 5 RC has come out, I have started working on it.)
