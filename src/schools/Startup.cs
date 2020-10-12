@@ -26,7 +26,8 @@ namespace KonSchool.Schools
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-			services.AddSingleton<ISchoolService, SchoolService>();
+			services.AddSingleton<ISchoolsRepository, SchoolsRepository>();
+			services.AddSingleton<ISchoolsService, SchoolsService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

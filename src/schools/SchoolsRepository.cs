@@ -9,14 +9,14 @@ using static System.Environment;
 
 namespace KonSchool.Schools
 {
-    public class SchoolService : ISchoolService
+    public class SchoolsRepository : ISchoolsRepository
     {
 		readonly IMongoCollection<School> Schools;
 		private readonly ILogger _logger;
 		private string[] keys, env;
 		private int connStr = 0, dbName = 1, collName = 2;
 
-        public SchoolService(IWebHostEnvironment hostEnvironment, ILogger<SchoolService> logger)
+        public SchoolsRepository(IWebHostEnvironment hostEnvironment, ILogger<SchoolsRepository> logger)
         {
 			_logger = logger;
 			keys = new string[] { "CONNECTIONSTRING", "DBNAME", "COLLECTIONNAME" };
@@ -67,6 +67,6 @@ namespace KonSchool.Schools
 			}
 		}
 
-        public IEnumerable<School> GetSchools() => Schools.Find(Schools => true).ToList();
+        public IEnumerable<School> GetAllSchools() => Schools.Find(Schools => true).ToList();
     }
 }
