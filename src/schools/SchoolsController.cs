@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace KonSchool.Schools
 {
-    [Route("api/[controller]")]
+    [Route("")]
     [ApiController]
     public class SchoolsController : ControllerBase
     {
