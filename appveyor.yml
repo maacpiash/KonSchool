@@ -3,7 +3,6 @@ image: Visual Studio 2019
 branches:
   only:
     - master
-    - v3.1-mono
 
 init:
   - git config --global core.autocrlf true

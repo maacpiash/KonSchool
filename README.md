@@ -26,6 +26,12 @@
       alt=".NET Core SDK/runtime version"
     >
   </a>
+  <a href="https://libraries.io/github/maacpiash/KonSchool#dependencies" target="_blank">
+    <img
+      src="https://img.shields.io/librariesio/github/maacpiash/KonSchool?logo=nuget&style=flat-square"
+      alt="Libraries.io dependency status for GitHub repo"
+    >
+  </a>
   <br>
   <a href="https://ci.appveyor.com/project/maacpiash/konschool" target="_blank">
     <img
@@ -51,7 +57,13 @@
       alt="CodeFactor Grade"
     >
   </a>
-  <a href="https://codeclimate.com/github/maacpiash/KonSchool/maintainability" target="_blank">
+  <a href="https://app.codacy.com/manual/maacpiash/KonSchool/dashboard" target="_blank">
+    <img
+      src="https://img.shields.io/codacy/grade/afb9d85a377040b2971d2787c973ef25?logo=codacy&style=flat-square"
+      alt="Codacy grade"
+    >
+  </a>
+  <a href="https://codeclimate.com/github/maacpiash/KonSchool" target="_blank">
     <img
       src="https://img.shields.io/codeclimate/maintainability-percentage/maacpiash/KonSchool?logo=code-climate&style=flat-square"
       alt="Code Climate maintainability"
@@ -207,7 +219,7 @@ I would also like to thank my groupmates — N.S.M. Rezaur Rahman, for the devel
 
 ## Contributing
 
-This project is under [GNU Affero General Public License v3](./LICENSE.md). Please read the [contribution guideline](./CONTRIBUTING.md) in advance.
+This project is under [GNU Affero General Public License v3](./LICENSE). Please read the [contribution guideline](./docs/CONTRIBUTING.md) in advance.
 
 [![Say Thanks!](https://img.shields.io/badge/Say%20Thanks-!-1EAEDB.svg?style=flat-square)](https://saythanks.io/to/maacpiash)
 [![Twitter URL](https://img.shields.io/twitter/url/https/github.com/maacpiash/KonSchool?style=social)](https://twitter.com/intent/tweet?url=https%3A//konschool.azurewebsites.net)

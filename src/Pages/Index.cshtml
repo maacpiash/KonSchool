@@ -8,9 +8,9 @@
 <head>
     <script src="~/js/site.js"></script>
     <script src="~/js/LocationDB.js"></script>
-    
+
 </head>
-<body onload="DivDistChange(document.getElementById('division');">
+<body>
     <h3>Welcome to "কোন স্কুল?"</h3>
     <h4>"কোন স্কুল?" is an app designed to help you find the most suitable schools for your child or dependant!</h4>
     <div>
@@ -75,7 +75,12 @@
                             <label class="col-form-label">Division</label>
                         </div>
                         <div class="col-md-3">
-                            <select id="division" class="form-control" asp-for="Division" onload="DivDistChange(this)" onchange="DivDistChange(this);">
+                            <select
+                                id="division"
+                                class="form-control"
+                                asp-for="Division"
+                                onchange="DivDistChange()"
+                            >
                                 <option value="empty">Select a division</option>
                                 <option value="BARISAL">BARISAL</option>
                                 <option value="CHITTAGONG">CHITTAGONG</option>
@@ -96,7 +101,13 @@
                             <label class="col-form-label">District</label>
                         </div>
                         <div class="col-md-3">
-                            <select id="district" class="form-control" asp-for="@Model.District" onchange="DistThanaChange(this);"></select>
+                            <select
+                                id="district"
+                                class="form-control"
+                                asp-for="@Model.District"
+                                onchange="DistThanaChange()"
+                            >
+                            </select>
                             <span asp-validation-for="District"></span>
                         </div>
                     </div>
@@ -108,7 +119,13 @@
                             <label class="col-form-label">Thana</label>
                         </div>
                         <div class="col-md-3">
-                            <select id="thana" class="form-control" asp-for="@Model.Thana" onchange="ThanaUWChange(this);"></select>
+                            <select
+                                id="thana"
+                                class="form-control"
+                                asp-for="@Model.Thana"
+                                onchange="ThanaUWChange()"
+                            >
+                            </select>
                             <span asp-validation-for="Thana"></span>
                         </div>
                     </div>
