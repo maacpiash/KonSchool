@@ -47,7 +47,7 @@ namespace KonSchool.Schools
 
             if (schools.Count == 0)
             {
-				_logger.LogInformation($"No school in division {div} found.");
+				_logger.LogInformation($"No school in the division of {div} found.");
                 return NotFound();
             }
 
@@ -62,7 +62,7 @@ namespace KonSchool.Schools
 
             if (schools.Count == 0)
             {
-				_logger.LogInformation($"No school in district {dis} found.");
+				_logger.LogInformation($"No school in the district of {dis} found.");
                 return NotFound();
             }
 

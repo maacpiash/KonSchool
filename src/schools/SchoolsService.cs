@@ -8,10 +8,9 @@ namespace KonSchool.Schools
 	public class SchoolsService : ISchoolsService
 	{
 		private readonly List<School> allSchools;
-		public SchoolsService(IServiceProvider serviceProvider)
+		public SchoolsService(ISchoolsRepository repository)
 		{
-			var repository = serviceProvider.GetRequiredService<ISchoolsRepository>();
-			allSchools = repository.GetAllSchools().ToList();
+			allSchools = repository.GetAllSchools();
 		}
 
 		public List<School> GetAllSchools()
