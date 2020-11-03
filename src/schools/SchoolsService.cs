@@ -40,5 +40,15 @@ namespace KonSchool.Schools
 			string district = dis.ToUpper();
 			return allSchools.Where(s => s.District == district).ToList();
 		}
+        
+        public static List<School> FilterBySex(List<School> schools, string sex = "")
+        {
+            var s = sex.ToUpper();
+            if (s == "B" || s == "BOYS" || s == "M" || s == "MALE")
+                return schools.Where(s => s.Type == "BOYS").ToList();
+            else if (s == "G" || sex == "GIRLS" || s == "F" || s == "FEMALE")
+                return schools.Where(s => s.Type == "GIRLS").ToList();
+            return schools;
+        }
 	}
 }
