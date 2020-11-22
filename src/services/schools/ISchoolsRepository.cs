@@ -1,3 +1,5 @@
+using KonSchool.Shared;
+
 namespace KonSchool.Schools
 {
 	public interface ISchoolsRepository

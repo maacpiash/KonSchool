@@ -1,8 +1,7 @@
-﻿using System.Linq;
-
+using System.Linq;
 using static System.Math;
 
-namespace KonSchool.FAHP
+namespace KonSchool.Shared
 {
 	public static class Stat
 	{

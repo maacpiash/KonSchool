@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
+using KonSchool.Shared;
 using static KonSchool.Schools.SchoolsService;
 
 namespace KonSchool.Schools

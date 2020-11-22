@@ -6,6 +6,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using MongoDB.Driver;
 using DotNetEnv;
+using KonSchool.Shared;
 using static System.Environment;
 
 namespace KonSchool.Schools

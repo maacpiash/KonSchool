@@ -2,6 +2,7 @@ using System;
 using Microsoft.Extensions.DependencyInjection;
 using System.Collections.Generic;
 using System.Linq;
+using KonSchool.Shared;
 
 namespace KonSchool.Schools
 {

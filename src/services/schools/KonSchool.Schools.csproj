@@ -9,5 +9,9 @@
 		<PackageReference Include="mongocsharpdriver" Version="2.11.2" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\..\shared\KonSchool.Shared.csproj" />
+	</ItemGroup>
+
 
 </Project>

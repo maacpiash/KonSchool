@@ -4,7 +4,7 @@ using System.IO;
 using System.Text;
 
 using static System.Math;
-using static KonSchool.FAHP.Stat;
+using static KonSchool.Shared.Stat;
 
 namespace KonSchool.FAHP
 {
