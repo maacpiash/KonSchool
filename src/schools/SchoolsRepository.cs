@@ -10,21 +10,21 @@ using static System.Environment;
 
 namespace KonSchool.Schools
 {
-    public class SchoolsRepository : ISchoolsRepository
-    {
-        private readonly List<School> _schools;
+	public class SchoolsRepository : ISchoolsRepository
+	{
+		private readonly List<School> _schools;
 		private readonly IWebHostEnvironment _env;
-        private readonly ILogger _logger;
+		private readonly ILogger _logger;
 
-        public SchoolsRepository(IWebHostEnvironment env, ILogger<SchoolsRepository> logger)
-        {
+		public SchoolsRepository(IWebHostEnvironment env, ILogger<SchoolsRepository> logger)
+		{
 			_env = env;
-            _logger = logger;
+			_logger = logger;
 			_schools = GetAllSchools();
-        }
+		}
 
-        public List<School> GetAllSchools()
-        {
+		public List<School> GetAllSchools()
+		{
 			if (!(_schools is null))
 				return _schools;
 
@@ -44,6 +44,6 @@ namespace KonSchool.Schools
 				_logger.LogError(e.Message);
 				return null;
 			}
-        }
-    }
+		}
+	}
 }
