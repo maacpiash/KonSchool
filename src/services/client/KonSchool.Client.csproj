@@ -4,6 +4,10 @@
 		<ProjectReference Include="..\..\shared\KonSchool.Shared.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <PackageReference Include="MatBlazor" Version="2.8.0" />
+	</ItemGroup>
+
 	<PropertyGroup>
 		<TargetFramework>netcoreapp3.1</TargetFramework>
 	</PropertyGroup>
