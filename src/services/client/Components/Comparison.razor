@@ -1,0 +1,57 @@
+@inject AppStateContainer State
+
+<div class="row">
+	<div class="column" style="margin-right: 10px">@Criterion1</div>
+	<div class="column">
+		<input
+			type="range"
+			min="-9"
+			max="9"
+			step="1"
+			@bind-value="State.FuzzyInputs[Index]"
+			@oninput="@((ChangeEventArgs e) => State.FuzzyInputs[Index] = int.Parse((string) e.Value))"
+			class="slider"
+		/>
+	</div>
+	<div class="column" style="margin-left: 10px">@Criterion2</div>
+</div>
+
+<div style="padding: 10px">
+	@if (State.FuzzyInputs[Index] > 0)
+	{
+		idx = State.FuzzyInputs[Index] - 1;
+		<span>@Criterion2 is <strong>@degrees[idx]</strong> more important compared to @Criterion1</span>
+	}
+	else if (State.FuzzyInputs[Index] < 0)
+	{
+		idx = - State.FuzzyInputs[Index] - 1;
+		<span>@Criterion1 is <strong>@degrees[idx]</strong> more important compared to @Criterion2</span>
+	}
+	else
+	{
+		<span>Both are <strong>equally</strong> important.</span>
+	}
+</div>
+
+@code {
+	[Parameter] public string Criterion1 { get; set; }
+
+	[Parameter] public string Criterion2 { get; set; }
+
+	[Parameter] public int Index { get; set; }
+
+	static string[] degrees = new string[]
+	{
+		"weakly",
+		"more than weakly",
+		"moderately",
+		"more than moderately",
+		"highly",
+		"more than highly",
+		"strongly",
+		"more than strongly",
+		"absolutely"
+	};
+
+	int idx = 0;
+}

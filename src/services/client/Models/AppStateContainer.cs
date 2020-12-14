@@ -16,7 +16,7 @@ namespace KonSchool.Client.Models
 		public bool LimitByDistrict { get; set; }
 		#endregion
 
-		public (double, double, double)[,] CompMat { get; set; }
+		public int[] FuzzyInputs { get; set; }
 		public double[] Weights { get; set; }
 
 		public List<School> Alternatives;
@@ -24,6 +24,7 @@ namespace KonSchool.Client.Models
 		public AppStateContainer()
 		{
 			Student = new Student();
+			FuzzyInputs = new int[6];
 			Weights = new double[6];
 		}
 
