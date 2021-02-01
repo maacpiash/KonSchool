@@ -7,7 +7,7 @@ using KonSchool.FAHP;
 
 namespace KonSchool.FAHP
 {
-	[Route("")]
+	[Route("api")]
 	[ApiController]
 	public class FAHPController : ControllerBase
 	{

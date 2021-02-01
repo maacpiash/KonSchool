@@ -8,7 +8,7 @@ using static KonSchool.Schools.SchoolsService;
 
 namespace KonSchool.Schools
 {
-	[Route("")]
+	[Route("api")]
 	[ApiController]
 	public class SchoolsController : ControllerBase
 	{
