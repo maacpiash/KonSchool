@@ -8,8 +8,8 @@
 			min="-9"
 			max="9"
 			step="1"
-			@bind-value="State.FuzzyInputs[Index]"
-			@oninput="@((ChangeEventArgs e) => State.FuzzyInputs[Index] = int.Parse((string) e.Value))"
+			@bind-value="idx"
+			@oninput="@((ChangeEventArgs e) => idx = int.Parse((string) e.Value))"
 			class="slider"
 		/>
 	</div>
@@ -17,15 +17,13 @@
 </div>
 
 <div style="padding: 10px">
-	@if (State.FuzzyInputs[Index] > 0)
+	@if (idx > 0)
 	{
-		idx = State.FuzzyInputs[Index] - 1;
-		<span>@Criterion2 is <strong>@degrees[idx]</strong> more important compared to @Criterion1</span>
+		<span>@Criterion2 is <strong>@degrees[idx - 1]</strong> more important compared to @Criterion1</span>
 	}
-	else if (State.FuzzyInputs[Index] < 0)
+	else if (idx < 0)
 	{
-		idx = - State.FuzzyInputs[Index] - 1;
-		<span>@Criterion1 is <strong>@degrees[idx]</strong> more important compared to @Criterion2</span>
+		<span>@Criterion1 is <strong>@degrees[- idx - 1]</strong> more important compared to @Criterion2</span>
 	}
 	else
 	{
@@ -53,5 +51,14 @@
 		"absolutely"
 	};
 
-	int idx = 0;
+	private int _idx;
+	public int idx
+	{
+		get => _idx;
+		set
+		{
+			_idx = value;
+			State.FuzzyInputs[Index] = _idx;
+		}
+	}
 }
