@@ -10,7 +10,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using KonSchool.Client.Models;
-using MatBlazor;
 
 namespace KonSchool.Client
 {
@@ -30,7 +29,6 @@ namespace KonSchool.Client
 			services.AddRazorPages();
 			services.AddServerSideBlazor();
 			services.AddScoped<AppStateContainer>();
-			services.AddMatBlazor();
 		}
 
 		// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
