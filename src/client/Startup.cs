@@ -10,6 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using KonSchool.Client.Models;
+using KonSchool.Client.Data;
 using MudBlazor.Services;
 
 namespace KonSchool.Client
@@ -30,6 +31,7 @@ namespace KonSchool.Client
 		{
 			services.AddRazorPages();
 			services.AddServerSideBlazor();
+			services.AddSingleton<ILocationDataService, LocationDataService>();
 			services.AddScoped<AppStateContainer>();
 			services.AddMudServices();
 		}
