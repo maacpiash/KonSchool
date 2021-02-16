@@ -1,6 +1,147 @@
 @page "/"
 @inject AppStateContainer State
+@inject ILocationDataService locations
 
-<h1>Hello, world!</h1>
+<div class="container-fluid">
+	<EditForm Model="@formData" OnValidSubmit="OnValidSubmit">
+		<DataAnnotationsValidator />
+		<div class="row">
+			<div class="col">
+				<MudCard Outlined="true">
+					<MudCardContent>
+						<MudCardHeader>
+							<CardHeaderContent>
+								<MudText Typo="Typo.h6">Student's Basic Information</MudText>
+							</CardHeaderContent>
+						</MudCardHeader>
+						<MudSelect
+							Label="Class"
+							HelperText="Class intended for admission"
+							@bind-Value="@formData.Class"
+							Variant="Variant.Outlined"
+							For="@(() => formData.Class)"
+							Class="mt-3"
+						>
+							@for(int i = 6; i <= 10; i++)
+							{
+								<MudSelectItem Value="@i" />
+							}
+						</MudSelect>
+						<MudTextField
+							Label="Age"
+							HelperText="Age of the student"
+							@bind-Value="formData.Age"
+							InputType="InputType.Number"
+							For="@(() => formData.Age)"
+							Variant="Variant.Outlined"
+							Class="mt-3"
+						/>
+						<div class="d-flex">
+							<MudRadioGroup T="bool" Required="true" @bind-SelectedOption="formData.IsFemale">
+								<MudRadio Option="@true">Female</MudRadio>
+								<MudRadio Option="@false">Male</MudRadio>
+							</MudRadioGroup>
+						</div>
+						<MudSelect
+							@bind-Value="formData.Occupation"
+							Label="Occupation"
+							HelperText="Occupation of the student's guardian"
+							For="@(() => formData.Occupation)"
+							Variant="Variant.Outlined"
+							Class="mt-3"
+						>
+							@foreach(string option in Occupations.All)
+							{
+								<MudSelectItem Value="@option">@option</MudSelectItem>
+							}
+						</MudSelect>
+					</MudCardContent>
+				</MudCard>
+			</div>
+			<div class="col">
+				<MudCard Outlined="true">
+					<MudCardContent>
+						<MudCardHeader>
+							<CardHeaderContent>
+								<MudText Typo="Typo.h6">Student's Address</MudText>
+							</CardHeaderContent>
+						</MudCardHeader>
+						<MudSelect
+							@bind-Value="formData.Division"
+							Label="Division"
+							For="@(() => formData.Division)"
+							Variant="Variant.Outlined"
+							Class="mt-3"
+						>
+							@foreach(string option in locations.Divisions)
+							{
+								<MudSelectItem Value="@option">@option</MudSelectItem>
+							}
+						</MudSelect>
+						<MudSelect
+							@bind-Value="formData.District"
+							Label="District"
+							For="@(() => formData.District)"
+							Variant="Variant.Outlined"
+							Class="mt-3"
+							Disabled="@(formData.Division is null)"
+						>
+							@if (formData.Division is not null)
+								@foreach(string option in locations.Districts[formData.Division ?? "default"])
+								{
+									<MudSelectItem Value="@option">@option</MudSelectItem>
+								}
+						</MudSelect>
+						<MudSelect
+							@bind-Value="formData.Thana"
+							Label="Thana/Upazilla"
+							For="@(() => formData.Thana)"
+							Variant="Variant.Outlined"
+							Class="mt-3"
+							Disabled="@(formData.District is null)"
+						>
+							@if (formData.District is not null)
+								@foreach(string option in locations.Thanas[formData.District ?? "default"])
+								{
+									<MudSelectItem Value="@option">@option</MudSelectItem>
+								}
+						</MudSelect>
+						<MudSelect
+							@bind-Value="formData.Union_Ward"
+							Label="Union/Ward"
+							For="@(() => formData.Union_Ward)"
+							Variant="Variant.Outlined"
+							Class="mt-3"
+							Disabled="@(formData.Thana is null)"
+						>
+						@if (formData.District is not null && formData.Thana is not null)
+							@foreach(string option in locations.Unions_Wards[formData.District + formData.Thana])
+							{
+								<MudSelectItem Value="@option">@option</MudSelectItem>
+							}
+						</MudSelect>
+					</MudCardContent>
+					<MudCardActions>
+						<MudButton
+							ButtonType="ButtonType.Submit"
+							Variant="Variant.Filled"
+							Color="Color.Primary"
+							Class="ml-auto"
+						>
+							Next
+						</MudButton>
+					</MudCardActions>
+				</MudCard>
+			</div>
+		</div>
+	</EditForm>
+</div>
 
-Welcome to your new app.
+@code {
+	private StudentFormModel formData = new();
+
+	private void OnValidSubmit()
+	{
+		State.Merge(formData);
+	}
+}
