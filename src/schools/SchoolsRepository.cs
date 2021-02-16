@@ -25,7 +25,7 @@ namespace KonSchool.Schools
 
 		public List<School> GetAllSchools()
 		{
-			if (!(_schools is null))
+			if (_schools is not null)
 				return _schools;
 
 			try

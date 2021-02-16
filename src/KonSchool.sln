@@ -3,11 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KonSchool.FAHP", "services\fahp\KonSchool.FAHP.csproj", "{68B7AD54-D344-4DB0-BEFD-B20A6E3ADD01}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KonSchool.FAHP", "fahp\KonSchool.FAHP.csproj", "{68B7AD54-D344-4DB0-BEFD-B20A6E3ADD01}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KonSchool.Schools", "services\schools\KonSchool.Schools.csproj", "{5987F10B-12F8-4D33-9199-CBCFCC4C62AB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KonSchool.Schools", "schools\KonSchool.Schools.csproj", "{5987F10B-12F8-4D33-9199-CBCFCC4C62AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KonSchool.Client", "services\client\KonSchool.Client.csproj", "{E449E134-0519-4A71-8345-9197BA9F1364}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KonSchool.Client", "client\KonSchool.Client.csproj", "{E449E134-0519-4A71-8345-9197BA9F1364}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KonSchool.Shared", "shared\KonSchool.Shared.csproj", "{1FC6BBC4-006E-49C9-BDFB-A5E7F096DB49}"
 EndProject
