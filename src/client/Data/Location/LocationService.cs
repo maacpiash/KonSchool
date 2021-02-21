@@ -27,7 +27,7 @@ namespace KonSchool.Client.Data
 			Districts = GetAllDistricts();
 			Thanas = GetAllThanas();
 			Unions_Wards = GetAllUnionsWards();
-			LocalAreas = new();
+			LocalAreas = GetAllLocalAreas();
 		}
 	}
 }
