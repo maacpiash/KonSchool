@@ -4,7 +4,7 @@ namespace KonSchool.Client.Models
 {
 	public class StudentFormModel
 	{
-		[Required] [Range(6, 10, ErrorMessage = "Class {0} must be between {1} and {2}.")]
+		[Required] [Range(6, 10, ErrorMessage = "{0} must be between {1} and {2}.")]
 		public int Class
 		{
 			get => _class;
@@ -16,7 +16,7 @@ namespace KonSchool.Client.Models
 		}
 		private int _class;
 
-		[Required] [Range(1, 100, ErrorMessage = "Age {0} must be between {1} and {2}.")]
+		[Required] [Range(1, 100, ErrorMessage = "{0} must be between {1} and {2}.")]
 		public int Age { get; set; }
 
 		[Required]
@@ -25,16 +25,16 @@ namespace KonSchool.Client.Models
 		[Required]
 		public string Occupation { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Division is required.")]
 		public string Division { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "District is required.")]
 		public string District { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Thana/Upazilla is required.")]
 		public string Thana { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "Union/Ward is required.")]
 		public string Union_Ward { get; set; }
 
 	}
