@@ -25,17 +25,24 @@ namespace KonSchool.Client.Models
 		[Required]
 		public string Occupation { get; set; }
 
-		[Required(ErrorMessage = "Division is required.")]
+		[Required]
 		public string Division { get; set; }
 
-		[Required(ErrorMessage = "District is required.")]
+		[Required]
 		public string District { get; set; }
 
-		[Required(ErrorMessage = "Thana/Upazilla is required.")]
+		[Required(ErrorMessage = "The Thana/Upazilla field is required.")]
 		public string Thana { get; set; }
 
-		[Required(ErrorMessage = "Union/Ward is required.")]
+		[Required(ErrorMessage = "The Union/Ward field is required.")]
 		public string Union_Ward { get; set; }
 
+		public void Deconstruct(out string div, out string dis, out string thana, out string uw)
+		{
+			div = Division;
+			dis = District;
+			thana = Thana;
+			uw = Union_Ward;
+		}
 	}
 }

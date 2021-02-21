@@ -5,6 +5,7 @@
 <div class="container-fluid">
 	<EditForm Model="@formData" OnValidSubmit="OnValidSubmit">
 		<DataAnnotationsValidator />
+		<CustomValidator @ref="customValidator" />
 		<div class="row">
 			<div class="col">
 				<MudCard Outlined="true">
@@ -86,8 +87,8 @@
 							Class="mt-3"
 							Disabled="@(formData.Division is null)"
 						>
-							@if (formData.Division is not null)
-								@foreach(string option in locations.Districts[formData.Division ?? "default"])
+							@if (formData.Division is not null && locations.Districts.ContainsKey(formData.Division))
+								@foreach(string option in locations.Districts[formData.Division])
 								{
 									<MudSelectItem Value="@option">@option</MudSelectItem>
 								}
@@ -100,8 +101,10 @@
 							Class="mt-3"
 							Disabled="@(formData.District is null)"
 						>
-							@if (formData.District is not null)
-								@foreach(string option in locations.Thanas[formData.District ?? "default"])
+							@if (formData.Division is not null &&
+								formData.District is not null &&
+								locations.Thanas.ContainsKey(formData.District))
+								@foreach(string option in locations.Thanas[formData.District])
 								{
 									<MudSelectItem Value="@option">@option</MudSelectItem>
 								}
@@ -112,9 +115,13 @@
 							For="@(() => formData.Union_Ward)"
 							Variant="Variant.Outlined"
 							Class="mt-3"
-							Disabled="@(formData.Thana is null)"
+							Disabled=
+								"@(formData.Division is null || formData.District is null || formData.Thana is null)"
 						>
-						@if (formData.District is not null && formData.Thana is not null)
+						@if (formData.Division is not null &&
+							formData.District is not null &&
+							formData.Thana is not null &&
+							locations.Unions_Wards.ContainsKey(formData.District + formData.Thana))
 							@foreach(string option in locations.Unions_Wards[formData.District + formData.Thana])
 							{
 								<MudSelectItem Value="@option">@option</MudSelectItem>
@@ -132,6 +139,18 @@
 						</MudButton>
 					</MudCardActions>
 				</MudCard>
+				@if (errors is not null && errors.Count() > 0)
+				{
+					<MudText Color="@Color.Error">
+						<ValidationSummary />
+					</MudText>
+					<MudText>
+						<small>
+							If the problem persists, please reload the page.<br />
+							This is a known bug, I'm trying to fix it!
+						</small>
+					</MudText>
+				}
 			</div>
 		</div>
 	</EditForm>
@@ -140,8 +159,39 @@
 @code {
 	private StudentFormModel formData = new();
 
+	private CustomValidator customValidator;
+	private Dictionary<string, List<string>> errors;
+
 	private void OnValidSubmit()
 	{
-		State.Merge(formData);
+		var (div, dis, thana, uw) = formData;
+		errors = new();
+
+		if (!locations.Districts[div].Contains(dis))
+		{
+			string err = $"{dis} is not situated in {div}";
+			errors.Add(nameof(dis), new List<string> { "Please select the District again." });
+			Console.WriteLine(err);
+			customValidator.DisplayErrors(errors);
+		}
+		else if (!locations.Thanas[dis].Contains(thana) || !locations.Unions_Wards.ContainsKey(dis + thana))
+		{
+			string err = $"{thana} is not situated in {dis}";
+			errors.Add(nameof(thana), new List<string> { "Please select the Thana/Upazilla again." });
+			Console.WriteLine(err);
+			customValidator.DisplayErrors(errors);
+		}
+		else if (!locations.Unions_Wards[dis + thana].Contains(uw))
+		{
+			string err = $"{uw} is not situated in {thana}";
+			errors.Add(nameof(uw), new List<string> { "Please select the Union/Ward again." });
+			Console.WriteLine(err);
+			customValidator.DisplayErrors(errors);
+		}
+		else
+		{
+			Console.WriteLine("Valid submission");
+			State.Merge(formData);
+		}
 	}
 }
