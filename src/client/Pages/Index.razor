@@ -1,4 +1,5 @@
 @page "/"
+@using System.Linq
 @inject AppStateContainer State
 @inject ILocationDataService locations
 
@@ -127,6 +128,17 @@
 								<MudSelectItem Value="@option">@option</MudSelectItem>
 							}
 						</MudSelect>
+						@if (formData.District is not null &&
+							formData.Thana is not null &&
+							formData.Union_Ward is not null &&
+							locations.LocalAreas.ContainsKey(formData.District + formData.Thana + formData.Union_Ward))
+						{
+							<MudText style="padding-top: 5px;">
+								This Union/Ward includes
+									@(locations.LocalAreas[formData.District + formData.Thana + formData.Union_Ward]
+										.Aggregate("", (area, next) => area += $", {next}", text => text.Remove(0, 2)))
+							</MudText>
+						}
 					</MudCardContent>
 					<MudCardActions>
 						<MudButton
