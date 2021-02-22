@@ -7,7 +7,7 @@
 		<DataAnnotationsValidator />
 		<CustomValidator @ref="customValidator" />
 		<div class="row">
-			<div class="col">
+			<div class="col" style="max-width: 500px;">
 				<MudCard Outlined="true">
 					<MudCardContent>
 						<MudCardHeader>
@@ -59,7 +59,7 @@
 					</MudCardContent>
 				</MudCard>
 			</div>
-			<div class="col">
+			<div class="col" style="max-width: 500px;">
 				<MudCard Outlined="true">
 					<MudCardContent>
 						<MudCardHeader>
@@ -169,23 +169,17 @@
 
 		if (!locations.Districts[div].Contains(dis))
 		{
-			string err = $"{dis} is not situated in {div}";
 			errors.Add(nameof(dis), new List<string> { "Please select the District again." });
-			Console.WriteLine(err);
 			customValidator.DisplayErrors(errors);
 		}
 		else if (!locations.Thanas[dis].Contains(thana) || !locations.Unions_Wards.ContainsKey(dis + thana))
 		{
-			string err = $"{thana} is not situated in {dis}";
 			errors.Add(nameof(thana), new List<string> { "Please select the Thana/Upazilla again." });
-			Console.WriteLine(err);
 			customValidator.DisplayErrors(errors);
 		}
 		else if (!locations.Unions_Wards[dis + thana].Contains(uw))
 		{
-			string err = $"{uw} is not situated in {thana}";
 			errors.Add(nameof(uw), new List<string> { "Please select the Union/Ward again." });
-			Console.WriteLine(err);
 			customValidator.DisplayErrors(errors);
 		}
 		else

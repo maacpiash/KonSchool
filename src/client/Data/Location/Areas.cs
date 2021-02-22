@@ -6,7 +6,7 @@ namespace KonSchool.Client.Data
 	{
 		Dictionary<string, List<string>> GetAllLocalAreas() => new()
 		{
-						{
+			{
 				"BARGUNATALTALIBARABAGI",
 				new List<string>
 				{
