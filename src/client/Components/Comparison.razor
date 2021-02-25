@@ -1,35 +1,22 @@
-@inject AppStateContainer State
-
-<div class="row">
-	<div class="column" style="margin-right: 10px">@Criterion1</div>
-	<div class="column">
-		<input
-			type="range"
-			min="-9"
-			max="9"
-			step="1"
-			@bind-value="idx"
-			@oninput="@((ChangeEventArgs e) => idx = int.Parse((string) e.Value))"
-			class="slider"
-		/>
-	</div>
-	<div class="column" style="margin-left: 10px">@Criterion2</div>
-</div>
-
-<div style="padding: 10px">
+<MudCardHeader Style="padding: 15px 0px 0px 0px;">
+	<CardHeaderContent>
+		<MudText Typo="Typo.h6">@Criterion1 vs. @Criterion2</MudText>
+	</CardHeaderContent>
+</MudCardHeader>
+<MudSlider @bind-Value="idx" Min="-9" Max="9">
 	@if (idx > 0)
 	{
-		<span>@Criterion2 is <strong>@degrees[idx - 1]</strong> more important compared to @Criterion1</span>
+		<MudText>@Criterion2 is <strong>@degrees[idx - 1]</strong> more important compared to @Criterion1</MudText>
 	}
 	else if (idx < 0)
 	{
-		<span>@Criterion1 is <strong>@degrees[- idx - 1]</strong> more important compared to @Criterion2</span>
+		<MudText>@Criterion1 is <strong>@degrees[- idx - 1]</strong> more important compared to @Criterion2</MudText>
 	}
 	else
 	{
-		<span>Both are <strong>equally</strong> important.</span>
+		<MudText>Both are <strong>equally</strong> important.</MudText>
 	}
-</div>
+</MudSlider>
 
 @code {
 	[Parameter] public string Criterion1 { get; set; }
@@ -37,6 +24,8 @@
 	[Parameter] public string Criterion2 { get; set; }
 
 	[Parameter] public int Index { get; set; }
+
+	[Parameter] public int[] Values { get; set; }
 
 	static string[] degrees = new string[]
 	{
@@ -58,7 +47,7 @@
 		set
 		{
 			_idx = value;
-			State.FuzzyInputs[Index] = _idx;
+			Values[Index] = _idx;
 		}
 	}
 }
