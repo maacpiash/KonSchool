@@ -2,6 +2,7 @@
 @using System.Linq
 @inject AppStateContainer State
 @inject ILocationDataService locations
+@inject NavigationManager NavManager
 
 <div class="container-fluid">
 	<EditForm Model="@formData" OnValidSubmit="OnValidSubmit">
@@ -182,22 +183,24 @@
 		if (!locations.Districts[div].Contains(dis))
 		{
 			errors.Add(nameof(dis), new List<string> { "Please select the District again." });
-			customValidator.DisplayErrors(errors);
 		}
 		else if (!locations.Thanas[dis].Contains(thana) || !locations.Unions_Wards.ContainsKey(dis + thana))
 		{
 			errors.Add(nameof(thana), new List<string> { "Please select the Thana/Upazilla again." });
-			customValidator.DisplayErrors(errors);
 		}
 		else if (!locations.Unions_Wards[dis + thana].Contains(uw))
 		{
 			errors.Add(nameof(uw), new List<string> { "Please select the Union/Ward again." });
+		}
+
+		if (errors.Count() > 0)
+		{
 			customValidator.DisplayErrors(errors);
 		}
 		else
 		{
-			Console.WriteLine("Valid submission");
 			State.Merge(formData);
+			NavManager.NavigateTo("/fuzzy-inputs");
 		}
 	}
 }
