@@ -1,0 +1,56 @@
+@page "/fuzzy-inputs"
+@inject NavigationManager NavManager
+@inject AppStateContainer State
+
+<div class="container-fluid" >
+	<div class="row">
+		<div class="col" style="max-width: 800px;">
+			<MudCard Outlined="true">
+				<MudCardContent>
+					@for (int i = 0; i < 5; i++)
+					{
+						<Comparison Criterion1="@criteria[i]" Criterion2="@criteria[i + 1]" Index="i" Values="values" />
+					}
+				</MudCardContent>
+				<MudCardActions>
+					<MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="OnSubmit">
+						Next
+					</MudButton>
+				</MudCardActions>
+			</MudCard>
+		</div>
+	</div>
+</div>
+
+@code {
+	private int[] values = new int[6];
+
+	private string[] degrees = new[]
+	{
+		"weakly",
+		"more than weakly",
+		"moderately",
+		"more than moderately",
+		"highly",
+		"more than highly",
+		"strongly",
+		"more than strongly",
+		"absolutely",
+	};
+
+	private string[] criteria = new[]
+	{
+		"Teacher-Student Ratio",
+		"Male-Female Ratio",
+		"Socio-Economic Status",
+		"Location of School",
+		"Age of School",
+		"Average Age of Students",
+	};
+
+	public void OnSubmit()
+	{
+		State.FuzzyInputs = values;
+		NavManager.NavigateTo("/schools");
+	}
+}
