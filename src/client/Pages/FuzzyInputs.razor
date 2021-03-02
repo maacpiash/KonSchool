@@ -2,24 +2,25 @@
 @inject NavigationManager NavManager
 @inject AppStateContainer State
 
-<div class="container-fluid" >
-	<div class="row">
-		<div class="col" style="max-width: 800px;">
-			<MudCard Outlined="true">
-				<MudCardContent>
-					@for (int i = 0; i < 5; i++)
-					{
-						<Comparison Criterion1="@criteria[i]" Criterion2="@criteria[i + 1]" Index="i" Values="values" />
-					}
-				</MudCardContent>
-				<MudCardActions>
-					<MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="OnSubmit">
-						Next
-					</MudButton>
-				</MudCardActions>
-			</MudCard>
-		</div>
-	</div>
+<div class="container-fluid" style="max-width: 800px;">
+	<MudCard Outlined="true">
+		<MudCardHeader>
+			<CardHeaderContent>
+				<MudText Typo="Typo.h4">Comparison of criteria</MudText>
+			</CardHeaderContent>
+		</MudCardHeader>
+		<MudCardContent>
+			@for (int i = 0; i < 5; i++)
+			{
+				<Comparison Criterion1="@criteria[i]" Criterion2="@criteria[i + 1]" Index="i" Values="values" />
+			}
+		</MudCardContent>
+		<MudCardActions>
+			<MudButton Variant="Variant.Filled" Color="Color.Primary" Class="ml-auto" OnClick="OnSubmit">
+				Next
+			</MudButton>
+		</MudCardActions>
+	</MudCard>
 </div>
 
 @code {
