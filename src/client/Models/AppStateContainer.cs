@@ -25,7 +25,6 @@ namespace KonSchool.Client.Models
 		{
 			Student = new Student();
 			FuzzyInputs = new int[5];
-			Weights = new double[6];
 		}
 
 		public void SetValues()

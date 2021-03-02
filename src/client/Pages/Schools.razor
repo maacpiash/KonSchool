@@ -1,0 +1,91 @@
+@page "/schools"
+@using System.Linq;
+@using Microsoft.Extensions.Configuration
+@using System.Text.Json
+@inject AppStateContainer State
+@inject IConfiguration config
+@inject IHttpClientFactory clientFactory
+
+<div class="container-fluid" style="max-width: 500px;">
+	<MudCard Outlined="true">
+		<MudCardHeader>
+			<CardHeaderContent>
+				<MudText Typo="Typo.h6">Weights of criteria</MudText>
+			</CardHeaderContent>
+		</MudCardHeader>
+		<MudCardContent>
+			@if (State.Weights is null)
+			{
+				<MudProgressCircular Color="Color.Default" Indeterminate="true" />
+			}
+			else if (GetWeightsError)
+			{
+				<MudText Color="@Color.Error">Could not calculate/get weights!</MudText>
+			}
+			else
+			{
+				<table class="table">
+					 <thead>
+						<tr>
+							<th>Criterion</th>
+							<th>Weight</th>
+						</tr>
+					</thead>
+					<tbody>
+						@for (int i = 0; i < 6; i++)
+						{
+							<tr>
+								<td>@criteria[i]</td>
+								<td>@State.Weights[i].ToString("0.00000")</td>
+							</tr>
+						}
+					</tbody>
+				</table>
+			}
+		</MudCardContent>
+	</MudCard>
+</div>
+
+@code {
+	public bool GetWeightsError { get; set; }
+
+	private string[] criteria = new[]
+	{
+		"Teacher-Student Ratio",
+		"Male-Female Ratio",
+		"Socio-Economic Status",
+		"Location of School",
+		"Age of School",
+		"Average Age of Students",
+	};
+
+	protected override async Task OnInitializedAsync()
+	{
+		string baseAddress = config.GetValue<string>("ApiEndpoints:fahp");
+		string fuzzyInputs = State.FuzzyInputs.Aggregate("", (current, next) => current += $",{next}").Substring(1);
+
+		var request = new HttpRequestMessage(HttpMethod.Get, baseAddress + fuzzyInputs);
+		request.Headers.Add("Accept", "application/json");
+
+		try
+		{
+			var response = await clientFactory.CreateClient().SendAsync(request);
+			if (response.IsSuccessStatusCode)
+			{
+				using var responseStream = await response.Content.ReadAsStreamAsync();
+				State.Weights = await JsonSerializer.DeserializeAsync<double[]>(responseStream);
+			}
+			else
+			{
+				GetWeightsError = true;
+				State.Weights = Array.Empty<double>();
+			}
+		}
+		catch (Exception e)
+		{
+			GetWeightsError = true;
+			State.Weights = Array.Empty<double>();
+			Console.Error.WriteLine(e.Message);
+		}
+	}
+}
