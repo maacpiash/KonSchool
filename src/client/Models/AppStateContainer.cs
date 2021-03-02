@@ -24,7 +24,7 @@ namespace KonSchool.Client.Models
 		public AppStateContainer()
 		{
 			Student = new Student();
-			FuzzyInputs = new int[6];
+			FuzzyInputs = new int[5];
 			Weights = new double[6];
 		}
 
