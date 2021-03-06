@@ -1,6 +1,7 @@
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Linq;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -12,7 +13,7 @@ namespace KonSchool.Schools
 {
 	public class SchoolsRepository : ISchoolsRepository
 	{
-		private readonly List<School> _schools;
+		private readonly IEnumerable<School> _schools;
 		private readonly IConfiguration _config;
 		private readonly ILogger _logger;
 
@@ -23,7 +24,7 @@ namespace KonSchool.Schools
 			_schools = GetAllSchools();
 		}
 
-		public List<School> GetAllSchools()
+		public IEnumerable<School> GetAllSchools()
 		{
 			if (_schools is not null)
 				return _schools;
@@ -37,7 +38,7 @@ namespace KonSchool.Schools
 				var client = new MongoClient(connStr);
 				var database = client.GetDatabase(dbName);
 				var collection = database.GetCollection<School>(colName);
-				return collection.Find(_ => true).ToList();
+				return collection.Find(_ => true).ToList() as IEnumerable<School>;
 			}
 			catch (Exception e)
 			{

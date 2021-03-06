@@ -29,7 +29,6 @@ namespace KonSchool.Schools
 
 			services.AddControllers();
 			services.AddSingleton<ISchoolsRepository, SchoolsRepository>();
-			services.AddSingleton<ISchoolsService, SchoolsService>();
 			services.AddSwaggerGen(c =>
 			{
 				c.SwaggerDoc("v1", new OpenApiInfo

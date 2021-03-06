@@ -1,10 +1,11 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using System.Linq;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Mvc;
 using KonSchool.Shared;
-using static KonSchool.Schools.SchoolsService;
+using static KonSchool.Schools.SchoolsRepositoryHelpers;
 
 namespace KonSchool.Schools
 {
@@ -13,76 +14,51 @@ namespace KonSchool.Schools
 	public class SchoolsController : ControllerBase
 	{
 		private ILogger _logger;
-		private readonly ISchoolsService _schools;
+		private readonly IEnumerable<School> _schools;
 
-		public SchoolsController(ISchoolsService schoolService, ILogger<SchoolsController> logger)
+		public SchoolsController(ISchoolsRepository schools, ILogger<SchoolsController> logger)
 		{
 			_logger = logger;
-			_schools = schoolService;
+			_schools = schools.GetAllSchools();
 		}
 
-		[HttpGet]
-		public ActionResult<IEnumerable<School>> Get()
+		[HttpGet("school/{eiin:int}")]
+		public ActionResult<School> GetOneSchool(int eiin)
 		{
-			_logger.LogInformation("Returing details of all the schools.");
-			return Ok(_schools.GetAllSchools());
-		}
+			var school = _schools.GetSchool(eiin);
 
-		[HttpGet("{id}")]
-		public ActionResult<School> GetOneSchool(string id)
-		{
-			var school = _schools.GetSchool(id);
-
-			if (school == null)
+			if (school is null)
 			{
-				_logger.LogInformation($"School with EIIN {id} not found.");
+				_logger.LogInformation($"School with EIIN {eiin} not found.");
 				return NotFound();
 			}
 
+			_logger.LogInformation($"School with EIIN {eiin} found.");
 			return Ok(school);
 		}
 
-		[HttpGet("div/{div}/{sex:alpha?}")]
-		public ActionResult<IEnumerable<School>> GetSchoolsByDivision(string div, string sex = "")
+		[HttpGet("schools")]
+		public ActionResult<School> GetFilteredSchools(
+			[FromQuery] string div,
+			[FromQuery] string dis,
+			[FromQuery] string sex,
+			[FromQuery] bool segregated,
+			[FromQuery] int @class
+		)
 		{
-			var schools = _schools.GetSchoolsByDivision(div);
-			string logSuffix = ".";
+			var schools = _schools
+				.FilterByDivision(div)
+				.FilterByDistrict(dis)
+				.FilterBySex(sex)
+				.FilterBySegregated(segregated ? sex : null)
+				.FilterByClass(@class);
 
-			if (!string.IsNullOrEmpty(sex))
-			{
-				schools = FilterBySex(schools, sex);
-				logSuffix = $" of type \"{sex}\".";
-			}
+			_logger.LogInformation($"{schools.Count()} school(s) found with the following query:\n" +
+				$"Division: {div}\nDistrict: {dis}\nSex: {sex}\nSexOnly: {segregated}\nClass: {@class}\n");
 
-			if (schools.Count == 0)
-			{
-				_logger.LogInformation($"No school in the division of {div} found" + logSuffix);
+			if (schools.Count() == 0)
 				return NotFound();
-			}
 
-			_logger.LogInformation($"{schools.Count} school(s) found in the divition of {div}" + logSuffix);
-			return Ok(schools);
-		}
-
-		[HttpGet("dis/{dis}/{sex:alpha?}")]
-		public ActionResult<IEnumerable<School>> GetSchoolsByDistrict(string dis, string sex = "")
-		{
-			var schools = _schools.GetSchoolsByDistrict(dis);
-			string logSuffix = ".";
-
-			if (!string.IsNullOrEmpty(sex))
-			{
-				schools = FilterBySex(schools, sex);
-				logSuffix = $" of type \"{sex}\".";
-			}
-
-			if (schools.Count == 0)
-			{
-				_logger.LogInformation($"No school in the district of {dis} found" + logSuffix);
-				return NotFound();
-			}
-
-			_logger.LogInformation($"{schools.Count} school(s) found in the district of {dis}" + logSuffix);
 			return Ok(schools);
 		}
 	}
