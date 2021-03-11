@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -66,7 +66,7 @@ namespace KonSchool.FAHP
 		public static (double, double, double) FuzzyMultiply(this (double, double, double) a, (double, double, double) b)
 		{
 			double[] Items = { a.Item1 * b.Item1, a.Item1 * b.Item3, a.Item3 * b.Item1, a.Item3 * b.Item3 };
-								// a1b1 a1b3 a3b1 a3b3
+			// a1b1 a1b3 a3b1 a3b3
 			var (Left, Right) = GetMinMax(Items);
 			double Middle = a.Item2 * b.Item2;
 			return (Left, Middle, Right);
