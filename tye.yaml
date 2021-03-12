@@ -1,0 +1,20 @@
+# tye application configuration file
+# read all about it at https://github.com/dotnet/tye
+#
+# when you've given us a try, we'd love to know what you think:
+#    https://aka.ms/AA7q20u
+#
+name: konschool
+services:
+- name: client
+  project: src/client/KonSchool.Client.csproj
+  bindings:
+  - port: 5500
+- name: fahp
+  project: src/fahp/KonSchool.FAHP.csproj
+  bindings:
+  - port: 4000
+- name: schools
+  project: src/schools/KonSchool.Schools.csproj
+  bindings:
+  - port: 7000

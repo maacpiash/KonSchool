@@ -7,6 +7,12 @@
       "commands": [
         "dotnet-format"
       ]
+    },
+    "microsoft.tye": {
+      "version": "0.6.0-alpha.21070.5",
+      "commands": [
+        "tye"
+      ]
     }
   }
 }
