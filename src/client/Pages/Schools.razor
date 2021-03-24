@@ -76,7 +76,7 @@
 			</CardHeaderContent>
 		</MudCardHeader>
 		<MudCardContent>
-			@if (State.Weights is null)
+			@if (SchoolsNotLoaded)
 			{
 				<MudProgressCircular Color="Color.Default" Indeterminate="true" />
 			}
@@ -122,6 +122,7 @@
 	public bool GetWeightsError { get; set; }
 
 	public bool GetSchoolsError { get; set; }
+	public bool SchoolsNotLoaded { get; set; } = true;
 
 	private string[] criteria = new[]
 	{
@@ -185,6 +186,7 @@
 						s.ADS * State.Weights[5];
 
 				State.Alternatives = State.Alternatives.OrderByDescending(x => x.FinalScore).ToList();
+				SchoolsNotLoaded = false;
 			}
 			else
 			{
