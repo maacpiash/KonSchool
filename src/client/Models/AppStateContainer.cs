@@ -43,11 +43,7 @@ namespace KonSchool.Client.Models
 
 		public void SetValues()
 		{
-			List<School> eligibleSchools = new List<School>();
 			foreach (School s in Alternatives)
-				if (IsEligible(s)) eligibleSchools.Add(s);
-
-			foreach (School s in eligibleSchools)
 			{
 				// MFR
 				if (Student.IsFemale) s.MFR = 1 - s.MFR;
@@ -82,9 +78,7 @@ namespace KonSchool.Client.Models
 			}
 
 			// AGE
-			GetAGE(eligibleSchools);
-
-			Alternatives = eligibleSchools;
+			GetAGE(Alternatives);
 		}
 
 		public void GetAGE(List<School> EligibleSchools)
@@ -119,17 +113,6 @@ namespace KonSchool.Client.Models
 
 			for (int i = 0; i < max; i++)
 				EligibleSchools[i].ADS = 1 - Stat.NORMDIST(ageDiffs[i], mean, sd, true);
-		}
-
-		public bool IsEligible(School s)
-		{
-			if (Student.IsFemale && s.Type == "BOYS")
-				return false;
-			if (!Student.IsFemale && s.Type == "GIRLS")
-				return false;
-			if (Student.Class > 8 && s.Level == "Junior Secondary")
-				return false;
-			return true;
 		}
 	}
 }
