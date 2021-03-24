@@ -13,10 +13,7 @@ namespace KonSchool.Shared
 		[BsonId]
 		[BsonRepresentation(BsonType.ObjectId)]
 		public string Id { get; set; }
-
-		[BsonElement("EIIN")]
 		public int EIIN { get; set; }
-		[BsonElement("Name")]
 		public string Name { get; set; }
 		#endregion
 
@@ -26,22 +23,12 @@ namespace KonSchool.Shared
 		#endregion
 
 		#region Location
-		[BsonElement("Division")]
 		public string Division { get; set; }
-		[BsonElement("District")]
 		public string District { get; set; }
-		[BsonElement("Thana")]
 		public string Thana { get; set; }
-		[BsonElement("Union_Ward")]
 		public string Union_Ward { get; set; }
-
-		[BsonElement("MobileNum")]
 		public string MobileNum { get; set; }
-
-		[BsonElement("StreetAddr")]
-
 		public string StreetAddr { get; set; }
-
 		public double LOC { get; set; }
 		#endregion
 
@@ -51,15 +38,10 @@ namespace KonSchool.Shared
 		#endregion
 
 		#region AverAge
-		[BsonElement("AverAge6")]
 		public double AverAge6 { get; set; }
-		[BsonElement("AverAge7")]
 		public double AverAge7 { get; set; }
-		[BsonElement("AverAge8")]
 		public double AverAge8 { get; set; }
-		[BsonElement("AverAge9")]
 		public double AverAge9 { get; set; }
-		[BsonElement("AverAgeX")]
 		public double AverAgeX { get; set; }
 
 		private double[] averAge;
@@ -101,13 +83,9 @@ namespace KonSchool.Shared
 		#endregion
 
 		#region Socio-Economic Status (SES)
-		[BsonElement("SEScore1")]
 		public double SEScore1 { get; set; }
-		[BsonElement("SEScore2")]
 		public double SEScore2 { get; set; }
-		[BsonElement("SEScore3")]
 		public double SEScore3 { get; set; }
-		[BsonElement("SEScore4")]
 		public double SEScore4 { get; set; }
 
 		private double[] seScore;
