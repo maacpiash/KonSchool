@@ -14,6 +14,7 @@ namespace KonSchool.Client.Models
 		public Student Student { get; set; }
 		public bool LimitByDivision { get; set; }
 		public bool LimitByDistrict { get; set; }
+		public bool ShowSegragatedSchoolsOnly { get; set; }
 		#endregion
 
 		public int[] FuzzyInputs { get; set; }
@@ -25,6 +26,19 @@ namespace KonSchool.Client.Models
 		{
 			Student = new Student();
 			FuzzyInputs = new int[5];
+		}
+
+		public string BuildUriQuery()
+		{
+			string query = $"schools?class={Student.Class}&sex={(Student.IsFemale ? "F" : "M")}";
+
+			if (!string.IsNullOrWhiteSpace(Student.Address.Division) && LimitByDivision)
+				query += $"&div={Student.Address.Division}";
+			if (!string.IsNullOrWhiteSpace(Student.Address.District) && LimitByDistrict)
+				query += $"&dis={Student.Address.District}";
+			if (ShowSegragatedSchoolsOnly) query += $"&segragated=true";
+
+			return query;
 		}
 
 		public void SetValues()
@@ -39,7 +53,9 @@ namespace KonSchool.Client.Models
 				if (Student.IsFemale) s.MFR = 1 - s.MFR;
 
 				// LOC
-				if (Student.Address.Division != default(string))
+				if (string.IsNullOrWhiteSpace(Student.Address.Division))
+					Console.Error.WriteLine("LOC not set!");
+				else
 					s.LOC = Student.Address.Division == s.Division
 						? (Student.Address.District == s.District
 							? (Student.Address.Thana == s.Thana
@@ -49,8 +65,6 @@ namespace KonSchool.Client.Models
 								: 0.7) // same district, different thanas
 							: 0.4) // same division, different districts
 						: 0.0; // different divisions
-				else
-					Console.Error.WriteLine("LOC not set!");
 
 				// SES
 				if (Student.Social > 1.0)

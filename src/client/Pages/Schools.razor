@@ -2,6 +2,7 @@
 @using System.Linq;
 @using Microsoft.Extensions.Configuration
 @using System.Text.Json
+@using KonSchool.Shared
 @inject AppStateContainer State
 @inject IConfiguration config
 @inject IHttpClientFactory clientFactory
@@ -46,8 +47,60 @@
 	</MudCard>
 </div>
 
+<div class="container-fluid" style="max-width: 2000px;">
+	<MudCard Outlined="true">
+		<MudCardHeader>
+			<CardHeaderContent>
+				<MudText Typo="Typo.h6">Schools</MudText>
+			</CardHeaderContent>
+		</MudCardHeader>
+		<MudCardContent>
+			@if (State.Weights is null)
+			{
+				<MudProgressCircular Color="Color.Default" Indeterminate="true" />
+			}
+			else if (GetWeightsError)
+			{
+				<MudText Color="@Color.Error">Could not fetch schools!</MudText>
+			}
+			else
+			{
+				<MudTable Items="@State.Alternatives" Hover="true" Breakpoint="Breakpoint.Sm">
+					 <HeaderContent>
+						<MudTh>Name</MudTh>
+						<MudTh>Street Address</MudTh>
+						<MudTh>Union/Ward</MudTh>
+						<MudTh>Thana/Upazilla</MudTh>
+						<MudTh>District</MudTh>
+						<MudTh>Mobile Number</MudTh>
+						<MudTh>Type</MudTh>
+						<MudTh>Level</MudTh>
+						<MudTh>Compatibility Score</MudTh>
+					</HeaderContent>
+					<RowTemplate>
+						<MudTd>@context.Name</MudTd>
+						<MudTd>@context.StreetAddr</MudTd>
+						<MudTd>@context.Union_Ward</MudTd>
+						<MudTd>@context.Thana</MudTd>
+						<MudTd>@context.District</MudTd>
+						<MudTd>@context.MobileNum</MudTd>
+						<MudTd>@context.Type</MudTd>
+						<MudTd>@context.Level</MudTd>
+						<MudTd>@string.Format("{0:0.00}%", @context.FinalScore * 100)</MudTd>
+					</RowTemplate>
+					<PagerContent>
+						<MudTablePager />
+					</PagerContent>
+				</MudTable>
+			}
+		</MudCardContent>
+	</MudCard>
+</div>
+
 @code {
 	public bool GetWeightsError { get; set; }
+
+	public bool GetSchoolsError { get; set; }
 
 	private string[] criteria = new[]
 	{
@@ -85,6 +138,43 @@
 		{
 			GetWeightsError = true;
 			State.Weights = Array.Empty<double>();
+			Console.Error.WriteLine(e.Message);
+		}
+
+		baseAddress = config.GetValue<string>("ApiEndpoints:schools");
+		request = new HttpRequestMessage(HttpMethod.Get, baseAddress + State.BuildUriQuery());
+		request.Headers.Add("Accept", "application/json");
+
+		try
+		{
+			var response = await clientFactory.CreateClient().SendAsync(request);
+			if (response.IsSuccessStatusCode)
+			{
+				using var responseStream = await response.Content.ReadAsStreamAsync();
+				var options = new JsonSerializerOptions { PropertyNameCaseInsensitive = true };
+				var schools = await JsonSerializer.DeserializeAsync<List<School>>(responseStream, options);
+				State.Alternatives = schools;
+				State.SetValues();
+				foreach (School s in State.Alternatives)
+					s.FinalScore = s.TSR * State.Weights[0] +
+						s.MFR * State.Weights[1] +
+						s.SES * State.Weights[2] +
+						s.LOC * State.Weights[3] +
+						s.OLD * State.Weights[4] +
+						s.ADS * State.Weights[5];
+
+				State.Alternatives = State.Alternatives.OrderByDescending(x => x.FinalScore).ToList();
+			}
+			else
+			{
+				GetSchoolsError = true;
+				State.Alternatives = new();
+			}
+		}
+		catch (Exception e)
+		{
+			GetSchoolsError = true;
+			State.Alternatives = new();
 			Console.Error.WriteLine(e.Message);
 		}
 	}

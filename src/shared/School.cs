@@ -70,7 +70,7 @@ namespace KonSchool.Shared
 		#region Finalization
 		public double[] WeightedScores { get; set; }
 
-		public double FinalScore { get; internal set; }
+		public double FinalScore { get; set; }
 		#endregion
 
 		#region Ctor
