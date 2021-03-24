@@ -44,32 +44,6 @@ namespace KonSchool.Shared
 		public double AverAge9 { get; set; }
 		public double AverAgeX { get; set; }
 
-		private double[] averAge;
-
-		public double[] AverAge
-		{
-			get
-			{
-				if (averAge == null)
-					averAge = new double[] { AverAge6, AverAge7, AverAge8, AverAge9, AverAgeX };
-				return averAge;
-			}
-			set
-			{
-				if (value.Length != 5)
-					throw new Exception("Must have 5 values.");
-				else
-				{
-					AverAge6 = value[0];
-					AverAge7 = value[1];
-					AverAge8 = value[2];
-					AverAge9 = value[3];
-					AverAgeX = value[4];
-					averAge = value;
-				}
-			}
-		}
-
 		// Actual age difference, stored when Query objct modifies the class instance.
 		public double ADS { get; set; }
 		#endregion
@@ -87,30 +61,6 @@ namespace KonSchool.Shared
 		public double SEScore2 { get; set; }
 		public double SEScore3 { get; set; }
 		public double SEScore4 { get; set; }
-
-		private double[] seScore;
-		public double[] SEScore
-		{
-			get
-			{
-				if (seScore == null)
-					seScore = new double[] { SEScore1, SEScore2, SEScore3, SEScore4 };
-				return seScore;
-			}
-			set //=> seScore = value.Length == 4 ? value : null;
-			{
-				if (value.Length != 4)
-					throw new Exception("Must have 4 values.");
-				else
-				{
-					SEScore1 = value[0];
-					SEScore2 = value[1];
-					SEScore3 = value[2];
-					SEScore4 = value[3];
-					seScore = value;
-				}
-			}
-		}
 
 		// Stores Area-Score while reading from dataset. Will store actual SES after Query objct modifies the class instance.
 		[BsonElement("Area")]

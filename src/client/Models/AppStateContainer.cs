@@ -54,7 +54,17 @@ namespace KonSchool.Client.Models
 
 				// SES
 				if (Student.Social > 1.0)
-					s.SES = (s.SEScore[(int)(Student.Social / 2.5) - 1] * 2 + s.SES) / 3;
+				{
+					double sescore = (int)(Student.Social / 2.5) switch
+					{
+						1 => s.SEScore1,
+						2 => s.SEScore2,
+						3 => s.SEScore3,
+						4 => s.SEScore4,
+						_ => 0,
+					};
+					s.SES = (sescore * 2 + s.SES) / 3;
+				}
 			}
 
 			// AGE
@@ -72,7 +82,15 @@ namespace KonSchool.Client.Models
 			{
 				try
 				{
-					double averAge = EligibleSchools[i].AverAge[Student.Class - 6];
+					double averAge = Student.Class switch
+					{
+						6 => EligibleSchools[i].AverAge6,
+						7 => EligibleSchools[i].AverAge7,
+						8 => EligibleSchools[i].AverAge8,
+						9 => EligibleSchools[i].AverAge9,
+						10 => EligibleSchools[i].AverAgeX,
+						_ => 0.0,
+					};
 					ageDiffs[i] = Abs(averAge - (double)Student.Age);
 				}
 				catch (Exception x)
