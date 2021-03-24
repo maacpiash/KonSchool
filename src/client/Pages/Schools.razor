@@ -7,44 +7,65 @@
 @inject IConfiguration config
 @inject IHttpClientFactory clientFactory
 
-<div class="container-fluid" style="max-width: 500px;">
-	<MudCard Outlined="true">
-		<MudCardHeader>
-			<CardHeaderContent>
-				<MudText Typo="Typo.h6">Weights of criteria</MudText>
-			</CardHeaderContent>
-		</MudCardHeader>
-		<MudCardContent>
-			@if (State.Weights is null)
-			{
-				<MudProgressCircular Color="Color.Default" Indeterminate="true" />
-			}
-			else if (GetWeightsError)
-			{
-				<MudText Color="@Color.Error">Could not calculate/get weights!</MudText>
-			}
-			else
-			{
-				<table class="table">
-					 <thead>
-						<tr>
-							<th>Criterion</th>
-							<th>Weight</th>
-						</tr>
-					</thead>
-					<tbody>
-						@for (int i = 0; i < 6; i++)
-						{
+<div class="row container-fluid">
+	<div class="col" style="max-width: 500px;">
+		<MudCard Outlined="true">
+			<MudCardHeader>
+				<CardHeaderContent>
+					<MudText Typo="Typo.h6">Inputs</MudText>
+				</CardHeaderContent>
+			</MudCardHeader>
+			<MudCardContent>
+				<MudText Typo="Typo.body1">Class: @State.Student.Class</MudText>
+				<MudText Typo="Typo.body1">Age: @State.Student.Age</MudText>
+				<MudText Typo="Typo.body1">Sex: @(State.Student.IsFemale ? "Female" : "Male")</MudText>
+				<MudText Typo="Typo.body1">Occupation: @State.Student.Occupation</MudText>
+				<MudText Typo="Typo.body1">Division: @State.Student.Address.Division</MudText>
+				<MudText Typo="Typo.body1">District: @State.Student.Address.District</MudText>
+				<MudText Typo="Typo.body1">Thana/Upazilla: @State.Student.Address.Thana</MudText>
+				<MudText Typo="Typo.body1">Union/Ward: @State.Student.Address.Union_Ward</MudText>
+			</MudCardContent>
+		</MudCard>
+	</div>
+	<div class="col" style="max-width: 500px;">
+		<MudCard Outlined="true">
+			<MudCardHeader>
+				<CardHeaderContent>
+					<MudText Typo="Typo.h6">Weights of criteria</MudText>
+				</CardHeaderContent>
+			</MudCardHeader>
+			<MudCardContent>
+				@if (State.Weights is null)
+				{
+					<MudProgressCircular Color="Color.Default" Indeterminate="true" />
+				}
+				else if (GetWeightsError)
+				{
+					<MudText Color="@Color.Error">Could not calculate/get weights!</MudText>
+				}
+				else
+				{
+					<table class="table">
+						<thead>
 							<tr>
-								<td>@criteria[i]</td>
-								<td>@State.Weights[i].ToString("0.00000")</td>
+								<th>Criterion</th>
+								<th>Weight</th>
 							</tr>
-						}
-					</tbody>
-				</table>
-			}
-		</MudCardContent>
-	</MudCard>
+						</thead>
+						<tbody>
+							@for (int i = 0; i < 6; i++)
+							{
+								<tr>
+									<td>@criteria[i]</td>
+									<td>@State.Weights[i].ToString("0.00000")</td>
+								</tr>
+							}
+						</tbody>
+					</table>
+				}
+			</MudCardContent>
+		</MudCard>
+	</div>
 </div>
 
 <div class="container-fluid" style="max-width: 2000px;">
