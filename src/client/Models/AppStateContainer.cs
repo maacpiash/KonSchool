@@ -49,18 +49,15 @@ namespace KonSchool.Client.Models
 				if (Student.IsFemale) s.MFR = 1 - s.MFR;
 
 				// LOC
-				if (string.IsNullOrWhiteSpace(Student.Address.Division))
-					Console.Error.WriteLine("LOC not set!");
-				else
-					s.LOC = Student.Address.Division == s.Division
-						? (Student.Address.District == s.District
-							? (Student.Address.Thana == s.Thana
-								? (Student.Address.Union_Ward == s.Union_Ward
-									? 1.0 // same union/ward
-									: 0.9) // same thana, different unions/wards
-								: 0.7) // same district, different thanas
-							: 0.4) // same division, different districts
-						: 0.0; // different divisions
+				s.LOC = Student.Address.Division == s.Division
+					? (Student.Address.District == s.District
+						? (Student.Address.Thana == s.Thana
+							? (Student.Address.Union_Ward == s.Union_Ward
+								? 1.0 // same union/ward
+								: 0.9) // same thana, different unions/wards
+							: 0.7) // same district, different thanas
+						: 0.4) // same division, different districts
+					: 0.0; // different divisions
 
 				// SES
 				if (Student.Social > 1.0)
