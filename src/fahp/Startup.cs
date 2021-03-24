@@ -54,11 +54,7 @@ namespace KonSchool.FAHP
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
 			app.UseSwagger();
-			app.UseSwaggerUI(c =>
-			{
-				c.SwaggerEndpoint("/swagger/v1/swagger.json", "KonSchool Web API for FAHP");
-				c.RoutePrefix = string.Empty;
-			});
+			app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "KonSchool Web API for FAHP"));
 
 			if (env.IsDevelopment())
 			{

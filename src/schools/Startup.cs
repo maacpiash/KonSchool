@@ -55,11 +55,7 @@ namespace KonSchool.Schools
 		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
 		{
 			app.UseSwagger();
-			app.UseSwaggerUI(c =>
-			{
-				c.SwaggerEndpoint("/swagger/v1/swagger.json", "KonSchool Web API for Schools");
-				c.RoutePrefix = string.Empty;
-			});
+			app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "KonSchool Web API for Schools"));
 
 			if (env.IsDevelopment())
 			{
