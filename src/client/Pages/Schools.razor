@@ -82,6 +82,10 @@
 			}
 			else if (GetWeightsError)
 			{
+				<MudText Color="@Color.Error">Cannot show schools without the weights of the criteria.</MudText>
+			}
+			else if (GetSchoolsError)
+			{
 				<MudText Color="@Color.Error">Could not fetch schools!</MudText>
 			}
 			else
@@ -162,6 +166,8 @@
 			State.Weights = Array.Empty<double>();
 			Console.Error.WriteLine(e.Message);
 		}
+
+		if (GetWeightsError) return;
 
 		baseAddress = config.GetValue<string>("ApiEndpoints:schools");
 		request = new HttpRequestMessage(HttpMethod.Get, baseAddress + State.BuildUriQuery());
