@@ -94,23 +94,19 @@
 					 <HeaderContent>
 						<MudTh>Name</MudTh>
 						<MudTh>Street Address</MudTh>
-						<MudTh>Union/Ward</MudTh>
 						<MudTh>Thana/Upazilla</MudTh>
 						<MudTh>District</MudTh>
 						<MudTh>Mobile Number</MudTh>
-						<MudTh>Type</MudTh>
-						<MudTh>Level</MudTh>
+						<MudTh>Type/Level</MudTh>
 						<MudTh>Compatibility Score</MudTh>
 					</HeaderContent>
 					<RowTemplate>
 						<MudTd>@context.Name</MudTd>
 						<MudTd>@context.StreetAddr</MudTd>
-						<MudTd>@context.Union_Ward</MudTd>
 						<MudTd>@context.Thana</MudTd>
 						<MudTd>@context.District</MudTd>
 						<MudTd>@context.MobileNum</MudTd>
-						<MudTd>@context.Type</MudTd>
-						<MudTd>@context.Level</MudTd>
+						<MudTd>@context.Type/@context.Level</MudTd>
 						<MudTd>@string.Format("{0:0.00}%", @context.FinalScore * 100)</MudTd>
 					</RowTemplate>
 					<PagerContent>
