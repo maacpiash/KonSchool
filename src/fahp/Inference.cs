@@ -1,6 +1,5 @@
 using System;
-using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 
 namespace KonSchool.FAHP
 {
@@ -12,11 +11,10 @@ namespace KonSchool.FAHP
 
 			#region Validation
 			if (values.Length < 5)
-				throw new ArgumentException("At least 5 integers are expected.");
+				throw new ArgumentException("At least 5 integers between -9 and +9 (inclusive) are expected");
 
-			for (i = 0; i < 4; i++)
-				if (values[i] < -9 || values[i] > 9)
-					throw new ArgumentException($"Error at {i} = {values[i]}: Fuzzy input must be between -9 and +9.");
+			if (values.Any(v => v < -9 || v > 9))
+				throw new ArgumentException("Fuzzy input must be between -9 and +9 (inclusive)");
 			#endregion
 
 			(double, double, double)[] TFNs =
