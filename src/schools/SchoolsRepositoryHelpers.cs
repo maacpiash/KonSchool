@@ -6,7 +6,7 @@ namespace KonSchool.Schools
 {
 	public static class SchoolsRepositoryHelpers
 	{
-		public static School GetSchool(this IEnumerable<School> schools, int EIIN) =>
+		public static School? GetSchool(this IEnumerable<School> schools, int EIIN) =>
 			schools.Where(s => s.EIIN == EIIN).FirstOrDefault();
 
 		public static IEnumerable<School> FilterByDivision(this IEnumerable<School> schools, string div)
@@ -41,7 +41,7 @@ namespace KonSchool.Schools
 			return schools;
 		}
 
-		public static IEnumerable<School> FilterBySegregated(this IEnumerable<School> schools, string sex = "")
+		public static IEnumerable<School> FilterBySegregated(this IEnumerable<School> schools, string? sex = "")
 		{
 			if (string.IsNullOrWhiteSpace(sex))
 				return schools;

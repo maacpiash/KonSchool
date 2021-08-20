@@ -1,26 +1,59 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+using Serilog;
+using static Microsoft.AspNetCore.Http.Results;
+using static KonSchool.Schools.SchoolsRepositoryHelpers;
 
-namespace KonSchool.Schools
+namespace KonSchool.Schools;
+
+public class Program
 {
-	public class Program
+	static async Task Main(string[] args)
 	{
-		public static void Main(string[] args)
-		{
-			CreateHostBuilder(args).Build().Run();
-		}
+		var builder = WebApplication.CreateBuilder(args);
+		builder.Services.AddSingleton<ISchoolsRepository, SchoolsRepository>();
 
-		public static IHostBuilder CreateHostBuilder(string[] args) =>
-			Host.CreateDefaultBuilder(args)
-				.ConfigureWebHostDefaults(webBuilder =>
-				{
-					webBuilder.UseStartup<Startup>();
-				});
+		var app = builder.Build();
+
+		if (builder.Environment.IsDevelopment())
+			app.UseDeveloperExceptionPage();
+		else
+			app.UseHsts();
+		app.UseHttpsRedirection();
+
+		using var log = new LoggerConfiguration().WriteTo.Console().CreateLogger();
+
+		app.MapGet("/{eiin:int}", (int eiin, ISchoolsRepository schools) =>
+		{
+			var school = schools.GetAllSchools().GetSchool(eiin);
+
+			if (school is null)
+			{
+				log.Information($"School with EIIN {eiin} not found.");
+				return NotFound();
+			}
+
+			log.Information($"School with EIIN {eiin} found.");
+			return Ok(school);
+		});
+
+		app.MapGet("/", (string div, string dis, string sex, bool seg, int @class, ISchoolsRepository schools) =>
+		{
+			var filteredSchools = schools
+				.GetAllSchools()
+				.FilterByDivision(div)
+				.FilterByDistrict(dis)
+				.FilterBySex(sex)
+				.FilterBySegregated(seg ? sex : null)
+				.FilterByClass(@class);
+
+			log.Information($"{filteredSchools.Count()} school(s) found with the following query:\n" +
+				$"Division:\t{div}\nDistrict:\t{dis}\nSex:\t\t{sex}\nSegragated:\t{seg}\nClass:\t\t{@class}\n");
+
+			if (filteredSchools.Count() == 0)
+				return NotFound();
+
+			return Ok(filteredSchools);
+		});
+
+		await app.RunAsync();
 	}
 }
