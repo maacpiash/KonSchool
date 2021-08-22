@@ -1,6 +1,5 @@
 using Serilog;
 using static Microsoft.AspNetCore.Http.Results;
-using static KonSchool.Schools.SchoolsRepositoryHelpers;
 
 namespace KonSchool.Schools;
 
