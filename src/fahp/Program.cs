@@ -1,5 +1,3 @@
-using Serilog;
-
 namespace KonSchool.FAHP;
 
 public class Program
@@ -18,7 +16,6 @@ public class Program
 
 		app.MapGet("/{numbers}", async context =>
 		{
-			using var log = new LoggerConfiguration().WriteTo.Console().CreateLogger();
 			var numbers = context.Request.RouteValues["numbers"];
 			if (numbers is not null)
 			{
@@ -26,15 +23,15 @@ public class Program
 				{
 					var values = Array.ConvertAll(((string)numbers).Split(','), int.Parse);
 					var fahp = new FAHP(Inference.ComparisonMatrix(values));
-					log.Information($"Returning values for {numbers}.");
+					app.Logger.LogInformation($"Returning values for {numbers}.");
 					var weights = fahp.CriteriaWeights;
 					var weightsStr = string.Join(", ", weights.Select(x => x.ToString("0.00000")).ToArray());
-					log.Information($"Values: {weightsStr}");
+					app.Logger.LogInformation($"Values: {weightsStr}");
 					await context.Response.WriteAsJsonAsync(weights);
 				}
 				catch (Exception e)
 				{
-					log.Error(e.Message);
+					app.Logger.LogError(e.Message);
 					context.Response.StatusCode = 400;
 					await context.Response.WriteAsync($"{e.Message}: {numbers}");
 				}

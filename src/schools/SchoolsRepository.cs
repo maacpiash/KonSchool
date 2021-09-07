@@ -1,4 +1,3 @@
-using Serilog;
 using MongoDB.Driver;
 using KonSchool.Shared;
 
@@ -8,12 +7,12 @@ public class SchoolsRepository : ISchoolsRepository
 {
 	private readonly IEnumerable<School> _schools;
 	private readonly IConfiguration _config;
-	private readonly Serilog.ILogger _log;
+	private readonly ILogger<SchoolsRepository> _logger;
 
-	public SchoolsRepository(IConfiguration config)
+	public SchoolsRepository(IConfiguration config, ILogger<SchoolsRepository> logger)
 	{
 		_config = config;
-		_log = new LoggerConfiguration().WriteTo.Console().CreateLogger();
+		_logger = logger;
 		_schools = GetAllSchools();
 	}
 
@@ -35,7 +34,7 @@ public class SchoolsRepository : ISchoolsRepository
 		}
 		catch (Exception e)
 		{
-			_log.Error(e.Message);
+			_logger.LogError(e.Message);
 			return new List<School>() as IEnumerable<School>;
 		}
 	}

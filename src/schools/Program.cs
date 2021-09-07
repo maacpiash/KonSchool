@@ -1,4 +1,3 @@
-using Serilog;
 using static Microsoft.AspNetCore.Http.Results;
 
 namespace KonSchool.Schools;
@@ -18,19 +17,17 @@ public class Program
 			app.UseHsts();
 		app.UseHttpsRedirection();
 
-		using var log = new LoggerConfiguration().WriteTo.Console().CreateLogger();
-
 		app.MapGet("/{eiin:int}", (int eiin, ISchoolsRepository schools) =>
 		{
 			var school = schools.GetAllSchools().GetSchool(eiin);
 
 			if (school is null)
 			{
-				log.Information($"School with EIIN {eiin} not found.");
+				app.Logger.LogInformation($"School with EIIN {eiin} not found.");
 				return NotFound();
 			}
 
-			log.Information($"School with EIIN {eiin} found.");
+			app.Logger.LogInformation($"School with EIIN {eiin} found.");
 			return Ok(school);
 		});
 
@@ -44,7 +41,7 @@ public class Program
 				.FilterBySegregated(seg ? sex : null)
 				.FilterByClass(@class);
 
-			log.Information($"{filteredSchools.Count()} school(s) found with the following query:\n" +
+			app.Logger.LogInformation($"{filteredSchools.Count()} school(s) found with the following query:\n" +
 				$"Division:\t{div}\nDistrict:\t{dis}\nSex:\t\t{sex}\nSegragated:\t{seg}\nClass:\t\t{@class}\n");
 
 			if (filteredSchools.Count() == 0)
