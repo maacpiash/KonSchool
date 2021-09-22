@@ -1,3 +1,6 @@
+using System;
+using System.Linq;
+
 namespace KonSchool.FAHP;
 
 public static class Inference
