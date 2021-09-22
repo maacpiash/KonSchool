@@ -64,14 +64,14 @@ public class Program
 			return Ok(school);
 		});
 
-		app.MapGet("/", (string div, string dis, string sex, bool seg, int @class, ISchoolsRepository schools) =>
+		app.MapGet("/", (string? div, string? dis, string? sex, bool? seg, int? @class, ISchoolsRepository schools) =>
 		{
 			var filteredSchools = schools
 				.GetAllSchools()
 				.FilterByDivision(div)
 				.FilterByDistrict(dis)
 				.FilterBySex(sex)
-				.FilterBySegregated(seg ? sex : null)
+				.FilterBySegregated((seg ?? false) ? sex : null)
 				.FilterByClass(@class);
 
 			app.Logger.LogInformation($"{filteredSchools.Count()} school(s) found with the following query:\n" +

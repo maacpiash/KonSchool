@@ -9,7 +9,7 @@ namespace KonSchool.Schools
 		public static School? GetSchool(this IEnumerable<School> schools, int EIIN) =>
 			schools.Where(s => s.EIIN == EIIN).FirstOrDefault();
 
-		public static IEnumerable<School> FilterByDivision(this IEnumerable<School> schools, string div)
+		public static IEnumerable<School> FilterByDivision(this IEnumerable<School> schools, string? div)
 		{
 			if (string.IsNullOrWhiteSpace(div))
 				return schools;
@@ -18,7 +18,7 @@ namespace KonSchool.Schools
 			return schools.Where(s => s.Division == Div);
 		}
 
-		public static IEnumerable<School> FilterByDistrict(this IEnumerable<School> schools, string dis)
+		public static IEnumerable<School> FilterByDistrict(this IEnumerable<School> schools, string? dis)
 		{
 			if (string.IsNullOrWhiteSpace(dis))
 				return schools;
@@ -27,7 +27,7 @@ namespace KonSchool.Schools
 			return schools.Where(s => s.District == Dis);
 		}
 
-		public static IEnumerable<School> FilterBySex(this IEnumerable<School> schools, string sex = "")
+		public static IEnumerable<School> FilterBySex(this IEnumerable<School> schools, string? sex = "")
 		{
 			if (string.IsNullOrWhiteSpace(sex))
 				return schools;
@@ -54,7 +54,7 @@ namespace KonSchool.Schools
 			return schools;
 		}
 
-		public static IEnumerable<School> FilterByClass(this IEnumerable<School> schools, int Class)
+		public static IEnumerable<School> FilterByClass(this IEnumerable<School> schools, int? Class)
 		{
 			if (Class is 9 or 10)
 				return schools.Where(s => s.Level is not "Junior Secondary");
