@@ -3,8 +3,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 
 namespace KonSchool.FAHP;
 
@@ -14,7 +16,32 @@ public class Program
 	{
 		var builder = WebApplication.CreateBuilder(args);
 
+		builder.Services.AddEndpointsApiExplorer();
+		builder.Services.AddSwaggerGen(options =>
+		{
+			options.SwaggerDoc("v1", new OpenApiInfo
+			{
+				Version = "v1",
+				Title = "KonSchool Web API for FAHP",
+				Description = "Calculates weights of criteria via Fuzzy Analytic Hierarchy Process (FAHP)",
+				Contact = new OpenApiContact
+				{
+					Name = "Mohammad Abdul Ahad Chowdhury",
+					Email = "ahad@maacpiash.com",
+					Url = new Uri("https://www.maacpiash.com"),
+				},
+				License = new OpenApiLicense
+				{
+					Name = "AGPL-3.0",
+					Url = new Uri("https://github.com/maacpiash/KonSchool/blob/master/LICENSE"),
+				},
+			});
+		});
+
 		var app = builder.Build();
+
+		app.UseSwagger();
+		app.UseSwaggerUI();
 
 		if (builder.Environment.IsDevelopment())
 			app.UseDeveloperExceptionPage();

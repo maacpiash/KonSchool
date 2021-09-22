@@ -1,9 +1,11 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using static Microsoft.AspNetCore.Http.Results;
 
 namespace KonSchool.Schools;
@@ -15,7 +17,32 @@ public class Program
 		var builder = WebApplication.CreateBuilder(args);
 		builder.Services.AddSingleton<ISchoolsRepository, SchoolsRepository>();
 
+		builder.Services.AddEndpointsApiExplorer();
+		builder.Services.AddSwaggerGen(options =>
+		{
+			options.SwaggerDoc("v1", new OpenApiInfo
+			{
+				Version = "v1",
+				Title = "KonSchool Web API for Schools",
+				Description = "Provides informations on secondary schools in Bangladesh",
+				Contact = new OpenApiContact
+				{
+					Name = "Mohammad Abdul Ahad Chowdhury",
+					Email = "ahad@maacpiash.com",
+					Url = new Uri("https://www.maacpiash.com"),
+				},
+				License = new OpenApiLicense
+				{
+					Name = "AGPL-3.0",
+					Url = new Uri("https://github.com/maacpiash/KonSchool/blob/master/LICENSE"),
+				}
+			});
+		});
+
 		var app = builder.Build();
+
+		app.UseSwagger();
+		app.UseSwaggerUI();
 
 		if (builder.Environment.IsDevelopment())
 			app.UseDeveloperExceptionPage();
