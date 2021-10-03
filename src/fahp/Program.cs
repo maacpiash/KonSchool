@@ -43,23 +43,41 @@ else
 	app.UseHsts();
 app.UseHttpsRedirection();
 
-app.MapGet("/{numbers}", (string numbers) =>
+app.MapGet("/{values}", (string inputs) =>
 {
-	try
+	if (string.IsNullOrEmpty(inputs) || !inputs.Contains(","))
 	{
-		var values = Array.ConvertAll((numbers).Split(','), int.Parse);
-		var fahp = new FAHP(Inference.ComparisonMatrix(values));
-		app.Logger.LogInformation($"Returning values for {numbers}.");
-		var weights = fahp.CriteriaWeights;
-		var weightsStr = string.Join(", ", weights.Select(x => x.ToString("0.00000")).ToArray());
-		app.Logger.LogInformation($"Values: {weightsStr}");
-		return Results.Ok(weights);
+		app.Logger.LogInformation($"Invalid input: {inputs}");
+		return Results.BadRequest($"Invalid input: {inputs}");
 	}
-	catch (Exception e)
+	var values = inputs.Split(',');
+	if (values.Length < 5)
 	{
-		app.Logger.LogError(e.Message);
-		return Results.BadRequest($"{e.Message}: {numbers}");
+		app.Logger.LogInformation($"At least 5 integers between -9 and +9 (inclusive) are expected: {inputs}");
+		return Results.BadRequest($"At least 5 integers between -9 and +9 (inclusive) are expected: {inputs}");
 	}
+
+	var numbers = new int[values.Length];
+	for (int i = 0; i < values.Length; i++)
+	{
+		if (!int.TryParse(values[i], out int number))
+		{
+			app.Logger.LogInformation($"All the values must be numbers: {inputs}");
+			return Results.BadRequest($"All the values must be numbers: {inputs}");
+		}
+		if (number < -9 || number > 9)
+		{
+			app.Logger.LogInformation($"Each fuzzy input must be between -9 and +9 (inclusive): {inputs}");
+			return Results.BadRequest($"Each fuzzy input must be between -9 and +9 (inclusive): {inputs}");
+		}
+		numbers[i] = number;
+	}
+
+	var weights = numbers.GenerateComparisonMatrix().RunFAHP();
+
+	app.Logger.LogInformation($"Returning values for {inputs}: "
+		+ weights.Aggregate("", (all, w) => $"{all}, {w:0.000000}"));
+	return Results.Ok(weights);
 });
 
 app.Run();

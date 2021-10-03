@@ -5,18 +5,8 @@ namespace KonSchool.FAHP;
 
 public static class Inference
 {
-	public static (double, double, double)[,] ComparisonMatrix(int[] values)
+	public static (double, double, double)[,] GenerateComparisonMatrix(this int[] values)
 	{
-		int i;
-
-		#region Validation
-		if (values.Length < 5)
-			throw new ArgumentException("At least 5 integers between -9 and +9 (inclusive) are expected");
-
-		if (values.Any(v => v < -9 || v > 9))
-			throw new ArgumentException("Fuzzy input must be between -9 and +9 (inclusive)");
-		#endregion
-
 		(double, double, double)[] TFNs =
 		{
 			(1, 1, 1), (1, 2, 3), (2, 3, 4),
@@ -34,7 +24,7 @@ public static class Inference
 
 		// Then, setting the values from the 'values' array
 
-		for (i = 0; i < 5; i++)
+		for (int i = 0; i < 5; i++)
 		{
 			if (values[i] < 0)
 				CompMat[i, i + 1] = TFNs[-1 - values[i]];
