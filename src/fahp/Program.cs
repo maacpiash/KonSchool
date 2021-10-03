@@ -43,7 +43,7 @@ else
 	app.UseHsts();
 app.UseHttpsRedirection();
 
-app.MapGet("/{values}", (string inputs) =>
+app.MapGet("/{inputs}", (string inputs) =>
 {
 	if (string.IsNullOrEmpty(inputs) || !inputs.Contains(","))
 	{
