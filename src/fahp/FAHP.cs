@@ -1,5 +1,5 @@
 using static System.Math;
-using static KonSchool.Shared.Stat;
+using static KonSchool.FAHP.Stat;
 
 namespace KonSchool.FAHP;
 
