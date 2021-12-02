@@ -5,15 +5,6 @@ namespace KonSchool.FAHP;
 
 public static class Stat
 {
-	public static double[] NormalizeBySum(ref double[] numbers)
-	{
-		int max = numbers.Length;
-		double sum = numbers.Sum();
-		for (int i = 0; i < max; i++)
-			numbers[i] /= sum;
-		return numbers;
-	}
-
 	public static double[] NormalizeByLimits(ref double[] numbers, double lower = 0.0, double upper = 1.0)
 	{
 		int length = numbers.Length;

@@ -1,3 +1,4 @@
+using System.Linq;
 using static System.Math;
 using static KonSchool.FAHP.Stat;
 
@@ -53,5 +54,14 @@ public static class FAHP
 		NormalizeBySum(ref weights);
 
 		return weights;
+	}
+
+	public static double[] NormalizeBySum(ref double[] numbers)
+	{
+		int max = numbers.Length;
+		double sum = numbers.Sum();
+		for (int i = 0; i < max; i++)
+			numbers[i] /= sum;
+		return numbers;
 	}
 }
