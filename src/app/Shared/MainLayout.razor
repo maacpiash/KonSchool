@@ -1,6 +1,6 @@
 ﻿@inherits LayoutComponentBase
 
-<MudThemeProvider />
+<MudThemeProvider Theme="currentTheme" />
 <MudDialogProvider />
 <MudSnackbarProvider />
 
@@ -10,6 +10,11 @@
         <MudSpacer />
         <MudIconButton Icon="@Icons.Custom.Brands.MudBlazor" Color="Color.Inherit" Link="https://mudblazor.com/" Target="_blank" />
         <MudIconButton Icon="@Icons.Custom.Brands.GitHub" Color="Color.Inherit" Link="https://github.com/Garderoben/MudBlazor" Target="_blank" />
+		<MudSwitch
+			@bind-Checked="@DarkMode"
+			ThumbIcon="@(DarkMode ? Icons.Filled.LightMode : Icons.Filled.DarkMode)"
+			Color="@(DarkMode ? Color.Dark : Color.Primary)"
+		/>
     </MudAppBar>
     <MudDrawer @bind-Open="_drawerOpen" Elevation="1">
         <MudDrawerHeader>
@@ -24,11 +29,63 @@
     </MudMainContent>
 </MudLayout>
 
-@code {
-    bool _drawerOpen = true;
+@code{
+	bool _drawerOpen = false;
+	bool _darkMode = false;
+	bool DarkMode
+	{
+		get => _darkMode;
+		set
+		{
+			_darkMode = value;
+			currentTheme = _darkMode ? DarkTheme : LightTheme;
+		}
+	}
 
-    void DrawerToggle()
+    MudTheme defaultTheme = new MudTheme()
     {
-        _drawerOpen = !_drawerOpen;
-    }
+        Palette = new Palette()
+        {
+            Black = "#272c34"
+        }
+    };
+
+    MudTheme currentTheme = new MudTheme();
+
+	protected override void OnInitialized()
+	{
+		currentTheme = defaultTheme;
+		var icon = Icons.Filled.DarkMode;
+		Console.WriteLine(icon);
+	}
+
+    void DrawerToggle() => _drawerOpen = !_drawerOpen;
+
+	// source: https://mudblazor.com/customization/theming/overview#multiple-themes
+    MudTheme darkTheme = new MudTheme()
+    {
+        Palette = new Palette()
+        {
+            Black = "#27272f",
+            Background = "#32333d",
+            BackgroundGrey = "#27272f",
+            Surface = "#373740",
+            DrawerBackground = "#27272f",
+            DrawerText = "rgba(255,255,255, 0.50)",
+            DrawerIcon = "rgba(255,255,255, 0.50)",
+            AppbarBackground = "#27272f",
+            AppbarText = "rgba(255,255,255, 0.70)",
+            TextPrimary = "rgba(255,255,255, 0.70)",
+            TextSecondary = "rgba(255,255,255, 0.50)",
+            ActionDefault = "#adadb1",
+            ActionDisabled = "rgba(255,255,255, 0.26)",
+            ActionDisabledBackground = "rgba(255,255,255, 0.12)",
+            Divider = "rgba(255,255,255, 0.12)",
+            DividerLight = "rgba(255,255,255, 0.06)",
+            TableLines = "rgba(255,255,255, 0.12)",
+            LinesDefault = "rgba(255,255,255, 0.12)",
+            LinesInputs = "rgba(255,255,255, 0.3)",
+            TextDisabled = "rgba(255,255,255, 0.2)"
+        }
+    };
 }
