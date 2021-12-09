@@ -38,11 +38,11 @@
 		set
 		{
 			_darkMode = value;
-			currentTheme = _darkMode ? DarkTheme : LightTheme;
+			currentTheme = _darkMode ? darkTheme : lightTheme;
 		}
 	}
 
-    MudTheme defaultTheme = new MudTheme()
+    MudTheme lightTheme = new MudTheme()
     {
         Palette = new Palette()
         {
@@ -54,9 +54,7 @@
 
 	protected override void OnInitialized()
 	{
-		currentTheme = defaultTheme;
-		var icon = Icons.Filled.DarkMode;
-		Console.WriteLine(icon);
+		currentTheme = lightTheme;
 	}
 
     void DrawerToggle() => _drawerOpen = !_drawerOpen;
