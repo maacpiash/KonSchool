@@ -3,6 +3,7 @@
 There are four data files in this directory, which contain data on the administrative regions of Bangladesh and the occupation options — each in two formats (JSON and YAML).
 
 ## Administrative regions
+The CSV, XLS, and XLSX files in the [original](./original) directory are the original datasets collected from [data.gov.bd](http://data.gov.bd/group/education). The current version of these files are downloaded on 14 December 2021.
 
 The data is formatted as one whole nested object, based on the following regional hierarchy:
 
@@ -21,3 +22,4 @@ The data is formatted as one whole nested object, based on the following regiona
 ## Occupation options
 
 The data is an object with the property `Occupations`, which is an array of all the available options for the guardian's occupation field.
+
