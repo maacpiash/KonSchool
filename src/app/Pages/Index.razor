@@ -1,6 +1,20 @@
 ﻿@page "/"
 
+<MudText Typo="Typo.h5" GutterBottom="true">Welcome to KonSchool app.</MudText>
 
-<MudText Typo="Typo.h3" GutterBottom="true">Hello, world!</MudText>
-<MudText Class="mb-8">Welcome to your new app, powered by MudBlazor!</MudText>
-<MudAlert Severity="Severity.Normal">You can find documentation and examples on our website here: <MudLink Href="https://mudblazor.com" Typo="Typo.body2" Color="Color.Inherit"><b>www.mudblazor.com</b></MudLink></MudAlert>
+<MudGrid>
+	<MudItem xs="12" md="6" lg="6" xl="6">
+		<MudLink Href="find" Typo="Typo.body2" Underline="Underline.None">
+			<MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+				Search for a suitable school for a student
+			</MudPaper>
+		</MudLink>
+	</MudItem>
+	<MudItem xs="12" md="6" lg="6" xl="6">
+		<MudLink Href="info" Typo="Typo.body2" Underline="Underline.None">
+			<MudPaper Class="d-flex align-center justify-center mud-width-full py-8">
+				Look up information about a school
+			</MudPaper>
+		</MudLink>
+	</MudItem>
+</MudGrid>
