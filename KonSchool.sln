@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30907.101
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32319.34
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonSchool.Client", "src\client\KonSchool.Client.csproj", "{B7C620CC-D629-41B9-8D21-BFB1B86DAF4E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonSchool.FAHP", "src\fahp\KonSchool.FAHP.csproj", "{CB7139BA-B502-4649-972F-AAD2C6C49521}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonSchool.Schools", "src\schools\KonSchool.Schools.csproj", "{C222EF6F-9D78-4808-8279-CB7FFEB81D4A}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonSchool.Shared", "src\shared\KonSchool.Shared.csproj", "{BA101E0D-3BBF-42CF-BCB8-2A90F27FE847}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KonSchool.App", "src\app\KonSchool.App.csproj", "{0EB46B21-BD78-4330-A9CC-D99F9DBC546B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,18 +21,6 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{B7C620CC-D629-41B9-8D21-BFB1B86DAF4E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B7C620CC-D629-41B9-8D21-BFB1B86DAF4E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B7C620CC-D629-41B9-8D21-BFB1B86DAF4E}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{B7C620CC-D629-41B9-8D21-BFB1B86DAF4E}.Debug|x64.Build.0 = Debug|Any CPU
-		{B7C620CC-D629-41B9-8D21-BFB1B86DAF4E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{B7C620CC-D629-41B9-8D21-BFB1B86DAF4E}.Debug|x86.Build.0 = Debug|Any CPU
-		{B7C620CC-D629-41B9-8D21-BFB1B86DAF4E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B7C620CC-D629-41B9-8D21-BFB1B86DAF4E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B7C620CC-D629-41B9-8D21-BFB1B86DAF4E}.Release|x64.ActiveCfg = Release|Any CPU
-		{B7C620CC-D629-41B9-8D21-BFB1B86DAF4E}.Release|x64.Build.0 = Release|Any CPU
-		{B7C620CC-D629-41B9-8D21-BFB1B86DAF4E}.Release|x86.ActiveCfg = Release|Any CPU
-		{B7C620CC-D629-41B9-8D21-BFB1B86DAF4E}.Release|x86.Build.0 = Release|Any CPU
 		{CB7139BA-B502-4649-972F-AAD2C6C49521}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CB7139BA-B502-4649-972F-AAD2C6C49521}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CB7139BA-B502-4649-972F-AAD2C6C49521}.Debug|x64.ActiveCfg = Debug|Any CPU
@@ -69,6 +57,18 @@ Global
 		{BA101E0D-3BBF-42CF-BCB8-2A90F27FE847}.Release|x64.Build.0 = Release|Any CPU
 		{BA101E0D-3BBF-42CF-BCB8-2A90F27FE847}.Release|x86.ActiveCfg = Release|Any CPU
 		{BA101E0D-3BBF-42CF-BCB8-2A90F27FE847}.Release|x86.Build.0 = Release|Any CPU
+		{0EB46B21-BD78-4330-A9CC-D99F9DBC546B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0EB46B21-BD78-4330-A9CC-D99F9DBC546B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0EB46B21-BD78-4330-A9CC-D99F9DBC546B}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0EB46B21-BD78-4330-A9CC-D99F9DBC546B}.Debug|x64.Build.0 = Debug|Any CPU
+		{0EB46B21-BD78-4330-A9CC-D99F9DBC546B}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{0EB46B21-BD78-4330-A9CC-D99F9DBC546B}.Debug|x86.Build.0 = Debug|Any CPU
+		{0EB46B21-BD78-4330-A9CC-D99F9DBC546B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0EB46B21-BD78-4330-A9CC-D99F9DBC546B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0EB46B21-BD78-4330-A9CC-D99F9DBC546B}.Release|x64.ActiveCfg = Release|Any CPU
+		{0EB46B21-BD78-4330-A9CC-D99F9DBC546B}.Release|x64.Build.0 = Release|Any CPU
+		{0EB46B21-BD78-4330-A9CC-D99F9DBC546B}.Release|x86.ActiveCfg = Release|Any CPU
+		{0EB46B21-BD78-4330-A9CC-D99F9DBC546B}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

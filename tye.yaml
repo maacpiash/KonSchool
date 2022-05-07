@@ -6,8 +6,8 @@
 #
 name: konschool
 services:
-- name: client
-  project: src/client/KonSchool.Client.csproj
+- name: app
+  project: src/app/KonSchool.App.csproj
   bindings:
   - port: 5500
 - name: fahp
