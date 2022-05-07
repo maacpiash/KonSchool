@@ -5,6 +5,26 @@ namespace KonSchool.Shared
 {
 	public static class Stat
 	{
+		public static double[] NormalizeByLimits(ref double[] numbers, double lower = 0.0, double upper = 1.0)
+		{
+			int length = numbers.Length;
+			double min = numbers[0], max = numbers[0];
+			for (int i = 1; i < length; i++)
+			{
+				if (numbers[i] > max)
+					max = numbers[i];
+				if (numbers[i] < min)
+					min = numbers[i];
+			}
+
+			double dx = max - min;
+			double diff = upper - lower;
+			for (int i = 0; i < length; i++)
+				numbers[i] = lower + (numbers[i] - min) * diff / dx;
+
+			return numbers;
+		}
+
 		public static double StdDev(double[] values)
 		{
 			double ret = 0;
@@ -16,6 +36,10 @@ namespace KonSchool.Shared
 			}
 			return ret;
 		}
+
+		public static (double, double, double) ScalarMultiply
+		(this (double, double, double) a, (double, double, double) b)
+			=> (a.Item1 * b.Item1, a.Item2 * b.Item2, a.Item3 * b.Item3);
 
 		// The following is an implementation of CDF for standard normal distribution. I found this code at
 		// https://sites.google.com/site/softwareincidentanalysis/Downhome/statistics-1/ccdfnormaldistribution

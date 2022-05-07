@@ -6,7 +6,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
-using KonSchool.FAHP;
+using KonSchool.Shared;
 
 var builder = WebApplication.CreateBuilder(args);
 

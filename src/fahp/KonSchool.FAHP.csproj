@@ -9,4 +9,8 @@
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.1" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<ProjectReference Include="..\shared\KonSchool.Shared.csproj" />
+	</ItemGroup>
+
 </Project>
