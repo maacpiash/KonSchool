@@ -10,6 +10,7 @@ services:
   project: src/app/KonSchool.App.csproj
   bindings:
   - port: 5500
+    protocol: https
 - name: fahp
   project: src/fahp/KonSchool.FAHP.csproj
   bindings:

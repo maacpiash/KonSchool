@@ -34,7 +34,7 @@ public class SchoolsRepository : ISchoolsRepository
 			var client = new MongoClient(connStr);
 			var database = client.GetDatabase(dbName);
 			var collection = database.GetCollection<School>(colName);
-			return collection.Find(_ => true).ToList() as IEnumerable<School>;
+			return collection.Find(_ => true).ToList();
 		}
 		catch (Exception e)
 		{

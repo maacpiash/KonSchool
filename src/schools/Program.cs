@@ -71,8 +71,7 @@ app.MapGet("/", (string? div, string? dis, string? sex, bool? seg, int? @class, 
 	app.Logger.LogInformation($"{filteredSchools.Count()} school(s) found with the following query:\n" +
 		$"Division:\t{div}\nDistrict:\t{dis}\nSex:\t\t{sex}\nSegragated:\t{seg}\nClass:\t\t{@class}\n");
 
-	if (filteredSchools.Count() == 0)
-		return NotFound();
+	if (filteredSchools.Count() == 0) return NotFound();
 
 	return Ok(filteredSchools);
 });
