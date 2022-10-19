@@ -2,6 +2,7 @@
 
 @using System.Linq
 @inject AppStateContainer State
+@inject ISyncLocalStorageService localStorage
 @inject ILocationDataService locations
 @inject NavigationManager NavManager
 
@@ -182,6 +183,18 @@
 	private FormValidator FormValidator;
 	private Dictionary<string, List<string>> errors;
 
+	protected override void OnInitialized()
+	{
+		var appDataFromLocalStorage = localStorage.GetItem<AppStateContainer?>("appState");
+		if (appDataFromLocalStorage is not null)
+		{
+			if (appDataFromLocalStorage.Student is not null)
+				State.Student = appDataFromLocalStorage.Student;
+			if (appDataFromLocalStorage.FuzzyInputs is not null)
+				State.FuzzyInputs = appDataFromLocalStorage.FuzzyInputs;
+		}
+	}
+
 	private void OnValidSubmit()
 	{
 		var (div, dis, thana, uw) = formData;
@@ -239,6 +252,7 @@
 	public void OnSubmit()
 	{
 		State.FuzzyInputs = values;
+		localStorage.SetItem("appState", State);
 		NavManager.NavigateTo("/schools");
 	}
 }
