@@ -1,9 +1,8 @@
 using KonSchool.Shared;
 
-namespace KonSchool.Schools
+namespace KonSchool.Schools;
+
+public interface ISchoolsRepository
 {
-	public interface ISchoolsRepository
-	{
-		System.Collections.Generic.IEnumerable<School> GetAllSchools();
-	}
+	System.Collections.Generic.IEnumerable<School> GetAllSchools();
 }

@@ -1,9 +1,3 @@
-using System;
-using System.Linq;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using static Microsoft.AspNetCore.Http.Results;
 using KonSchool.Schools;
@@ -38,7 +32,7 @@ var app = builder.Build();
 app.UseSwagger();
 app.UseSwaggerUI();
 
-if (builder.Environment.IsDevelopment())
+if (app.Environment.IsDevelopment())
 	app.UseDeveloperExceptionPage();
 else
 	app.UseHsts();
